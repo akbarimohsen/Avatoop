@@ -17,6 +17,18 @@ class CreateGamesTable extends Migration
             $table->id();
             $table->date('date');
             $table->string('stadium');
+
+            $table->unsignedBigInteger('player1_id');
+            $table->unsignedBigInteger('player2_id');
+
+            $table->unsignedBigInteger('league_id');
+
+            $table->foreign('league_id')->references('id')->on('leagues')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->foreign('player1_id')->references('id')->on('teams')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('player2_id')->references('id')->on('teams')->onDelete('cascade')->onUpdate('cascade');
+
+
             $table->timestamps();
         });
     }

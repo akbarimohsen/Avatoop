@@ -20,6 +20,10 @@ class CreateTeamsTable extends Migration
             $table->text('description');
             $table->integer('score_count');
             $table->float('score');
+
+            $table->unsignedBigInteger('league_id');
+            $table->foreign('league_id')->references('id')->on('leagues')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

@@ -19,7 +19,6 @@ class CreateAdvertisesTable extends Migration
             $table->string('link');
             $table->integer('cost');
             $table->date('created_at');
-
         });
     }
 

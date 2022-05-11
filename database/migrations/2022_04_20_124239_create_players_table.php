@@ -24,6 +24,12 @@ class CreatePlayersTable extends Migration
             $table->string('position');
             $table->string('img');
             $table->integer('likes_count');
+
+            $table->unsignedBigInteger('team_id');
+
+            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade')->onUpdate('cascade');
+
+
             $table->timestamps();
         });
     }
@@ -33,6 +39,8 @@ class CreatePlayersTable extends Migration
      *
      * @return void
      */
+
+
     public function down()
     {
         Schema::dropIfExists('players');

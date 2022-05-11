@@ -18,7 +18,6 @@ class CreateMessagesTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->date('created_at');
-            $table->timestamps();
         });
     }
 
