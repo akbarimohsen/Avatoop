@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MainController;
 use App\Http\Livewire\Admin\Dashboard\AdminDashboardComponent;
 use App\Http\Livewire\User\Dashboard\UserDashboardcomponent;
 use Illuminate\Support\Facades\Route;
@@ -15,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MainController::class, 'checkUserType']);
 
 Route::middleware([
     'auth:sanctum',
@@ -29,7 +28,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::middleware(['auth:sanctum', 'verified', 'AdminAuth' ])->group(function(){
+Route::middleware(['auth:sanctum', 'verified' ])->group(function(){
     Route::get('/admin/dashboard', AdminDashboardComponent::class)->name('admin.dashboard');
 });
 
