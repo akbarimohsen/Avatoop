@@ -24,7 +24,7 @@ class CreateNewsTable extends Migration
             $table->integer('views')->default(0);
             $table->unsignedBigInteger('reporter_id');
 
-            $table->foreign('reporter_id')->references('id')->on('news')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('reporter_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

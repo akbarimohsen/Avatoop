@@ -9,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+
+
 
 class User extends Authenticatable
 {
@@ -17,6 +20,8 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
+
 
     /**
      * The attributes that are mass assignable.
@@ -67,7 +72,12 @@ class User extends Authenticatable
 
     // relations
 
-    public function role(){
-        return $this->hasOne(Role::class, 'user_id', 'id');
+    public function news(){
+        return $this->hasMany(News::class,'reporter_id');
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class, 'user_id');
+    }
+
 }

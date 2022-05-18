@@ -12,4 +12,8 @@ class Category extends Model
     protected $table = 'categories';
 
     protected $fillable = ['name'];
+
+    public function news(){
+        return $this->belongsToMany(News::class, 'news_categories', 'category_id', 'news_id' );
+    }
 }

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
-use App\Models\Role;
+use Spatie\Permission\Models\Role;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -40,14 +40,12 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
         ]);
 
-        $role_data = [
-            'role_id' => 1,
-            'role_type' => 'USER',
-            'user_id' => $user->id
-        ];
+        $role = Role::where('name', 'user')->first();
+        if($role == null){
+            $role = Role::create(['name' => 'user']);
+        }
 
-        Role::create($role_data);
-
+        $user->assignRole('user');
 
         return $user;
     }
