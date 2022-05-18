@@ -20,23 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, 'index']);
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+Route::middleware(['auth:sanctum', 'verified','role:admin|user'])->group(function(){
 
     Route::get('/admin/dashboard',[AdminController::class, 'index'])->name('admin.dashboard');
 
 });
 
-
-
-
-Route::get('/news',function(){
-    if( !Auth::check() ){
-        dd("هیچ کاربری وارد نشده است.");
-    }else{
-        $user = Auth::User();
-        dd($user->news);
-    }
-});
 
 
 
