@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class createRole extends FormRequest
+class CreatePermissionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,14 @@ class createRole extends FormRequest
     public function rules()
     {
         return [
-            "role"=>"required"
+            'permission' =>'required'
         ];
     }
+
     public function messages()
     {
         return [
-            "role.required"=>"فیلد نقش الزامی می باشد"
+            'permission.required' =>'نام سطح دسترسی حتما باید وارد شود :)'
         ];
-
     }
 }

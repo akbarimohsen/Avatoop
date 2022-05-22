@@ -42,7 +42,7 @@ class CreateNewUser implements CreatesNewUsers
 
         $role = Role::where('name', 'user')->first();
         if($role == null){
-            $role = Role::create(['name' => 'user']);
+            Role::create(['name' => 'user']);
         }
 
         $user->assignRole('user');

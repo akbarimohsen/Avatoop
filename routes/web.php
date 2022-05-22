@@ -21,11 +21,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, 'index']);
 
-Route::middleware(['auth:sanctum', 'verified','role:admin'])->prefix('admin/panel/')->group(function(){
+Route::middleware(['auth', 'verified','role:admin'])->prefix('admin/panel/')->group(function(){
 
     Route::get('/dashboard',[AdminController::class, 'index'])->name('admin.dashboard');
     Route::resource('/role',RoleController::class)->parameters(['role'=>'id']);
-//    Route::get('/create-role',[RoleController::class, 'create'])->name('admin.createRole');
+    Route::resource('/permission',\App\Http\Controllers\PermissionController::class)->parameters(['permission'=>'id']);
+    Route::resource('/user',\App\Http\Controllers\AdminCreateUser::class)->parameters(['user'=>'id']);
 });
 
 

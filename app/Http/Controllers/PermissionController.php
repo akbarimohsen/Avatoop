@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\createRole;
+use App\Http\Requests\CreatePermissionRequest;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
-class RoleController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles=Role::all();
-        return view('admin.create-role.create',compact('roles'));
+        $permissions=Permission::all();
+        return view('admin.create-permission.create',compact('permissions'));
     }
 
     /**
@@ -27,7 +27,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.create-role.create');
+        return view('admin.create-permission.create');
+
     }
 
     /**
@@ -36,20 +37,19 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(createRole $request)
+    public function store(CreatePermissionRequest $request)
     {
-        $exist=Role::where('name',$request->role)->first();
+        $exist=Permission::where('name',$request->permission)->first();
         if (!$exist){
-            Role::create([
-                'name' => $request->role
+            Permission::create([
+                'name' => $request->permission
             ]);
-            session()->flash('create','نقش مورد نظر ایجاد شد');
-            return redirect()->route('role.index');
+            session()->flash('create','سطح دسترسی مورد نظر ایجاد شد');
+            return redirect()->route('permission.index');
         }else{
-            session()->flash('exist','نقش مورد نظر موجود است');
-            return redirect()->route('role.index');
+            session()->flash('exist','سطح دسترسی مورد نظر موجود است');
+            return redirect()->route('permission.index');
         }
-
     }
 
     /**
@@ -71,8 +71,8 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $role=Role::findOrFail($id);
-        return view('admin.create-role.edit',compact('role'));
+        $permission=Permission::findOrFail($id);
+        return view('admin.create-permission.edit',compact('permission'));
     }
 
     /**
@@ -82,13 +82,13 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(createRole $request,$id)
+    public function update(CreatePermissionRequest $request, $id)
     {
-        Role::findOrFail($id)->update([
-            "name"=>$request->role
+        Permission::findOrFail($id)->update([
+            "name"=>$request->permission
         ]);
         session()->flash('update','آیتم مورد نظر با موفقیت آپدیت شد');
-        return redirect()->route('role.index');
+        return redirect()->route('permission.index');
     }
 
     /**
@@ -99,8 +99,9 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        Role::destroy($id);
-        session()->flash('delete','نقش مورد نظر با موفقیت حذف شد');
-        return redirect()->route('role.index');
+
+            Permission::destroy($id);
+            session()->flash('delete','سطح دسترسی مورد نظر با موفقیت حذف شد');
+            return redirect()->route('permission.index');
     }
 }

@@ -37,18 +37,18 @@
 
             <div class="shadow-sm p-3 mb-5 bg-white rounded d-inline-block w-100 mt-5">
                 <div class="col-8 mx-auto">
-                    <div class="card card-primary">
+                    <div class="card card-warning">
                         <div class="card-header">
-                            <h3 class="card-title">ایجاد نقش</h3>
+                            <h3 class="card-title">ایجاد سطح دسترسی</h3>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                {!! Form::open(['route'=>'role.store','method'=>'post']) !!}
-                                {!! Form::label('role','نام نقش',['class'=>'text-capitalize']) !!}
+                                {!! Form::open(['route'=>'permission.store','method'=>'post']) !!}
+                                {!! Form::label('permission','نام سطح دسترسی',['class'=>'text-capitalize']) !!}
                                 <div class="input-group">
-                                    {!! Form::text('role',old('role'),['class'=>'form-control','placeholder'=>'نام نقش را وارد کنید(مانند ادمین یا خبر نگار)']) !!}
+                                    {!! Form::text('permission',old('permission'),['class'=>'form-control','placeholder'=>'نام سطح دسترسی را وارد کنید(مانند ایجاد کننده خبر یا آپدیت کننده خبر)']) !!}
                                 </div>
-                                @error('role')
+                                @error('permission')
                                 <p class="text-danger">{{$message}}</p>
                                 @enderror
                                 <section class="form-group">
@@ -67,7 +67,7 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">نام نقش</th>
+                            <th scope="col">نام سطح دسترسی</th>
                             <th scope="col">تاریخ ایجاد</th>
                             <th scope="col">تاریخ آپدیت</th>
                             <th scope="col">حذف</th>
@@ -75,19 +75,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse($roles as $role)
+                        @forelse($permissions as $permission)
                             <tr>
-                                <td>{{$role->id}}</td>
-                                <td>{{$role->name}}</td>
-                                <td>{{$role->created_at}}</td>
-                                <td>{{$role->updated_at}}</td>
+                                <td>{{$permission->id}}</td>
+                                <td>{{$permission->name}}</td>
+                                <td>{{$permission->created_at}}</td>
+                                <td>{{$permission->updated_at}}</td>
                                 <td>
-                                    {!! Form::open(['route'=>['role.destroy','id'=>$role->id],'method'=>'delete']) !!}
+                                    {!! Form::open(['route'=>['permission.destroy','id'=>$permission->id],'method'=>'delete']) !!}
                                     {!! Form::submit('delete',['class'=>'btn btn-danger']) !!}
                                     {!! Form::close() !!}
                                 </td>
                                 <td>
-                                    <a href="{{route('role.edit',['id'=>$role->id])}}"
+                                    <a href="{{route('permission.edit',['id'=>$permission->id])}}"
                                        class="btn btn-warning">update</a>
                                 </td>
                             </tr>
