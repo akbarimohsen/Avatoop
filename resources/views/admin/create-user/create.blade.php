@@ -43,7 +43,7 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                {!! Form::open(['route'=>'user.store','method'=>'post']) !!}
+                                {!! Form::open(['route'=>'user.store','method'=>'post',"files"=>true]) !!}
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         {!! Form::label('first_name','نام کاربر',['class'=>'text-capitalize']) !!}
@@ -78,29 +78,33 @@
                                     <div class="form-group col-md-6">
                                         {!! Form::label('phone_number','تلفن کاربر',['class'=>'text-capitalize']) !!}
                                         {!! Form::text('phone_number',old('phone_number'),['class'=>'form-control','placeholder'=>'شماره تلفن کاربر را وارد کنید']) !!}
-                                        @error('email')
+                                        @error('phone_number')
+                                        <p class="text-danger">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {!! Form::label('image','image',['class'=>'text-capitalize']) !!}
+                                        {!! Form::file('image',['class'=>'form-control','style'=>'border:2px inset lightgray']) !!}
+                                        @error('image')
                                         <p class="text-danger">{{$message}}</p>
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-6">
                                         {!! Form::label('select_role','نقش کاربر در صورت نیاز',['class'=>'text-capitalize']) !!}
                                         {!! Form::select('select_role', $roles,'کاربر معمولی',['class'=>'form-control']);!!}
-                                        @error('email')
-                                        <p class="text-danger">{{$message}}</p>
-                                        @enderror
                                     </div>
                                     <div class="form-group col-12">
                                         <div class="mx-auto col-12">
                                             {!! Form::label('password','رمز عبور',['class'=>'text-capitalize']) !!}
                                             {!! Form::password('password',['class'=>'form-control text-center','placeholder'=>'رمز عبور مورد نظر باید شامل حروف و عدد باشد و حداقل 8 رقم باشد']) !!}
-                                            @error('email')
+                                            @error('password')
                                             <p class="text-danger">{{$message}}</p>
                                             @enderror
                                         </div>
                                         <div class="mx-auto col-12">
                                             {!! Form::label('password_confirmation','تکرار رمز عبور',['class'=>'text-capitalize']) !!}
                                             {!! Form::password('password_confirmation',['class'=>'form-control text-center','placeholder'=>'تکرار رمز عبور']) !!}
-                                            @error('email')
+                                            @error('password_confirmation')
                                             <p class="text-danger">{{$message}}</p>
                                             @enderror
                                         </div>
