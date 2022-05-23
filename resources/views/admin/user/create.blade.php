@@ -39,7 +39,7 @@
                 <div class="col-10 mx-auto">
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title">یجاد کاربر</h3>
+                            <h3 class="card-title">ایجاد کاربر</h3>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
