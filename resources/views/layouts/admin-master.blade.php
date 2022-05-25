@@ -32,6 +32,8 @@
   <!-- template rtl version -->
   <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/custom-style.css')}}">
 
+  @livewireStyles()
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -48,7 +50,7 @@
       </li>
       <form id="logout-form" action="{{ route('logout') }}" method="POST">
         @csrf
-        </form>
+      </form>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">تماس</a>
       </li>
@@ -162,7 +164,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-white-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
@@ -188,37 +190,38 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-                 with font-awesome or any other icon font library -->
+
             <li class="nav-item has-treeview menu-open">
-              <a href="#" class="nav-link active">
-                <i class="nav-icon fa fa-dashboard"></i>
-                <p>
-                  داشبوردها
-                  <i class="right fa fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./index.html" class="nav-link active">
-                    <i class="fa fa-circle-o nav-icon"></i>
-                    <p>داشبورد اول</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./index2.html" class="nav-link">
-                    <i class="fa fa-circle-o nav-icon"></i>
-                    <p>داشبورد دوم</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./index3.html" class="nav-link">
-                    <i class="fa fa-circle-o nav-icon"></i>
-                    <p>داشبورد سوم</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
+                <a href="#" class="nav-link">
+                    <img src="{{ asset('assets/admin/icons/ball.png') }}" width="20px" height="20px" />
+                    <p>
+                        مدیریت تیم و بازیکن
+                        <i class="right fa fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ route('admin.players') }}" class="nav-link active">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>لیست بازیکنان</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('admin.teams') }}" class="nav-link">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>لیست تیم ها</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('admin.positions') }}" class="nav-link">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>لیست پست های بازی</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+
             <li class="nav-item">
               <a href="pages/widgets.html" class="nav-link">
                 <i class="nav-icon fa fa-th"></i>
@@ -509,6 +512,8 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
+@livewireScripts()
+
 <script src="{{ asset('assets/admin/plugins/jquery/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
