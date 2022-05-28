@@ -28,6 +28,12 @@ Route::middleware(['auth', 'verified','role:admin'])->prefix('admin/panel/')->gr
     Route::resource('/permission',\App\Http\Controllers\PermissionController::class)->parameters(['permission'=>'id']);
     Route::resource('/user',\App\Http\Controllers\AdminCreateUser::class)->parameters(['user'=>'id']);
 });
+Route::middleware(['auth', 'verified','role:reporter|admin'])->prefix('reporter')->group(function(){
+
+    Route::get('/dashboard',[\App\Http\Controllers\Reporter\ReporterController::class, 'index'])->name('reporter.dashboard');
+    Route::resource('/category',\App\Http\Controllers\Reporter\CategoryController::class)->parameters(['category'=>'id']);
+
+});
 
 
 
