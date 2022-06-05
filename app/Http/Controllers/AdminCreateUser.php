@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-class AdminCreateUser extends Controller
+class  AdminCreateUser extends Controller
 {
 
     public function index()

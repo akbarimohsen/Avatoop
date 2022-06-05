@@ -63,7 +63,7 @@
                 </div>
                 <div class="col-9 mx-auto mt-3">
                     {{--show roles--}}
-                    <table class="table table-hover">
+                    <table class="table table-hover table-responsive">
                         <thead>
                         <tr>
                             <th scope="col">#</th>

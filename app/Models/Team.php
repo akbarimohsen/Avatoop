@@ -20,4 +20,8 @@ class Team extends Model
     public function tags(){
         return $this->belongsToMany(Tag::class, 'teams_tags', 'team_id', 'tag_id');
     }
+
+    public function league(){
+        return $this->belongsTo(League::class);
+    }
 }
