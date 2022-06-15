@@ -81,4 +81,14 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class, 'user_id');
     }
 
+
+    public function teams_likes()
+    {
+        return $this->belongsToMany(Team::class, 'team_likers', 'liker_id', 'team_id');
+    }
+
+    public function players_likes()
+    {
+        return $this->belongsToMany(Player::class, 'player_likers', 'liker_id', 'player_id');
+    }
 }

@@ -11,7 +11,7 @@ class Player extends Model
 
     protected $table = 'players';
 
-    protected $fillable = ['full_name', 'age', 'goals_count', 'assists_count', 'nationality_id', 'description', 'position_id', 'img', 'likes_count', 'team_id'];
+    protected $fillable = ['full_name', 'birth_date', 'goals_count', 'assists_count', 'nationality_id', 'description', 'position_id', 'img', 'likes_count', 'team_id'];
 
     public function team(){
         return $this->belongsTo(Team::class);
@@ -27,6 +27,11 @@ class Player extends Model
 
     public function positions(){
         return $this->belongsToMany(Position::class, 'player_position', 'player_id', 'position_id');
+    }
+
+    public function likers()
+    {
+        return $this->belongsToMany(User::class, 'player_likers', 'player_id', 'liker_id');
     }
 
 }

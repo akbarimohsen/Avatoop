@@ -163,6 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         \Intervention\Image\ImageServiceProvider::class,
+        Hekmatinasser\Verta\Laravel\VertaServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -241,6 +242,8 @@ return [
 
         'Form' => \Collective\Html\FormFacade::class,
         'Html' => \Collective\Html\HtmlFacade::class,
+
+        'Verta' => Hekmatinasser\Verta\Verta::class
 
     ],
 

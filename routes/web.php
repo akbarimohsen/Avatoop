@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdsController;
+use App\Http\Controllers\Admin\NewsManagementController;
 use App\Http\Controllers\Admin\PlayerManagementController;
 use App\Http\Controllers\Admin\PositionsController;
+use App\Http\Controllers\Admin\SuggestionController;
 use App\Http\Controllers\Admin\TeamManagementController;
 use App\Http\Controllers\MainController;
 use App\Http\Livewire\Admin\Dashboard\AdminDashboardComponent;
@@ -24,7 +27,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, 'index']);
 
-Route::middleware(['auth', 'verified','role:admin|user'])->group(function(){
+Route::middleware(['auth', 'verified','role:admin'])->group(function(){
+
+    // user and role permission management
+    Route::resource('/admin/role',RoleController::class)->parameters(['role'=>'id']);
+    Route::resource('/admin/permission',\App\Http\Controllers\PermissionController::class)->parameters(['permission'=>'id']);
+    Route::resource('/admin/user',\App\Http\Controllers\AdminCreateUser::class)->parameters(['user'=>'id']);
+
 
     Route::get('/admin/dashboard',[AdminController::class , 'index'])->name('admin.dashboard');
 
@@ -34,19 +43,27 @@ Route::middleware(['auth', 'verified','role:admin|user'])->group(function(){
     Route::get('/admin/players/edit/{id}', [PlayerManagementController::class, 'edit'])->name('admin.players.edit');
 
 
-    //team management
+    // team management
     Route::get('/admin/teams', [TeamManagementController::class, 'index'])->name('admin.teams');
     Route::get('/admin/teams/add', [TeamManagementController::class, 'add'])->name('admin.teams.add');
     Route::get('/admin/teams/{id}/edit', [TeamManagementController::class, 'edit'])->name('admin.teams.edit');
     Route::get('/admin/teams/{id}/players',[TeamManagementController::class,'showPlayers'])->name('admin.team.players');
 
-    //position management
+    // position management
     Route::get('/admin/positions',[PositionsController::class, 'index'])->name('admin.positions');
-});
 
-Route::middleware(['auth', 'verified','role:admin|user'])->prefix('admin/')->group(function(){
-    Route::resource('/role',RoleController::class)->parameters(['role'=>'id']);
-    Route::resource('/permission',\App\Http\Controllers\PermissionController::class)->parameters(['permission'=>'id']);
-    Route::resource('/user',\App\Http\Controllers\AdminCreateUser::class)->parameters(['user'=>'id']);
+
+    // Ads Management
+
+    Route::get('/admin/ads',[AdsController::class, 'index'])->name('admin.ads');
+    Route::get('/admin/ads/add', [AdsController::class,'add'])->name('admin.ads.add');
+    Route::get('/admin/ads/{id}/edit',[AdsController::class, 'edit'])->name('admin.ads.edit');
+
+    // suggests controller
+    Route::get('/admin/suggests',[ SuggestionController::class, 'index' ])->name('admin.suggests');
+    Route::get('/admin/suggests/{id}', [ SuggestionController::class, 'show' ])->name('admin.suggests.show');
+
+
+
 });
 

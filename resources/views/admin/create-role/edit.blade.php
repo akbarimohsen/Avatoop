@@ -16,7 +16,7 @@
                                     {!! Form::text('role',$role->name,['class'=>'form-control','placeholder'=>'نام نقش را وارد کنید(مانند ادمین یا خبر نگار)']) !!}
                                 </div>
                                 @error('role')
-                                <p class="text-danger">{{$message}}</p>
+                                    <p class="text-danger">{{$message}}</p>
                                 @enderror
                                 <section class="form-group">
                                     {!! Form::submit('ذخیره',['class'=>'btn btn-primary mt-3']) !!}

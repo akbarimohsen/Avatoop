@@ -15,16 +15,47 @@
                 <div class="form-group">
                     <label for="first_name"> نام کامل</label>
                     <input type="text" class="form-control" id="first_name" wire:model="full_name" placeholder="نام را وارد کنید.">
+                    @if($errors->has('full_name'))
+                        <ul class="mt-1 mr-4">
+                            @foreach ($errors->get('full_name') as $error )
+                                <li class="text-danger">
+                                    {{ $error }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
 
                 <div class="form-group">
-                    <label for="age">سن</label>
-                    <input type="text" class="form-control" id="age" wire:model="age" placeholder="سن را وارد کنید.">
+                    <label for="age">تاریخ تولد به میلادی</label>
+                    <input type="date" class="form-control" id="age" wire:model="birth_date" placeholder="سن را وارد کنید.">
+
+                    @if($errors->has('age'))
+                        <ul class="mt-1 mr-4">
+                            @foreach ($errors->get('age') as $error )
+                                <li class="text-danger">
+                                    {{ $error }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+
                 </div>
 
                 <div class="form-group">
                     <label>توضیحات</label>
                     <textarea class="form-control" rows="3" wire:model="description" placeholder="توضیحات بازیکن ..."></textarea>
+
+                    @if($errors->has('description'))
+                        <ul class="mt-1 mr-4">
+                            @foreach ($errors->get('description') as $error )
+                                <li class="text-danger">
+                                    {{ $error }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+
                 </div>
 
                 <div class="row">
@@ -38,6 +69,16 @@
                                 </option>
                             @endforeach
                         </select>
+
+                        @if($errors->has('team_id'))
+                            <ul class="mt-1 mr-4">
+                                @foreach ($errors->get('team_id') as $error )
+                                    <li class="text-danger">
+                                        {{ $error }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
                       </div>
                       <!-- /.form-group -->
                       <div class="form-group">
@@ -47,6 +88,16 @@
                                 <option value="{{ $nationality->id }}"> {{ $nationality->name }} </option>
                             @endforeach
                         </select>
+
+                        @if($errors->has('nationality_id'))
+                            <ul class="mt-1 mr-4">
+                                @foreach ($errors->get('nationality_id') as $error )
+                                    <li class="text-danger">
+                                        {{ $error }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
                       </div>
                       <!-- /.form-group -->
                     </div>
@@ -61,6 +112,16 @@
                                 <option value="{{ $position->id }}"> {{ $position->name }} </option>
                             @endforeach
                         </select>
+
+                        @if($errors->has('position_id'))
+                            <ul class="mt-1 mr-4">
+                                @foreach ($errors->get('position_id') as $error )
+                                    <li class="text-danger">
+                                        {{ $error }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
                       </div>
                       <!-- /.form-group -->
 
@@ -71,6 +132,16 @@
                   <div class="form-group">
                     <label>عکس </label>
                     <input type="file" wire:model="img" >
+
+                    @if($errors->has('img'))
+                        <ul class="mt-1 mr-4">
+                            @foreach ($errors->get('img') as $error )
+                                <li class="text-danger">
+                                    {{ $error }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
                   </div>
 
               </div>

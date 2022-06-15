@@ -200,7 +200,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{ route('admin.players') }}" class="nav-link active">
+                    <a href="{{ route('admin.players') }}" class="nav-link">
                       <i class="fa fa-circle-o nav-icon"></i>
                       <p>لیست بازیکنان</p>
                     </a>
@@ -218,7 +218,17 @@
                     </a>
                   </li>
                 </ul>
-              </li>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('admin.ads') }}" class="nav-link">
+                    <img src="{{ asset('assets/admin/icons/ads.png') }}" width="20px" height="20px" />
+
+                    <p>
+                        مدیریت تبلیغات
+                    </p>
+                </a>
+            </li>
 
 
             <li class="nav-item">

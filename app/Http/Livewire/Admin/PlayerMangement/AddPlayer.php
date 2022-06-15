@@ -15,18 +15,31 @@ class AddPlayer extends Component
     use WithFileUploads;
 
     public $full_name;
-    public $age;
+    public $birth_date;
     public $description;
     public $team_id;
     public $nationality_id;
     public $position_id;
     public $img;
 
+    protected $messages = [
+        'full_name.required' => 'فیلد نام ضروری می باشد.',
+        'birth_date.required' => 'فیلد تاریخ تولد ضروری می باشد.',
+        'description.required' => 'فیلد توضیحات ضروری می باشد.',
+        'team_id.required' => 'فیلد تیم ضروری می باشد.',
+        'nationality_id.required' => 'فیلد ملیت ضروری می باشد',
+        'position_id.required' => 'فیلد پست بازی ضروری می باشد.',
+        'img.required' => 'تصویر ضروری می باشد',
+        'img.image' => 'فقط فایل عکس قابل قبول است.',
+        'img.mimes' => 'تنها فایل با فرمت :values قابل قبول است.'
+
+    ];
+
     public function submit()
     {
         $data = $this->validate([
             'full_name' => 'required|string',
-            'age' => 'required|numeric',
+            'birth_date' => 'required|date',
             'description' => 'required|string',
             'team_id' => 'required',
             'nationality_id' => 'required',

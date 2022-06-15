@@ -1,21 +1,40 @@
 <div>
     <div class="row">
         <div class="col-12">
+            <div class="container mt-5">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card p-3  py-4">
+                            <h5>جستجوی پیشرفته بازیکنان</h5>
+                            <form class="row g-3 mt-2" wire:submit.prevent="searchTeam">
+
+                                <div class="col-md-9 mb-1">
+
+                                    <input type="text" class="form-control" wire:model.lazy="title" placeholder="نام تیم را وارد کنید.">
+
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <button class="btn btn-primary btn-block" type="submit">جستجو</button>
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">جدول تیم ها</h3>
-              <div class="card-tools">
-                <a href="{{ route('admin.teams.add') }}" class="btn btn-success btn-sm mx-4 float-right d-flex align-items-center">
-                    <i class="fa fa-plus ml-2"></i>
-                    <span>
-                         افزودن تیم جدید
-                    </span>
-                </a>
-                <form class="input-group input-group-sm" style="width: 250px;" wire:submit.prevent="searchTeam">
-                  <input type="text" wire:model="title" class="form-control float-right" placeholder="جستجوی تیم">
-                  <div class="input-group-append">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                  </form>
+                <div class="card-tools">
+                    <a href="{{ route('admin.teams.add') }}" class="btn btn-success btn-sm mx-4 float-right d-flex align-items-center">
+                        <i class="fa fa-plus ml-2"></i>
+                        <span>
+                            افزودن تیم جدید
+                        </span>
+                    </a>
                 </div>
               </div>
             </div>

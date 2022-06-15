@@ -32,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '115e08b0fa1117f937ab14d05db53f76d2157a21',
+    'reference' => '2fb8db76765fd6b5976637a702b190e0930b6539',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -239,6 +239,24 @@ private static $installed = array (
       array (
       ),
       'reference' => '8c3d0a3f6af734494ad8f6fbbee0ba92422859f3',
+    ),
+    'hekmatinasser/notowo' => 
+    array (
+      'pretty_version' => 'v1.0.1',
+      'version' => '1.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c51ad5dcedac966dd93ce558ac7e6a84e0020d6d',
+    ),
+    'hekmatinasser/verta' => 
+    array (
+      'pretty_version' => 'v2.1.1',
+      'version' => '2.1.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '8659810fce313f49fd4f665ca9fb05a371aa6da7',
     ),
     'illuminate/auth' => 
     array (
@@ -525,7 +543,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '115e08b0fa1117f937ab14d05db53f76d2157a21',
+      'reference' => '2fb8db76765fd6b5976637a702b190e0930b6539',
     ),
     'laravel/sail' => 
     array (
@@ -942,8 +960,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0|2.0',
-        1 => '1.0.0 || 2.0.0 || 3.0.0',
+        0 => '1.0.0 || 2.0.0 || 3.0.0',
+        1 => '1.0|2.0',
       ),
     ),
     'psr/simple-cache' => 

@@ -36,9 +36,11 @@ class ComposerStaticInitd9a572c5471ee91fd63e1132a4228c5d
         '40275907c8566c390185147049ef6e5d' => __DIR__ . '/..' . '/livewire/livewire/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        '4364d9898253482270d33c3e7d349234' => __DIR__ . '/..' . '/hekmatinasser/notowo/src/helpers.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
+        '4ad677cf23be1eeec8c74951804d4cb0' => __DIR__ . '/..' . '/hekmatinasser/verta/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -146,6 +148,11 @@ class ComposerStaticInitd9a572c5471ee91fd63e1132a4228c5d
             'Intervention\\Image\\' => 19,
             'Illuminate\\Support\\' => 19,
             'Illuminate\\' => 11,
+        ),
+        'H' => 
+        array (
+            'Hekmatinasser\\Verta\\' => 20,
+            'Hekmatinasser\\Notowo\\' => 21,
         ),
         'G' => 
         array (
@@ -465,6 +472,14 @@ class ComposerStaticInitd9a572c5471ee91fd63e1132a4228c5d
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),
+        'Hekmatinasser\\Verta\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hekmatinasser/verta/src',
+        ),
+        'Hekmatinasser\\Notowo\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hekmatinasser/notowo/src',
+        ),
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
@@ -599,14 +614,19 @@ class ComposerStaticInitd9a572c5471ee91fd63e1132a4228c5d
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AdminCreateUser' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminCreateUser.php',
         'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
+        'App\\Http\\Controllers\\Admin\\AdsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdsController.php',
         'App\\Http\\Controllers\\Admin\\PlayerManagementController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PlayerManagementController.php',
         'App\\Http\\Controllers\\Admin\\PositionsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PositionsController.php',
+        'App\\Http\\Controllers\\Admin\\SuggestionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SuggestionController.php',
         'App\\Http\\Controllers\\Admin\\TeamManagementController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TeamManagementController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\MainController' => __DIR__ . '/../..' . '/app/Http/Controllers/MainController.php',
         'App\\Http\\Controllers\\PermissionController' => __DIR__ . '/../..' . '/app/Http/Controllers/PermissionController.php',
         'App\\Http\\Controllers\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/RoleController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Livewire\\Admin\\AdsManagement\\AddAd' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/AdsManagement/AddAd.php',
+        'App\\Http\\Livewire\\Admin\\AdsManagement\\AdsTable' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/AdsManagement/AdsTable.php',
+        'App\\Http\\Livewire\\Admin\\AdsManagement\\EditAd' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/AdsManagement/EditAd.php',
         'App\\Http\\Livewire\\Admin\\PlayerMangement\\AddPlayer' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/PlayerMangement/AddPlayer.php',
         'App\\Http\\Livewire\\Admin\\PlayerMangement\\EditPlayer' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/PlayerMangement/EditPlayer.php',
         'App\\Http\\Livewire\\Admin\\PlayerMangement\\PlayersTable' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/PlayerMangement/PlayersTable.php',
@@ -626,6 +646,7 @@ class ComposerStaticInitd9a572c5471ee91fd63e1132a4228c5d
         'App\\Http\\Requests\\CreatePermissionRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CreatePermissionRequest.php',
         'App\\Http\\Requests\\CreateUserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CreateUserRequest.php',
         'App\\Http\\Requests\\createRole' => __DIR__ . '/../..' . '/app/Http/Requests/createRole.php',
+        'App\\Models\\Ad' => __DIR__ . '/../..' . '/app/Models/Ad.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/Models/Comment.php',
         'App\\Models\\Game' => __DIR__ . '/../..' . '/app/Models/Game.php',
@@ -634,6 +655,7 @@ class ComposerStaticInitd9a572c5471ee91fd63e1132a4228c5d
         'App\\Models\\News' => __DIR__ . '/../..' . '/app/Models/News.php',
         'App\\Models\\Player' => __DIR__ . '/../..' . '/app/Models/Player.php',
         'App\\Models\\Position' => __DIR__ . '/../..' . '/app/Models/Position.php',
+        'App\\Models\\Suggest' => __DIR__ . '/../..' . '/app/Models/Suggest.php',
         'App\\Models\\Tag' => __DIR__ . '/../..' . '/app/Models/Tag.php',
         'App\\Models\\Team' => __DIR__ . '/../..' . '/app/Models/Team.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
@@ -1813,6 +1835,23 @@ class ComposerStaticInitd9a572c5471ee91fd63e1132a4228c5d
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+        'Hekmatinasser\\Notowo\\Notowo' => __DIR__ . '/..' . '/hekmatinasser/notowo/src/Notowo.php',
+        'Hekmatinasser\\Notowo\\NotowoServiceProvider' => __DIR__ . '/..' . '/hekmatinasser/notowo/src/NotowoServiceProvider.php',
+        'Hekmatinasser\\Verta\\Facades\\Verta' => __DIR__ . '/..' . '/hekmatinasser/verta/src/Facades/Verta.php',
+        'Hekmatinasser\\Verta\\Laravel\\JalaliValidator' => __DIR__ . '/..' . '/hekmatinasser/verta/src/Laravel/JalaliValidator.php',
+        'Hekmatinasser\\Verta\\Laravel\\VertaServiceProvider' => __DIR__ . '/..' . '/hekmatinasser/verta/src/Laravel/VertaServiceProvider.php',
+        'Hekmatinasser\\Verta\\Traits\\Accessor' => __DIR__ . '/..' . '/hekmatinasser/verta/src/Traits/Accessor.php',
+        'Hekmatinasser\\Verta\\Traits\\Boundaries' => __DIR__ . '/..' . '/hekmatinasser/verta/src/Traits/Boundaries.php',
+        'Hekmatinasser\\Verta\\Traits\\Comparison' => __DIR__ . '/..' . '/hekmatinasser/verta/src/Traits/Comparison.php',
+        'Hekmatinasser\\Verta\\Traits\\Creator' => __DIR__ . '/..' . '/hekmatinasser/verta/src/Traits/Creator.php',
+        'Hekmatinasser\\Verta\\Traits\\Date' => __DIR__ . '/..' . '/hekmatinasser/verta/src/Traits/Date.php',
+        'Hekmatinasser\\Verta\\Traits\\Difference' => __DIR__ . '/..' . '/hekmatinasser/verta/src/Traits/Difference.php',
+        'Hekmatinasser\\Verta\\Traits\\Formatting' => __DIR__ . '/..' . '/hekmatinasser/verta/src/Traits/Formatting.php',
+        'Hekmatinasser\\Verta\\Traits\\Modification' => __DIR__ . '/..' . '/hekmatinasser/verta/src/Traits/Modification.php',
+        'Hekmatinasser\\Verta\\Traits\\Transformation' => __DIR__ . '/..' . '/hekmatinasser/verta/src/Traits/Transformation.php',
+        'Hekmatinasser\\Verta\\Traits\\Translator' => __DIR__ . '/..' . '/hekmatinasser/verta/src/Traits/Translator.php',
+        'Hekmatinasser\\Verta\\Verta' => __DIR__ . '/..' . '/hekmatinasser/verta/src/Verta.php',
+        'Hekmatinasser\\Verta\\VertaInterface' => __DIR__ . '/..' . '/hekmatinasser/verta/src/VertaInterface.php',
         'Illuminate\\Auth\\Access\\AuthorizationException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/AuthorizationException.php',
         'Illuminate\\Auth\\Access\\Events\\GateEvaluated' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Events/GateEvaluated.php',
         'Illuminate\\Auth\\Access\\Gate' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Gate.php',

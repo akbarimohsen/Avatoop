@@ -16,12 +16,12 @@ class CreatePlayersTable extends Migration
         Schema::create('players', function (Blueprint $table) {
             $table->id();
             $table->string('full_name');
-            $table->integer('age');
+            $table->date('birth_date');
             $table->integer('goals_count')->default(0);
             $table->integer('assists_count')->default(0);
             $table->text('description');
             $table->string('img');
-            $table->integer('likes_count');
+            $table->integer('likes_count')->default(0);
 
             $table->unsignedBigInteger('team_id');
             $table->unsignedBigInteger('nationality_id');

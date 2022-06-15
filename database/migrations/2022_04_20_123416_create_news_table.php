@@ -19,9 +19,7 @@ class CreateNewsTable extends Migration
             $table->text('description');
             $table->date('created_at');
             $table->text('body');
-            $table->string('img');
-            $table->string('video');
-            $table->integer('views')->default(0);
+            $table->integer('views_count')->default(0);
             $table->unsignedBigInteger('reporter_id');
 
             $table->foreign('reporter_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

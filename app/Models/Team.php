@@ -24,4 +24,9 @@ class Team extends Model
     public function league(){
         return $this->belongsTo(League::class);
     }
+
+    public function likers()
+    {
+        return $this->belongsToMany(Team::class, 'team_likers', 'team_id', 'liker_id');
+    }
 }
