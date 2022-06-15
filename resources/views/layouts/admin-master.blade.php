@@ -209,6 +209,18 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route('user.create') }}" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>ایجاد کاربر</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('user.index') }}" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>لیست کاربران</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('admin.teams') }}" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>لیست تیم ها</p>

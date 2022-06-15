@@ -17,12 +17,8 @@ class  AdminCreateUser extends Controller
 
     public function index()
     {
-        $RolesWithUsers=Role::with('users')->get();
-//        return $RolesWithUsers;
-        return view('admin.user.index',compact('RolesWithUsers'));
-
+        return view('admin.user.index');
     }
-
 
     public function create()
     {

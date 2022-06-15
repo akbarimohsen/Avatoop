@@ -16,7 +16,7 @@ class TeamsTable extends Component
         $team = Team::find($id);
 
         $path = public_path('/assets/images/teams') . '/' . $team->logo;
-        unlink($path );
+        unlink($path);
 
         $team->delete();
 

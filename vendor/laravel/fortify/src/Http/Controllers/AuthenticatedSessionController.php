@@ -2,10 +2,13 @@
 
 namespace Laravel\Fortify\Http\Controllers;
 
+use App\Models\userTotalOnline;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Routing\Pipeline;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Actions\AttemptToAuthenticate;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
@@ -97,6 +100,21 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): LogoutResponse
     {
+        // recording the user total online time before running the logout function
+        $userExist=userTotalOnline::where('user_id','=',Auth::id());
+        if ($userExist->first()){
+            $update=$userExist->update([
+                'offline_time'=>Carbon::now()->timestamp,
+            ]);
+            if ($update){
+                $times=$userExist->get(['online_time','offline_time']);
+                $lastTotalTime=$userExist->get('total_online')[0]->total_online;
+
+                $userExist->update([
+                    'total_online' =>$lastTotalTime+$times[0]->offline_time-$times[0]->online_time
+                ]);
+            }
+        }
         $this->guard->logout();
 
         $request->session()->invalidate();

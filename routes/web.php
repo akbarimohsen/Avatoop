@@ -25,6 +25,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, 'index']);
 
 Route::middleware(['auth', 'verified','role:admin|user'])->group(function(){
+    //role and permissions management
+    Route::resource('/role',RoleController::class)->parameters(['role'=>'id']);
+    Route::resource('/permission',\App\Http\Controllers\PermissionController::class)->parameters(['permission'=>'id']);
+    Route::resource('/user',\App\Http\Controllers\AdminCreateUser::class)->parameters(['user'=>'id']);
+    Route::post('/give-permission/{role}',[RoleController::class,'givePermission'])->name('role.permission');
+    Route::delete('/role/{role}/permission/{permission}',[RoleController::class,'revokePermission'])->name('role.permission.revoke');
+
+    Route::get('/dashboard',[\App\Http\Controllers\Reporter\ReporterController::class, 'index'])->name('reporter.dashboard');
+    //create category
+    Route::resource('/category',\App\Http\Controllers\Reporter\CategoryController::class)->parameters(['category'=>'id']);
+
 
     Route::get('/admin/dashboard',[AdminController::class , 'index'])->name('admin.dashboard');
 
@@ -44,17 +55,4 @@ Route::middleware(['auth', 'verified','role:admin|user'])->group(function(){
     Route::get('/admin/positions',[PositionsController::class, 'index'])->name('admin.positions');
 });
 
-Route::middleware(['auth', 'verified','role:admin|user'])->prefix('admin/')->group(function(){
-    Route::resource('/role',RoleController::class)->parameters(['role'=>'id']);
-    Route::resource('/permission',\App\Http\Controllers\PermissionController::class)->parameters(['permission'=>'id']);
-    Route::resource('/user',\App\Http\Controllers\AdminCreateUser::class)->parameters(['user'=>'id']);
-    Route::post('/give-permission/{role}',[RoleController::class,'givePermission'])->name('role.permission');
-    Route::delete('/role/{role}/permission/{permission}',[RoleController::class,'revokePermission'])->name('role.permission.revoke');
-});
-Route::middleware(['auth', 'verified','role:reporter|admin'])->prefix('reporter')->group(function(){
-
-    Route::get('/dashboard',[\App\Http\Controllers\Reporter\ReporterController::class, 'index'])->name('reporter.dashboard');
-    Route::resource('/category',\App\Http\Controllers\Reporter\CategoryController::class)->parameters(['category'=>'id']);
-
-});
 

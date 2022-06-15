@@ -81,4 +81,9 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class, 'user_id');
     }
 
+    public function userTotalOnline()
+    {
+        return $this->hasOne(userTotalOnline::class);
+    }
+
 }
