@@ -81,7 +81,6 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class, 'user_id');
     }
 
-
     public function teams_likes()
     {
         return $this->belongsToMany(Team::class, 'team_likers', 'liker_id', 'team_id');
@@ -91,4 +90,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Player::class, 'player_likers', 'liker_id', 'player_id');
     }
+    public function userTotalOnline()
+    {
+        return $this->hasOne(userTotalOnline::class);
+    }
+
 }

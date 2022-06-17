@@ -12,17 +12,13 @@ use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-class AdminCreateUser extends Controller
+class  AdminCreateUser extends Controller
 {
 
     public function index()
     {
-        $RolesWithUsers=Role::with('users')->get();
-//        return $RolesWithUsers;
-        return view('admin.user.index',compact('RolesWithUsers'));
-
+        return view('admin.user.index');
     }
-
 
     public function create()
     {
@@ -61,12 +57,6 @@ class AdminCreateUser extends Controller
             return redirect()->route('user.create');
 
         }
-    }
-
-
-    public function show($id)
-    {
-        //
     }
 
     public function edit($id)

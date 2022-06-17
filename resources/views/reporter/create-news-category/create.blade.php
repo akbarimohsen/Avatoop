@@ -34,21 +34,20 @@
                     </button>
                 </section>
             @endif
-
             <div class="shadow-sm p-3 mb-5 bg-white rounded d-inline-block w-100 mt-5">
-                <div class="col-8 mx-auto">
-                    <div class="card card-warning">
+                <div class="col-sm-8 col-12 mx-auto">
+                    <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">ایجاد سطح دسترسی</h3>
+                            <h3 class="card-title">ایجاد دسته بندی خبر</h3>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                {!! Form::open(['route'=>'permission.store','method'=>'post']) !!}
-                                {!! Form::label('permission','نام سطح دسترسی',['class'=>'text-capitalize']) !!}
+                                {!! Form::open(['route'=>'category.store','method'=>'post']) !!}
+                                {!! Form::label('name','نام دسته بندی',['class'=>'text-capitalize']) !!}
                                 <div class="input-group">
-                                    {!! Form::text('permission',old('permission'),['class'=>'form-control','placeholder'=>'نام سطح دسترسی را وارد کنید(مانند ایجاد کننده خبر یا آپدیت کننده خبر)']) !!}
+                                    {!! Form::text('name',old('category'),['class'=>'form-control','placeholder'=>'نام دسته بندی خبر را وارد کنید']) !!}
                                 </div>
-                                @error('permission')
+                                @error('name')
                                 <p class="text-danger">{{$message}}</p>
                                 @enderror
                                 <section class="form-group">
@@ -67,7 +66,7 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">نام سطح دسترسی</th>
+                            <th scope="col">نام دسته بندی</th>
                             <th scope="col">تاریخ ایجاد</th>
                             <th scope="col">تاریخ آپدیت</th>
                             <th scope="col">حذف</th>
@@ -75,19 +74,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse($permissions as $permission)
+                        @forelse($categories as $category)
                             <tr>
-                                <td>{{$permission->id}}</td>
-                                <td>{{$permission->name}}</td>
-                                <td>{{$permission->created_at}}</td>
-                                <td>{{$permission->updated_at}}</td>
+                                <td>{{$categories->firstItem()+$loop->index}}</td>
+                                <td>{{$category->name}}</td>
+                                <td>{{\Carbon\Carbon::parse($category->created_at)->DiffForHumans()}}</td>
+                                <td>{{\Carbon\Carbon::parse($category->updated_at)->DiffForHumans()}}</td>
                                 <td>
-                                    {!! Form::open(['route'=>['permission.destroy','id'=>$permission->id],'method'=>'delete']) !!}
-                                    {!! Form::submit('delete',['class'=>'btn btn-danger']) !!}
+                                    {!! Form::open(['route'=>['category.destroy','id'=>$category->id,],'method'=>'delete']) !!}
+                                    {!! Form::submit('delete',['class'=>'btn btn-danger','onclick'=>'return confirm("با حذف این دسته بندی تمامی اخبار مربوطه پاک خواهد شد، آیا مطمئنید؟")']) !!}
                                     {!! Form::close() !!}
                                 </td>
                                 <td>
-                                    <a href="{{route('permission.edit',['id'=>$permission->id])}}"
+                                    <a href="{{route('category.edit',['id'=>$category->id])}}"
                                        class="btn btn-warning">update</a>
                                 </td>
                             </tr>
@@ -99,7 +98,7 @@
                         </tbody>
                     </table>
                 </div>
-
+                <span class="d-flex justify-content-center">{{$categories->links()}}</span>
             </div>
         </section>
     </section>

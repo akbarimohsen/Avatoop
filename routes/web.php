@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdsController;
 use App\Http\Controllers\Admin\NewsManagementController;
 use App\Http\Controllers\Admin\PlayerManagementController;
 use App\Http\Controllers\Admin\PositionsController;
+use App\Http\Controllers\Admin\RulesController;
 use App\Http\Controllers\Admin\SuggestionController;
 use App\Http\Controllers\Admin\TeamManagementController;
 use App\Http\Controllers\MainController;
@@ -27,12 +28,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, 'index']);
 
-Route::middleware(['auth', 'verified','role:admin'])->group(function(){
 
-    // user and role permission management
+
+Route::middleware(['auth', 'verified','role:admin|user'])->group(function(){
+
+
+    // users management
+    Route::resource('/admin/user',\App\Http\Controllers\AdminCreateUser::class)->parameters(['user'=>'id']);
+
+    // role and permissions management
     Route::resource('/admin/role',RoleController::class)->parameters(['role'=>'id']);
     Route::resource('/admin/permission',\App\Http\Controllers\PermissionController::class)->parameters(['permission'=>'id']);
-    Route::resource('/admin/user',\App\Http\Controllers\AdminCreateUser::class)->parameters(['user'=>'id']);
+    Route::post('/admin/give-permission/{role}',[RoleController::class,'givePermission'])->name('role.permission');
+    Route::delete('/admin/role/{role}/permission/{permission}',[RoleController::class,'revokePermission'])->name('role.permission.revoke');
+
+    //create category
+    Route::resource('/admin/category',\App\Http\Controllers\Reporter\CategoryController::class)->parameters(['category'=>'id']);
 
 
     Route::get('/admin/dashboard',[AdminController::class , 'index'])->name('admin.dashboard');
@@ -54,7 +65,6 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function(){
 
 
     // Ads Management
-
     Route::get('/admin/ads',[AdsController::class, 'index'])->name('admin.ads');
     Route::get('/admin/ads/add', [AdsController::class,'add'])->name('admin.ads.add');
     Route::get('/admin/ads/{id}/edit',[AdsController::class, 'edit'])->name('admin.ads.edit');
@@ -63,7 +73,8 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function(){
     Route::get('/admin/suggests',[ SuggestionController::class, 'index' ])->name('admin.suggests');
     Route::get('/admin/suggests/{id}', [ SuggestionController::class, 'show' ])->name('admin.suggests.show');
 
-
+    // rules controller
+    Route::resource('/admin/rules', RulesController::class);
 
 });
 

@@ -1,5 +1,4 @@
 @extends('layouts.admin-master')
-
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -24,9 +23,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <!-- Main row -->
 
-        {{-- Add Player Form --}}
 
         @livewire('admin.player-mangement.add-player')
 
