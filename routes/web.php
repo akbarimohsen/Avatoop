@@ -33,7 +33,7 @@ Route::middleware(['auth', 'verified','role:admin'])->prefix('admin/panel/')->gr
 
 
 // Route::middleware([
-//     'auth:sanctum',
+//     'auth:sanctum'gi,
 //     config('jetstream.auth_session'),
 //     'verified'
 // ])->group(function () {
