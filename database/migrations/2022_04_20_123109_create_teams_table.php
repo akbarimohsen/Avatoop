@@ -18,8 +18,9 @@ class CreateTeamsTable extends Migration
             $table->string('title');
             $table->string('logo');
             $table->text('description');
-            $table->integer('score_count');
-            $table->float('score');
+            $table->integer('score_count')->default(0);
+            $table->float('score')->default(0);
+            $table->integer('likes_count')->default(0);
 
             $table->unsignedBigInteger('league_id');
             $table->foreign('league_id')->references('id')->on('leagues')->onDelete('cascade')->onUpdate('cascade');
