@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RuleRequest;
 use App\Models\Rule;
 use Illuminate\Http\Request;
+use Whoops\Run;
 
 class RulesController extends Controller
 {
@@ -50,11 +51,29 @@ class RulesController extends Controller
     public function edit($id)
     {
         //
+        $rule = Rule::findOrFail($id);
+
+        return view('admin.rulesManagement.edit', compact('rule'));
     }
 
-    public function update(Request $request, $id)
+    public function update(RuleRequest $request, $id)
     {
         //
+        $data = [
+            'title' => $request->title,
+            'description' => $request->description
+        ];
+
+        $rule = Rule::findOrFail(intval($id));
+
+        $rule->title = $data['title'];
+        $rule->description = $data['description'];
+
+        $rule->save();
+
+        session()->flash('message', 'قانون با موفقیت تغییر گردید.');
+
+        return redirect()->route('rules.index');
     }
 
     public function destroy($id)

@@ -82,7 +82,7 @@
                                                 تغییر
                                             </a>
                                             {!! Form::open(['route'=>['rules.destroy','rule'=>$rule->id],'method'=>'delete']) !!}
-                                            {!! Form::submit('delete',['class'=>'btn btn-danger btn-sm']) !!}
+                                            {!! Form::submit(' حذف',['class'=>'btn btn-danger btn-sm']) !!}
                                             {!! Form::close() !!}
                                         </div>
                                     </td>

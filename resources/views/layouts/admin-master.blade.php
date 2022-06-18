@@ -468,6 +468,25 @@
                             </ul>
                         </li>
 
+                        {{-- Rules Management --}}
+                        <li class="nav-item has-treeview ">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-handshake-o" ></i>
+                                <p>
+                                    مدیریت قوانین
+                                    <i class="right fa fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('rules.index') }}" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>لیست قوانین</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
 
                     </ul>
                 </nav>
