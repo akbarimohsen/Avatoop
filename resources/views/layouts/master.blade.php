@@ -333,163 +333,185 @@
                 </div>
 
                 <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
+                @role('admin')
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                            data-accordion="false">
 
-                        {{-- USER MANAGEMENT  --}}
+                            {{-- USER MANAGEMENT  --}}
 
-                        <li class="nav-item has-treeview ">
-                            <a href="#" class="nav-link">
-                                {{-- <img src="{{ asset('assets/admin/icons/ball.png') }}" width="20px" height="20px"/> --}}
-                                <i class="fa fa-user"></i>
-                                <p>
-                                    مدیریت کاربران
-                                    <i class="right fa fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('user.create') }}" class="nav-link">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>ایجاد کاربر</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('user.index') }}" class="nav-link">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>لیست کاربران</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                            <li class="nav-item has-treeview ">
+                                <a href="#" class="nav-link">
+                                    {{-- <img src="{{ asset('assets/admin/icons/ball.png') }}" width="20px" height="20px"/> --}}
+                                    <i class="fa fa-user"></i>
+                                    <p>
+                                        مدیریت کاربران
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('user.create') }}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>ایجاد کاربر</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('user.index') }}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>لیست کاربران</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                        {{-- Role and Permission Management --}}
-                        <li class="nav-item has-treeview ">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-shield"></i>
-                                <p>
-                                    مدیریت نقش ها
-                                    <i class="right fa fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('role.create') }}" class="nav-link">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>نقش ها</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('permission.create') }}" class="nav-link">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>مجوز ها</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                            {{-- Role and Permission Management --}}
+                            <li class="nav-item has-treeview ">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-shield"></i>
+                                    <p>
+                                        مدیریت نقش ها
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('role.create') }}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>نقش ها</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('permission.create') }}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>مجوز ها</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                        {{-- Team and Player Managemrnt --}}
-                        <li class="nav-item has-treeview ">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-futbol-o"></i>
-                                <p>
-                                    مدیریت تیم و بازیکن
-                                    <i class="right fa fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.players') }}" class="nav-link">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>لیست بازیکنان</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.teams') }}" class="nav-link">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>لیست تیم ها</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.positions') }}" class="nav-link">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>لیست پست های بازی</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                            {{-- Team and Player Managemrnt --}}
+                            <li class="nav-item has-treeview ">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-futbol-o"></i>
+                                    <p>
+                                        مدیریت تیم و بازیکن
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.players') }}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>لیست بازیکنان</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.teams') }}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>لیست تیم ها</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.positions') }}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>لیست پست های بازی</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                        {{-- Ads Management --}}
+                            {{-- Ads Management --}}
 
-                        <li class="nav-item has-treeview ">
-                            <a href="#" class="nav-link">
-                                <img src="{{ asset('assets/admin/icons/ads.png') }}" alt="">
-                                <p>
-                                    مدیریت تبلیغات
-                                    <i class="right fa fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
+                            <li class="nav-item has-treeview ">
+                                <a href="#" class="nav-link">
+                                    <img src="{{ asset('assets/admin/icons/ads.png') }}" alt="">
+                                    <p>
+                                        مدیریت تبلیغات
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
 
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.ads') }}" class="nav-link">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>لیست تبلیغات</p>
-                                    </a>
-                                </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.ads') }}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>لیست تبلیغات</p>
+                                        </a>
+                                    </li>
 
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.ads.add') }}" class="nav-link">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>ایجاد تبلیغ</p>
-                                    </a>
-                                </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.ads.add') }}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>ایجاد تبلیغ</p>
+                                        </a>
+                                    </li>
 
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>
 
-                        {{-- Suggest Mangement --}}
-                        <li class="nav-item has-treeview ">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-bullhorn" ></i>
-                                <p>
-                                    مدیریت پیشنهادات
-                                    <i class="right fa fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.ads') }}" class="nav-link">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>لیست پیشنهادات</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                            {{-- Suggest Mangement --}}
+                            <li class="nav-item has-treeview ">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-bullhorn" ></i>
+                                    <p>
+                                        مدیریت پیشنهادات
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.suggests') }}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>لیست پیشنهادات</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                        {{-- Rules Management --}}
-                        <li class="nav-item has-treeview ">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-handshake-o" ></i>
-                                <p>
-                                    مدیریت قوانین
-                                    <i class="right fa fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('rules.index') }}" class="nav-link">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>لیست قوانین</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                            {{-- Rules Management --}}
+                            <li class="nav-item has-treeview ">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-handshake-o" ></i>
+                                    <p>
+                                        مدیریت قوانین
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('rules.index') }}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>لیست قوانین</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
 
-                    </ul>
-                </nav>
+                        </ul>
+                    </nav>
+                @endrole
+
+                @role('user')
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                            data-accordion="false">
+
+
+                            {{-- USER MANAGEMENT  --}}
+                            <li class="nav-item ">
+                                <a href="{{ route('user.profile') }}" class="nav-link">
+                                    <i class="fa fa-user"></i>
+                                    <p>
+                                        پروفایل
+                                    </p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </nav>
+                @endrole
                 <!-- /.sidebar-menu -->
             </div>
         </div>

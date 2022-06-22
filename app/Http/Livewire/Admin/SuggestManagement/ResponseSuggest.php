@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Admin\SuggestManagement;
 
+use App\Mail\SuggestResponse;
 use App\Models\Suggest;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class ResponseSuggest extends Component
@@ -25,8 +27,10 @@ class ResponseSuggest extends Component
         $suggest = Suggest::find($this->suggest->id);
 
         $suggest->response = $data['response'];
-
+        $suggest->status = 1;
         $suggest->save();
+
+        Mail::to($suggest->email)->send(new SuggestResponse($suggest));
 
         session()->flash('message','پاسخ شما با موفقیت به ایمیل فرستنده پیشنهاد ارسال شد.');
         return redirect()->route('admin.suggests');

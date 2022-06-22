@@ -38,11 +38,13 @@
                             </div>
                         @else
                             <form class="form-horizontal" wire:submit.prevent="sendResponse">
-                                <div class="input-group input-group-sm mb-0">
-                                <input class="form-control form-control-sm" wire:model="response" placeholder="نظر خود را تایپ کنید">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-danger">ارسال</button>
-                                    </div>
+                                <div class="input-group input-group-sm ">
+                                <textarea class="form-control form-control-sm" wire:model="response" placeholder="پاسخ خود را تایپ کنید" rows="5"></textarea>
+                                </div>
+                                <div class="input-group input-group-sm mt-3">
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        ارسال
+                                    </button>
                                 </div>
                             </form>
                         @endif

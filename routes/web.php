@@ -12,6 +12,8 @@ use App\Http\Controllers\MainController;
 use App\Http\Livewire\Admin\Dashboard\AdminDashboardComponent;
 use App\Http\Livewire\User\Dashboard\UserDashboardcomponent;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,8 +31,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, 'index']);
 
 
+Route::middleware(['auth', 'verified','role:user'])->group(function(){
 
-Route::middleware(['auth', 'verified','role:admin|user'])->group(function(){
+    // Profile Management
+    Route::get('/user/profile',[UserController::class, 'showProfile' ])->name('user.profile');
+
+
+});
+
+
+
+Route::middleware(['auth', 'verified','role:admin'])->group(function(){
 
 
     // users management
