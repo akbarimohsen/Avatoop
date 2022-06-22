@@ -339,7 +339,6 @@
                             data-accordion="false">
 
                             {{-- USER MANAGEMENT  --}}
-
                             <li class="nav-item has-treeview ">
                                 <a href="#" class="nav-link">
                                     {{-- <img src="{{ asset('assets/admin/icons/ball.png') }}" width="20px" height="20px"/> --}}
@@ -365,6 +364,8 @@
                                 </ul>
                             </li>
 
+
+
                             {{-- Role and Permission Management --}}
                             <li class="nav-item has-treeview ">
                                 <a href="#" class="nav-link">
@@ -389,6 +390,26 @@
                                     </li>
                                 </ul>
                             </li>
+
+                            {{-- Tags Management --}}
+                            <li class="nav-item has-treeview ">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-tag"></i>
+                                    <p>
+                                        مدیریت برچسب ها
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('tag.index') }}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>لیست برچسب ها</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
 
                             {{-- Team and Player Managemrnt --}}
                             <li class="nav-item has-treeview ">
