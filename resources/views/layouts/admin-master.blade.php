@@ -449,6 +449,13 @@
                             </ul>
                         </li>
 
+                        <li class="nav-item">
+                            <a href="{{ route('tag.index') }}" class="nav-link">
+                              <i class="fa fa-circle-o nav-icon"></i>
+                              <p>لیست برچسب ها</p>
+                            </a>
+                          </li>
+
                         {{-- Suggest Mangement --}}
                         <li class="nav-item has-treeview ">
                             <a href="#" class="nav-link">
