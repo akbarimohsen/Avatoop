@@ -24,10 +24,10 @@ class RoleController extends Controller
                 'name' => $request->role
             ]);
             session()->flash('create','نقش مورد نظر ایجاد شد');
-            return redirect()->route('role.index');
+            return redirect()->route('role.create');
         }else{
             session()->flash('exist','نقش مورد نظر موجود است');
-            return redirect()->route('role.index');
+            return redirect()->route('role.create');
         }
 
     }

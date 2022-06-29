@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdsController;
-use App\Http\Controllers\Admin\NewsManagementController;
 use App\Http\Controllers\Admin\PlayerManagementController;
 use App\Http\Controllers\Admin\PositionsController;
 use App\Http\Controllers\Admin\RulesController;
@@ -14,6 +13,7 @@ use App\Http\Livewire\User\Dashboard\UserDashboardcomponent;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Reporter\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,18 +63,7 @@ Route::middleware(['auth', 'verified','role:admin|user'])->group(function(){
     // position management
     Route::get('/admin/positions',[PositionsController::class, 'index'])->name('admin.positions');
 
-<<<<<<< HEAD
-// Route::middleware([
-//     'auth:sanctum'gi,
-//     config('jetstream.auth_session'),
-//     'verified'
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-// });
-=======
->>>>>>> 1b9a51ea1381568466e6a695199e06079b7b6351
+
 
     // Ads Management
     Route::get('/admin/ads',[AdsController::class, 'index'])->name('admin.ads');
@@ -88,5 +77,8 @@ Route::middleware(['auth', 'verified','role:admin|user'])->group(function(){
     // rules controller
     Route::resource('/admin/rules', RulesController::class);
 
+});
+Route::middleware(['auth','role:admin|reporter'])->group(function (){
+    Route::resource('/reporter/news',NewsController::class)->parameters(['news'=>'id']);
 });
 
