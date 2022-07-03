@@ -4,14 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class News extends Model
+class News extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory,InteractsWithMedia;
 
     protected $table = 'news';
 
-    protected $fillable = ['title' , 'description', 'created_at', 'body', 'img', 'video', 'views' , 'reporter_id'];
+    protected $guarded = ['id'];
 
     public function repoter(){
         return $this->belongsTo(User::class,'reporter_id' );

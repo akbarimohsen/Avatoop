@@ -37,7 +37,7 @@ class  AdminCreateUser extends Controller
 
         } else {
             if ($request->has('image')) {
-                $imageName = time() . $request->file('image')->getClientOriginalName();
+                $imageName = time() .  $request->file('image')->getClientOriginalName();
                 $request->file('image')->storeAs('images/user/profile/', $imageName, 'public');
             }
 

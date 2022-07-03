@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '694257f91c72361d4a15e35465bec23bf4d64d25',
+    'reference' => 'cdec831fc1ed7be853e028490217170f6de1770b',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -82,6 +82,42 @@ private static $installed = array (
       array (
       ),
       'reference' => '0992cc19268b259a39e86f296da5f0677841f42c',
+    ),
+    'doctrine/cache' => 
+    array (
+      'pretty_version' => '2.2.0',
+      'version' => '2.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1ca8f21980e770095a31456042471a57bc4c68fb',
+    ),
+    'doctrine/dbal' => 
+    array (
+      'pretty_version' => '3.3.7',
+      'version' => '3.3.7.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9f79d4650430b582f4598fe0954ef4d52fbc0a8a',
+    ),
+    'doctrine/deprecations' => 
+    array (
+      'pretty_version' => 'v1.0.0',
+      'version' => '1.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '0e2a4f1f8cdfc7a92ec3b01c9334898c806b30de',
+    ),
+    'doctrine/event-manager' => 
+    array (
+      'pretty_version' => '1.1.1',
+      'version' => '1.1.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '41370af6a30faa9dc0368c4a6814d596e81aba7f',
     ),
     'doctrine/inflector' => 
     array (
@@ -530,7 +566,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '694257f91c72361d4a15e35465bec23bf4d64d25',
+      'reference' => 'cdec831fc1ed7be853e028490217170f6de1770b',
     ),
     'laravel/sail' => 
     array (
@@ -604,6 +640,15 @@ private static $installed = array (
       ),
       'reference' => '094defdb4a7001845300334e7c1ee2335925ef99',
     ),
+    'league/glide' => 
+    array (
+      'pretty_version' => '1.7.1',
+      'version' => '1.7.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '257e0c3612ef3dc57eb7f90cb741198151a45a5f',
+    ),
     'league/mime-type-detection' => 
     array (
       'pretty_version' => '1.11.0',
@@ -621,6 +666,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '9ea6237760f627b3b6a05d15137880780ac843b5',
+    ),
+    'maennchen/zipstream-php' => 
+    array (
+      'pretty_version' => '2.2.1',
+      'version' => '2.2.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '211e9ba1530ea5260b45d90c9ea252f56ec52729',
     ),
     'mobiledetect/mobiledetectlib' => 
     array (
@@ -664,6 +718,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '14daed4296fae74d9e3201d2c4925d1acb7aa614',
+    ),
+    'myclabs/php-enum' => 
+    array (
+      'pretty_version' => '1.8.3',
+      'version' => '1.8.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'b942d263c641ddb5190929ff840c68f78713e937',
     ),
     'nesbot/carbon' => 
     array (
@@ -853,6 +916,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '80c3d801b31fe165f8fe99ea085e0a37834e1be3',
+    ),
+    'psr/cache' => 
+    array (
+      'pretty_version' => '3.0.0',
+      'version' => '3.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'aa5030cfa5405eccfdcb1083ce040c2cb8d253bf',
     ),
     'psr/container' => 
     array (
@@ -1154,6 +1226,33 @@ private static $installed = array (
       ),
       'reference' => 'c6c1022351a901512170118436c764e473f6de8c',
     ),
+    'spatie/image' => 
+    array (
+      'pretty_version' => '1.10.6',
+      'version' => '1.10.6.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '897e819848096ea8eee8ed4a3531c6166f9a99e0',
+    ),
+    'spatie/image-optimizer' => 
+    array (
+      'pretty_version' => '1.6.2',
+      'version' => '1.6.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '6db75529cbf8fa84117046a9d513f277aead90a0',
+    ),
+    'spatie/laravel-medialibrary' => 
+    array (
+      'pretty_version' => '9.12.3',
+      'version' => '9.12.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'a20456679f29a725b37947980408fc15c3477b08',
+    ),
     'spatie/laravel-permission' => 
     array (
       'pretty_version' => '5.5.4',
@@ -1162,6 +1261,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'cb86fd87b43fcfc493c3f2b1de6fad100c078146',
+    ),
+    'spatie/temporary-directory' => 
+    array (
+      'pretty_version' => '2.1.0',
+      'version' => '2.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '79f138f2b81adae583d04d3727a4538dd394023f',
     ),
     'swiftmailer/swiftmailer' => 
     array (

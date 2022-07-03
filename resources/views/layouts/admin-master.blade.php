@@ -692,6 +692,16 @@
                 $('.select2').select2()
 
             })
+            $("#NewsDate").pDatepicker({
+                altField: '#NewsDate',
+                altFormat: "YYYY-MM-DD H:m:s",
+                observer: true,
+                format: 'YYYY-MM-DD H:m:s',
+                initialValue: false,
+                initialValueType: 'persian',
+                autoClose: true,
+                maxDate: 'today',
+            });
         })
         Livewire.hook('element.initialized', () => {
 
