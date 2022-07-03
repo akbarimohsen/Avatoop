@@ -390,6 +390,22 @@
                             </ul>
                         </li>
 
+                        <li class="nav-item has-treeview ">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-newspaper-o"></i>
+                                <p>
+                                    مدیریت خبر ها
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('news.create') }}" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>ایجاد خبر</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         {{-- Team and Player Managemrnt --}}
                         <li class="nav-item has-treeview ">
                             <a href="#" class="nav-link">
