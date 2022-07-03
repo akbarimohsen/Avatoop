@@ -17,11 +17,11 @@ class CreateNewsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->date('created_at');
             $table->text('body');
             $table->integer('views_count')->default(0);
             $table->unsignedBigInteger('reporter_id');
             $table->foreign('reporter_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 

@@ -11,10 +11,10 @@ class News extends Model
 
     protected $table = 'news';
 
-    protected $fillable = ['title' , 'description', 'created_at', 'body', 'img', 'video', 'views' , 'reporter_id'];
+    protected $fillable = ['title' , 'description', 'body', 'img', 'video', 'views' , 'reporter_id'];
 
     public function repoter(){
-        return $this->belongsTo(User::class,'reporter_id' );
+        return $this->belongsTo(User::class,'reporter_id');
     }
     public function categories(){
         return $this->belongsToMany(Category::class, 'news_categories', 'news_id', 'category_id');
@@ -28,6 +28,11 @@ class News extends Model
 
     public function tags(){
         return $this->belongsToMany(Tag::class,'news_tags','news_id', 'tag_id');
+    }
+
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class, 'team_news', 'news_id', 'team_id');
     }
 
 }

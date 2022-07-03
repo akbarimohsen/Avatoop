@@ -27,6 +27,18 @@ class Team extends Model
 
     public function likers()
     {
-        return $this->belongsToMany(Team::class, 'team_likers', 'team_id', 'liker_id');
+        return $this->belongsToMany(User::class, 'team_likers', 'team_id', 'liker_id');
     }
+
+    public function lovers()
+    {
+        return $this->belongsToMany(User::class, 'popular_teams', 'team_id', 'user_id');
+    }
+
+    public function news()
+    {
+        return $this->belongsToMany(News::class, 'teams_news', 'team_id', 'news_id');
+    }
+
+
 }

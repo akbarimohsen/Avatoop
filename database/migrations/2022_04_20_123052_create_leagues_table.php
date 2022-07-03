@@ -18,7 +18,6 @@ class CreateLeaguesTable extends Migration
             $table->string('title');
             $table->string('logo');
             $table->integer('teams_count');
-            $table->string('season');
             $table->timestamps();
         });
     }

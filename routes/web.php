@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdsController;
+use App\Http\Controllers\Admin\EmailsController;
+use App\Http\Controllers\Admin\LeagueManagementController;
 use App\Http\Controllers\Admin\NewsManagementController;
 use App\Http\Controllers\Admin\PlayerManagementController;
 use App\Http\Controllers\Admin\PositionsController;
 use App\Http\Controllers\Admin\RulesController;
+use App\Http\Controllers\Admin\sendEmailController;
 use App\Http\Controllers\Admin\SuggestionController;
 use App\Http\Controllers\Admin\TeamManagementController;
 use App\Http\Controllers\MainController;
@@ -15,6 +18,9 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\User\AudioNewsController;
+use App\Http\Controllers\User\NewsController;
+use App\Http\Controllers\User\TeamsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +42,23 @@ Route::middleware(['auth', 'verified','role:user'])->group(function(){
 
     // Profile Management
     Route::get('/user/profile',[UserController::class, 'showProfile' ])->name('user.profile');
+
+    // teams routes
+    Route::get('/user/popularTeams', [TeamsController::class, 'showPopularTeams'])->name('user.popularTeams');
+    Route::get('/user/popularTeams/add', [TeamsController::class, 'addPopularTeam'])->name('user.popularTeams.add');
+    Route::get('/user/popularTeams/{id}/delete', [TeamsController::class, 'deletePopularTeam'])->name('user.popularTeams.delete');
+
+
+    // audio news routes
+    Route::get('/user/audioNews', [ AudioNewsController::class, 'index' ])->name('user.audioNews');
+
+    // emails of admin show
+    Route::get('/user/adminEmails', [UserController::class, 'adminEmails'])->name('user.adminEmails');
+
+
+    // favorite teams news
+    Route::get('/user/favoriteTeamsNews',[NewsController::class, 'favoriteTeamsNews'])->name('user.favoriteTeamsNews');
+
 
 
 });
@@ -75,6 +98,8 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function(){
     // position management
     Route::get('/admin/positions',[PositionsController::class, 'index'])->name('admin.positions');
 
+    // league management
+    Route::resource('/admin/leagues', LeagueManagementController::class);
 
     // Ads Management
     Route::get('/admin/ads',[AdsController::class, 'index'])->name('admin.ads');
@@ -89,5 +114,12 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function(){
     Route::resource('/admin/rules', RulesController::class);
     Route::resource('/admin/tag', TagController::class)->parameters(['tag' => 'id']);
 
+
+    // send email controller
+    Route::get('/admin/emails/showEmails', [EmailsController::class, 'showEmails'])->name('admin.emails.showEmails');
+    Route::get('/admin/emails/showUsers', [EmailsController::class, 'showUsers'])->name('admin.emails.showUsers');
+    Route::get('/admin/emails/writeEmail',[EmailsController::class, 'writeEmail'])->name('admin.emails.writeEmail');
+    Route::post('/admin/emails/sendEmail',[EmailsController::class, 'sendEmail'])->name('admin.emails.sendEmail');
+    Route::get('/admin/email/showEmail/{id}',[EmailsController::class,'showEmail'])->name('admin.emails.showEmail');
 });
 
