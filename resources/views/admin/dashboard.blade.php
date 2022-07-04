@@ -1,4 +1,4 @@
-@extends('layouts.admin-master')
+@extends('layouts.master')
 @section('content')
      <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

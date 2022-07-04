@@ -1,4 +1,4 @@
-@extends('layouts.admin-master')
+@extends('layouts.master')
 @section('content')
     <section class="content-wrapper">
         <section class="container">
@@ -60,7 +60,7 @@
                     </div>
 
                 </div>
-                <div class="col-9 mx-auto mt-3">
+                <div class="col-6 mx-auto mt-3">
                     {{--show roles--}}
                     <table class="table table-hover table-responsive">
                         <thead>

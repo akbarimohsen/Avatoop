@@ -2,9 +2,6 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdsController;
-use App\Http\Controllers\Admin\EmailsController;
-use App\Http\Controllers\Admin\LeagueManagementController;
-use App\Http\Controllers\Admin\NewsManagementController;
 use App\Http\Controllers\Admin\PlayerManagementController;
 use App\Http\Controllers\Admin\PositionsController;
 use App\Http\Controllers\Admin\RulesController;
@@ -23,6 +20,7 @@ use App\Http\Controllers\User\NewsController;
 use App\Http\Controllers\User\TeamsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Reporter\NewsController as ReporterNewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +99,7 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function(){
     // league management
     Route::resource('/admin/leagues', LeagueManagementController::class);
 
+
     // Ads Management
     Route::get('/admin/ads',[AdsController::class, 'index'])->name('admin.ads');
     Route::get('/admin/ads/add', [AdsController::class,'add'])->name('admin.ads.add');
@@ -121,5 +120,8 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function(){
     Route::get('/admin/emails/writeEmail',[EmailsController::class, 'writeEmail'])->name('admin.emails.writeEmail');
     Route::post('/admin/emails/sendEmail',[EmailsController::class, 'sendEmail'])->name('admin.emails.sendEmail');
     Route::get('/admin/email/showEmail/{id}',[EmailsController::class,'showEmail'])->name('admin.emails.showEmail');
+});
+Route::middleware(['auth','role:admin|reporter'])->group(function (){
+    Route::resource('/reporter/news',ReporterNewsController::class)->parameters(['news'=>'id']);
 });
 

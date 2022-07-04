@@ -11,6 +11,9 @@ class TeamsTable extends Component
     // search team properties
     public $title;
 
+    // sort team properties
+    public $sorting_type;
+
     public function delete($id)
     {
         $team = Team::find($id);
@@ -22,6 +25,15 @@ class TeamsTable extends Component
 
     }
 
+
+    public function sortTeams()
+    {
+        $data = $this->validate([
+            'sorting_type' => 'required'
+        ]);
+
+        $this->sorting_type = $data['sorting_type'];
+    }
     public function searchTeam()
     {
         $data = $this->validate([

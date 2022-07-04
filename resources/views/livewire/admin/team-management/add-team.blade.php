@@ -26,7 +26,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>لیگ</label>
-                        <select class="form-control select2" style="width: 100%;" wire:model="league_id">
+                        <select class="form-control" style="width: 100%;" wire:model="league_id">
                             @foreach ($leagues as $league )
                                 <option value="{{ $league->id }}">
                                     {{ $league->title }}
