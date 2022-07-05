@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdsController;
 use App\Http\Controllers\Admin\PlayerManagementController;
 use App\Http\Controllers\Admin\PositionsController;
+use App\Http\Controllers\Admin\ReportersMangementController;
 use App\Http\Controllers\Admin\RulesController;
 use App\Http\Controllers\Admin\sendEmailController;
 use App\Http\Controllers\Admin\SuggestionController;
@@ -120,7 +121,15 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function(){
     Route::get('/admin/emails/writeEmail',[EmailsController::class, 'writeEmail'])->name('admin.emails.writeEmail');
     Route::post('/admin/emails/sendEmail',[EmailsController::class, 'sendEmail'])->name('admin.emails.sendEmail');
     Route::get('/admin/email/showEmail/{id}',[EmailsController::class,'showEmail'])->name('admin.emails.showEmail');
+
+
+    // reporters controller
+    Route::get('/admin/reporters', [ReportersMangementController::class,'reportersList'])->name('admin.reporters');
+    Route::get('/admin/reporters/PostedNews/{category?}', [ReportersMangementController::class, 'showPostedNews'])->name('admin.reporters.showPostedNews');
+
 });
+
+// Reporter routes
 Route::middleware(['auth','role:admin|reporter'])->group(function (){
     Route::resource('/reporter/news',ReporterNewsController::class)->parameters(['news'=>'id']);
 });

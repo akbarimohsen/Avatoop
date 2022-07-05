@@ -34,6 +34,7 @@ class TeamsTable extends Component
 
         $this->sorting_type = $data['sorting_type'];
     }
+
     public function searchTeam()
     {
         $data = $this->validate([
@@ -50,6 +51,11 @@ class TeamsTable extends Component
         }else{
             $teams = Team::where('title', 'like', "%$this->title%")->get();
         }
+
+        if( $this->sorting_type == "like" ){
+            $teams = Team::orderBy('likes_count','desc')->get();
+        }
+
         return view('livewire.admin.team-management.teams-table',[
             'teams' => $teams
         ]);

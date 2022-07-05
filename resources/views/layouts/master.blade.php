@@ -340,7 +340,7 @@
                                 </ul>
                             </li>
 
-                            {{-- category controller --}}
+                            {{-- Category management --}}
                             <li class="nav-item has-treeview ">
                                 <a href="#" class="nav-link">
                                     <i class="fa fa-th-list" ></i>
@@ -359,6 +359,35 @@
                                 </ul>
                             </li>
 
+                            {{-- Reporter Management --}}
+
+                            <li class="nav-item has-treeview ">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-users" ></i>
+                                    <p>
+                                        مدیریت خبرنگاران
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.reporters') }}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>
+                                                لیست خبرنگاران
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.reporters.showPostedNews') }}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>
+                                                لیست خبرهای ارسالی
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
                         </ul>
                     </nav>
@@ -421,15 +450,7 @@
 
     @yield('content')
 
-    <footer class="main-footer">
-        <strong>CopyLeft &copy; 2018 <a href="http://github.com/hesammousavi/">حسام موسوی</a>.</strong>
-    </footer>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
