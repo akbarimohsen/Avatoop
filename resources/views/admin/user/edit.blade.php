@@ -88,6 +88,7 @@
                                         @error('image')
                                         <p class="text-danger">{{$message}}</p>
                                         @enderror
+
                                         <img src="{{\Illuminate\Support\Facades\Storage::disk('public')->url("images/user/profile/".$user->profile_photo_path)}}" class="img-circle" width="100" height="100" alt="">
                                     </div>
                                     <div class="form-group col-md-6">
