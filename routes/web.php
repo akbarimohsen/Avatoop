@@ -22,6 +22,8 @@ use App\Http\Controllers\User\TeamsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Reporter\NewsController as ReporterNewsController;
+use App\Http\Controllers\Admin\EmailsController;
+
 
 /*
 |--------------------------------------------------------------------------

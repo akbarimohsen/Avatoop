@@ -72,6 +72,21 @@
         </div>
         <!-- /.col -->
         <div class="col-md-9">
+            @if(Session::has('delete_message'))
+                <div class="alert alert-danger">
+                    {{ Session::get('delete_message') }}
+                </div>
+            @endif
+            @if(Session::has('accept_meesage'))
+                <div class="alert alert-success">
+                    {{ Session::get('accept_message') }}
+                </div>
+            @endif
+            @if(Session::has('reject_message'))
+                <div class="alert alert-warning">
+                    {{ Session::get('reject_message') }}
+                </div>
+            @endif
             @livewire('admin.reporters-management.posted-news', ['news' => $news, 'category' => $category])
           <!-- /. box -->
         </div>

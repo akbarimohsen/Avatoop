@@ -30,9 +30,9 @@
           <div class="mailbox-controls">
                 <!-- Check all button -->
                 <div class="btn-group">
-                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                    <button type="button" class="btn btn-success"><i class="fa fa-check"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fa fa-close"></i></button>
+                    <button type="button" class="btn btn-danger" wire:click="changeStatus('deleted')" ><i class="fa fa-trash-o"></i></button>
+                    <button type="button" class="btn btn-success" wire:click="changeStatus('accepted')"><i class="fa fa-check"></i></button>
+                    <button type="button" class="btn btn-warning" wire:click="changeStatus('rejected')"><i class="fa fa-close"></i></button>
                 </div>
                 <!-- /.btn-group -->
                 <!-- /.float-right -->
@@ -40,7 +40,7 @@
           <form class="table-responsive mailbox-messages">
             <table class="table table-hover table-striped">
                 <thead>
-                    <th><input type="checkbox" wire:model="selectAll"></th>
+                    <th><input type="checkbox" wire:model="SelectAll"></th>
                     <th>عنوان خبر</th>
                     <th>توضیحات  مختصر</th>
                     <th>وضعیت</th>
@@ -48,10 +48,10 @@
                 </thead>
               <tbody>
                 {{-- 1 --}}
-                    @if ($all_news->count() != 0 )
-                        @foreach ($all_news as $news )
+                    @if ($all_news->count() != 0)
+                        @foreach($all_news as $news )
                             <tr>
-                                <td><input type="checkbox"></td>
+                                <td><input type="checkbox" wire:model="selectedNews" value="{{ $news->id }}"></td>
                                 <td class="mailbox-name"><a href="#">{{ $news->title }}</a></td>
                                 <td class="mailbox-subject">
                                     {{ $news->header }}
@@ -67,7 +67,9 @@
                                         <span class="badge bg-danger p-1">حذف شد</span>
                                     @endif
                                 </td>
-                                <td class="mailbox-date">5 دقیقه قبل</td>
+                                <td class="mailbox-date">
+                                    {{ Verta::createTimestamp($news->created_at)->formatDifference() }}
+                                </td>
                             </tr>
                         @endforeach
                     @endif
@@ -84,4 +86,6 @@
         </div>
         <!-- /.card-body -->
       </div>
+
+
 </div>

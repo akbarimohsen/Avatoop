@@ -498,6 +498,7 @@
 <script src="https://unpkg.com/persian-date@latest/dist/persian-date.min.js"></script>
 <script src="https://unpkg.com/persian-datepicker@latest/dist/js/persian-datepicker.min.js"></script>
 <script src="{{asset('assets/admin/plugins/select2/select2.full.min.js')}}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
     class MyUploadAdapter {
         constructor( loader ) {
@@ -670,6 +671,8 @@
 
         })
     });
+</script>
+<script>
 </script>
 </body>
 </html>
