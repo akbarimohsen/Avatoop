@@ -51,7 +51,12 @@ class TagController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        return redirect()->back()->with('success','برچسب با موفقیت افزوده شد');
+        $notification = array(
+            'message' => 'برچسب با موفقیت افزوده شد',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
     }
 
     /**
@@ -97,7 +102,12 @@ class TagController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('tag.index')->with('success','ویرایش برچسب با موفقیت انجام شد');
+        $notification = array(
+            'message' => 'ویرایش برچسب با موفقیت انجام شد',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('tag.index')->with($notification);
     }
 
     /**
@@ -109,7 +119,10 @@ class TagController extends Controller
     public function destroy($id)
     {
         Tag::destroy($id);
-        session()->flash('success','برچسب مورد نظر با موفقیت حذف شد');
-        return redirect()->route('tag.index');
+        $notification = array(
+            'message' => 'برچسب مورد نظر با موفقیت حذف شد',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('tag.index')->with($notification);
     }
 }
