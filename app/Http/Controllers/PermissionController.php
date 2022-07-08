@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatePermissionRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
@@ -12,7 +13,7 @@ class PermissionController extends Controller
 
     public function create()
     {
-        $permissions = Permission::all();
+        $permissions = Permission::latest()->paginate(5);
         return view('admin.create-permission.create', compact('permissions'));
 
     }
@@ -22,7 +23,8 @@ class PermissionController extends Controller
         $exist = Permission::where('name', $request->permission)->first();
         if (!$exist) {
             Permission::create([
-                'name' => $request->permission
+                'name' => $request->permission,
+                'created_at' => Carbon::now()
             ]);
             session()->flash('create', 'سطح دسترسی مورد نظر ایجاد شد');
             return redirect()->route('permission.create');

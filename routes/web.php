@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdsController;
 use App\Http\Controllers\Admin\PlayerManagementController;
 use App\Http\Controllers\Admin\PositionsController;
+use App\Http\Controllers\Admin\LeagueManagementController;
 use App\Http\Controllers\Admin\ReportersMangementController;
 use App\Http\Controllers\Admin\RulesController;
 use App\Http\Controllers\Admin\sendEmailController;
@@ -66,7 +67,7 @@ Route::middleware(['auth', 'verified','role:user'])->group(function(){
 
 
 
-Route::middleware(['auth', 'verified','role:admin'])->group(function(){
+Route::middleware(['auth', 'verified','role:admin|user'])->group(function(){
 
 
     // users management
@@ -88,7 +89,6 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function(){
     Route::get('/admin/players', [PlayerManagementController::class, 'index'])->name('admin.players');
     Route::get('/admin/players/add', [PlayerManagementController::class , 'add'])->name('admin.players.add');
     Route::get('/admin/players/edit/{id}', [PlayerManagementController::class, 'edit'])->name('admin.players.edit');
-
 
     // team management
     Route::get('/admin/teams', [TeamManagementController::class, 'index'])->name('admin.teams');
@@ -114,6 +114,8 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function(){
 
     // rules controller
     Route::resource('/admin/rules', RulesController::class);
+
+    // tags controller
     Route::resource('/admin/tag', TagController::class)->parameters(['tag' => 'id']);
 
 

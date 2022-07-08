@@ -12,7 +12,7 @@ class RoleController extends Controller
 {
     public function create()
     {
-        $roles=Role::all();
+        $roles=Role::latest()->paginate(5);
         return view('admin.create-role.create',compact('roles'));
     }
 

@@ -52,15 +52,14 @@
                                 @forelse($tags as $tag)
                                     <tr>
                                         <th scope="row">{{ $tags->firstItem() + $loop->index }}</th>
-                                        @php
-                                            $v = verta();
-                                        @endphp
                                         <td>{{ $tag->name }}</td>
                                         <td>{{ Verta::createTimestamp($tag->created_at)->formatDifference() }}</td>
                                         @if ($tag->updated_at != null)
                                             <td>{{ Verta::createTimestamp($tag->updated_at)->formatDifference() }}</td>
                                         @else
-                                            <td><p class="text-secondary">آپدیت نشده</p></td>
+                                            <td>
+                                                <p class="text-secondary">آپدیت نشده</p>
+                                            </td>
                                         @endif
                                         {{-- <td>
                                         {!! Form::open(['route'=>['user.destroy','id'=>$tag->id],'method'=>'delete']) !!}
