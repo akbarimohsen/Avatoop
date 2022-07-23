@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Admin\Rss;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -103,6 +104,11 @@ class User extends Authenticatable
     public function AudioNews()
     {
         return $this->belongsToMany(AudioNews::class, 'user_audio_news', 'user_id', 'audioNews_id');
+    }
+
+    public function rsses()
+    {
+     return $this->belongsToMany(Rss::class,);
     }
 
 }

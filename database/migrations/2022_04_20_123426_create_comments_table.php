@@ -19,10 +19,8 @@ class CreateCommentsTable extends Migration
             $table->text('description');
             $table->date('created_at');
             $table->integer('status')->default(0);
-
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('news_id');
-
+            $table->unsignedBigInteger('rss_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('news_id')->references('id')->on('news')->onDelete('cascade')->onUpdate('cascade');
 

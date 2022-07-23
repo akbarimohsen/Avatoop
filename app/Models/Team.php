@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Admin\Rss;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,6 +39,10 @@ class Team extends Model
     public function news()
     {
         return $this->belongsToMany(News::class, 'teams_news', 'team_id', 'news_id');
+    }
+    public function rsses()
+    {
+        return $this->belongsToMany(Rss::class);
     }
 
 

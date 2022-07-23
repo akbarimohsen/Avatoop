@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'b6dcd122c5b3670757b76b7f1d8d8080afb7c336',
+    'reference' => 'b8019c4c519138aea0dbf8c0f2bf03503e09f6b5',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -553,7 +553,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'b6dcd122c5b3670757b76b7f1d8d8080afb7c336',
+      'reference' => 'b8019c4c519138aea0dbf8c0f2bf03503e09f6b5',
     ),
     'laravel/sail' => 
     array (
@@ -1213,6 +1213,15 @@
       ),
       'reference' => 'c6c1022351a901512170118436c764e473f6de8c',
     ),
+    'simplepie/simplepie' => 
+    array (
+      'pretty_version' => '1.6.0',
+      'version' => '1.6.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '2bdbc51ed1010941c9c5f2cddca433e79665bfe1',
+    ),
     'spatie/image' => 
     array (
       'pretty_version' => '1.10.6',
@@ -1541,6 +1550,15 @@
       array (
       ),
       'reference' => 'da444caae6aca7a19c0c140f68c6182e337d5b1c',
+    ),
+    'vedmant/laravel-feed-reader' => 
+    array (
+      'pretty_version' => '1.5.2',
+      'version' => '1.5.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '4ed89676cefd0b2311a53c3a5b898181d8e099a7',
     ),
     'vlucas/phpdotenv' => 
     array (

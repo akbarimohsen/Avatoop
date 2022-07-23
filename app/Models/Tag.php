@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Admin\Rss;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,5 +24,10 @@ class Tag extends Model
 
     public function players(){
         return $this->belongsToMany(Player::class, 'player_tags', 'player_id', 'tag_id');
+    }
+
+    public function rsses()
+    {
+        return $this->belongsToMany(Rss::class);
     }
 }

@@ -100,7 +100,7 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function(){
     Route::get('/admin/positions',[PositionsController::class, 'index'])->name('admin.positions');
 
     // league management
-    Route::resource('/admin/leagues', LeagueManagementController::class);
+    Route::resource('/admin/leagues', \App\Http\Controllers\Admin\LeagueManagementController::class);
 
 
     // Ads Management
@@ -135,4 +135,8 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function(){
 Route::middleware(['auth','role:admin|reporter'])->group(function (){
     Route::resource('/reporter/news',ReporterNewsController::class)->parameters(['news'=>'id']);
 });
+
+Route::resource('give-news-from-our-web/rss',\App\Http\Controllers\RssController::class)->parameters(['rss'=>'id']);
+
+
 
