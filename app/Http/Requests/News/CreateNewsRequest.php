@@ -25,7 +25,7 @@ class CreateNewsRequest extends FormRequest
     {
         return [
             'title'=>'required',
-            'header'=>'required',
+            'newsHeader'=>'required',
             'description'=>'required',
             'NewsDate'=>'required',
             'team' => 'required',
@@ -39,7 +39,7 @@ class CreateNewsRequest extends FormRequest
     {
         return [
             'title.required' => 'فیلد عنوان اجباری است',
-            'header.required' => 'فیلد سرتیتر خبر اجباری است',
+            'newsHeader.required' => 'فیلد سرتیتر خبر اجباری است',
             'NewsDate.required' => 'فیلد تاریخ خبر باید وارد شود',
             'team.required'=> 'انتخاب تیم مربوط به خبر الزامی است',
             'tag.required'=> 'تگ های هر خبر باید انتخاب شوند',

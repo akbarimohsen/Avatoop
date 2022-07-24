@@ -1,126 +1,78 @@
 <section class="content-wrapper">
     <section class="container">
-        @if(session('create'))
-            <section class="alert d-inline-block w-100 alert-success alert-dismissible fade show p-3 mt-5"
-                     role="alert">{{session('create')}}
-                <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </section>
-        @endif
-        @if(session('exist'))
-            <section class="alert alert-danger w-100 d-inline-block alert-dismissible fade show p-3 mt-5"
-                     role="alert">{{session('exist')}}
-                <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </section>
-        @endif
-        @if(session('delete'))
-            <section class="alert alert-success w-100 d-inline-block alert-dismissible fade show p-3 mt-5"
-                     role="alert">{{session('delete')}}
-                <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </section>
-        @endif
-        @if(session('update'))
-            <section class="alert alert-success w-100 d-inline-block alert-dismissible fade show p-3 mt-5"
-                     role="alert">{{session('update')}}
-                <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </section>
-        @endif
-
         <div class="shadow-sm p-3 mb-5 bg-white rounded d-inline-block w-100 mt-5 text-right">
             <div class="col-10 mx-auto">
-                <div class="card card-success">
-                    <div class="card-header">
-                        <h3 class="card-title">ایجاد خبر</h3>
+                <div class="card">
+                    <div class="card-header row">
+                        <h3 class="card-title mr-0 col-6">آپدیت خبر</h3>
+                        <div class="w-50 text-left">
+                            <button class="btn btn-success ml-0 col-6">صفحه اصلی</button>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            {!! Form::open(['route'=>'news.store','method'=>'post',"files"=>true]) !!}
-                            @csrf
+                            {!! Form::model($news,['route'=>['news.update','id'=>$news->id],'method'=>'put',"files"=>true]) !!}
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     {!! Form::label('title','عنوان خبر',['class'=>'text-capitalize']) !!}
                                     {!! Form::text('title',old('first_name'),['class'=>'form-control','placeholder'=>'مثلا: جنجال بازیکن B']) !!}
                                     @error('title')
-                                        <p class="text-danger">{{$message}}</p>
+                                    <p class="text-danger">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
                                     {!! Form::label('header','سر تیتر خبر',['class'=>'text-capitalize']) !!}
-                                    {!! Form::text('header',old('newsHeader'),['class'=>'form-control','placeholder'=>'مثلا:بازیکن تیم B با نام A جنجال بزرگی آفرید']) !!}
-                                    @error('header')
-                                        <p class="text-danger">{{$message}}</p>
+                                    {!! Form::text('header',old('header'),['class'=>'form-control','placeholder'=>'مثلا:بازیکن تیم B با نام A جنجال بزرگی آفرید']) !!}
+                                    @error('newsHeader')
+                                    <p class="text-danger">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-12">
                                     {!! Form::label('description','توضیح خبر',['class'=>'text-capitalize']) !!}
                                     {!! Form::text('description',old('header'),['class'=>'form-control','placeholder'=>'یک توضیح حداقل 70 تا 320 کاراکتری از خبر']) !!}
                                     @error('description')
-                                        <p class="text-danger">{{$message}}</p>
+                                    <p class="text-danger">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="team">انتخاب تیم های مربوط به خبر</label>
-                                    <select class="form-control select2" id="team" name="team[]" multiple="multiple"
-                                            data-placeholder="خبر مربوط به کدام تیمم است؟" style="width: 100%;">
-                                        @forelse($teams as $team)
-                                            <option value="{{$team->id}}">{{$team->title}}</option>
-                                        @empty
-                                            داده ای موجود نیست
-                                        @endforelse
-                                            <span class="mt-2 text-primary"  wire:loading>loading...</span>
-
-                                    </select>
-                                    @error('team')
-                                        <p class="text-danger">{{$message}}</p>
+                                    {!! Form::label('teams','انتخاب دسته بندی',['class'=>'text-capitalize']) !!}
+                                    {!! Form::select('teams[]', $teams,$news->teams,['class'=>'form-control select2','id'=>'category','multiple','data-placeholder'=>'انتخاب تیم های خبر']);!!}
+                                    @error('teams')
+                                    <p class="text-danger">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="tag">انتخاب برچسب ها</label>
-                                    <select class="form-control select2"  id="tag" name="tag[]" multiple="multiple"
-                                            data-placeholder="تگ های خبر را انتخاب کنید" style="width: 100%;">
-                                        @forelse($tags as $tag)
-                                            <option value="{{$tag->id}}">{{$tag->name}}</option>
-                                        @empty
-                                            داده ای موجود نیست
-                                        @endforelse
-                                    </select>
+                                    {!! Form::label('tag','انتخاب دسته بندی',['class'=>'text-capitalize']) !!}
+                                    {!! Form::select('tag[]', $tags,$news->tags,['class'=>'form-control select2','id'=>'category','multiple','data-placeholder'=>'انتخاب تگ های خبر']);!!}
                                     @error('tag')
                                     <p class="text-danger">{{$message}}</p>
                                     @enderror
-                                    <span class="mt-2 text-primary" wire:targe="tags" wire:loading>loading...</span>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="category">انتخاب دسته بندی</label>
-                                    <select class="form-control select2" id="category" name="category[]" multiple
-                                            data-placeholder="دسته بندی را وارد کنید">
-                                        @forelse($categories as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
-                                        @empty
-                                            داده ای موجود نیست
-                                        @endforelse
-                                        <span class="mt-2 text-primary" wire:targe="categories" wire:loading>loading...</span>
-                                    </select>
+                                    {!! Form::label('category','انتخاب دسته بندی',['class'=>'text-capitalize']) !!}
+                                    {!! Form::select('category[]', $categories,$news->categories,['class'=>'form-control select2','id'=>'category','multiple','data-placeholder'=>'دسته بندی را وارد کنید']);!!}
                                     @error('category')
                                     <p class="text-danger">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
                                     {!! Form::label('newsImage','تصویر اصلی خبر',['class'=>'text-capitalize']) !!}
-                                    {!! Form::file('newsImage',['class'=>'form-control','style'=>'border:2px inset lightgray',"wire:model.debounce='avatar'"]) !!}
+                                    {!! Form::file('newsImage',['class'=>'form-control','style'=>'border:2px inset lightgray',"wire:model='avatar'"]) !!}
                                     @error('newsImage')
                                     <p class="text-danger">{{$message}}</p>
                                     @enderror
                                 </div>
+                                <div class="col-md-6 text-center">
+                                    <span>تصویر قبلی خبر:</span>
+                                    <img
+                                        src="{{\Illuminate\Support\Facades\Storage::disk('public')->url('news/'.$news->created_at->year.'/'.$news->created_at->month.'/'.$news->img)}}"
+                                        class="img img-thumbnail" width="200" height="200" alt="">
+                                </div>
+
                                 @if($avatar)
                                     <div class="col-md-6 text-center">
-                                        <img src="{{$avatar->temporaryUrl()}}" alt="" class="img img-thumbnail" width="200" height="200">
+                                        <img src="{{$avatar->temporaryUrl()}}" alt="" class="img img-thumbnail"
+                                             width="200" height="200">
                                     </div>
                                 @endif
                                 <div class="form-group col-md-6">
@@ -130,7 +82,7 @@
                                     <p class="text-danger">{{$message}}</p>
                                     @enderror
                                 </div>
-                                <div class="col-12" wire:loading.remove>
+                                <div class="col-12 mt-4" wire:loading.remove>
                                     <div class="card card-info card-outline">
                                         <div class="card-header bg-white border-bottom">
                                             <h3 class="card-title">
@@ -157,8 +109,8 @@
                                         <!-- /.card-header -->
                                         <div class="card-body">
                                             <div class="mb-3">
-                                                    <textarea id="editor1" name="editor1"
-                                                              placeholder="متن خود را وارد کنید و از ابزار های بالا در جهت افزودن عکس و تغییر ظاهی متن استفاده کنید"></textarea>
+                                                <textarea id="editor1" name="editor1"
+                                                          placeholder="متن خود را وارد کنید و از ابزار های بالا در جهت افزودن عکس و تغییر ظاهی متن استفاده کنید">{{$news->body}}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -168,6 +120,11 @@
                                 </div>
                                 <section class="form-group col-12">
                                     {!! Form::submit('ذخیره خبر',['class'=>'btn btn-primary mt-3']) !!}
+                                </section>
+                                <section class="form-group col-12">
+                                    {!! Form::open(['route'=>['news.destroy','id'=>$news->id],'method'=>'delete',]) !!}
+                                    {!! Form::submit('حذف خبر',['class'=>'btn btn-danger','onclick'=>'return confirm("آیا مطمئنید؟")']) !!}
+                                    {!! Form::close() !!}
                                 </section>
                             </div>
                             {!! Form::close() !!}
