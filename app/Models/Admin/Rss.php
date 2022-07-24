@@ -22,7 +22,7 @@ class Rss extends Model
         return $this->hasMany(RssComment::class);
     }
     public function likers(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class,'liker_rss','rss_id','user_id');
     }
 
     public function tags(){

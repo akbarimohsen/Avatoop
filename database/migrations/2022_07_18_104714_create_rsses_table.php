@@ -17,7 +17,7 @@ class CreateRssesTable extends Migration
             $table->id();
             $table->string('title',256);
             $table->string('description',512);
-            $table->string('news-date');
+            $table->string('news_date');
             $table->boolean('active')->default(false);
             $table->text('content');
             $table->timestamps();

@@ -22,13 +22,13 @@ class UserBox extends Component
     {
         $role=$this->myRole->name;
         if ($this->searchInput==null){
-            $users=User::role($role)->latest()->paginate(1);
+            $users=User::role($role)->latest()->paginate(21);
         }else{
             $users=User::role($role)->where(function ($query){
                 $query->where('first_name','LIKE',"%{$this->searchInput}%")->orWhere(function ($query){
                     $query->where('user_name','LIKE',"%{$this->searchInput}%");
                 });
-            })->latest()->paginate(1);
+            })->latest()->paginate(21);
 
         }
         return view('livewire.admin.user-management.user-box',['users'=>$users]);

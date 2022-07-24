@@ -49,11 +49,10 @@ class StoreRsses extends Command
             $i['description'] = $item->get_description();
             $content = file_get_contents($item->get_link());
             $html = substr($content, strpos($content, '<div class="news-text">'), strpos($content, '<div class="news-footer">') - strpos($content, '<div class="news-text">'));
+            $i['news_date'] = $item->get_date();
             $i['content'] = strip_tags($html);
-            $i['news-date'] = $item->get_date();
             $result['items'][] = $i;
         }
-
         foreach ($result['items'] as $newsItem) {
             $exist = Rss::where('title', '=', $newsItem['title'])->exists();
             if ($exist) {
@@ -62,7 +61,6 @@ class StoreRsses extends Command
                 Rss::create($newsItem);
             }
         }
-        unset($f);
         return 0;
     }
 }

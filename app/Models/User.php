@@ -70,10 +70,6 @@ class User extends Authenticatable
     ];
 
 
-
-
-    // relations
-
     public function news(){
         return $this->hasMany(News::class,'reporter_id');
     }
@@ -108,7 +104,8 @@ class User extends Authenticatable
 
     public function rsses()
     {
-     return $this->belongsToMany(Rss::class,);
+     return $this->belongsToMany(Rss::class,'liker_rss','user_id','rss_id');
     }
+
 
 }
