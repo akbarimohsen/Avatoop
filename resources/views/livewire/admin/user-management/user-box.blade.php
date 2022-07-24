@@ -41,7 +41,7 @@
                 <td>{{$user->email}}</td>
                 <td>{{$user->phone_number}}</td>
                 <td>
-                    {!! Form::open(['route'=>['user.destroy','id'=>$user->id],'method'=>'delete']) !!}
+                    {!! Form::open(['route'=>['user.destroy','id'=>$user->id],'method'=>'delete','onclick'=>'conform(آیا مطمئنید میخواهید این خبر را پاک کنید)']) !!}
                     {!! Form::submit('delete',['class'=>'btn btn-danger']) !!}
                     {!! Form::close() !!}
                 </td>
