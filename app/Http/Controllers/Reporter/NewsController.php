@@ -7,6 +7,7 @@ use App\Http\Requests\News\CreateNewsRequest;
 use App\Models\News;
 use App\Models\Tag;
 use Carbon\Carbon;
+use Hekmatinasser\Verta\Verta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,6 +26,20 @@ class NewsController extends Controller
 
     public function store(CreateNewsRequest $request)
     {
+
+        $temp = explode(' ', $request->NewsDate);
+        $date = [
+            'year' => explode('-',$temp[0])[0],
+            'month' => explode('-',$temp[0])[1],
+            'day' => explode('-',$temp[0])[2]
+        ];
+
+        $g_date_array = Verta::getGregorian($date['year'], $date['month'], $date['day']);
+        $g_date = Carbon::create($g_date_array[0],$g_date_array[1],$g_date_array[2]);
+
+
+
+
         if($request->has('newsImage')){
 
             $newsImage = time()."_".$request->file('newsImage')->getClientOriginalName();
@@ -38,7 +53,7 @@ class NewsController extends Controller
             'title' => $request->title,
             'header' => $request->header,
             'description' => $request->description,
-            'NewsDate'=>$request->NewsDate,
+            'NewsDate'=>$g_date,
             'body'=>$request->editor1,
             'img'=>"$newsImage",
             'reporter_id' =>Auth::id()
