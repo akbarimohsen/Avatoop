@@ -15,10 +15,7 @@ class SelectUsers extends Component
     public function updatedSelectAll()
     {
         if( $this->SelectAll == true ){
-            $allUsers = User::role("user")->get();
-            foreach($allUsers as $user){
-                $this->selectedUsers[] = $user->id;
-            }
+            $this->selectedUsers = User::role("user")->pluck('id');
         }else{
             $this->selectedUsers = [];
         }

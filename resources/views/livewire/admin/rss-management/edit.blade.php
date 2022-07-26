@@ -11,38 +11,31 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            {!! Form::model($rss,['route'=>['news.update','id'=>$rss->id],'method'=>'put',"files"=>true]) !!}
+                            {!! Form::model($rss,['route'=>['rss.update','id'=>$rss->id],'method'=>'put',"files"=>true]) !!}
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     {!! Form::label('title','عنوان خبر',['class'=>'text-capitalize']) !!}
-                                    {!! Form::text('title',old('first_name'),['class'=>'form-control','placeholder'=>'مثلا: جنجال بازیکن B']) !!}
+                                    {!! Form::text('title',old('title'),['class'=>'form-control','placeholder'=>'مثلا: جنجال بازیکن B']) !!}
                                     @error('title')
-                                    <p class="text-danger">{{$message}}</p>
-                                    @enderror
-                                </div>
-                                <div class="form-group col-md-6">
-                                    {!! Form::label('header','سر تیتر خبر',['class'=>'text-capitalize']) !!}
-                                    {!! Form::text('header',old('header'),['class'=>'form-control','placeholder'=>'مثلا:بازیکن تیم B با نام A جنجال بزرگی آفرید']) !!}
-                                    @error('newsHeader')
                                     <p class="text-danger">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-12">
                                     {!! Form::label('description','توضیح خبر',['class'=>'text-capitalize']) !!}
-                                    {!! Form::text('description',old('header'),['class'=>'form-control','placeholder'=>'یک توضیح حداقل 70 تا 320 کاراکتری از خبر']) !!}
+                                    {!! Form::text('description',old('description'),['class'=>'form-control','placeholder'=>'یک توضیح حداقل 70 تا 320 کاراکتری از خبر']) !!}
                                     @error('description')
                                     <p class="text-danger">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    {!! Form::label('teams','انتخاب دسته بندی',['class'=>'text-capitalize']) !!}
-                                    {!! Form::select('teams[]', $teams,$news->teams,['class'=>'form-control select2','id'=>'category','multiple','data-placeholder'=>'انتخاب تیم های خبر']);!!}
+                                    {!! Form::label('teams','انتخاب تیم های مربوط به خبر',['class'=>'text-capitalize']) !!}
+                                    {!! Form::select('teams[]', $teams,$rss->teams,['class'=>'form-control select2','id'=>'category','multiple','data-placeholder'=>'انتخاب تیم های خبر']);!!}
                                     @error('teams')
                                     <p class="text-danger">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    {!! Form::label('tag','انتخاب دسته بندی',['class'=>'text-capitalize']) !!}
+                                    {!! Form::label('tag','انتخاب برچسب های خبر',['class'=>'text-capitalize']) !!}
                                     {!! Form::select('tag[]', $tags,$rss->tags,['class'=>'form-control select2','id'=>'category','multiple','data-placeholder'=>'انتخاب تگ های خبر']);!!}
                                     @error('tag')
                                     <p class="text-danger">{{$message}}</p>
@@ -56,17 +49,22 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    {!! Form::label('newsImage','تصویر اصلی خبر',['class'=>'text-capitalize']) !!}
-                                    {!! Form::file('newsImage',['class'=>'form-control','style'=>'border:2px inset lightgray',"wire:model='avatar'"]) !!}
-                                    @error('newsImage')
+                                    {!! Form::label('rssImage','تصویر اصلی خبر',['class'=>'text-capitalize']) !!}
+                                    {!! Form::file('rssImage',['class'=>'form-control','style'=>'border:2px inset lightgray',"wire:model='avatar'"]) !!}
+                                    @error('rssImage')
                                     <p class="text-danger">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 text-center">
-                                    <span>تصویر قبلی خبر:</span>
-                                    <img
-                                        src="{{\Illuminate\Support\Facades\Storage::disk('public')->url('news/'.$news->created_at->year.'/'.$news->created_at->month.'/'.$news->img)}}"
-                                        class="img img-thumbnail" width="200" height="200" alt="">
+
+                                    @if($rss->img ==null)
+                                        <span>تصویر قبلی خبر:تصویری وجود ندارد</span>
+                                    @else
+                                        <span>تصویر قبلی خبر:</span>
+                                        <img
+                                            src="{{\Illuminate\Support\Facades\Storage::disk('public')->url('news/'.$rss->created_at->year.'/'.$rss->created_at->month.'/'.$rss->img)}}"
+                                            class="img img-thumbnail" width="200" height="200" alt="">
+                                    @endif
                                 </div>
 
                                 @if($avatar)
@@ -75,13 +73,6 @@
                                              width="200" height="200">
                                     </div>
                                 @endif
-                                <div class="form-group col-md-6">
-                                    {!! Form::label('NewsDate','تاریخ خبر',['class'=>'text-capitalize']) !!}
-                                    {!! Form::text('NewsDate',old('NewsDate'),['class'=>'form-control','placeholder'=>'انتخاب تاریخ',]) !!}
-                                    @error('NewsDate')
-                                    <p class="text-danger">{{$message}}</p>
-                                    @enderror
-                                </div>
                                 <div class="col-12 mt-4" wire:loading.remove>
                                     <div class="card card-info card-outline">
                                         <div class="card-header bg-white border-bottom">
@@ -110,7 +101,7 @@
                                         <div class="card-body">
                                             <div class="mb-3">
                                                 <textarea id="editor1" name="editor1"
-                                                          placeholder="متن خود را وارد کنید و از ابزار های بالا در جهت افزودن عکس و تغییر ظاهی متن استفاده کنید">{{$news->body}}</textarea>
+                                                          placeholder="متن خود را وارد کنید و از ابزار های بالا در جهت افزودن عکس و تغییر ظاهی متن استفاده کنید">{{$rss->content}}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -122,7 +113,7 @@
                                     {!! Form::submit('ذخیره خبر',['class'=>'btn btn-primary mt-3']) !!}
                                 </section>
                                 <section class="form-group col-12">
-                                    {!! Form::open(['route'=>['news.destroy','id'=>$news->id],'method'=>'delete',]) !!}
+                                    {!! Form::open(['route'=>['rss.destroy','id'=>$rss->id],'method'=>'delete',]) !!}
                                     {!! Form::submit('حذف خبر',['class'=>'btn btn-danger','onclick'=>'return confirm("آیا مطمئنید؟")']) !!}
                                     {!! Form::close() !!}
                                 </section>

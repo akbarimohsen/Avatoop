@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 class CreateNewsTable extends Migration
 {
     /**
@@ -18,7 +19,7 @@ class CreateNewsTable extends Migration
             $table->string('title');
             $table->string('header');
             $table->text('description');
-            $table->string('NewsDate',256);
+            $table->date('NewsDate');
             $table->string('img',256);
             $table->text('body');
             $table->integer('views_count')->default(0);

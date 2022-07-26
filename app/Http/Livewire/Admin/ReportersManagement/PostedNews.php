@@ -36,7 +36,7 @@ class PostedNews extends Component
     {
         if( $this->SelectAll == true ){
             foreach($this->all_news as $news){
-                $this->selectedNews[] = $news->id;
+                $this->selectedNews[$news->id] = $news->id;
             }
         }else{
                 $this->selectedNews = [];

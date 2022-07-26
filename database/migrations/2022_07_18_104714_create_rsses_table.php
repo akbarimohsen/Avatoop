@@ -20,6 +20,8 @@ class CreateRssesTable extends Migration
             $table->string('news_date');
             $table->boolean('active')->default(false);
             $table->text('content');
+            $table->integer('views_count')->default(0);
+            $table->string('img',512)->nullable();
             $table->timestamps();
         });
     }
