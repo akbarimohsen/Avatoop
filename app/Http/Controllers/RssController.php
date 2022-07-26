@@ -46,7 +46,7 @@ class RssController extends Controller
 
     public function edit(Rss $rss)
     {
-
+        return view('admin.rsses.edit',compact('rss'));
     }
 
     public function update(Request $request,Rss $rss)

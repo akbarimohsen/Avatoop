@@ -30,7 +30,7 @@ class NewsController extends Controller
             $newsImage = time()."_".$request->file('newsImage')->getClientOriginalName();
             $year=now()->year;
             $month=now()->month;
-            $dir=$year/$month;
+            $dir=$year.'/'.$month;
             $request->file('newsImage')->storeAs("news/$dir",$newsImage,'public');
         }
 

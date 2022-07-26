@@ -1,4 +1,4 @@
 @extends('layouts.master')
 @section('content')
-    <livewire:reporter.news-management.add-news>
+    <livewire:admin.rss-management.edit :rss="$Rss">
 @endsection
