@@ -111,7 +111,7 @@ class NewsController extends Controller
             $news->tags()->sync($request->tag);
             $news->teams()->sync($request->teams);
             session()->flash('delete','خبر با موفقیت آپدیت شد');
-            return redirect()->route('rss.index');
+            return redirect()->route('news.index');
         }
 
     }

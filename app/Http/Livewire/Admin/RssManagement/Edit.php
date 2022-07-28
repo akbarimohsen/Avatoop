@@ -7,9 +7,11 @@ use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Team;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
+    use WithFileUploads;
     public Rss $rss;
     public $avatar;
     public $tags;

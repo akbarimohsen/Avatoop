@@ -29,8 +29,10 @@ class CreateRssRequest extends FormRequest
             'teams' => 'required',
             'tag'=>'required',
             'category'=>'required',
-            'rssImage'=>'required|image|max:1000',//1MB
-            'editor1'=>'required'
+            'rssImage'=>'required|image|max:1000',
+            'rssAudio'=>'required|mimes:mpeg,mpga,mp3,wav',
+            'editor1'=>'required',
+
         ];
     }
     public function messages()
@@ -42,6 +44,8 @@ class CreateRssRequest extends FormRequest
             'category.required'=> 'دسته بندی های خبر باید وارد شوند',
             'rssImage.required'=> 'تصویر خبر رو وارد نکردی برادر!',
             'rssImage.image'=>'فایل حتما باید عکس باشه',
+            'rssAudio.mimes'=>'فایل حتما باید دارای فرمت های mpeg,mpga,mp3,wav باشد',
+            'rssAudio.required'=>'فایل صوتی حتما باید وارد شود',
             'rssImage.max'=>'عکس حداکثر میتونه 1MB باشه :)',
             'editor1.required'=>'متن خبر باید نوشته شه!',
             'description.required'=>'متن خبر باید نوشته شه!',

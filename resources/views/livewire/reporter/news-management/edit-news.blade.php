@@ -121,13 +121,14 @@
                                 <section class="form-group col-12">
                                     {!! Form::submit('ذخیره خبر',['class'=>'btn btn-primary mt-3']) !!}
                                 </section>
-                                <section class="form-group col-12">
-                                    {!! Form::open(['route'=>['news.destroy','id'=>$news->id],'method'=>'delete',]) !!}
-                                    {!! Form::submit('حذف خبر',['class'=>'btn btn-danger','onclick'=>'return confirm("آیا مطمئنید؟")']) !!}
-                                    {!! Form::close() !!}
-                                </section>
                             </div>
                             {!! Form::close() !!}
+
+                            <section class="form-group col-12">
+                                {!! Form::open(['route'=>['news.destroy','id'=>$news->id],'method'=>'delete',]) !!}
+                                {!! Form::submit('حذف خبر',['class'=>'btn btn-danger','onclick'=>'return confirm("آیا مطمئنید؟")']) !!}
+                                {!! Form::close() !!}
+                            </section>
                         </div>
                     </div>
                 </div>

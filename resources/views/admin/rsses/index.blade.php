@@ -64,11 +64,13 @@
                                            class="btn btn-outline-success">تایید نشده</a>
                                     </td>
                                 @else
-                                    <button class="btn btn-success">تایید شده</button>
+                                    <td>
+                                        <button class="btn btn-success">تایید شده</button>
+                                    </td>
                                 @endif
                                     <td>
                                         {!! Form::open(['route'=>['rss.destroy','id'=>$Rss->id],'method'=>'delete']) !!}
-                                        {!! Form::submit('delete',['class'=>'btn btn-danger']) !!}
+                                        {!! Form::submit('delete',['class'=>'btn btn-danger','onclick'=>'return confirm("آیا مطمئنید؟")']) !!}
                                         {!! Form::close() !!}
                                     </td>
                                     <td>

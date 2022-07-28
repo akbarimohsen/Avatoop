@@ -6,7 +6,7 @@
                     <div class="card-header row">
                         <h3 class="card-title mr-0 col-6">آپدیت خبر</h3>
                         <div class="w-50 text-left">
-                            <button class="btn btn-success ml-0 col-6">صفحه اصلی</button>
+                            <a class="btn btn-success ml-0 col-6" href="{{route('rss.index')}}">صفحه اصلی</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -49,6 +49,15 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
+                                    {!! Form::label('rssAudio','فایل صوتی خبر',['class'=>'text-capitalize']) !!}
+                                    {!! Form::file('rssAudio',['class'=>'form-control','style'=>'border:2px inset lightgray']) !!}
+                                    @error('rssAudio')
+                                    <p class="text-danger">{{$message}}</p>
+                                    @enderror
+                                </div>
+
+
+                                <div class="form-group col-md-6">
                                     {!! Form::label('rssImage','تصویر اصلی خبر',['class'=>'text-capitalize']) !!}
                                     {!! Form::file('rssImage',['class'=>'form-control','style'=>'border:2px inset lightgray',"wire:model='avatar'"]) !!}
                                     @error('rssImage')
@@ -56,13 +65,23 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 text-center">
-
-                                    @if($rss->img ==null)
-                                        <span>تصویر قبلی خبر:تصویری وجود ندارد</span>
+                                    @if($rss->rss_audio==null)
+                                        <span class="d-block w-100">صوت قبلی خبر:صوتی وجود ندارد</span>
                                     @else
-                                        <span>تصویر قبلی خبر:</span>
+                                        <div class="col-8 offset-md-2">
+                                            <span class="d-block">صوت قبلی خبر:</span>
+                                            <audio controls class="d-flex mx-auto">
+                                                <source
+                                                    src="{{\Illuminate\Support\Facades\Storage::disk('public')->url('audio/rss/'.$rss->created_at->year.'/'.$rss->created_at->month.'/'.$rss->rss_audio->audio)}}">
+                                            </audio>
+                                        </div>
+                                    @endif
+                                    @if($rss->img ==null)
+                                        <span class="d-block w-100">تصویر قبلی خبر:تصویری وجود ندارد</span>
+                                    @else
+                                        <span class="d-block">تصویر قبلی خبر:</span>
                                         <img
-                                            src="{{\Illuminate\Support\Facades\Storage::disk('public')->url('news/'.$rss->created_at->year.'/'.$rss->created_at->month.'/'.$rss->img)}}"
+                                            src="{{\Illuminate\Support\Facades\Storage::disk('public')->url('rss/'.$rss->created_at->year.'/'.$rss->created_at->month.'/'.$rss->img)}}"
                                             class="img img-thumbnail" width="200" height="200" alt="">
                                     @endif
                                 </div>
@@ -112,13 +131,14 @@
                                 <section class="form-group col-12">
                                     {!! Form::submit('ذخیره خبر',['class'=>'btn btn-primary mt-3']) !!}
                                 </section>
-                                <section class="form-group col-12">
-                                    {!! Form::open(['route'=>['rss.destroy','id'=>$rss->id],'method'=>'delete',]) !!}
-                                    {!! Form::submit('حذف خبر',['class'=>'btn btn-danger','onclick'=>'return confirm("آیا مطمئنید؟")']) !!}
-                                    {!! Form::close() !!}
-                                </section>
                             </div>
                             {!! Form::close() !!}
+                            <section class="form-group col-12">
+                                {!! Form::open(['route'=>['rss.destroy','id'=>$rss->id],'method'=>'delete',]) !!}
+                                {!! Form::submit('حذف خبر',['class'=>'btn btn-danger','onclick'=>'return confirm("آیا مطمئنید؟")']) !!}
+                                {!! Form::close() !!}
+                                {{--<a class="btn btn-danger" href="{{route('rss.destroy',['id'=>$rss->id])}}" onclick="return confirm(گ)">حدف خبر</a>--}}
+                            </section>
                         </div>
                     </div>
                 </div>

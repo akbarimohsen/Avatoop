@@ -33,4 +33,9 @@ class Rss extends Model
     {
         return $this->belongsToMany(Team::class);
     }
+
+    public function rss_audio()
+    {
+        return $this->hasOne(RssAudio::class);
+    }
 }
