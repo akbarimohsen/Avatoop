@@ -34,7 +34,7 @@
                     هیچ موردی یافت نشد.
                 </div>
             @else
-                <button type="submit" class="btn btn-primary w-100 mt-1">
+                <button type="submit" class="btn btn-primary m-3">
                     ارسال ایمیل
                 </button>
             @endif

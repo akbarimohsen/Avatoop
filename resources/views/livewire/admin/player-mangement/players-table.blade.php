@@ -77,7 +77,7 @@
                     @endif
                 </table>
                 @if( $players->count() == 0 )
-                    <div class="alert alert-secondary mt-3 text-center" role="alert">
+                    <div class="alert alert-secondary mt-3 text-center w-100" role="alert">
                         هیچ موردی یافت نشد.
                     </div>
                 @endif
