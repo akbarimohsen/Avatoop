@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AudioNewsController extends Controller
 {
-    //
 
     public function index()
     {
@@ -25,6 +24,10 @@ class AudioNewsController extends Controller
         }
 
         $all_news = News::whereIn('id', $news_ids)->get();
+        // return response()->json([
+        //     'all_news' => $all_news,
+        //     'userTeams' => $userTeams
+        // ]);
 
         return view('user.AudioNews.index',[
             'all_news' => $all_news,

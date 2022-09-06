@@ -24,13 +24,10 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            "first_name"=>'required|regex:/[آ-ی,a-z,A-Z]/',
-            "last_name"=>'required|regex:/[آ-ی,a-z,A-Z]/',
-            "user_name"=>'required|unique:users|regex:/^[A-Za-z0-9_]{4,30}$/',
+            "name"=>'required|unique:users|regex:/^[A-Za-z0-9_]{4,30}$/',
             'email' => 'required|email|unique:users',
             "phone_number"=>'required|regex:/(09)[0-9]{9}/|digits:11|numeric|unique:users',
             "password"=>'required|string|min:8|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
-            "image"=>"required|mimes:jpeg,jpg,png",
         ];
     }
     public function messages()

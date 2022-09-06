@@ -24,35 +24,39 @@ class  AdminCreateUser extends Controller
     {
         $roles = Role::all()->pluck('name', 'id');
 //        $permissions=Permission::all()->pluck('name','id');
+        // return response()->json([
+        //     'role' => $roles
+        // ]);
         return view('admin.user.create', compact('roles'));
     }
 
+
     public function store(CreateUserRequest $request)
     {
-
         $role = Role::where('id', $request->select_role)->first();
         if ($role==null) {
-            session()->flash('exist', 'نقش مورد نظر موجود نیست');
+            //session()->flash('exist', 'نقش مورد نظر موجود نیست');
             return redirect()->route('user.create');
 
         } else {
             if ($request->has('image')) {
                 $imageName = time() .  $request->file('image')->getClientOriginalName();
                 $request->file('image')->storeAs('images/user/profile/', $imageName, 'public');
-            }
-
+            }  
+           if(Role::where('id', $request->select_role)->exists()){
+            // return 'ok';
             $user = User::create([
-
-                "first_name" => $request->first_name,
-                "last_name" => $request->last_name,
-                "user_name" => $request->user_name,
+                "name" => $request->name,
                 "email" => $request->email,
                 "phone_number" => $request->phone_number,
                 "password" => Hash::make($request->password),
-                "profile_photo_path" => $imageName,
-
             ]);
             $user->assignRole($request->select_role);
+            // return response()->json([
+            //     'user' => $user
+            // ]);
+           }
+
             session()->flash('create', 'کاربر با موفقیت ایجاد شد');
             return redirect()->route('user.create');
 

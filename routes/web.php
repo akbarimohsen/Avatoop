@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Reporter\NewsController as ReporterNewsController;
 use App\Http\Controllers\Admin\EmailsController;
+use App\Http\Controllers\UserIndexController;
 
 
 /*
@@ -38,11 +39,15 @@ use App\Http\Controllers\Admin\EmailsController;
 
 Route::get('/', [MainController::class, 'index']);
 
+Route::get('/newsShow/{id}', [UserIndexController::class, 'newsShow'])->name('newsShow');
 
-Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
+
+Route::middleware(['auth', 'verified', 'role:user|admin'])->group(function () {
 
     // Profile Management
     Route::get('/user/profile', [UserController::class, 'showProfile'])->name('user.profile');
+    // emails of admin show
+    Route::get('/user/adminEmails', [UserController::class, 'adminEmails'])->name('user.adminEmails');
 
     // teams routes
     Route::get('/user/popularTeams', [TeamsController::class, 'showPopularTeams'])->name('user.popularTeams');
@@ -59,12 +64,10 @@ Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
 
     // favorite teams news
     Route::get('/user/favoriteTeamsNews', [NewsController::class, 'favoriteTeamsNews'])->name('user.favoriteTeamsNews');
-
-
 });
 
 
-Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
+Route::middleware(['auth', 'verified', 'role:admin|user'])->group(function () {
 
 
     // users management
@@ -122,20 +125,14 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::post('/admin/emails/sendEmail', [EmailsController::class, 'sendEmail'])->name('admin.emails.sendEmail');
     Route::get('/admin/email/showEmail/{id}', [EmailsController::class, 'showEmail'])->name('admin.emails.showEmail');
 
-//     all rss methods
+    //     all rss methods
     Route::resource('admin/rss', \App\Http\Controllers\RssController::class)->parameters(['rss' => 'id']);
 
     // reporters controller
     Route::get('/admin/reporters', [ReportersMangementController::class, 'reportersList'])->name('admin.reporters');
     Route::get('/admin/reporters/PostedNews/{category?}', [ReportersMangementController::class, 'showPostedNews'])->name('admin.reporters.showPostedNews');
-
 });
-
 // Reporter routes
 Route::middleware(['auth', 'role:admin|reporter'])->group(function () {
     Route::resource('/reporter/news', ReporterNewsController::class)->parameters(['news' => 'id']);
 });
-
-
-
-
