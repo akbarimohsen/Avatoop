@@ -13,6 +13,7 @@
             @endif
 
             <div class="shadow-sm p-3 mb-5 bg-white rounded d-inline-block w-100 mt-5">
+
                 <div class="col-12 mx-auto">
                     <div class="card card-primary">
                         <div class="card-header">
@@ -49,6 +50,7 @@
                             </div>
                         </div>
                     </form>
+
                     <div class="table-responsive">
                         <table class="table table-hover" style="margin-bottom: 15%">
                             <thead class="bg-info">
@@ -62,9 +64,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($tags as $tag)
+                            @forelse($searchTag as $tag)
                                 <tr>
-                                    <th scope="row">{{ $tags->firstItem() + $loop->index }}</th>
+                                    <th scope="row">{{ 1 + $loop->index }}</th>
                                     <td>{{ $tag->name }}</td>
                                     <td>{{ Verta::createTimestamp($tag->created_at)->formatDifference() }}</td>
                                     @if ($tag->updated_at != null)
@@ -91,9 +93,6 @@
 
                             </tbody>
                         </table>
-                        <span class="d-flex justify-content-center">
-                            {{ $tags->links() }}
-                        </span>
                     </div>
                 </div>
         </section>
