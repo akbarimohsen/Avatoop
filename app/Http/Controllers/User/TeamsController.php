@@ -19,10 +19,7 @@ class TeamsController extends Controller
         return view('user.teams.popularTeams', compact('popular_teams'));
     }
 
-    public function addPopularTeam()
-    {
-        return view('user.teams.addPopularTeam');
-    }
+
 
     public function deletePopularTeam($id)
     {
