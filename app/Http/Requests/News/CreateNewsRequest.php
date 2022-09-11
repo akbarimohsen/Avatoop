@@ -25,13 +25,13 @@ class CreateNewsRequest extends FormRequest
     {
         return [
             'title'=>'required',
-            'newsHeader'=>'required',
+            'header'=>'required',
             'description'=>'required',
             'NewsDate'=>'required',
             'team' => 'required',
             'tag'=>'required',
             'category'=>'required',
-            'newsImage'=>'required|image|max:1000',//1MB
+            'newsImage'=>'required|image|mimes:png,jpg,jpeg',//1MB
             'editor1'=>'required'
         ];
     }

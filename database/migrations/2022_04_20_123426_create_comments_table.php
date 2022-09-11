@@ -20,9 +20,11 @@ class CreateCommentsTable extends Migration
             $table->date('created_at');
             $table->integer('status')->default(0);
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('rss_id');
+            $table->unsignedBigInteger('rss_id')->nullable();
+            $table->unsignedBigInteger('news_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('news_id')->references('id')->on('news')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('rss_id')->references('id')->on('rsses')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }

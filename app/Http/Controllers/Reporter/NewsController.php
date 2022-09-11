@@ -28,7 +28,7 @@ class NewsController extends Controller
 
     public function store(CreateNewsRequest $request)
     {
-
+        dd($request);
         $temp = explode(' ', $request->NewsDate);
         $date = [
             'year' => explode('-',$temp[0])[0],
