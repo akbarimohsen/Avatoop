@@ -22,7 +22,7 @@ class AddTeam extends Component
             'title' => 'required|string',
             'league_id' => 'required',
             'description' => 'required|string',
-            'logo' => 'required|image|mimes:png,jpg,jpeg'
+            'logo' => 'required|image|mimes:png,jpg,jpeg|size:100000'
         ]);
 
         $logo_name = time() . '.' . $this->logo->extension();

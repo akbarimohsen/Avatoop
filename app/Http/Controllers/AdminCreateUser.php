@@ -1,15 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class  AdminCreateUser extends Controller
@@ -24,12 +21,15 @@ class  AdminCreateUser extends Controller
     {
         $roles = Role::all()->pluck('name', 'id');
 //        $permissions=Permission::all()->pluck('name','id');
+        // return response()->json([
+        //     'role' => $roles
+        // ]);
         return view('admin.user.create', compact('roles'));
     }
 
+
     public function store(CreateUserRequest $request)
     {
-
         $role = Role::where('id', $request->select_role)->first();
         if ($role==null) {
             session()->flash('exist', 'نقش مورد نظر موجود نیست');
@@ -40,19 +40,20 @@ class  AdminCreateUser extends Controller
                 $imageName = time() .  $request->file('image')->getClientOriginalName();
                 $request->file('image')->storeAs('images/user/profile/', $imageName, 'public');
             }
-
+           if(Role::where('id', $request->select_role)->exists()){
+            // return 'ok';
             $user = User::create([
-
-                "first_name" => $request->first_name,
-                "last_name" => $request->last_name,
-                "user_name" => $request->user_name,
+                "name" => $request->name,
                 "email" => $request->email,
                 "phone_number" => $request->phone_number,
                 "password" => Hash::make($request->password),
-                "profile_photo_path" => $imageName,
-
             ]);
             $user->assignRole($request->select_role);
+            // return response()->json([
+            //     'user' => $user
+            // ]);
+           }
+
             session()->flash('create', 'کاربر با موفقیت ایجاد شد');
             return redirect()->route('user.create');
 

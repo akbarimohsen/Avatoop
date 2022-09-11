@@ -28,6 +28,7 @@ class NewsController extends Controller
 
     public function store(CreateNewsRequest $request)
     {
+<<<<<<< HEAD
         dd($request);
         $temp = explode(' ', $request->NewsDate);
         $date = [
@@ -40,6 +41,20 @@ class NewsController extends Controller
         $g_date = Carbon::create($g_date_array[0],$g_date_array[1],$g_date_array[2]);
 
 
+=======
+
+//        $temp = explode(' ', $request->NewsDate);
+//        $date = [
+//            'year' => explode('-',$temp[0])[0],
+//            'month' => explode('-',$temp[0])[1],
+//            'day' => explode('-',$temp[0])[2]
+//        ];
+//
+//        $g_date_array = Verta::getGregorian($date['year'], $date['month'], $date['day']);
+//        $g_date = Carbon::create($g_date_array[0],$g_date_array[1],$g_date_array[2]);
+//
+//
+>>>>>>> f2322229f328c205d4101a6ae9e8d7edd29a7aad
 
         if($request->has('newsImage')){
 
@@ -50,11 +65,12 @@ class NewsController extends Controller
             $request->file('newsImage')->storeAs("news/$dir",$newsImage,'public');
         }
 
+
         $news=News::create([
             'title' => $request->title,
             'header' => $request->header,
             'description' => $request->description,
-            'NewsDate'=>$g_date,
+            'NewsDate'=>$request->NewsDate,
             'body'=>$request->editor1,
             'img'=>"$newsImage",
             'reporter_id' =>Auth::id()
