@@ -80,30 +80,16 @@ class Token extends Model
     }
     public function sendCode($phoneNumber)
     {
-        if (!$this->user) {
-            throw new \Exception("No user attached to this token.");
-        }
+        
         if (!$this->code) {
             $this->code = $this->generateCode();
         }
-        // try {
-        //     $message = " کد ورود شما به انجمن علمی دانشگاه صنعتی قم" . "Code:" . $this->code;
-        //     $lineNumber = "30005088";
-        //     $receptor = $phoneNumber;
-        //     $api = new \Ghasedak\GhasedakApi('f3faecc84ca37fc19a92cc9913bd677fb5723aad09a9805213ec3a5491c2b3d8');
-        //     $api->SendSimple($receptor, $message, $lineNumber);
-        // } catch (\Ghasedak\Exceptions\ApiException $e) {
-        //     echo $e->errorMessage();
-        // } catch (\Ghasedak\Exceptions\HttpException $e) {
-        //     echo $e->errorMessage();
-        // }
+      
 
         if (!$this->user) {
             throw new \Exception("No user attached to this token.");
         }
-        if (!$this->code) {
-            $this->code = $this->generateCode();
-        }
+       
         try {
             // send code via SMS
         } catch (\Exception $ex) {

@@ -26,7 +26,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>لیگ</label>
-                        <select class="form-control select2" style="width: 100%;" wire:model="league_id">
+                        <select class="form-control" style="width: 100%;" wire:model="league_id">
                             @foreach ($leagues as $league )
                                 <option @if($league_id == $league->id ) @endif value="{{ $league->id }}">
                                     {{ $league->title }}
@@ -38,11 +38,19 @@
 
                     </div>
                     <!-- /.col -->
-                  </div>
-
-
                 </div>
-              </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>لوگو جدید</label>
+                            <input type="file" wire:model="logo" >
+                            <span class="mt-2 text-primary" wire:target="logo" wire:loading>در حال بارگذاری....</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{{ asset('/assets/images/teams/' . $team->logo)}}" alt="" class="img img-thumbnail" width="200" height="200">
+                    </div>
+                </div>
               <!-- /.card-body -->
 
               <div class="card-footer">
