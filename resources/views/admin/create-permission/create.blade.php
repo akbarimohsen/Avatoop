@@ -36,7 +36,7 @@
             @endif
 
             <div class="shadow-sm p-3 mb-5 bg-white rounded d-inline-block w-100 mt-5">
-                <div class="col-8 mx-auto">
+                <div class="col-12 mx-auto">
                     <div class="card card-warning">
                         <div class="card-header">
                             <h3 class="card-title">ایجاد سطح دسترسی</h3>
@@ -61,7 +61,7 @@
                     </div>
 
                 </div>
-                <div class="col-12 mx-auto mt-3">
+                <div class="table-responsive col-12 mx-auto mt-3">
                     {{--show roles--}}
                     <table class="table table-hover">
                         <thead>

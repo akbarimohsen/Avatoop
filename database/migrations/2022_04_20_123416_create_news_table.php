@@ -23,12 +23,15 @@ class CreateNewsTable extends Migration
             $table->string('img',256);
             $table->text('body');
             $table->integer('views_count')->default(0);
-            $table->string('status')->nullable();
             $table->unsignedBigInteger('reporter_id');
             $table->integer('status')->default(0);
 
 
-            $table->foreign('reporter_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('reporter_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
             $table->timestamps();
         });
     }

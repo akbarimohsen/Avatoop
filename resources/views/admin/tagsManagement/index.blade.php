@@ -11,7 +11,7 @@
                 </section>
             @endif
             <div class="shadow-sm p-3 mb-5 bg-white rounded d-inline-block w-100 mt-5">
-                <div class="col-8 mx-auto">
+                <div class="col-12 mx-auto">
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">ایجاد برچسب</h3>

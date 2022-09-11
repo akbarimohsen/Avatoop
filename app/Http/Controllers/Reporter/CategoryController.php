@@ -22,6 +22,9 @@ class CategoryController extends Controller
         Category::create([
             "name" => $request->name
         ])->with('create','دسته بندی مورد نظر با موفقیت ایجاد شد');
+        return response()->json([
+            'status' => 200
+        ]);
         return redirect()->route('category.create');
 
     }
@@ -38,9 +41,7 @@ class CategoryController extends Controller
         Category::findOrFail($id)->update([
             "name" => $request->name,
         ]);
-
         return redirect()->route('category.create')->with('update','آیتم با موفقیت آپدیت شد');
-
     }
 
     public function destroy($id)

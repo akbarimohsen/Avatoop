@@ -1,7 +1,7 @@
 <section class="content-wrapper">
     <section class="container">
         <div class="shadow-sm p-3 mb-5 bg-white rounded d-inline-block w-100 mt-5 text-right">
-            <div class="col-10 mx-auto">
+            <div class="col-12 mx-auto">
                 <div class="card">
                     <div class="card-header row">
                         <h3 class="card-title mr-0 col-6">آپدیت خبر</h3>

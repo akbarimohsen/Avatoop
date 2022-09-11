@@ -16,6 +16,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
+    use Notifiable;
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
@@ -30,13 +31,10 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'user_name',
+        'username',
         'phone_number',
         'email',
         'password',
-        'profile_photo_path'
     ];
 
     /**
@@ -69,6 +67,11 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function tokens()
+    {
+        return $this->hasMany(Token::class);
+    }
+
 
     public function news(){
         return $this->hasMany(News::class,'reporter_id');
@@ -94,7 +97,7 @@ class User extends Authenticatable
 
     public function popularTeams()
     {
-        return $this->belongsToMany(Team::class, 'popular_teams', 'user_id', 'team_id');
+        return $this->belongsToMany(Team::class, 'popular_teams', 'user_id', 'team_id')->withTimestamps();
     }
 
     public function AudioNews()
@@ -105,6 +108,11 @@ class User extends Authenticatable
     public function rsses()
     {
      return $this->belongsToMany(Rss::class,'liker_rss','user_id','rss_id');
+    }
+
+    public function Profile()
+    {
+        return $this->hasMany(Profile::class);
     }
 
 

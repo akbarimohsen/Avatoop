@@ -38,11 +38,12 @@
 
                     </div>
                     <!-- /.col -->
-                  </div>
 
                   <div class="form-group">
                     <label>لوگو </label>
                     <input type="file" wire:model="logo" >
+                    <span class="mt-2 text-primary" wire:target="logo" wire:loading>در حال بارگذاری....</span>
+                  </div>
                 </div>
               </div>
               <!-- /.card-body -->
