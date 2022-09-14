@@ -80,30 +80,36 @@
                     <div class="col-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">بروزرسانی اطلاعات کاربر</h3>
+                                <h3 class="card-title">ایمیل ها</h3>
                             </div>
                             <div class="card-body">
 
-                                @foreach ($emails as $email)
-                                <div class="post">
-                                    <div class="user-block">
-                                        <img class="img-circle img-bordered-sm" src="{{ asset('assets/images/cmt-img.png') }}" alt="user image">
-                                        <span class="username">
-                                            <a href="#">ادمین</a>
-                                            <a href="#" class="float-left btn-tool"><i class="fa fa-times"></i></a>
-                                        </span>
-                                        <span class="description">ارسال شده در
+                                @if($emails->count() != 0)
+                                    @foreach ($emails as $email)
+                                        <div class="post">
+                                            <div class="user-block">
+                                                <img class="img-circle img-bordered-sm" src="{{ asset('assets/images/cmt-img.png') }}" alt="user image">
+                                                <span class="username">
+                                                    <a href="#">ادمین</a>
+                                                    <a href="#" class="float-left btn-tool"><i class="fa fa-times"></i></a>
+                                                </span>
+                                                <span class="description">ارسال شده در
 
-                                                {{ Hekmatinasser\Verta\Facades\Verta::instance($email->created_at)->format('Y-n-j H:i')}}
+                                                        {{ Hekmatinasser\Verta\Facades\Verta::instance($email->created_at)->format('Y-n-j H:i')}}
 
-                                        </span>
+                                                </span>
+                                            </div>
+                                            <!-- /.user-block -->
+                                            <p>
+                                                {{ $email->text }}
+                                            </p>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="alert alert-secondary">
+                                        چیزی یافت نشد !
                                     </div>
-                                    <!-- /.user-block -->
-                                    <p>
-                                        {{ $email->text }}
-                                    </p>
-                                </div>
-                                @endforeach
+                                @endif
 
                             </div>
                         </div>

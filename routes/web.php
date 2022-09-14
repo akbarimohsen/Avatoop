@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Reporter\NewsController as ReporterNewsController;
 use App\Http\Controllers\Admin\EmailsController;
 use App\Http\Controllers\UserIndexController;
+use App\Http\Controllers\Admin\NationalityController as AdminNationalityController;
 
 
 /*
@@ -103,6 +104,9 @@ Route::middleware(['auth', 'verified', 'role:admin|user'])->group(function () {
     // league management
     Route::resource('/admin/leagues', \App\Http\Controllers\Admin\LeagueManagementController::class);
 
+
+    // natinalty controller
+    Route::resource('/admin/nationalities', AdminNationalityController::class);
 
     // Ads Management
     Route::get('/admin/ads', [AdsController::class, 'index'])->name('admin.ads');

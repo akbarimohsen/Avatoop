@@ -60,7 +60,6 @@ class StoreRsses extends Command
             ]);
             $result['items'][] = $i;
         }
-
         foreach($result['items'] as $item){
             if($item['isInDatabase'] == false){
                 Rss::create([

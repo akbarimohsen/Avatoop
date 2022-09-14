@@ -1,15 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class  AdminCreateUser extends Controller
@@ -35,14 +32,14 @@ class  AdminCreateUser extends Controller
     {
         $role = Role::where('id', $request->select_role)->first();
         if ($role==null) {
-            //session()->flash('exist', 'نقش مورد نظر موجود نیست');
+            session()->flash('exist', 'نقش مورد نظر موجود نیست');
             return redirect()->route('user.create');
 
         } else {
             if ($request->has('image')) {
                 $imageName = time() .  $request->file('image')->getClientOriginalName();
                 $request->file('image')->storeAs('images/user/profile/', $imageName, 'public');
-            }  
+            }
            if(Role::where('id', $request->select_role)->exists()){
             // return 'ok';
             $user = User::create([

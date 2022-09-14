@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 class TeamsController extends Controller
 {
     //
+
+
     public function showPopularTeams(){
 
         $user = Auth::user();
@@ -34,7 +36,7 @@ class TeamsController extends Controller
         $user = Auth::user();
         //$popular_teams = $user->popularTeams;
         $user->popularTeams()->attach($team_id);
-         
+
         return view('user.teams.addPopularTeam');
     }
 
