@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '44d8cd9f024e3e125b5470fd2d577c8fc223d749',
+        'reference' => '76ed78da983bf477892f94df63806c0fcb9595b6',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -218,6 +218,17 @@
             'install_path' => __DIR__ . '/../fruitcake/laravel-cors',
             'aliases' => array(),
             'reference' => '783a74f5e3431d7b9805be8afb60fd0a8f743534',
+            'dev_requirement' => false,
+        ),
+        'ghasedak/php' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../ghasedak/php',
+            'aliases' => array(
+                0 => '9999999-dev',
+            ),
+            'reference' => '686b2f1de2663ffd30e3f74ded76b196619a17eb',
             'dev_requirement' => false,
         ),
         'graham-campbell/result-type' => array(
@@ -535,7 +546,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '44d8cd9f024e3e125b5470fd2d577c8fc223d749',
+            'reference' => '76ed78da983bf477892f94df63806c0fcb9595b6',
             'dev_requirement' => false,
         ),
         'laravel/passport' => array(

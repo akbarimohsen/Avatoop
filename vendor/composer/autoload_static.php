@@ -189,6 +189,7 @@ class ComposerStaticInitd9a572c5471ee91fd63e1132a4228c5d
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
             'GrahamCampbell\\ResultType\\' => 26,
+            'Ghasedak\\' => 9,
         ),
         'F' => 
         array (
@@ -620,6 +621,10 @@ class ComposerStaticInitd9a572c5471ee91fd63e1132a4228c5d
         array (
             0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
         ),
+        'Ghasedak\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ghasedak/php/src',
+        ),
         'Fruitcake\\Cors\\' => 
         array (
             0 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
@@ -771,8 +776,10 @@ class ComposerStaticInitd9a572c5471ee91fd63e1132a4228c5d
         'App\\Http\\Controllers\\AdminCreateUser' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminCreateUser.php',
         'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
         'App\\Http\\Controllers\\Admin\\AdsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdsController.php',
+        'App\\Http\\Controllers\\Admin\\CommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CommentController.php',
         'App\\Http\\Controllers\\Admin\\EmailsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/EmailsController.php',
         'App\\Http\\Controllers\\Admin\\LeagueManagementController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/LeagueManagementController.php',
+        'App\\Http\\Controllers\\Admin\\NationalityController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/NationalityController.php',
         'App\\Http\\Controllers\\Admin\\PlayerManagementController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PlayerManagementController.php',
         'App\\Http\\Controllers\\Admin\\PositionsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PositionsController.php',
         'App\\Http\\Controllers\\Admin\\ReportersMangementController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ReportersMangementController.php',
@@ -799,6 +806,8 @@ class ComposerStaticInitd9a572c5471ee91fd63e1132a4228c5d
         'App\\Http\\Livewire\\Admin\\AdsManagement\\AddAd' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/AdsManagement/AddAd.php',
         'App\\Http\\Livewire\\Admin\\AdsManagement\\AdsTable' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/AdsManagement/AdsTable.php',
         'App\\Http\\Livewire\\Admin\\AdsManagement\\EditAd' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/AdsManagement/EditAd.php',
+        'App\\Http\\Livewire\\Admin\\CommentsManagement\\CommentBox' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/CommentsManagement/CommentBox.php',
+        'App\\Http\\Livewire\\Admin\\CommentsManagement\\ShowComments' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/CommentsManagement/ShowComments.php',
         'App\\Http\\Livewire\\Admin\\EmailsManagement\\SelectUsers' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/EmailsManagement/SelectUsers.php',
         'App\\Http\\Livewire\\Admin\\PlayerMangement\\AddPlayer' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/PlayerMangement/AddPlayer.php',
         'App\\Http\\Livewire\\Admin\\PlayerMangement\\EditPlayer' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/PlayerMangement/EditPlayer.php',
@@ -850,7 +859,6 @@ class ComposerStaticInitd9a572c5471ee91fd63e1132a4228c5d
         'App\\Models\\Nationality' => __DIR__ . '/../..' . '/app/Models/Nationality.php',
         'App\\Models\\News' => __DIR__ . '/../..' . '/app/Models/News.php',
         'App\\Models\\Player' => __DIR__ . '/../..' . '/app/Models/Player.php',
-        'App\\Models\\PopularTeams' => __DIR__ . '/../..' . '/app/Models/PopularTeams.php',
         'App\\Models\\Position' => __DIR__ . '/../..' . '/app/Models/Position.php',
         'App\\Models\\Profile' => __DIR__ . '/../..' . '/app/Models/Profile.php',
         'App\\Models\\Rule' => __DIR__ . '/../..' . '/app/Models/Rule.php',
@@ -2215,6 +2223,9 @@ class ComposerStaticInitd9a572c5471ee91fd63e1132a4228c5d
         'Firebase\\JWT\\SignatureInvalidException' => __DIR__ . '/..' . '/firebase/php-jwt/src/SignatureInvalidException.php',
         'Fruitcake\\Cors\\CorsServiceProvider' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/CorsServiceProvider.php',
         'Fruitcake\\Cors\\HandleCors' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/HandleCors.php',
+        'Ghasedak\\Exceptions\\ApiException' => __DIR__ . '/..' . '/ghasedak/php/src/Exceptions/ApiException.php',
+        'Ghasedak\\Exceptions\\HttpException' => __DIR__ . '/..' . '/ghasedak/php/src/Exceptions/HttpException.php',
+        'Ghasedak\\GhasedakApi' => __DIR__ . '/..' . '/ghasedak/php/src/GhasedakApi.php',
         'GrahamCampbell\\ResultType\\Error' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Error.php',
         'GrahamCampbell\\ResultType\\Result' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Result.php',
         'GrahamCampbell\\ResultType\\Success' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Success.php',

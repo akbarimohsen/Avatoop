@@ -17,14 +17,15 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
+        dd('ok');
         $request->validate([
-                'name' => 'required|max:255',
+                'name_name' => 'required|max:255',
                 'phone_number' => 'required',
                 'email' => 'required|email|max:255',
                 'password' => 'required'
         ]);
         $data = new User();
-        $data->name = $request->name;
+        $data->username = $request->username;
         $data->email = $request->email;
         $data->phone_number = $request->phone_number;
         $data->password = Hash::make($request->password);
