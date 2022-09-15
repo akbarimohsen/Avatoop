@@ -25,8 +25,6 @@ class CreateNewsTable extends Migration
             $table->integer('views_count')->default(0);
             $table->unsignedBigInteger('reporter_id');
             $table->integer('status')->default(0);
-
-
             $table->foreign('reporter_id')
                     ->references('id')
                     ->on('users')

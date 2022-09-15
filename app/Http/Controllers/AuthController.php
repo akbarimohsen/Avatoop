@@ -17,9 +17,8 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        dd('ok');
         $request->validate([
-                'name_name' => 'required|max:255',
+                'namename' => 'required|max:255',
                 'phone_number' => 'required',
                 'email' => 'required|email|max:255',
                 'password' => 'required'
@@ -100,7 +99,7 @@ class AuthController extends Controller
         if ($user = User::where('phone_number', $phoneNumber)->pluck('id')[0]) {
 
             $user = User::where('phone_number', $request->input('phone_number'))->first();
-           
+
             DB::delete("DELETE FROM tokens WHERE user_id = $user->id");
             $token = Token::create([
                 'user_id' => $user->id

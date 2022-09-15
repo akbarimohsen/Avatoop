@@ -69,7 +69,7 @@ Route::middleware(['auth', 'verified', 'role:user|admin'])->group(function () {
 });
 
 
-Route::middleware(['auth', 'verified', 'role:admin|user'])->group(function () {
+Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 
 
     // users management

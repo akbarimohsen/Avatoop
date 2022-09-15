@@ -43,7 +43,7 @@ class  AdminCreateUser extends Controller
            if(Role::where('id', $request->select_role)->exists()){
             // return 'ok';
             $user = User::create([
-                "name" => $request->name,
+                "username" => $request->username,
                 "email" => $request->email,
                 "phone_number" => $request->phone_number,
                 "password" => Hash::make($request->password),
