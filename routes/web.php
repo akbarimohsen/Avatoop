@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdsController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\PlayerManagementController;
 use App\Http\Controllers\Admin\PositionsController;
 use App\Http\Controllers\Admin\ReportersMangementController;
@@ -135,6 +136,11 @@ Route::middleware(['auth', 'verified', 'role:admin|user'])->group(function () {
     // reporters controller
     Route::get('/admin/reporters', [ReportersMangementController::class, 'reportersList'])->name('admin.reporters');
     Route::get('/admin/reporters/PostedNews/{category?}', [ReportersMangementController::class, 'showPostedNews'])->name('admin.reporters.showPostedNews');
+
+    // comments controller
+    Route::get('/admin/comments/{category?}', [CommentController::class, 'index'])->name('admin.comments');
+    Route::get('/admin/comments/{id}/show', [CommentController::class, 'show'])->name('admin.comments.show');
+
 });
 // Reporter routes
 Route::middleware(['auth', 'role:admin|reporter'])->group(function () {
