@@ -24,7 +24,7 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            "name"=>'required|unique:users|regex:/^[A-Za-z0-9_]{4,30}$/',
+            "name"=>'required|unique:users|regex:/^[A-Za-z_]+[0-9]*{4,30}$/',
             'email' => 'required|email|unique:users',
             "phone_number"=>'required|regex:/(09)[0-9]{9}/|digits:11|numeric|unique:users',
             "password"=>'required|string|min:8|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
@@ -45,9 +45,9 @@ class CreateUserRequest extends FormRequest
             "email.unique"=>"کاربر با این ایمیل قبلا ثبت نام کرده است",
             "phone_number.required"=>"فیلد شماره تلفن اجباری است",
             "phone_number.regex"=>"فرمت شماره تلفن صحیح نمیباشد و حتما باید ار اپراتور های ایران باشد",
-           "phone_number.digits"=>"شماره تلفن باید 11 رقم باشد",
-           "phone_number.numeric"=>"شماره تلفن باید عدد باشد",
-           "phone_number.unique"=>"این شماره تلفن قبلا ثب شده است",
+            "phone_number.digits"=>"شماره تلفن باید 11 رقم باشد",
+            "phone_number.numeric"=>"شماره تلفن باید عدد باشد",
+            "phone_number.unique"=>"این شماره تلفن قبلا ثب شده است",
             "password.required" =>"فیلد پسورد باید وارد شود",
             "password.regex"=>"رمز عبور باید دارای کاراکترهای انگلیسی و عدد و کاراکترهای خاص (@*#) باشد. ضمنا رمز عبور باید حداقل 8 کاراکتر باشد و حداکثر 15 کاراکتر باشد.",
             "password.confirmed"=>"مقدار دو رمز عبور باید یکسان باشد",

@@ -47,6 +47,7 @@
                 <div class="form-group mt-1">
                     <label>عکس یا گیف :  </label>
                     <input type="file" wire:model="img" >
+                    <span class="mt-2 text-primary" wire:target="img" wire:loading>در حال بارگذاری....</span>
 
                     @if($errors->has('img'))
                         <ul class="mt-1 mr-4">

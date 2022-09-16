@@ -28,8 +28,7 @@ class NewsController extends Controller
 
     public function store(CreateNewsRequest $request)
     {
-<<<<<<< HEAD
-        dd($request);
+
         $temp = explode(' ', $request->NewsDate);
         $date = [
             'year' => explode('-',$temp[0])[0],
@@ -41,7 +40,6 @@ class NewsController extends Controller
         $g_date = Carbon::create($g_date_array[0],$g_date_array[1],$g_date_array[2]);
 
 
-=======
 
 //        $temp = explode(' ', $request->NewsDate);
 //        $date = [
@@ -54,7 +52,6 @@ class NewsController extends Controller
 //        $g_date = Carbon::create($g_date_array[0],$g_date_array[1],$g_date_array[2]);
 //
 //
->>>>>>> f2322229f328c205d4101a6ae9e8d7edd29a7aad
 
         if($request->has('newsImage')){
 

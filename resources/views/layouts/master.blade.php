@@ -512,6 +512,52 @@
                     </nav>
                 @endrole
 
+                @role('user')
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                            data-accordion="false">
+                            {{-- USER MANAGEMENT  --}}
+                            <li class="nav-item ">
+                                <a href="{{ route('user.profile') }}" class="nav-link">
+                                    <i class="fa fa-user"></i>
+                                    <p>
+                                        پروفایل
+                                    </p>
+                                </a>
+                            </li>
+
+                            {{-- Popular team --}}
+                            <li class="nav-item ">
+                                <a href="{{ route('user.popularTeams') }}" class="nav-link">
+                                    <i class="fa fa-heart"></i>
+                                    <p>
+                                        تیم های محبوب
+                                    </p>
+                                </a>
+                            </li>
+
+                            {{-- Audio news --}}
+                            <li class="nav-item ">
+                                <a href="{{ route('user.audioNews') }}" class="nav-link">
+                                    <i class="fa fa-bullhorn"></i>
+                                    <p>
+                                        خبرهای صوتی
+                                    </p>
+                                </a>
+                            </li>
+
+                            {{-- my favorite teams news --}}
+                            <li class="nav-item ">
+                                <a href="{{ route('user.favoriteTeamsNews') }}" class="nav-link">
+                                    <i class="fa fa-bullhorn"></i>
+                                    <p>
+                                        خبرهای تیم های محبوب
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                @endrole
             </div>
         </div>
         <!-- /.sidebar -->
