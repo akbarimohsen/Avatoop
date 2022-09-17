@@ -15,11 +15,17 @@
                 <div class="form-group">
                     <label for="title">نام</label>
                     <input type="text" class="form-control" id="title" wire:model="title" placeholder="نام را وارد کنید.">
+                    @error('title')
+                    <p class="text-danger">{{$message}}</p>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label>توضیحات</label>
                     <textarea class="form-control" rows="3" wire:model="description" placeholder="توضیحات تیم ..."></textarea>
+                    @error('description')
+                    <p class="text-danger">{{$message}}</p>
+                    @enderror
                 </div>
 
                 <div class="row">
@@ -28,11 +34,15 @@
                         <label>لیگ</label>
                         <select class="form-control" style="width: 100%;" wire:model="league_id">
                             @foreach ($leagues as $league )
+                                <option value="">انتخاب کنید</option>
                                 <option value="{{ $league->id }}">
                                     {{ $league->title }}
                                 </option>
                             @endforeach
                         </select>
+                          @error('league_id')
+                          <p class="text-danger">{{$message}}</p>
+                          @enderror
                       </div>
                       <!-- /.form-group -->
 
@@ -43,13 +53,16 @@
                     <label>لوگو </label>
                     <input type="file" wire:model="logo" >
                     <span class="mt-2 text-primary" wire:target="logo" wire:loading>در حال بارگذاری....</span>
+                      @error('logo')
+                      <p class="text-danger">{{$message}}</p>
+                      @enderror
                   </div>
                 </div>
               </div>
               <!-- /.card-body -->
 
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary">ارسال</button>
+                <button type="submit" class="btn btn-primary" wire:loading.remove>ارسال</button>
               </div>
             </form>
           </div>

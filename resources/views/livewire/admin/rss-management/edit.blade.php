@@ -13,7 +13,7 @@
                         <div class="form-group">
                             {!! Form::model($rss,['route'=>['rss.update','id'=>$rss->id],'method'=>'put',"files"=>true]) !!}
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-12">
                                     {!! Form::label('title','عنوان خبر',['class'=>'text-capitalize']) !!}
                                     {!! Form::text('title',old('title'),['class'=>'form-control','placeholder'=>'مثلا: جنجال بازیکن B']) !!}
                                     @error('title')
@@ -142,7 +142,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

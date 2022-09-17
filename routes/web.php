@@ -142,6 +142,9 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin/comments/{id}/show', [CommentController::class, 'show'])->name('admin.comments.show');
 
 });
+// comments controller
+Route::get('/admin/comments/{category?}', [CommentController::class, 'index'])->name('admin.comments');
+Route::get('/admin/comments/{id}/show', [CommentController::class, 'show'])->name('admin.comments.show');
 // Reporter routes
 Route::middleware(['auth', 'role:admin|reporter'])->group(function () {
     Route::resource('/reporter/news', ReporterNewsController::class)->parameters(['news' => 'id']);

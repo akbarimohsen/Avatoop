@@ -22,9 +22,6 @@ class CategoryController extends Controller
         Category::create([
             "name" => $request->name
         ])->with('create','دسته بندی مورد نظر با موفقیت ایجاد شد');
-        return response()->json([
-            'status' => 200
-        ]);
         return redirect()->route('category.create');
 
     }
