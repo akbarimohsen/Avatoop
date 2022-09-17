@@ -85,15 +85,10 @@ class  AdminCreateUser extends Controller
             $image=$user->profile_photo_path;
         }
         $userUpdate = User::findOrFail($id)->update([
-
-            "first_name" => $request->first_name,
-            "last_name" => $request->last_name,
-            "user_name" => $request->user_name,
+            "username" => $request->username,
             "email" => $request->email,
             "phone_number" => $request->phone_number,
             "password" => Hash::make($request->password),
-            "profile_photo_path" => $image,
-
         ]);
         if ($userUpdate){
             DB::table('model_has_roles')->where('model_id',$user->id)->delete();
