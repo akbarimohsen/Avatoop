@@ -62,7 +62,7 @@
               <!-- /.card-body -->
 
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary" wire:loading.remove>ارسال</button>
+                <button type="submit" class="btn btn-primary" wire:target="logo" wire:loading.remove>ارسال</button>
               </div>
             </form>
           </div>

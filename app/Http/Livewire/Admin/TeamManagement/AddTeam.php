@@ -50,6 +50,7 @@ class AddTeam extends Component
         $this->team->league_id = $this->league_id;
         $this->team->description = $this->description;
         $this->team->save();
+
         return redirect()->route('admin.teams');
 
     }
