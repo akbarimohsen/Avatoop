@@ -23,8 +23,6 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">نام کاربر</th>
-            <th scope="col">نام خانوادگی</th>
-            <th scope="col">نام کاربری</th>
             <th scope="col">ایمیل</th>
             <th scope="col">شماره تلفن</th>
             <th scope="col">آپدیت</th>
@@ -35,9 +33,7 @@
         @forelse($users as $user)
             <tr>
                 <th scope="row">{{$user->id}}</th>
-                <th>{{$user->first_name}}</th>
-                <td>{{$user->last_name}}</td>
-                <td>{{$user->user_name}}</td>
+                <th>{{$user->username}}</th>
                 <td>{{$user->email}}</td>
                 <td>{{$user->phone_number}}</td>
                 <td>
