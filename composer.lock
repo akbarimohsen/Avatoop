@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3bf07a04fa052a1735a51e0ec6718d19",
+    "content-hash": "f45231757084cca7b6808d511a60a4fe",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1141,6 +1141,59 @@
                 }
             ],
             "time": "2022-02-23T14:25:13+00:00"
+        },
+        {
+            "name": "ghasedak/php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ghasedakapi/ghasedak-php.git",
+                "reference": "686b2f1de2663ffd30e3f74ded76b196619a17eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ghasedakapi/ghasedak-php/zipball/686b2f1de2663ffd30e3f74ded76b196619a17eb",
+                "reference": "686b2f1de2663ffd30e3f74ded76b196619a17eb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ghasedak\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Abbas Hosseinpour",
+                    "email": "abdolzahra512@gmail.com"
+                },
+                {
+                    "name": "Omid Mehri",
+                    "email": "thehopeofiran@gmail.com"
+                }
+            ],
+            "description": "ghasedak sms gateway package for PHP",
+            "homepage": "https://github.com/ghasedakapi/ghasedak-php",
+            "keywords": [
+                "Ghasedak",
+                "api",
+                "notification",
+                "sms",
+                "sms-gateway"
+            ],
+            "support": {
+                "issues": "https://github.com/ghasedakapi/ghasedak-php/issues",
+                "source": "https://github.com/ghasedakapi/ghasedak-php/tree/V2.0.1"
+            },
+            "time": "2022-09-07T07:05:47+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -10970,7 +11023,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "ghasedak/php": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

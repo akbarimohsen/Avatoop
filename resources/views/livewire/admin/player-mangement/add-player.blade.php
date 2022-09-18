@@ -132,7 +132,7 @@
                   <div class="form-group">
                     <label>عکس </label>
                     <input type="file" wire:model="img" >
-
+                    <span class="mt-2 text-primary" wire:target="img" wire:loading>در حال بارگذاری....</span>
                     @if($errors->has('img'))
                         <ul class="mt-1 mr-4">
                             @foreach ($errors->get('img') as $error )

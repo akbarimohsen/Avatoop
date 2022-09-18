@@ -8,6 +8,7 @@
         "php": "^7.3|^8.0",
         "doctrine/dbal": "^3.3",
         "fruitcake/laravel-cors": "^2.0",
+        "ghasedak/php": "dev-master",
         "guzzlehttp/guzzle": "^7.4",
         "hekmatinasser/verta": "^2.1",
         "intervention/image": "^2.7",

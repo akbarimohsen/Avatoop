@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdsController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\PlayerManagementController;
 use App\Http\Controllers\Admin\PositionsController;
 use App\Http\Controllers\Admin\ReportersMangementController;
@@ -24,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Reporter\NewsController as ReporterNewsController;
 use App\Http\Controllers\Admin\EmailsController;
 use App\Http\Controllers\UserIndexController;
+use App\Http\Controllers\Admin\NationalityController as AdminNationalityController;
 
 
 /*
@@ -67,7 +69,7 @@ Route::middleware(['auth', 'verified', 'role:user|admin'])->group(function () {
 });
 
 
-Route::middleware(['auth', 'verified', 'role:admin|user'])->group(function () {
+Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 
 
     // users management
@@ -104,6 +106,9 @@ Route::middleware(['auth', 'verified', 'role:admin|user'])->group(function () {
     Route::resource('/admin/leagues', \App\Http\Controllers\Admin\LeagueManagementController::class);
 
 
+    // natinalty controller
+    Route::resource('/admin/nationalities', AdminNationalityController::class);
+
     // Ads Management
     Route::get('/admin/ads', [AdsController::class, 'index'])->name('admin.ads');
     Route::get('/admin/ads/add', [AdsController::class, 'add'])->name('admin.ads.add');
@@ -131,7 +136,15 @@ Route::middleware(['auth', 'verified', 'role:admin|user'])->group(function () {
     // reporters controller
     Route::get('/admin/reporters', [ReportersMangementController::class, 'reportersList'])->name('admin.reporters');
     Route::get('/admin/reporters/PostedNews/{category?}', [ReportersMangementController::class, 'showPostedNews'])->name('admin.reporters.showPostedNews');
+
+    // comments controller
+    Route::get('/admin/comments/{category?}', [CommentController::class, 'index'])->name('admin.comments');
+    Route::get('/admin/comments/{id}/show', [CommentController::class, 'show'])->name('admin.comments.show');
+
 });
+// comments controller
+Route::get('/admin/comments/{category?}', [CommentController::class, 'index'])->name('admin.comments');
+Route::get('/admin/comments/{id}/show', [CommentController::class, 'show'])->name('admin.comments.show');
 // Reporter routes
 Route::middleware(['auth', 'role:admin|reporter'])->group(function () {
     Route::resource('/reporter/news', ReporterNewsController::class)->parameters(['news' => 'id']);

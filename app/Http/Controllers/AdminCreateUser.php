@@ -1,15 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class  AdminCreateUser extends Controller
@@ -35,18 +32,18 @@ class  AdminCreateUser extends Controller
     {
         $role = Role::where('id', $request->select_role)->first();
         if ($role==null) {
-            //session()->flash('exist', 'نقش مورد نظر موجود نیست');
+            session()->flash('exist', 'نقش مورد نظر موجود نیست');
             return redirect()->route('user.create');
 
         } else {
             if ($request->has('image')) {
                 $imageName = time() .  $request->file('image')->getClientOriginalName();
                 $request->file('image')->storeAs('images/user/profile/', $imageName, 'public');
-            }  
+            }
            if(Role::where('id', $request->select_role)->exists()){
             // return 'ok';
             $user = User::create([
-                "name" => $request->name,
+                "username" => $request->username,
                 "email" => $request->email,
                 "phone_number" => $request->phone_number,
                 "password" => Hash::make($request->password),
@@ -88,15 +85,10 @@ class  AdminCreateUser extends Controller
             $image=$user->profile_photo_path;
         }
         $userUpdate = User::findOrFail($id)->update([
-
-            "first_name" => $request->first_name,
-            "last_name" => $request->last_name,
-            "user_name" => $request->user_name,
+            "username" => $request->username,
             "email" => $request->email,
             "phone_number" => $request->phone_number,
             "password" => Hash::make($request->password),
-            "profile_photo_path" => $image,
-
         ]);
         if ($userUpdate){
             DB::table('model_has_roles')->where('model_id',$user->id)->delete();

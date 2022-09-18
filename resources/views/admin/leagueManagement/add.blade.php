@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="logo">تعداد تیم ها</label>
+                        <label for="logo">لوگو</label>
                         <input type="file" class="form-control" id="logo" name="logo" >
                         @if($errors->has('logo'))
                             <ul class="mt-1 mr-4">

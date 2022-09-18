@@ -46,27 +46,27 @@
                                 {!! Form::model($user,['route'=>['user.update','id'=>$user->id],'method'=>'put',"files"=>true]) !!}
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        {!! Form::label('first_name','نام کاربر',['class'=>'text-capitalize']) !!}
-                                        {!! Form::text('first_name',old('first_name'),['class'=>'form-control','placeholder'=>'نام کاربر را وارد کنید']) !!}
-                                        @error('first_name')
+                                        {!! Form::label('username','نام کاربر',['class'=>'text-capitalize']) !!}
+                                        {!! Form::text('username',old('username'),['class'=>'form-control','placeholder'=>'نام کاربر را وارد کنید']) !!}
+                                        @error('username')
                                         <p class="text-danger">{{$message}}</p>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        {!! Form::label('last_name','نام خانوادگی',['class'=>'text-capitalize']) !!}
-                                        {!! Form::text('last_name',old('last_name'),['class'=>'form-control','placeholder'=>'نام خانوادگی کاربر را وارد کنید']) !!}
-                                        @error('last_name')
-                                        <p class="text-danger">{{$message}}</p>
-                                        @enderror
-                                    </div>
+{{--                                    <div class="form-group col-md-6">--}}
+{{--                                        {!! Form::label('last_name','نام خانوادگی',['class'=>'text-capitalize']) !!}--}}
+{{--                                        {!! Form::text('last_name',old('last_name'),['class'=>'form-control','placeholder'=>'نام خانوادگی کاربر را وارد کنید']) !!}--}}
+{{--                                        @error('last_name')--}}
+{{--                                        <p class="text-danger">{{$message}}</p>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
 
-                                    <div class="form-group col-md-6">
-                                        {!! Form::label('user_name','نام کاربری',['class'=>'text-capitalize']) !!}
-                                        {!! Form::text('user_name',old('user_name'),['class'=>'form-control','placeholder'=>'نام کاربری کاربر را وارد کنید']) !!}
-                                        @error('user_name')
-                                        <p class="text-danger">{{$message}}</p>
-                                        @enderror
-                                    </div>
+{{--                                    <div class="form-group col-md-6">--}}
+{{--                                        {!! Form::label('user_name','نام کاربری',['class'=>'text-capitalize']) !!}--}}
+{{--                                        {!! Form::text('user_name',old('user_name'),['class'=>'form-control','placeholder'=>'نام کاربری کاربر را وارد کنید']) !!}--}}
+{{--                                        @error('user_name')--}}
+{{--                                        <p class="text-danger">{{$message}}</p>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
                                     <div class="form-group col-md-6">
                                         {!! Form::label('email','ایمیل کاربر',['class'=>'text-capitalize']) !!}
                                         {!! Form::text('email',old('email'),['class'=>'form-control','placeholder'=>'ایمیل کاربر را وارد کنید']) !!}
@@ -82,15 +82,15 @@
                                         <p class="text-danger">{{$message}}</p>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        {!! Form::label('image','image',['class'=>'text-capitalize']) !!}
-                                        {!! Form::file('image',['class'=>'form-control','style'=>'border:2px inset lightgray']) !!}
-                                        @error('image')
-                                        <p class="text-danger">{{$message}}</p>
-                                        @enderror
+{{--                                    <div class="form-group col-md-6">--}}
+{{--                                        {!! Form::label('image','image',['class'=>'text-capitalize']) !!}--}}
+{{--                                        {!! Form::file('image',['class'=>'form-control','style'=>'border:2px inset lightgray']) !!}--}}
+{{--                                        @error('image')--}}
+{{--                                        <p class="text-danger">{{$message}}</p>--}}
+{{--                                        @enderror--}}
 
-                                        <img src="{{\Illuminate\Support\Facades\Storage::disk('public')->url("images/user/profile/".$user->profile_photo_path)}}" class="img-circle" width="100" height="100" alt="">
-                                    </div>
+{{--                                        <img src="{{\Illuminate\Support\Facades\Storage::disk('public')->url("images/user/profile/".$user->profile_photo_path)}}" class="img-circle" width="100" height="100" alt="">--}}
+{{--                                    </div>--}}
                                     <div class="form-group col-md-6">
                                         {!! Form::label('select_role','نقش کاربر در صورت نیاز',['class'=>'text-capitalize']) !!}
                                         {!! Form::select('select_role', $roles,$user->roles,['class'=>'form-control']);!!}

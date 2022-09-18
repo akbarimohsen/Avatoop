@@ -1607,6 +1607,62 @@
             "install-path": "../fruitcake/laravel-cors"
         },
         {
+            "name": "ghasedak/php",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ghasedakapi/ghasedak-php.git",
+                "reference": "686b2f1de2663ffd30e3f74ded76b196619a17eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ghasedakapi/ghasedak-php/zipball/686b2f1de2663ffd30e3f74ded76b196619a17eb",
+                "reference": "686b2f1de2663ffd30e3f74ded76b196619a17eb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "time": "2022-09-07T07:05:47+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Ghasedak\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Abbas Hosseinpour",
+                    "email": "abdolzahra512@gmail.com"
+                },
+                {
+                    "name": "Omid Mehri",
+                    "email": "thehopeofiran@gmail.com"
+                }
+            ],
+            "description": "ghasedak sms gateway package for PHP",
+            "homepage": "https://github.com/ghasedakapi/ghasedak-php",
+            "keywords": [
+                "Ghasedak",
+                "api",
+                "notification",
+                "sms",
+                "sms-gateway"
+            ],
+            "support": {
+                "issues": "https://github.com/ghasedakapi/ghasedak-php/issues",
+                "source": "https://github.com/ghasedakapi/ghasedak-php/tree/V2.0.1"
+            },
+            "install-path": "../ghasedak/php"
+        },
+        {
             "name": "graham-campbell/result-type",
             "version": "v1.0.4",
             "version_normalized": "1.0.4.0",

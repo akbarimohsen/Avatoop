@@ -80,21 +80,27 @@ class Token extends Model
     }
     public function sendCode($phoneNumber)
     {
-        
-        if (!$this->code) {
-            $this->code = $this->generateCode();
-        }
-      
-
         if (!$this->user) {
             throw new \Exception("No user attached to this token.");
         }
-       
-        try {
-            // send code via SMS
-        } catch (\Exception $ex) {
-            return false; //enable to send SMS
+        if (!$this->code) {
+            $this->code = $this->generateCode();
         }
-        return true;
+        try 
+        {
+            
+            $message = "تست ارسال وب سرویس قاصدک"."Code:".$this->code;
+            $lineNumber = "10008566";
+            $receptor = $phoneNumber;
+            $api = new \Ghasedak\GhasedakApi('cd29160d5ce70eb8aa9e78612b230667c76f5a65ad8fe09ad0b63b32704888a1');
+            $api->SendSimple($receptor,$message,$lineNumber);
+        }
+        catch(\Ghasedak\Exceptions\ApiException $e){
+            echo $e->errorMessage();
+        }
+        catch(\Ghasedak\Exceptions\HttpException $e){
+            echo $e->errorMessage();
+        }
+            
     }
 }

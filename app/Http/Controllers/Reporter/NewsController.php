@@ -41,6 +41,18 @@ class NewsController extends Controller
 
 
 
+//        $temp = explode(' ', $request->NewsDate);
+//        $date = [
+//            'year' => explode('-',$temp[0])[0],
+//            'month' => explode('-',$temp[0])[1],
+//            'day' => explode('-',$temp[0])[2]
+//        ];
+//
+//        $g_date_array = Verta::getGregorian($date['year'], $date['month'], $date['day']);
+//        $g_date = Carbon::create($g_date_array[0],$g_date_array[1],$g_date_array[2]);
+//
+//
+
         if($request->has('newsImage')){
 
             $newsImage = time()."_".$request->file('newsImage')->getClientOriginalName();
@@ -50,11 +62,12 @@ class NewsController extends Controller
             $request->file('newsImage')->storeAs("news/$dir",$newsImage,'public');
         }
 
+
         $news=News::create([
             'title' => $request->title,
             'header' => $request->header,
             'description' => $request->description,
-            'NewsDate'=>$g_date,
+            'NewsDate'=>$request->NewsDate,
             'body'=>$request->editor1,
             'img'=>"$newsImage",
             'reporter_id' =>Auth::id()
