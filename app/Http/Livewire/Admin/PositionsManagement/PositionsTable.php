@@ -10,6 +10,11 @@ class PositionsTable extends Component
 
     public $name;
 
+    protected $messages = [
+        'name.required' => 'فیلد عنوان ضروری می باشد.'
+
+    ];
+
     public function delete($id)
     {
         $position = Position::findOrFail($id);
@@ -23,8 +28,6 @@ class PositionsTable extends Component
         $data = $this->validate([
             'name' => 'required|string'
         ]);
-
-
 
         $position = Position::create($data);
 

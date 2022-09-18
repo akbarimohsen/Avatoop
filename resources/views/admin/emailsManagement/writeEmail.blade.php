@@ -47,10 +47,28 @@
                             <div class="mb-3">
                                 <label for="title" class="form-label">عنوان ایمیل</label>
                                 <input class="form-control" name="title" id="title">
+                                @if($errors->has('title'))
+                                    <ul class="mt-1 mr-4">
+                                        @foreach ($errors->get('title') as $error )
+                                            <li class="text-danger">
+                                                {{ $error }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
                             </div>
                             <div class="mb-3">
                                 <label for="text" class="form-label">محتوای ایمیل</label>
                                 <textarea class="form-control" name="text" id="text" rows="4"></textarea>
+                                @if($errors->has('text'))
+                                    <ul class="mt-1 mr-4">
+                                        @foreach ($errors->get('text') as $error )
+                                            <li class="text-danger">
+                                                {{ $error }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
                             </div>
 
                             <div class="mb-3">

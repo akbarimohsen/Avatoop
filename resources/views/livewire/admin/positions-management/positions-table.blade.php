@@ -26,7 +26,15 @@
                                 <div class="col-md-9 mb-1">
 
                                     <input type="text" class="form-control" wire:model.lazy="name" placeholder="عنوان پست بازی را وارد کنید">
-
+                                    @if($errors->has('name'))
+                                        <ul class="mt-1 mr-4">
+                                            @foreach ($errors->get('name') as $error)
+                                                <li class="text-danger">
+                                                    {{ $error }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
                                 </div>
 
                                 <div class="col-md-3">
