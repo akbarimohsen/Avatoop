@@ -17,7 +17,7 @@ class EmailsController extends Controller
 
     public function showEmails()
     {
-        $emails = Email::where('type', 1)->get();
+        $emails = User::where('type', 1 )->get();
 
 
         return view('admin.emailsManagement.showEmails', compact('emails'));
