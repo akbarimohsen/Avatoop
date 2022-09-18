@@ -116,7 +116,7 @@ Route::middleware(['auth', 'verified', 'role:admin|user'])->group(function () {
     // rules controller
     Route::resource('/admin/rules', RulesController::class);
     Route::resource('/admin/tag', TagController::class)->parameters(['tag' => 'id']);
-
+    Route::post('admin/tag/search' , [TagController::class , 'search'])->name('admin.tag.search');
 
     // send email controller
     Route::get('/admin/emails/showEmails', [EmailsController::class, 'showEmails'])->name('admin.emails.showEmails');
