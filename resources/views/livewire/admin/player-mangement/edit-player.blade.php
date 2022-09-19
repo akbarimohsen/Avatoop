@@ -30,9 +30,9 @@
                         <label for="age">تاریخ تولد به میلادی</label>
                         <input type="date" class="form-control" id="age" wire:model="birth_date" placeholder="سن را وارد کنید.">
 
-                        @if($errors->has('age'))
+                        @if($errors->has('birth_date'))
                             <ul class="mt-1 mr-4">
-                                @foreach ($errors->get('age') as $error )
+                                @foreach ($errors->get('birth_date') as $error )
                                     <li class="text-danger">
                                         {{ $error }}
                                     </li>

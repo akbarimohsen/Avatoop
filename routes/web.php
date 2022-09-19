@@ -81,10 +81,10 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::post('/admin/give-permission/{role}', [RoleController::class, 'givePermission'])->name('role.permission');
     Route::delete('/admin/role/{role}/permission/{permission}', [RoleController::class, 'revokePermission'])->name('role.permission.revoke');
 
-    //create category
+    // create category
     Route::resource('/admin/category', \App\Http\Controllers\Reporter\CategoryController::class)->parameters(['category' => 'id']);
 
-
+    // dashboard
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
     // player management
