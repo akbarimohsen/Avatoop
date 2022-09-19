@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\TeamManagement;
 
 use App\Models\Team;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class TeamsTable extends Component
@@ -16,12 +17,18 @@ class TeamsTable extends Component
 
     public function delete($id)
     {
-        $team = Team::find($id);
-
-        $path = public_path('/assets/images/teams') . '/' . $team->logo;
-        unlink($path);
-
-        $team->delete();
+//        $team = Team::find($id);
+//
+//        $path = public_path('/assets/images/teams') . '/' . $team->logo;
+//        unlink($path);
+//
+//        $team->delete();
+        $team=Team::findOrFail($id);
+        $dir = 'images/teams';
+        if (Storage::disk('public')->exists($dir. '/' . $team->logo)){
+            Storage::disk('public')->delete($dir. '/' . $team->logo);
+        }
+        Team::destroy($id);
 
     }
 
