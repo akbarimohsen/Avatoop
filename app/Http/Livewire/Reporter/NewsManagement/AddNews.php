@@ -12,6 +12,7 @@ use Livewire\WithFileUploads;
 class AddNews extends Component
 {
     use WithFileUploads;
+
     public $avatar;
     public $tags;
     public $categories;
