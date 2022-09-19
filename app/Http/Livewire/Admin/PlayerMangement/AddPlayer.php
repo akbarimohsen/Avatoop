@@ -35,41 +35,82 @@ class AddPlayer extends Component
 
     ];
 
+    protected $rules = [
+        'full_name' => 'required|string',
+        'birth_date' => 'required|date',
+        'description' => 'required|string',
+        'team_id' => 'required',
+        'nationality_id' => 'required',
+        'position_id' => 'required',
+        'img' => 'required|image|mimes:png,jpg,jpeg'
+    ];
+
+    public function handleImageUpload()
+    {
+//        $year = now()->year;
+//        $month = now()->month;
+//        $day = now()->day;
+        $dir = 'images/players';
+        $name = rand(100, 10000) . "_" . $this->img->getClientOriginalName();
+        $this->img->storeAs($dir, $name);
+        return $name;
+    }
+
+
+    // public function submit()
+    // {
+    //     $data = $this->validate([
+    //         'full_name' => 'required|string',
+    //         'birth_date' => 'required|date',
+    //         'description' => 'required|string',
+    //         'team_id' => 'required',
+    //         'nationality_id' => 'required',
+    //         'position_id' => 'required',
+    //         'img' => 'required|image|mimes:png,jpg,jpeg'
+    //     ]);
+
+    //     $img_name = time() . '.' . $this->img->extension();
+
+    //     //resize Image
+    //     $dest_path = public_path('/assets/images/players');
+
+    //     $img = Image::make($this->img->path());
+
+    //     $img->resize(370, 245 , function($constraint) {
+    //         $constraint->aspectRatio();
+    //     })->save($dest_path . '/' . $img_name);
+
+    //     $data['img'] = $img_name;
+
+    //     $data['team_id'] = intval($data['team_id']);
+    //     $data['nationality_id'] = intval($data['nationality_id']);
+    //     $data['position_id'] = intval($data['position_id']);
+
+    //     $player = Player::create($data);
+
+    //     session()->flash('message', 'بازیکن شما با موفقیت ایجاد گردید.');
+
+    //     return redirect()->route('admin.players');
+
+    // }
+
+
     public function submit()
     {
-        $data = $this->validate([
-            'full_name' => 'required|string',
-            'birth_date' => 'required|date',
-            'description' => 'required|string',
-            'team_id' => 'required',
-            'nationality_id' => 'required',
-            'position_id' => 'required',
-            'img' => 'required|image|mimes:png,jpg,jpeg'
-        ]);
+        $this->validate();
+        $player = new Player();
 
-        $img_name = time() . '.' . $this->img->extension();
+        $player->full_name = $this->full_name;
+        $player->birth_date = $this->birth_date;
+        $player->description = $this->description;
+        $player->team_id = intval($this->team_id);
+        $player->nationality_id = intval($this->nationality_id);
+        $player->position_id = intval($this->position_id);
+        $player->img = $this->handleImageUpload();
 
-        //resize Image
-        $dest_path = public_path('/assets/images/players');
-
-        $img = Image::make($this->img->path());
-
-        $img->resize(370, 245 , function($constraint) {
-            $constraint->aspectRatio();
-        })->save($dest_path . '/' . $img_name);
-
-        $data['img'] = $img_name;
-
-        $data['team_id'] = intval($data['team_id']);
-        $data['nationality_id'] = intval($data['nationality_id']);
-        $data['position_id'] = intval($data['position_id']);
-
-        $player = Player::create($data);
-
-        session()->flash('message', 'بازیکن شما با موفقیت ایجاد گردید.');
+        $player->save();
 
         return redirect()->route('admin.players');
-
     }
 
     public function render()
