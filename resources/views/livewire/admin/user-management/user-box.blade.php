@@ -38,12 +38,20 @@
                 <td>{{$user->email}}</td>
                 <td>{{$user->phone_number}}</td>
                 <td>
-                    {!! Form::open(['route'=>['user.destroy','id'=>$user->id],'method'=>'delete','onclick'=>'conform(آیا مطمئنید میخواهید این خبر را پاک کنید)']) !!}
-                    {!! Form::submit('delete',['class'=>'btn btn-danger']) !!}
-                    {!! Form::close() !!}
+                    @if($user->email=="www.kiavash7666@gmail.com")
+                        ادمین اصلی پاک نمیشه :))
+                    @else
+                        {!! Form::open(['route'=>['user.destroy','id'=>$user->id],'method'=>'delete','onclick'=>'conform(آیا مطمئنید میخواهید این خبر را پاک کنید)']) !!}
+                        {!! Form::submit('delete',['class'=>'btn btn-danger','onclick'=>'return confirm("آیا مطمئنید؟")']) !!}
+                        {!! Form::close() !!}
+                    @endif
                 </td>
                 <td>
-                    <a href="{{route('user.edit',['id'=>$user->id])}}" class="btn btn-warning">update</a>
+                    @if(\Illuminate\Support\Facades\Auth::user()->email=="www.kiavash7666@gmail.com" or $user->email!=="www.kiavash7666@gmail.com")
+                        <a href="{{route('user.edit',['id'=>$user->id])}}" class="btn btn-warning">update</a>
+                    @else
+                        خودش باید آپدیت کنه! :)
+                    @endif
                 </td>
             </tr>
         @empty
