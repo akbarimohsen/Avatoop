@@ -32,6 +32,7 @@
         <tbody>
         @forelse($users as $user)
             <tr>
+
                 <th scope="row">{{$user->id}}</th>
                 <th>{{$user->username}}</th>
                 <td>{{$user->email}}</td>
