@@ -53,7 +53,7 @@
                         @foreach ($players as $player)
                             <tr>
                                 <td>{{ $player->id }}</td>
-                                <td><img src="{{ asset('assets/images/players/'. $player->img ) }}" width="40px" height="40px"/></td>
+                                <td><img src="{{\Illuminate\Support\Facades\Storage::disk('public')->url('images/players/'.$player->img)}}" width="40px" height="40px"/></td>
                                 <td>{{ $player->full_name }}</td>
                                 <td>
                                     {{

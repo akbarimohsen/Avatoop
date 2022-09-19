@@ -6,8 +6,7 @@ use App\Models\Player;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Team;
-
-
+use Illuminate\Support\Facades\Storage;
 
 class PlayersTable extends Component
 {
@@ -36,12 +35,13 @@ class PlayersTable extends Component
 
     public function delete($id)
     {
+        $player = Player::findOrFail($id);
+        $dir = 'images/players';
+        if (Storage::disk('public')->exists($dir. '/' . $player->img)){
+            Storage::disk('public')->delete($dir. '/' . $player->img);
+        }
 
-        $player = Player::find($id);
-        $path = public_path('/assets/images/players') . '/' . $player->img;
-        unlink($path );
-        $player->delete();
-
+        Player::destroy($id);
     }
 
     public function render()

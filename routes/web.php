@@ -130,7 +130,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::post('/admin/emails/sendEmail', [EmailsController::class, 'sendEmail'])->name('admin.emails.sendEmail');
     Route::get('/admin/email/showEmail/{id}', [EmailsController::class, 'showEmail'])->name('admin.emails.showEmail');
 
-    //     all rss methods
+    // all rss methods
     Route::resource('admin/rss', \App\Http\Controllers\RssController::class)->parameters(['rss' => 'id']);
 
     // reporters controller
