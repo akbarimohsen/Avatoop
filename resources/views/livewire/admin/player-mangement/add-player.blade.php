@@ -63,6 +63,7 @@
                       <div class="form-group">
                         <label>تیم</label>
                         <select class="form-control select2" style="width: 100%;" wire:model="team_id">
+                            <option value="">انتخاب کنید</option>
                             @foreach ($teams as $team )
                                 <option value="{{ $team->id }}">
                                     {{ $team->title }}
@@ -84,7 +85,8 @@
                       <div class="form-group">
                         <label>ملیت</label>
                         <select class="form-control select2" style="width: 100%;" wire:model="nationality_id">
-                            @foreach ($nationalities as $nationality )
+                            <option value="">انتخاب کنید</option>
+                        @foreach ($nationalities as $nationality )
                                 <option value="{{ $nationality->id }}"> {{ $nationality->name }} </option>
                             @endforeach
                         </select>
@@ -107,7 +109,7 @@
                         <label>پست های بازی</label>
                         <select class="form-control select2" data-placeholder="یک استان انتخاب کنید" wire:model="position_id"
                                 style="width: 100%;text-align: right">
-
+                            <option value="">انتخاب کنید</option>
                             @foreach ($positions as $position )
                                 <option value="{{ $position->id }}"> {{ $position->name }} </option>
                             @endforeach

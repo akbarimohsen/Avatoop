@@ -13,16 +13,6 @@
                 }
                 ClassicEditor
                     .create(document.querySelector('#editor1'), {
-                        @section('Js')
-            <script type="text/javascript">
-                function SimpleUploadAdapterPlugin( editor ) {
-                    editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) => {
-                        // Configure the URL to the upload script in your back-end here!
-                        return new MyUploadAdapter( loader );
-                    };
-                }
-                ClassicEditor
-                    .create(document.querySelector('#editor1'), {
                         extraPlugins: [ SimpleUploadAdapterPlugin ],
 
                     })
