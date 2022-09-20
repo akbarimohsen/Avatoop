@@ -69,9 +69,10 @@
 
                     <tbody>
                         @if( $rules->count() != 0 )
+                            @php($i = 1)
                             @foreach ($rules as $rule)
                                 <tr>
-                                    <td>{{ $rule->id }}</td>
+                                    <td>{{ $i ++ }}</td>
                                     <td>{{ $rule->title }}</td>
                                     <td>
                                         <div class="d-flex align-items-center">

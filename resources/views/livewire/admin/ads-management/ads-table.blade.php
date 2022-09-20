@@ -6,16 +6,7 @@
                     {{ Session::get('message') }}
                 </div>
             @endif
-            {{-- <div class="row m-4 d-flex justify-content-center">
-                <div class="col-6">
-                    <form class="input-group input-group-sm" wire:submit.prevent="addPosition">
-                        <input type="text" class="form-control float-right" placeholder="نام پست بازی" wire:model="name">
-                        <div class="input-group-append">
-                          <button type="submit" class="btn btn-success">ایجاد</button>
-                        </div>
-                    </form>
-                </div>
-            </div> --}}
+
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">جدول تبلیغات</h3>
@@ -48,7 +39,7 @@
                     @if( $ads->count() != 0 )
                         @foreach ($ads as $ad)
                             <tr>
-                                <td>{{ $ad->id }}</td>
+                                <td>{{ $ads->firstItem() + $loop->index }}</td>
                                 <td><img src="{{\Illuminate\Support\Facades\Storage::disk('public')->url('images/ads/'.$ad->img)}}" width="40px" height="40px"/></td>
                                 <td>{{ $ad->link }}</td>
                                 <td>{{ $ad->cost }}</td>

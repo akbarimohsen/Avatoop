@@ -120,6 +120,8 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 
     // rules controller
     Route::resource('/admin/rules', RulesController::class);
+
+    // tags controller
     Route::resource('/admin/tag', TagController::class)->parameters(['tag' => 'id']);
     Route::post('admin/tag/search' , [TagController::class , 'search'])->name('admin.tag.search');
 

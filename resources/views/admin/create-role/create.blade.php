@@ -75,12 +75,17 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @php($i = 1)
                         @forelse($roles as $role)
                             <tr>
-                                <td>{{$role->id}}</td>
+                                <td>{{ $i ++ }}</td>
                                 <td>{{$role->name}}</td>
-                                <td>{{$role->created_at}}</td>
-                                <td>{{$role->updated_at}}</td>
+                                <td>{{ Verta::createTimestamp($role->created_at)->formatDifference() }}</td>
+                            @if ($role->updated_at != $role->created_at)
+                                    <td>{{ Verta::createTimestamp($role->updated_at)->formatDifference() }}</td>
+                                @else
+                                    <td><p class="text-secondary">آپدیت نشده</p></td>
+                                @endif
                                 <td>
                                     {!! Form::open(['route'=>['role.destroy','id'=>$role->id],'method'=>'delete']) !!}
                                     {!! Form::submit('delete',['class'=>'btn btn-danger']) !!}

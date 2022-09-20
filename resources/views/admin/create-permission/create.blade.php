@@ -75,12 +75,17 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @php($i = 1)
                         @forelse($permissions as $permission)
                             <tr>
-                                <td>{{$permission->id}}</td>
+                                <td>{{ $i ++ }}</td>
                                 <td>{{$permission->name}}</td>
-                                <td>{{$permission->created_at}}</td>
-                                <td>{{$permission->updated_at}}</td>
+                                <td>{{ Verta::createTimestamp($permission->updated_at)->formatDifference() }}</td>
+                                @if ($permission->updated_at != $permission->created_at)
+                                    <td>{{ Verta::createTimestamp($permission->updated_at)->formatDifference() }}</td>
+                                @else
+                                    <td><p class="text-secondary">آپدیت نشده</p></td>
+                                @endif
                                 <td>
                                     {!! Form::open(['route'=>['permission.destroy','id'=>$permission->id],'method'=>'delete']) !!}
                                     {!! Form::submit('delete',['class'=>'btn btn-danger']) !!}
