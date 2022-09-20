@@ -16,7 +16,7 @@
                     <label for="title">نام</label>
                     <input type="text" class="form-control" id="title" wire:model="title" placeholder="نام را وارد کنید.">
                     @error('title')
-                    <p class="text-danger">{{$message}}</p>
+                        <p class="text-danger">{{$message}}</p>
                     @enderror
                 </div>
 
@@ -24,7 +24,7 @@
                     <label>توضیحات</label>
                     <textarea class="form-control" rows="3" wire:model="description" placeholder="توضیحات تیم ..."></textarea>
                     @error('description')
-                    <p class="text-danger">{{$message}}</p>
+                        <p class="text-danger">{{$message}}</p>
                     @enderror
                 </div>
 
@@ -41,7 +41,7 @@
                             @endforeach
                         </select>
                           @error('league_id')
-                          <p class="text-danger">{{$message}}</p>
+                            <p class="text-danger">{{$message}}</p>
                           @enderror
                       </div>
                       <!-- /.form-group -->
@@ -54,7 +54,7 @@
                     <input type="file" wire:model="logo" >
                     <span class="mt-2 text-primary" wire:target="logo" wire:loading>در حال بارگذاری....</span>
                       @error('logo')
-                      <p class="text-danger">{{$message}}</p>
+                        <p class="text-danger">{{$message}}</p>
                       @enderror
                   </div>
                 </div>

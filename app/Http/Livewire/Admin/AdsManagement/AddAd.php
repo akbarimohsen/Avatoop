@@ -25,35 +25,35 @@ class AddAd extends Component
         'img.mimes' => 'تنها فایل با فرمت :values قابل قبول است.',
     ];
 
+    protected $rules = [
+        'img' => 'required|mimes:png,jpg,gif',
+        'link' => 'required|string',
+        'cost' => 'required|numeric'
+    ];
+
+    public function handleImageUpload()
+    {
+        $dir = 'images/ads';
+        $name = rand(100, 10000) . "_" . $this->img->getClientOriginalName();
+        $this->img->storeAs($dir, $name);
+        return $name;
+    }
+
+
     public function submit()
     {
-        $data = $this->validate([
-            'img' => 'required|mimes:png,jpg,gif',
-            'link' => 'required|string',
-            'cost' => 'required|numeric',
+        $this->validate();
+
+        $ad = Ad::create([
+            'img' => $this->handleImageUpload(),
+            'link' => $this->link,
+            'cost' => $this->cost,
+            'created_at' => Carbon::now()
         ]);
 
-        $data['cost'] = intval($data['cost']);
-
-        //add image
-        $img_name = time() . '.' . $this->img->extension();
-
-        //resize Image
-        $dest_path = public_path('/assets/main/images');
-
-        $img = Image::make($this->img->path());
-
-        $img->save($dest_path . '/' . $img_name);
-
-        $data['img'] = $img_name;
-        $data['created_at'] = Carbon::now();
-
-        Ad::create($data);
-
-        session()->flash('message', 'تبلیغ با موفقیت ایجاد گردید.');
+        $ad->save();
 
         return redirect()->route('admin.ads');
-
     }
 
     public function render()

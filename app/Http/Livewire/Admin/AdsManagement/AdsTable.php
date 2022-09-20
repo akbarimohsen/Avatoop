@@ -3,21 +3,25 @@
 namespace App\Http\Livewire\Admin\AdsManagement;
 
 use App\Models\Ad;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class AdsTable extends Component
 {
 
-
     public function delete($id)
     {
+        $ad = Ad::findOrFail($id);
+        $dir = 'images/ads';
 
-        $ad = Ad::find($id);
-        $path = public_path('/assets/main/images') . '/' . $ad->img;
-        unlink($path );
-        $ad->delete();
+        if(Storage::disk('public')->exists($dir. '/' . $ad->img)){
+            Storage::disk('public')->delete($dir. '/' . $ad->img);
+        }
+
+        Ad::destroy($id);
 
     }
+
     public function render()
     {
         $ads = Ad::paginate(10);

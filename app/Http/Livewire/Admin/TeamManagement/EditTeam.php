@@ -18,6 +18,16 @@ class EditTeam extends Component
     public $logo;
     public $league_id;
 
+
+
+    protected $rules = [
+        'title' => 'required|string',
+        'league_id' => 'required',
+        'description' => 'required|string',
+        'logo' => 'nullable|image|mimes:png,jpg,jpeg'
+    ];
+
+
     public function mount($id)
     {
 
@@ -30,44 +40,30 @@ class EditTeam extends Component
 
     }
 
+    public function handleAvatarUpload()
+    {
+        $dir = 'images/teams';
+        $name = rand(100, 10000) . "_" . $this->logo->getClientOriginalName();
+        $this->logo->storeAs($dir, $name);
+        return $name;
+    }
+
     public function submit()
     {
-        $data = $this->validate([
-            'title' => 'required|string',
-            'league_id' => 'required',
-            'description' => 'required|string',
-            'logo' => 'nullable|image|mimes:png,jpg,jpeg'
-        ]);
-        $team = Team::find($this->team->id);
-
-        $team->title = $data['title'];
-        $team->league_id = intval($data['league_id']);
-        $team->description = $data['description'];
-
-        if($data['logo'] != null){
-            $path = public_path('/assets/images/teams') . '/' . $this->team->logo;
-            unlink($path);
-
-            $logo_name = time() . '.' . $this->logo->extension();
-
-            //resize Image
-            $dest_path = public_path('/assets/images/teams');
-
-            $logo = Image::make($this->logo->path());
-
-            $logo->resize(370, 245 , function($constraint) {
-                $constraint->aspectRatio();
-            })->save($dest_path . '/' . $logo_name);
-
-            $team->logo = $logo_name;
+        $this->validate();
+        $this->team->title = $this->title;
+        if($this->logo != null ){
+            $this->team->logo = $this->handleAvatarUpload();
         }
-        $team->save();
-
-        session()->flash('message', 'اطلاعات تیم مورد نظر با موفقیت تغییر یافت.');
+        $this->team->league_id = $this->league_id;
+        $this->team->description = $this->description;
+        $this->team->save();
 
         return redirect()->route('admin.teams');
 
     }
+
+
 
     public function render()
     {

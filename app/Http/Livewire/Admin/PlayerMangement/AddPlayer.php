@@ -47,9 +47,9 @@ class AddPlayer extends Component
 
     public function handleImageUpload()
     {
-//        $year = now()->year;
-//        $month = now()->month;
-//        $day = now()->day;
+    //    $year = now()->year;
+    //    $month = now()->month;
+    //    $day = now()->day;
         $dir = 'images/players';
         $name = rand(100, 10000) . "_" . $this->img->getClientOriginalName();
         $this->img->storeAs($dir, $name);

@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <img src="{{ asset('/assets/images/teams/' . $team->logo)}}" alt="" class="img img-thumbnail" width="200" height="200">
+                        <img src="{{\Illuminate\Support\Facades\Storage::disk('public')->url('images/teams/'.$team->logo)}}" alt="" class="img img-thumbnail" width="200" height="200">
                     </div>
                 </div>
               <!-- /.card-body -->
