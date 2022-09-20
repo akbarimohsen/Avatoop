@@ -77,10 +77,11 @@
                   <th>عملیات</th>
                 </tr>
 
+                  @php($i = 1)
                 @foreach ($positions as $position )
                     <tr>
                         <td>
-                            {{ $position->id }}
+                            {{ $i ++ }}
                         </td>
                         <td>
                             {{ $position->name }}

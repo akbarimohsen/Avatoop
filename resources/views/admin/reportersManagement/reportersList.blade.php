@@ -54,9 +54,10 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @php($i = 1)
                         @forelse($reporters as $reporter)
                             <tr>
-                                <th scope="row">{{$reporter->id}}</th>
+                                <th scope="row">{{ $i ++ }}</th>
                                 <th>{{$reporter->first_name}}</th>
                                 <td>{{$reporter->last_name}}</td>
                                 <td>{{$reporter->user_name}}</td>

@@ -78,8 +78,12 @@
                             <tr>
                                 <td>{{$categories->firstItem()+$loop->index}}</td>
                                 <td>{{$category->name}}</td>
-                                <td>{{\Carbon\Carbon::parse($category->created_at)->DiffForHumans()}}</td>
-                                <td>{{\Carbon\Carbon::parse($category->updated_at)->DiffForHumans()}}</td>
+                                <td>{{Verta::createTimestamp($category->created_at)->formatDifference()}}</td>
+                                @if ($category->updated_at != $category->created_at)
+                                    <td>{{ Verta::createTimestamp($category->updated_at)->formatDifference() }}</td>
+                                @else
+                                    <td><p class="text-secondary">آپدیت نشده</p></td>
+                                @endif
                                 <td>
                                     {!! Form::open(['route'=>['category.destroy','id'=>$category->id,],'method'=>'delete']) !!}
                                     {!! Form::submit('delete',['class'=>'btn btn-danger','onclick'=>'return confirm("با حذف این دسته بندی تمامی اخبار مربوطه پاک خواهد شد، آیا مطمئنید؟")']) !!}

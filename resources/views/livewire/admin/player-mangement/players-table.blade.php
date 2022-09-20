@@ -52,7 +52,7 @@
                     @if( $players->count() != 0 )
                         @foreach ($players as $player)
                             <tr>
-                                <td>{{ $player->id }}</td>
+                                <td>{{ $players->firstItem() + $loop->index }}</td>
                                 <td><img src="{{\Illuminate\Support\Facades\Storage::disk('public')->url('images/players/'.$player->img)}}" width="40px" height="40px"/></td>
                                 <td>{{ $player->full_name }}</td>
                                 <td>

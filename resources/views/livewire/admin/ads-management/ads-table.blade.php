@@ -48,7 +48,7 @@
                     @if( $ads->count() != 0 )
                         @foreach ($ads as $ad)
                             <tr>
-                                <td>{{ $ad->id }}</td>
+                                <td>{{ $ads->firstItem() + $loop->index }}</td>
                                 <td><img src="{{ asset('assets/main/images/'. $ad->img ) }}" width="40px" height="40px"/></td>
                                 <td>{{ $ad->link }}</td>
                                 <td>{{ $ad->cost }}</td>
