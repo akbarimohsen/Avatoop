@@ -15,11 +15,17 @@ namespace League\Uri\UriTemplate;
 
 use League\Uri\Exceptions\SyntaxError;
 use League\Uri\Exceptions\TemplateCanNotBeExpanded;
-use Stringable;
+use TypeError;
+use function array_merge;
 use function array_unique;
+use function gettype;
+use function is_object;
+use function is_string;
+use function method_exists;
 use function preg_match_all;
 use function preg_replace;
-use function str_contains;
+use function sprintf;
+use function strpos;
 use const PREG_SET_ORDER;
 
 final class Template
@@ -27,42 +33,53 @@ final class Template
     /**
      * Expression regular expression pattern.
      */
-    private const REGEXP_EXPRESSION_DETECTOR = '/\{[^}]*}/x';
+    private const REGEXP_EXPRESSION_DETECTOR = '/\{[^\}]*\}/x';
 
+    private string $template;
     /** @var array<string, Expression> */
     private array $expressions = [];
     /** @var array<string> */
-    public readonly array $variableNames;
+    private array $variableNames;
 
-    private function __construct(public readonly string $value, Expression ...$expressions)
+    private function __construct(string $template, Expression ...$expressions)
     {
+        $this->template = $template;
         $variableNames = [];
         foreach ($expressions as $expression) {
-            $this->expressions[$expression->value] = $expression;
-            $variableNames = [...$variableNames, ...$expression->variableNames];
+            $this->expressions[$expression->toString()] = $expression;
+            $variableNames[] = $expression->variableNames();
         }
-
-        $this->variableNames = array_unique($variableNames);
+        $this->variableNames = array_unique(array_merge([], ...$variableNames));
     }
 
     /**
-     * @param array{value:string, template?:string, expressions:array<string, Expression>} $properties
+     * {@inheritDoc}
      */
     public static function __set_state(array $properties): self
     {
-        return new self($properties['template'] ?? $properties['value'], ...array_values($properties['expressions']));
+        return new self($properties['template'], ...array_values($properties['expressions']));
     }
 
     /**
+     * @param object|string $template a string or an object with the __toString method
+     *
+     * @throws TypeError   if the template is not a string or an object with the __toString method
      * @throws SyntaxError if the template contains invalid expressions
      * @throws SyntaxError if the template contains invalid variable specification
      */
-    public static function createFromString(Stringable|string $template): self
+    public static function createFromString($template): self
     {
-        $template = (string) $template;
+        if (is_object($template) && method_exists($template, '__toString')) {
+            $template = (string) $template;
+        }
+
+        if (!is_string($template)) {
+            throw new TypeError(sprintf('The template must be a string or a stringable object %s given.', gettype($template)));
+        }
+
         /** @var string $remainder */
         $remainder = preg_replace(self::REGEXP_EXPRESSION_DETECTOR, '', $template);
-        if (str_contains($remainder, '{') || str_contains($remainder, '}')) {
+        if (false !== strpos($remainder, '{') || false !== strpos($remainder, '}')) {
             throw new SyntaxError('The template "'.$template.'" contains invalid expressions.');
         }
 
@@ -79,19 +96,12 @@ final class Template
         return new self($template, ...$arguments);
     }
 
-    /**
-     * @deprecated since version 6.6.0 use the readonly property instead
-     * @codeCoverageIgnore
-     */
     public function toString(): string
     {
-        return $this->value;
+        return $this->template;
     }
 
     /**
-     * @deprecated since version 6.6.0 use the readonly property instead
-     * @codeCoverageIgnore
-     *
      * @return array<string>
      */
     public function variableNames(): array
@@ -105,7 +115,7 @@ final class Template
      */
     public function expand(VariableBag $variables): string
     {
-        $uriString = $this->value;
+        $uriString = $this->template;
         /** @var Expression $expression */
         foreach ($this->expressions as $pattern => $expression) {
             $uriString = str_replace($pattern, $expression->expand($variables), $uriString);

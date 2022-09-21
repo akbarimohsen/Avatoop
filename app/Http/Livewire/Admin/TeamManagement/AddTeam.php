@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\TeamManagement;
 
 use App\Models\League;
 use App\Models\Team;
+use GuzzleHttp\Client;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Intervention\Image\Facades\Image;
@@ -40,6 +41,7 @@ class AddTeam extends Component
         $this->logo->storeAs($dir, $name);
         return $name;
     }
+
 
     public function submit()
     {
@@ -92,6 +94,7 @@ class AddTeam extends Component
 
     public function render()
     {
+
         $leagues = League::all();
         return view('livewire.admin.team-management.add-team', [
             'leagues' => $leagues

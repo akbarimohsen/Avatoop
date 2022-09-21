@@ -13,18 +13,17 @@ declare(strict_types=1);
 
 namespace League\Uri\UriTemplate;
 
-use ArrayAccess;
-use Countable;
 use League\Uri\Exceptions\TemplateCanNotBeExpanded;
-use Stringable;
+use TypeError;
+use function gettype;
+use function is_array;
 use function is_bool;
 use function is_object;
 use function is_scalar;
+use function method_exists;
+use function sprintf;
 
-/**
- * @implements ArrayAccess<string, string|bool|int|float|array<string|bool|int|float>>
- */
-final class VariableBag implements ArrayAccess, Countable
+final class VariableBag
 {
     /**
      * @var array<string,string|array<string>>
@@ -41,37 +40,9 @@ final class VariableBag implements ArrayAccess, Countable
         }
     }
 
-    public function count(): int
-    {
-        return count($this->variables);
-    }
-
-    /**
-     * @param array{variables: array<string,string|array<string>>} $properties
-     */
     public static function __set_state(array $properties): self
     {
         return new self($properties['variables']);
-    }
-
-    public function offsetExists(mixed $offset): bool
-    {
-        return array_key_exists($offset, $this->variables);
-    }
-
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->variables[$offset]);
-    }
-
-    public function offsetSet(mixed $offset, mixed $value): void
-    {
-        $this->assign($offset, $value); /* @phpstan-ignore-line */
-    }
-
-    public function offsetGet(mixed $offset): mixed
-    {
-        return $this->fetch($offset);
     }
 
     /**
@@ -83,44 +54,54 @@ final class VariableBag implements ArrayAccess, Countable
     }
 
     /**
-     * Tells whether the bag is empty or not.
-     */
-    public function isEmpty(): bool
-    {
-        return [] === $this->variables;
-    }
-
-    /**
      * Fetches the variable value if none found returns null.
      *
      * @return null|string|array<string>
      */
-    public function fetch(string $name): null|string|array
+    public function fetch(string $name)
     {
         return $this->variables[$name] ?? null;
     }
 
     /**
-     * @param string|bool|int|float|null|array<string|bool|int|float> $value
+     * @param string|bool|int|float|array<string|bool|int|float> $value
      */
-    public function assign(string $name, string|bool|int|float|array|null $value): void
+    public function assign(string $name, $value): void
     {
         $this->variables[$name] = $this->normalizeValue($value, $name, true);
     }
 
     /**
-     * @param Stringable|string|float|int|bool|null $value the value to be expanded
+     * @param mixed $value the value to be expanded
      *
      * @throws TemplateCanNotBeExpanded if the value contains nested list
+     *
+     * @return string|array<string>
      */
-    private function normalizeValue(Stringable|array|string|float|int|bool|null $value, string $name, bool $isNestedListAllowed): array|string
+    private function normalizeValue($value, string $name, bool $isNestedListAllowed)
     {
-        return match (true) {
-            is_bool($value) => true === $value ? '1' : '0',
-            (null === $value || is_scalar($value) || is_object($value)) => (string) $value,
-            !$isNestedListAllowed => throw TemplateCanNotBeExpanded::dueToNestedListOfValue($name),
-            default => array_map(fn ($var): array|string => self::normalizeValue($var, $name, false), $value),
-        };
+        if (is_bool($value)) {
+            return true === $value ? '1' : '0';
+        }
+
+        if (null === $value || is_scalar($value) || (is_object($value) && method_exists($value, '__toString'))) {
+            return (string) $value;
+        }
+
+        if (!is_array($value)) {
+            throw new TypeError(sprintf('The variable '.$name.' must be NULL, a scalar or a stringable object `%s` given', gettype($value)));
+        }
+
+        if (!$isNestedListAllowed) {
+            throw TemplateCanNotBeExpanded::dueToNestedListOfValue($name);
+        }
+
+        foreach ($value as &$var) {
+            $var = self::normalizeValue($var, $name, false);
+        }
+        unset($var);
+
+        return $value;
     }
 
     /**
