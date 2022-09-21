@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Admin\Rss;
+use App\Models\User\like;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -113,6 +114,11 @@ class User extends Authenticatable
     public function Profile()
     {
         return $this->hasMany(Profile::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(like::class);
     }
 
 

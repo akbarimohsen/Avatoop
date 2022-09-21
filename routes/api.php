@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Reporter\NewsController;
 use App\Http\Controllers\RssController;
+use App\Http\Controllers\RssLikeController;
 use App\Http\Controllers\User\AudioNewsController;
 use App\Http\Controllers\User\TeamsController;
 use App\Http\Controllers\UserIndexController;
@@ -77,5 +78,13 @@ Route::get('/user/audioNews', [AudioNewsController::class, 'index'])->middleware
 // favorite teams news
 Route::get('/user/favoriteTeamsNews', [NewsController::class, 'favoriteTeamsNews'])->middleware('auth:api');
 //});
+
+//Like
+Route::post('/rss/{id}/like', [RssLikeController::class, 'store'])->middleware('auth:api');
+Route::get('/rss/{id}/like', [RssLikeController::class, 'destroy'])->middleware('auth:api');
+Route::get('/showprolike/{id}', [RssLikeController::class, 'showprolike']);
+Route::get('/rss/likeTest/{id}', [RssLikeController::class, 'rssliketest'])->middleware('auth:api');
+
+
 
 

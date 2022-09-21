@@ -165,6 +165,11 @@ return [
         \Intervention\Image\ImageServiceProvider::class,
         Hekmatinasser\Verta\Laravel\VertaServiceProvider::class,
         \Vedmant\FeedReader\FeedReaderServiceProvider::class,
+        //Laravel\Passport\PassportServiceProvider::class,
+
+        /*Laravel\Passport\PassportServiceProvider::class,
+        App\Providers\CodeGrantProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,*/
 
         /*
          * Package Service Providers...
