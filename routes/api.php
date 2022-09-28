@@ -86,5 +86,5 @@ Route::get('/showprolike/{id}', [RssLikeController::class, 'showprolike']);
 Route::get('/rss/likeTest/{id}', [RssLikeController::class, 'rssliketest'])->middleware('auth:api');
 
 
-
+Route::get('/team/showPlayersTeam', [TeamsController::class, 'showPlayersTeam'])->middleware('auth:api');
 

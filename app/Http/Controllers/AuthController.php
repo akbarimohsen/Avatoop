@@ -100,7 +100,8 @@ class AuthController extends Controller
 
             $user = User::where('phone_number', $request->input('phone_number'))->first();
 
-            DB::delete("DELETE FROM tokens WHERE user_id = $user->id");
+           // DB::delete("DELETE FROM tokens WHERE user_id = $user->id");
+            Token::where('user_id', $user->id)->delete();
             $token = Token::create([
                 'user_id' => $user->id
             ]);
@@ -173,7 +174,8 @@ class AuthController extends Controller
         $datat = Token::where('user_id', $users->id)->pluck('id')[0];
         $expire = Token::where(['user_id' => $users->id])->get()->first();
         if (!$expire->isValid()) {
-            DB::delete("DELETE FROM tokens WHERE id = $datat");
+            //DB::delete("DELETE FROM tokens WHERE id = $datat");
+            Token::where('id', $datat)->delete();
             return response()->json(
                 ['MSG' => 'این کد قبلا استفاده شده یا منقضی شده است'],
                 400

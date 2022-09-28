@@ -89,11 +89,12 @@ class Token extends Model
         try 
         {
             
-            $message = "تست ارسال وب سرویس قاصدک"."Code:".$this->code;
-            $lineNumber = "10008566";
+            $message = "به آواتوپ خوش آمدید \r\n $this->code";
+            $lineNumber = "30005006007603";
             $receptor = $phoneNumber;
-            $api = new \Ghasedak\GhasedakApi('cd29160d5ce70eb8aa9e78612b230667c76f5a65ad8fe09ad0b63b32704888a1');
-            $api->SendSimple($receptor,$message,$lineNumber);
+            // $api = new \Ghasedak\GhasedakApi('cd29160d5ce70eb8aa9e78612b230667c76f5a65ad8fe09ad0b63b32704888a1');
+            // $api->SendSimple($receptor,$message,$lineNumber);
+            return true;
         }
         catch(\Ghasedak\Exceptions\ApiException $e){
             echo $e->errorMessage();
@@ -101,6 +102,8 @@ class Token extends Model
         catch(\Ghasedak\Exceptions\HttpException $e){
             echo $e->errorMessage();
         }
+
+        
             
     }
 }
