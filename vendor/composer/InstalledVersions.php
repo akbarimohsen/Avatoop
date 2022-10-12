@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '755c696ca81058d9f74c0340e51166af7e8866e0',
+    'reference' => '4585ae6f27b4af2fb98a3c01bd25d4c0977fb63a',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -594,7 +594,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '755c696ca81058d9f74c0340e51166af7e8866e0',
+      'reference' => '4585ae6f27b4af2fb98a3c01bd25d4c0977fb63a',
     ),
     'laravel/passport' => 
     array (
@@ -613,15 +613,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '73030c18b769f27e6f6aacf7848d024fa9a55560',
-    ),
-    'laravel/sanctum' => 
-    array (
-      'pretty_version' => 'v2.15.1',
-      'version' => '2.15.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '31fbe6f85aee080c4dc2f9b03dc6dd5d0ee72473',
     ),
     'laravel/serializable-closure' => 
     array (

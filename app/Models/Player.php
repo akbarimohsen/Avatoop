@@ -26,7 +26,7 @@ class Player extends Model
     }
 
     public function positions(){
-        return $this->belongsToMany(Position::class, 'player_position', 'player_id', 'position_id');
+        return $this->belongsToMany(Position::class);
     }
 
     public function likers()

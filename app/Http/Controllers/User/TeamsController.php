@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Player;
+use App\Models\Profile;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,11 +15,17 @@ class TeamsController extends Controller
 {
     public function showPopularTeams(){
 
-        $user = Auth::user();
-        $popular_teams = $user->popularTeams;
-        return view('user.teams.popularTeams', compact('popular_teams'));
+        $user_id= Auth::user()->id;
+        $popular_team = Profile::with('team')->where('user_id',$user_id)->get(['slug','first_name','last_name','image','team_id']);
+        $team_id=$popular_team[0]->team->id;
+        $players=Player::with('positions')->where('team_id',$team_id)->get();
+//        $players->put('position_id','kia');
+//        $test=$players->replace(['position_id'=>'kia']);
+        return response()->json([
+            'team_user' => $popular_team,
+            'players' => $players
+        ]);
 
-        
         // $user = Auth::user();
         // $popular_teams = $user->popularTeams;
         // $collection = collect($popular_teams);
@@ -25,9 +33,7 @@ class TeamsController extends Controller
         // //  return response()->json([
         //      'user' => $filtered,
         //  ]);
-        // return response()->json([
-        //     'user.teams.popularTeams' => $popular_teams,
-        // ]);
+
     }
 
     public function addPopularTeam($id)
@@ -48,7 +54,7 @@ class TeamsController extends Controller
         // if ($product->likedBy($request->user())) {
         //     return response(null, 400);
         // };
-       
+
         else
         return response()->json(['قبلا ثبت شده است'], 400);
     }
@@ -67,16 +73,16 @@ class TeamsController extends Controller
         return redirect()->route('user.popularTeams');
     }
 
-    public function showPlayersTeam()
-    {
-        $players = auth()->user()->popularTeams[0]->players;
-        $team = auth()->user()->popularTeams[0]->title;
-        
-        return response()->json([
-          'players' =>  $players,
-          'team' => $team
-        ]);
-
-    }
+//    public function showPlayersTeam()
+//    {
+//        $players = auth()->user()->popularTeams[0]->players;
+//        $team = auth()->user()->popularTeams[0]->title;
+//
+//        return response()->json([
+//          'players' =>  $players,
+//          'team' => $team
+//        ]);
+//
+//    }
 
 }

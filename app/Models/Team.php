@@ -44,6 +44,10 @@ class Team extends Model
     {
         return $this->belongsToMany(Rss::class);
     }
+    public function profiles()
+    {
+        return $this->hasMany(Profile::class)->with('team');
+    }
 
 
 }
