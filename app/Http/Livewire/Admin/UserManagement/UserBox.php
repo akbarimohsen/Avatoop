@@ -25,8 +25,8 @@ class UserBox extends Component
    $users=User::role($role)->latest()->paginate(27);
         }else{
             $users=User::role($role)->where(function ($query){
-                $query->where('first_name','LIKE',"%{$this->searchInput}%")->orWhere(function ($query){
-                    $query->where('user_name','LIKE',"%{$this->searchInput}%");
+                $query->where('username','LIKE',"%{$this->searchInput}%")->orWhere(function ($query){
+                    $query->where('email','LIKE',"%{$this->searchInput}%");
                 });
 
             })->latest()->paginate(27);
