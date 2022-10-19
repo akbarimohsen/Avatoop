@@ -96,10 +96,7 @@ class User extends Authenticatable
         return $this->hasOne(userTotalOnline::class);
     }
 
-    public function popularTeams()
-    {
-        return $this->belongsToMany(Team::class, 'popular_teams', 'user_id', 'team_id')->withTimestamps();
-    }
+
 
     public function AudioNews()
     {

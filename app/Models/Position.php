@@ -12,7 +12,7 @@ class Position extends Model
     protected $guarded = ['id'];
 
     public function players(){
-        return $this->belongsToMany(Player::class, 'player_position', 'position_id', 'player_id');
+        return $this->belongsToMany(Player::class);
     }
 
 }
