@@ -10,6 +10,8 @@ use App\Http\Controllers\User\AudioNewsController;
 use App\Http\Controllers\User\TeamsController;
 use App\Http\Controllers\UserIndexController;
 use App\Http\Controllers\User\UserController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -35,6 +37,8 @@ Route::post('/login-phone', [AuthController::class, 'doLoginPhone'])->name('doLo
 
 //Route::get('/verify/show/{slug}', [AuthController::class, 'verify'])->name('verify');
 Route::post('/doVerify/show/{id}', [AuthController::class, 'doVerify'])->name('doVerifyyy');
+//andriod
+Route::post('/andriod/token', [AuthController::class, 'andriod']);
 
 //Route::get('/main', [AdminController::class, 'main'])->middleware('auth:api');
 //slider
@@ -84,6 +88,8 @@ Route::post('/rss/{id}/like', [RssLikeController::class, 'store'])->middleware('
 Route::get('/rss/{id}/like', [RssLikeController::class, 'destroy'])->middleware('auth:api');
 Route::get('/showprolike/{id}', [RssLikeController::class, 'showprolike']);
 Route::get('/rss/likeTest/{id}', [RssLikeController::class, 'rssliketest'])->middleware('auth:api');
+
+
 
 
 Route::get('/team/showPlayersTeam', [TeamsController::class, 'showPlayersTeam'])->middleware('auth:api');

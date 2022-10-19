@@ -100,7 +100,7 @@ class AuthController extends Controller
 
             $user = User::where('phone_number', $request->input('phone_number'))->first();
 
-           // DB::delete("DELETE FROM tokens WHERE user_id = $user->id");
+            // DB::delete("DELETE FROM tokens WHERE user_id = $user->id");
             Token::where('user_id', $user->id)->delete();
             $token = Token::create([
                 'user_id' => $user->id
@@ -159,10 +159,10 @@ class AuthController extends Controller
         $this->validate($request, [
             'code' => 'required'
         ]);
-        
+
         //try {
         $code = $request->code;
-       
+
         $users = User::where(['id' => $id])->get()->first();
         if (!$users) {
             return response()->json(
@@ -184,7 +184,7 @@ class AuthController extends Controller
 
         if ($code == $data) {
             //DB::update("update tokens set used = true where user_id = $users->id");
-           // DB::delete("DELETE FROM tokens WHERE id = $datat");
+            // DB::delete("DELETE FROM tokens WHERE id = $datat");
             $loggedInUser = Auth::loginUsingId($users->id);
             if (!$loggedInUser) {
                 throw new Exception('Single SignOn: User Cannot be Signed In');
@@ -206,5 +206,22 @@ class AuthController extends Controller
         //         400
         //     );
         // }
+    }
+
+    public function andriod(Request $request)
+    {
+        $email = $this->validate($request, [
+            'email' => 'required|email',
+        ]);
+        try {
+            $user = User::where('email', $email)->get()->first();
+            $loggedInUser = Auth::loginUsingId($user->id);
+            $token = $user->createToken('accessToken')->accessToken;
+            return response()->json([
+                'token' => $token,
+            ]);
+        } catch (Exception $ex) {
+            return response()->json(['MSG' => 'همچین ایمیلی وجود ندارد'], 400);
+        }
     }
 }
