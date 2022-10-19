@@ -28,9 +28,7 @@ class UserBox extends Component
                 $query->where('username','LIKE',"%{$this->searchInput}%")->orWhere(function ($query){
                     $query->where('email','LIKE',"%{$this->searchInput}%");
                 });
-
             })->latest()->paginate(27);
-
         }
         return view('livewire.admin.user-management.user-box',['users'=>$users]);
     }

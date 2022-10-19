@@ -44,33 +44,36 @@ class TeamsController extends Controller
         if($test !== true)
         {
             $team_id = intval($id);
-            //$popular_teams = $user->popularTeams;
-            $user->popularTeams()->attach($team_id);
+            $profile = Profile::where('user_id', $user->id)->update([
+                'team_id' => $team_id,
+            ]);
             return response()->json([
-                'MSG' => '200'
+                'MSG'=>'تیم با موفقیت افزوده شد',
             ]);
         }
-        // $product = ::where(['id' => $id])->get()->first();
-        // if ($product->likedBy($request->user())) {
-        //     return response(null, 400);
-        // };
 
         else
-        return response()->json(['قبلا ثبت شده است'], 400);
+            return response()->json(['قبلا ثبت شده است'], 400);
     }
 
     public function deletePopularTeam($id)
     {
         $team_id = intval($id);
         $user_id = Auth::user()->id;
+        $profile=Profile::where('user', $user_id);
+        $profile->update([
+            'team_id'=>NULL
+        ]);
+        if ($profile->team_id==Null){
+            return response()->json([
+                'MSG' => 'تیم محبوب شما قبلا حذف شده است'
+            ]);
+        }
+         return response()->json([
+             'MSG' => 'تیم محبوب شما با موفقیت حذف گردید.'
+         ]);
 
-        DB::table('popular_teams')->where('team_id', $team_id)->where('user_id', $user_id)->delete();
-        // return response()->json([
-        //     'message' => 'تیم محبوب شما با موفقیت حذف گردید.'
-        // ]);
 
-        session()->flash('message', 'تیم محبوب شما با موفقیت حذف گردید.');
-        return redirect()->route('user.popularTeams');
     }
 
 //    public function showPlayersTeam()
