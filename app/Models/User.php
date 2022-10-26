@@ -118,5 +118,10 @@ class User extends Authenticatable
         return $this->hasMany(like::class);
     }
 
+    public function arranges()
+    {
+        return $this->hasMany(Arrange::class);
+    }
+
 
 }

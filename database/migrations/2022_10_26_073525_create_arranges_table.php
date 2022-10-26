@@ -16,7 +16,7 @@ class CreateArrangesTable extends Migration
         Schema::create('arranges', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('schematic_id');
+            $table->unsignedBigInteger('schematic_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('schematic_id')->references('id')->on('schematics')->onDelete('cascade')->onUpdate('cascade');
             $table->string('players',512);

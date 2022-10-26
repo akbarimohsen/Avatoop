@@ -4,8 +4,11 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Email;
+use App\Models\League;
 use App\Models\Profile;
+use App\Models\Team;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +22,9 @@ class UserController extends Controller
         $user = Profile::where('user_id', '=', Auth::user()->id)->first();
         if ($user !== null) {
             return response()->json(
-                ['MSG' => "شما قبلا ثبت شده اید"], 400);
+                ['MSG' => "شما قبلا ثبت شده اید"],
+                400
+            );
         }
         $user = Auth::user();
         $data = new Profile();
@@ -33,20 +38,36 @@ class UserController extends Controller
             'status' => 200
         ]);
     }
-    
+
     public function update(Request $request)
     {
         $user = Auth::user();
         $data = Profile::where('user_id', $user->id)->get()->first();
-        
-       
+
+
         $data->user_id = $user->id;
         $data->slug = $data->slug;
         if ($request->first_name) {
-        $data->first_name = $request->first_name;
+            $data->first_name = $request->first_name;
         }
         if ($request->last_name) {
-        $data->last_name = $request->last_name;
+            $data->last_name = $request->last_name;
+        }
+      
+        if ($request->team_id) {
+            // $league = League::where('title', 'Like', "%iran%");
+            try{
+            $team = Team::where('id', $request->team_id)->first();
+            
+            $league = League::where('id', $team->league_id)->where('title', 'Like', "%iran%")->get();
+            $data->team_id = $request->team_id;
+            }
+            catch(Exception $e)
+            {
+                return response()->json([
+                    'MSG' => 'تیم مورد نظر متعلق به ایران نمیباشد'
+                ], 400);
+            }
         }
         if ($request->image) {
             if ($request->file('image')) {
@@ -73,7 +94,7 @@ class UserController extends Controller
         // return response()->json([
         //     'user' => $filtered,
         // ]);
-         return view('user.profile', compact('user'));
+        return view('user.profile', compact('user'));
     }
     public function adminEmails()
     {

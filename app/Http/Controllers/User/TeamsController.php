@@ -19,6 +19,7 @@ class TeamsController extends Controller
 
         $user_id = Auth::user()->id;
         $popular_team = Profile::with('team')->where('user_id', $user_id)->get(['slug', 'first_name', 'last_name', 'image', 'team_id']);
+        return $popular_team;
         $team_id = $popular_team[0]->team->id;
         $players = Player::with('positions')->where('team_id', $team_id)->get();
 //        $players->put('position_id','kia');

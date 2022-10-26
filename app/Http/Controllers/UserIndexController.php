@@ -70,11 +70,15 @@ class UserIndexController extends Controller
     public function suggestion(Request $request)
     {
        $this->validate($request,[
+           'first_name' => 'required',
+           'last_name' => 'required',
            'email' => 'required|email',
            'description' => 'required|string'
        ]);
 
        $data = new Suggest();
+       $data->first_name = $request->first_name;
+       $data->last_name = $request->last_name;
        $data->email = $request->email;
        $data->description = $request->description;
        $data->save();

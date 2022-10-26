@@ -16,11 +16,11 @@ class CreateSuggestsTable extends Migration
         Schema::create('suggests', function (Blueprint $table) {
 
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('email');
-            $table->string('phone_number');
-            $table->integer('status')->default(0);
+            $table->string('phone_number')->nullable();
+            $table->integer('status')->default(0)->nullable();
             $table->text('response')->nullable();
             $table->text('description');
 
