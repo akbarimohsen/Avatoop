@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Arrange;
 use App\Models\Player;
 use App\Models\Profile;
 use App\Models\Team;
@@ -13,12 +14,13 @@ use Illuminate\Support\Facades\Event;
 
 class TeamsController extends Controller
 {
-    public function showPopularTeams(){
+    public function showPopularTeams()
+    {
 
-        $user_id= Auth::user()->id;
-        $popular_team = Profile::with('team')->where('user_id',$user_id)->get(['slug','first_name','last_name','image','team_id']);
-        $team_id=$popular_team[0]->team->id;
-        $players=Player::with('positions')->where('team_id',$team_id)->get();
+        $user_id = Auth::user()->id;
+        $popular_team = Profile::with('team')->where('user_id', $user_id)->get(['slug', 'first_name', 'last_name', 'image', 'team_id']);
+        $team_id = $popular_team[0]->team->id;
+        $players = Player::with('positions')->where('team_id', $team_id)->get();
 //        $players->put('position_id','kia');
 //        $test=$players->replace(['position_id'=>'kia']);
         return response()->json([
@@ -39,20 +41,22 @@ class TeamsController extends Controller
     public function addPopularTeam($id)
     {
         $user = Auth::user();
-        $test = DB::table('popular_teams')->where('user_id',$user->id)->where('team_id',$id)->exists();
+        $test = DB::table('popular_teams')->where('user_id', $user->id)->where('team_id', $id)->exists();
 
-        if($test !== true)
-        {
+        if ($test !== true) {
             $team_id = intval($id);
             $profile = Profile::where('user_id', $user->id)->update([
                 'team_id' => $team_id,
             ]);
-            return response()->json([
-                'MSG'=>'تیم با موفقیت افزوده شد',
+            Arrange::create([
+                'user_id' => Auth::user()->id,
+                'schematic_id' => null,
+                'players' => '[{"post":"L0","image":"#","id":""},{"post":"L1","image":"#","id":""},{"post":"L2","image":"#","id":""},{"post":"L3","image":"#","id":""},{"post":"L4","image":"#","id":""},{"post":"L5","image":"#","id":""},{"post":"L6","image":"#","id":""},{"post":"L7","image":"#","id":""},{"post":"L8","image":"#","id":""},{"post":"L9","image":"#","id":""},{"post":"L10","image":"#","id":""}]'
             ]);
-        }
-
-        else
+            return response()->json([
+                'MSG' => 'تیم با موفقیت افزوده شد',
+            ]);
+        } else
             return response()->json(['قبلا ثبت شده است'], 400);
     }
 
@@ -60,18 +64,18 @@ class TeamsController extends Controller
     {
         $team_id = intval($id);
         $user_id = Auth::user()->id;
-        $profile=Profile::where('user', $user_id);
+        $profile = Profile::where('user', $user_id);
         $profile->update([
-            'team_id'=>NULL
+            'team_id' => NULL
         ]);
-        if ($profile->team_id==Null){
+        if ($profile->team_id == Null) {
             return response()->json([
                 'MSG' => 'تیم محبوب شما قبلا حذف شده است'
             ]);
         }
-         return response()->json([
-             'MSG' => 'تیم محبوب شما با موفقیت حذف گردید.'
-         ]);
+        return response()->json([
+            'MSG' => 'تیم محبوب شما با موفقیت حذف گردید.'
+        ]);
 
 
     }

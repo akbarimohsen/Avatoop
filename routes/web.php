@@ -142,6 +142,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     // comments controller
     Route::get('/admin/comments/{category?}', [CommentController::class, 'index'])->name('admin.comments');
     Route::get('/admin/comments/{id}/show', [CommentController::class, 'show'])->name('admin.comments.show');
+    Route::resource('/admin/schematic', \App\Http\Controllers\Admin\SchematicController::class)->parameters(['schematic' => 'id']);
 
 });
 // comments controller
