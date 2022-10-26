@@ -47,7 +47,7 @@
                                 {!! Form::open(['route'=>'schematic.store','method'=>'post']) !!}
                                 {!! Form::label('schematic','چینش شماتیک',['class'=>'text-capitalize']) !!}
                                 <div class="input-group">
-                                    {!! Form::text('',old('schematic'),['class'=>'form-control','placeholder'=>'ترتیب چینش رو وارد کنید(مثلا 4-3-3)']) !!}
+                                    {!! Form::text('schematic',old('schematic'),['class'=>'form-control','placeholder'=>'ترتیب چینش رو وارد کنید(مثلا 3-3-4)']) !!}
                                 </div>
                                 @error('schematic')
                                 <p class="text-danger">{{$message}}</p>

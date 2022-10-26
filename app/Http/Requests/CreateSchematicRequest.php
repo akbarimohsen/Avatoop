@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePermissionRequest extends FormRequest
+class CreateSchematicRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,15 @@ class CreatePermissionRequest extends FormRequest
     public function rules()
     {
         return [
-            'permission' =>'required|string'
+            'schematic' => 'required|string'
         ];
     }
 
     public function messages()
     {
         return [
-            'permission.required' =>'نام سطح دسترسی حتما باید وارد شود :)'
+            'schematic.required' =>'شماتیک حتما باید وارد شود :)',
+            'schematic.string'=>'شماتیک باید به صورت متن باشد'
         ];
     }
 }

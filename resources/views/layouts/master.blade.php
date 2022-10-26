@@ -373,6 +373,32 @@
 
                                 </ul>
                             </li>
+                            <li class="nav-item has-treeview ">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-exchange" aria-hidden="true"></i>
+                                    <p>
+                                        مدیریت شماتیک
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+
+                                    <li class="nav-item">
+                                        <a href="{{ route('schematic.index') }}" class="nav-link">
+                                            <i class="fa fa-list" aria-hidden="true"></i>
+                                            <p>لیست شماتیک ها</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="{{ route('schematic.create') }}" class="nav-link">
+                                            <i class="fa fa-sitemap" aria-hidden="true"></i>
+                                            <p>ایجاد شماتیک</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
 
                             {{-- Suggest Mangement --}}
                             <li class="nav-item has-treeview ">

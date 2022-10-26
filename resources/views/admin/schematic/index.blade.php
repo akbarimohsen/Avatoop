@@ -3,7 +3,7 @@
     <section class="content-wrapper">
         <section class="container">
             <div class="shadow-sm p-3 mb-5 bg-white rounded d-inline-block w-100 mt-5">
-
+                <a class="btn btn-success" href="{{route('schematic.create')}}">ایجاد شماتیک</a>
                 <div class="table-responsive col-12 mx-auto mt-3">
                     {{--show roles--}}
                     <table class="table table-hover">

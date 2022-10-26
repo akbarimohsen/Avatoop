@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class News extends Model implements HasMedia
+class News extends Model
 {
     use HasFactory,InteractsWithMedia;
 

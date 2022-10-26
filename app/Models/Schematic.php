@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Schematic extends Model
 {
-//    protected $guarded = ['id'];
+    protected $guarded = ['id'];
     use HasFactory;
 
     public function arranges()
