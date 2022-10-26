@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Reporter\NewsController;
 use App\Http\Controllers\RssController;
 use App\Http\Controllers\RssLikeController;
+use App\Http\Controllers\User\ArrangeController;
 use App\Http\Controllers\User\AudioNewsController;
 use App\Http\Controllers\User\TeamsController;
 use App\Http\Controllers\UserIndexController;
@@ -94,3 +95,6 @@ Route::get('/rss/likeTest/{id}', [RssLikeController::class, 'rssliketest'])->mid
 
 Route::get('/team/showPlayersTeam', [TeamsController::class, 'showPlayersTeam'])->middleware('auth:api');
 
+Route::get('/arrange', [ArrangeController::class, 'index'])->middleware('auth:api');
+
+Route::post('/arrange/update', [ArrangeController::class, 'update'])->middleware('auth:api');
