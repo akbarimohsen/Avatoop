@@ -106,6 +106,7 @@ return array(
     'App\\Models\\Position' => $baseDir . '/app/Models/Position.php',
     'App\\Models\\Profile' => $baseDir . '/app/Models/Profile.php',
     'App\\Models\\Rule' => $baseDir . '/app/Models/Rule.php',
+    'App\\Models\\Schematic' => $baseDir . '/app/Models/Schematic.php',
     'App\\Models\\Suggest' => $baseDir . '/app/Models/Suggest.php',
     'App\\Models\\Tag' => $baseDir . '/app/Models/Tag.php',
     'App\\Models\\Team' => $baseDir . '/app/Models/Team.php',

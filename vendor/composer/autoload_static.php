@@ -847,6 +847,7 @@ class ComposerStaticInitd9a572c5471ee91fd63e1132a4228c5d
         'App\\Models\\Position' => __DIR__ . '/../..' . '/app/Models/Position.php',
         'App\\Models\\Profile' => __DIR__ . '/../..' . '/app/Models/Profile.php',
         'App\\Models\\Rule' => __DIR__ . '/../..' . '/app/Models/Rule.php',
+        'App\\Models\\Schematic' => __DIR__ . '/../..' . '/app/Models/Schematic.php',
         'App\\Models\\Suggest' => __DIR__ . '/../..' . '/app/Models/Suggest.php',
         'App\\Models\\Tag' => __DIR__ . '/../..' . '/app/Models/Tag.php',
         'App\\Models\\Team' => __DIR__ . '/../..' . '/app/Models/Team.php',

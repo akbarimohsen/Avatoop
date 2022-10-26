@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArrangesTable extends Migration
+class CreateSchematicsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateArrangesTable extends Migration
      */
     public function up()
     {
-        Schema::create('arranges', function (Blueprint $table) {
+        Schema::create('schematics', function (Blueprint $table) {
             $table->id();
+            $table->string('schematic',32);
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateArrangesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('arranges');
+        Schema::dropIfExists('schematics');
     }
 }
