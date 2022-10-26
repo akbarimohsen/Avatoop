@@ -8,6 +8,7 @@ use App\Http\Controllers\RssController;
 use App\Http\Controllers\RssLikeController;
 use App\Http\Controllers\User\ArrangeController;
 use App\Http\Controllers\User\AudioNewsController;
+use App\Http\Controllers\User\NewsController as UserNewsController;
 use App\Http\Controllers\User\TeamsController;
 use App\Http\Controllers\UserIndexController;
 use App\Http\Controllers\User\UserController;
@@ -81,7 +82,9 @@ Route::get('/user/audioNews', [AudioNewsController::class, 'index'])->middleware
 
 
 // favorite teams news
-Route::get('/user/favoriteTeamsNews', [NewsController::class, 'favoriteTeamsNews'])->middleware('auth:api');
+Route::get('/user/favoriteTeamsNews', [UserNewsController::class, 'favoriteTeamsNews'])->middleware('auth:api');
+Route::get('/user/favoriteTeamsRsses', [UserNewsController::class, 'favoriteTeamsRsses'])->middleware('auth:api');
+
 //});
 
 //Like

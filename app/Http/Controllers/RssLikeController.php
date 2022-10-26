@@ -85,7 +85,8 @@ class RssLikeController extends Controller
             }
 
             return response()->json([
-                'likeShow' => 200
+                'likeShow' => 200,
+                'MSG' => 'لایک کرده است'
             ]);
         // } catch (\Exception $ex) {
         //     return response()->json([
