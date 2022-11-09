@@ -96,6 +96,15 @@ class UserController extends Controller
         // ]);
         return view('user.profile', compact('user'));
     }
+
+    public function userProfile()
+    {
+        $user_id = Auth::user()->id;
+        $profile = User::with('profile')->where('id', $user_id)->get();
+        return response()->json(
+            $profile
+        );
+    }
     public function adminEmails()
     {
         $user = Auth::user();

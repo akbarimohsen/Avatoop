@@ -56,6 +56,9 @@ Route::get('/bookmark', [UserIndexController::class, 'bookMark']);
 //profile
 Route::post('/profile/store', [UserController::class, 'store'])->middleware('auth:api');
 Route::post('/profile/update', [UserController::class, 'update'])->middleware('auth:api');
+Route::get('/userProfile', [UserController::class, 'userProfile'])->middleware('auth:api');
+
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

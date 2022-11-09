@@ -110,7 +110,7 @@ class User extends Authenticatable
 
     public function Profile()
     {
-        return $this->hasMany(Profile::class);
+        return $this->hasOne(Profile::class);
     }
 
     public function likes()
