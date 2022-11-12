@@ -7,6 +7,8 @@ use App\Models\News;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
+
 class StoreRsses extends Command
 {
     /**
@@ -47,21 +49,26 @@ class StoreRsses extends Command
             'link' => $f->get_link(),
         ];
 
-        foreach ($f->get_items(0,$f->get_item_quantity()) as $item) {
-            $i['title'] = $item->get_title();
-            $i['description'] = $item->get_description();
-            $content = file_get_contents($item->get_link());
-            $html = substr($content, strpos($content, '<div class="news-text">'), strpos($content, '<div class="news-footer">') - strpos($content, '<div class="news-text">'));
-            $i['news_date'] = $item->get_date();
-            $i['content'] = strip_tags($html);
-            $i['news_date'] = Carbon::createFromFormat('d M Y, h:i a', $item->get_date())->format("Y-m-d H:i:s");
-            $i['isInDatabase'] = $this->isNewsInDatabase([
-                'title' => $item->get_title(),
-            ]);
-            $result['items'][] = $i;
+        foreach ($f->get_items(0, $f->get_item_quantity()) as $item) {
+            if (!$this->isNewsInDatabase(['title' => $item->get_title()])) {
+                $i['title'] = $item->get_title();
+                $i['description'] = $item->get_description();
+                $i['news_date'] = $item->get_date();
+                $content = file_get_contents($item->get_link());
+                $html = substr($content, strpos($content, '<div class="news-text">'), strpos($content, '<div class="news-footer">') - strpos($content, '<div class="news-text">'));
+                $i['content'] = strip_tags($html);
+                $i['news_date'] = Carbon::createFromFormat('d M Y, h:i a', $item->get_date())->format("Y-m-d H:i:s");
+//                $i['isInDatabase'] = $this->isNewsInDatabase([
+//                    'title' => $item->get_title(),
+//                ]);
+                $result['items'][] = $i;
+            }
         }
-        foreach($result['items'] as $item){
-            if($item['isInDatabase'] == false){
+//        Log::info($result['items']);
+
+        if (!empty($result['items'])) {
+            Log::info($result['items']);
+            foreach ($result['items'] as $item) {
                 Rss::create([
                     'title' => $item['title'],
                     'description' => $item['description'],
@@ -69,19 +76,22 @@ class StoreRsses extends Command
                     'content' => $item['content']
                 ]);
             }
+            unset($f);
+            return 0;
+        }else{
+            Log::info('items is null');
         }
-        unset($f);
-        return 0;
     }
 
-    public function isNewsInDatabase($item){
+    public function isNewsInDatabase($item)
+    {
         $title = $item['title'];
         $recentNews = Rss::orderBy('news_date', 'desc')->limit(40)->get();
 
-        foreach($recentNews as $news){
+        foreach ($recentNews as $news) {
             $temp1 = similar_text($title, $news->title, $percent1);
 
-            if($percent1 > 80){
+            if ($percent1 > 80) {
                 return true;
             }
         }
