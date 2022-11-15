@@ -38,8 +38,8 @@ class PlayersTable extends Component
 
         $player = Player::findOrFail($id);
         $dir = 'images/players';
-        if (Storage::exists(env("FILE_ROOT").$dir. '/' . $player->img)){
-            Storage::delete(env("FILE_ROOT").$dir. '/' . $player->img);
+        if (Storage::exists($dir. '/' . $player->img)){
+            Storage::delete($dir. '/' . $player->img);
         }
 
         Player::destroy($id);

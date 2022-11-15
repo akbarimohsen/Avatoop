@@ -127,7 +127,6 @@ class RssController extends Controller
         $audio=$news->rss_audio->audio;
         if (Storage::exists("$news->img")){
             Storage::delete("$news->img");
-        }else{
         }
         if (Storage::exists("$audio")){
             Storage::delete("$audio");

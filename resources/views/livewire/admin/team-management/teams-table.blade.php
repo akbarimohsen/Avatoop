@@ -66,7 +66,7 @@
                     @foreach ($teams as $team)
                         <tr>
                             <td>{{ $i ++ }}</td>
-                            <td><img src="{{\Illuminate\Support\Facades\Storage::disk('public')->url('images/teams/'.$team->logo)}}" width="40px" height="40px"/></td>
+                            <td><img src="{{\Illuminate\Support\Facades\Storage::url('images/teams/'.$team->logo)}}" width="40px" height="40px"/></td>
                             <td>{{ $team->title }}</td>
                             <td>{{ $team->league->title }}</td>
                             <td>

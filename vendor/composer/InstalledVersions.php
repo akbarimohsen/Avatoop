@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'e53f21910d88cf5de882c0935314c196793ef1dc',
+    'reference' => 'e44e10e41bff6e147e8f1260fc31e12286a97350',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -594,7 +594,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'e53f21910d88cf5de882c0935314c196793ef1dc',
+      'reference' => 'e44e10e41bff6e147e8f1260fc31e12286a97350',
     ),
     'laravel/passport' => 
     array (

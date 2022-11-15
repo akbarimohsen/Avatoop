@@ -64,7 +64,7 @@ class NewsController extends Controller
         }
 
 
-        $news=News::create([
+        $news = News::create([
             'title' => $request->title,
             'header' => $request->header,
             'description' => $request->description,
@@ -107,7 +107,6 @@ class NewsController extends Controller
             $month=$news->created_at->month;
             $date=$year.'/'.$month;
             if (Storage::exists("$news->img")){
-
                 Storage::delete("$news->img");
             }
             $imageName=time()."_".$request->file('newsImage')->getClientOriginalName();
@@ -139,10 +138,8 @@ class NewsController extends Controller
     public function destroy($id)
     {
         $news=News::findOrFail($id);
-//        dd(env("FILE_ROOT")."$news->img");
         if (Storage::exists("$news->img")){
             Storage::delete("$news->img");
-
         }
         News::destroy($id);
         session()->flash('delete','خبر با موفقیت حذف شد');

@@ -20,7 +20,7 @@ class  AdminCreateUser extends Controller
     public function create()
     {
         $roles = Role::all()->pluck('name', 'id');
-//        $permissions=Permission::all()->pluck('name','id');
+        //$permissions=Permission::all()->pluck('name','id');
         // return response()->json([
         //     'role' => $roles
         // ]);
@@ -104,8 +104,8 @@ class  AdminCreateUser extends Controller
     public function destroy($id)
     {
        $user=User::findOrFail($id);
-        if (Storage::disk('public')->exists("images/user/profile/".$user->profile_photo_path)){
-            Storage::disk('public')->delete("images/user/profile/".$user->profile_photo_path);
+        if (Storage::exists("images/user/profile/".$user->profile_photo_path)){
+            Storage::delete("images/user/profile/".$user->profile_photo_path);
         }
         User::destroy($id);
         session()->flash('delete','کاربر با موفقیت حذف شد');

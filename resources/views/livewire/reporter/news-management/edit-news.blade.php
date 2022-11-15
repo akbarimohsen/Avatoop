@@ -65,7 +65,7 @@
                                 <div class="col-md-6 text-center">
                                     <span>تصویر قبلی خبر:</span>
                                     <img
-                                        src="{{\Illuminate\Support\Facades\Storage::url(env("FILE_ROOT").$news->img)}}"
+                                        src="{{\Illuminate\Support\Facades\Storage::url($news->img)}}"
                                         class="img img-thumbnail" width="200" height="200" alt="">
                                 </div>
 
