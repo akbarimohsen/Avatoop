@@ -8,11 +8,7 @@ use Illuminate\Http\Request;
 
 class NationalityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         //

@@ -29,8 +29,8 @@ class CreateRssRequest extends FormRequest
             'teams' => 'required',
             'tag'=>'required',
             'category'=>'required',
-            'rssImage'=>'required|image|max:1000',
-            'rssAudio'=>'required|mimes:mpeg,mpga,mp3,wav',
+            'rssImage'=>'image|max:1000',
+            'rssAudio'=>'mimes:mpeg,mpga,mp3,wav',
             'editor1'=>'required',
 
         ];

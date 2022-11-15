@@ -72,7 +72,7 @@
                                             <span class="d-block">صوت قبلی خبر:</span>
                                             <audio controls class="d-flex mx-auto">
                                                 <source
-                                                    src="{{\Illuminate\Support\Facades\Storage::disk('public')->url('audio/rss/'.$rss->created_at->year.'/'.$rss->created_at->month.'/'.$rss->rss_audio->audio)}}">
+                                                    src="{{\Illuminate\Support\Facades\Storage::url(env("FILE_ROOT").$rss->rss_audio->audio)}}">
                                             </audio>
                                         </div>
                                     @endif
@@ -81,7 +81,7 @@
                                     @else
                                         <span class="d-block">تصویر قبلی خبر:</span>
                                         <img
-                                            src="{{\Illuminate\Support\Facades\Storage::disk('public')->url('rss/'.$rss->created_at->year.'/'.$rss->created_at->month.'/'.$rss->img)}}"
+                                            src="{{\Illuminate\Support\Facades\Storage::url(env("FILE_ROOT").$rss->img)}}"
                                             class="img img-thumbnail" width="200" height="200" alt="">
                                     @endif
                                 </div>
