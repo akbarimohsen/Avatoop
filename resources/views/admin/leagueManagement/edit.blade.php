@@ -88,7 +88,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>لوگو قبلی تیم</label>
-                                    <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url('leagues/'. $league->logo) }}" class="img-circle" width="100" height="100" alt="">
+                                    <img src="{{ \Illuminate\Support\Facades\Storage::url('leagues/'. $league->logo) }}" class="img-circle" width="100" height="100" alt="">
                                 </div>
                             </div>
                         </div>

@@ -38,7 +38,7 @@ class  AdminCreateUser extends Controller
         } else {
             if ($request->has('image')) {
                 $imageName = time() .  $request->file('image')->getClientOriginalName();
-                $request->file('image')->storeAs('images/user/profile/', $imageName, 'public');
+                $request->file('image')->storeAs('images/user/profile/', $imageName);
             }
            if(Role::where('id', $request->select_role)->exists()){
             // return 'ok';
@@ -75,11 +75,11 @@ class  AdminCreateUser extends Controller
         $user=User::findOrFail($id);
         $image='';
         if (!empty($file)){
-            if (Storage::disk('public')->exists("images/user/profile/".$user->profile_photo_path)){
-                Storage::disk('public')->delete("images/user/profile/".$user->profile_photo_path);
+            if (Storage::disk('public')->exists(env("FILE_ROOT")."images/user/profile/".$user->profile_photo_path)){
+                Storage::disk('public')->delete(env("FILE_ROOT")."images/user/profile/".$user->profile_photo_path);
             }
             $image=time().$file->getClientOriginalName();
-            $file->storeAs('images/user/profile/',$image,'public');
+            $file->storeAs('images/user/profile/',$image);
 
         }else{
             $image=$user->profile_photo_path;
@@ -104,8 +104,8 @@ class  AdminCreateUser extends Controller
     public function destroy($id)
     {
        $user=User::findOrFail($id);
-        if (Storage::disk('public')->exists("images/user/profile/".$user->profile_photo_path)){
-            Storage::disk('public')->delete("images/user/profile/".$user->profile_photo_path);
+        if (Storage::exists("images/user/profile/".$user->profile_photo_path)){
+            Storage::delete("images/user/profile/".$user->profile_photo_path);
         }
         User::destroy($id);
         session()->flash('delete','کاربر با موفقیت حذف شد');

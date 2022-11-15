@@ -57,8 +57,9 @@ class NewsController extends Controller
             $newsImage = time()."_".$request->file('newsImage')->getClientOriginalName();
             $year=now()->year;
             $month=now()->month;
-            $dir=$year.'/'.$month;
-            $request->file('newsImage')->storeAs("news/$dir",$newsImage,'public');
+            $date=$year.'/'.$month;
+            $dir="news/$date";
+            $request->file('newsImage')->storeAs($dir,$newsImage);
         }
 
 
@@ -68,14 +69,18 @@ class NewsController extends Controller
             'description' => $request->description,
             'NewsDate'=>$request->NewsDate,
             'body'=>$request->editor1,
-            'img'=>"$newsImage",
+            'img'=>"$dir/$newsImage",
             'reporter_id' =>Auth::id()
         ]);
         if ($news){
             $news->categories()->attach($request->category);
             $news->tags()->attach($request->tag);
             $news->teams()->attach($request->team);
+            session()->flash('delete','خبر با موفقیت ایجاد شد');
+            return redirect()->route('news.index');
         }
+
+
     }
 
 
@@ -100,12 +105,12 @@ class NewsController extends Controller
             $year=$news->created_at->year;
             $month=$news->created_at->month;
             $date=$year.'/'.$month;
-            if (Storage::disk('public')->exists("news/$date/$news->img")){
-                Storage::disk('public')->delete("news/$date/$news->img");
+            if (Storage::exists(env("FILE_ROOT")."$news->img")){
+                Storage::delete(env("FILE_ROOT")."$news->img");
             }
             $imageName=time()."_".$request->file('newsImage')->getClientOriginalName();
             $dir="news/$date";
-            $request->file('newsImage')->storeAs($dir,$imageName,'public');
+            $request->file('newsImage')->storeAs($dir,$imageName);
         }else{
             $imageName=$news->img;
         }
@@ -132,11 +137,8 @@ class NewsController extends Controller
     public function destroy($id)
     {
         $news=News::findOrFail($id);
-        $year=$news->created_at->year;
-        $month=$news->created_at->month;
-        $date=$year.'/'.$month;
-        if (Storage::disk('public')->exists("news/$date/$news->img")){
-            Storage::disk('public')->delete("news/$date/$news->img");
+        if (Storage::exists(env("FILE_ROOT")."$news->img")){
+            Storage::delete(env("FILE_ROOT")."$news->img");
         }
         News::destroy($id);
         session()->flash('delete','خبر با موفقیت حذف شد');

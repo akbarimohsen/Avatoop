@@ -55,8 +55,8 @@ class EditAd extends Component
 
         $dir = "images/ads";
 
-        if(Storage::disk('public')->exists($dir. '/' . $ad->img)){
-            Storage::disk('public')->delete($dir. '/' . $ad->img);
+        if(Storage::exists($dir. '/' . $ad->img)){
+            Storage::delete($dir. '/' . $ad->img);
         }
 
         $ad->img = $this->handleImageUpload();

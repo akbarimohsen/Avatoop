@@ -25,8 +25,8 @@ class TeamsTable extends Component
 //        $team->delete();
         $team=Team::findOrFail($id);
         $dir = 'images/teams';
-        if (Storage::disk('public')->exists($dir. '/' . $team->logo)){
-            Storage::disk('public')->delete($dir. '/' . $team->logo);
+        if (Storage::exists($dir. '/' . $team->logo)){
+            Storage::delete($dir. '/' . $team->logo);
         }
         Team::destroy($id);
 

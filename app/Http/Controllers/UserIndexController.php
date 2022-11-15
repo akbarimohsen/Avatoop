@@ -46,7 +46,7 @@ class UserIndexController extends Controller
     }
     public function indexnews()
     {
-        $datas = Rss::orderBy('created_at', 'desc')->select('id')->limit(5)->get();
+        $datas = Rss::orderBy('created_at', 'desc')->select('id')->limit(23)->get();
         $Finds = Rss::find($datas);
         $mappedcollection = $Finds->map(function ($Find, $key) {
             return [
@@ -62,7 +62,7 @@ class UserIndexController extends Controller
     }
     public function topview()
     {
-        $datas = Rss::orderBy('views_count','DESC')->limit(5)->get(['title','description','news_date']);
+        $datas = Rss::orderBy('views_count','DESC')->limit(23)->get(['title','description','news_date']);
         return response()->json([
             'data' => $datas
         ]);
@@ -89,7 +89,7 @@ class UserIndexController extends Controller
 
     public function newsShow($id)
     {
-        
+
         $data = Rss::find($id);
         $collection = collect($data);
         $filtered = $collection->except(['id']);
@@ -106,7 +106,7 @@ class UserIndexController extends Controller
         $product = Rss::whereIn('id', $request->rss)->get(
             ['title', 'description', 'news_date', 'active', 'content', 'views_count', 'img', 'created_at']
         );
-        
+
          return response()->json([
             'product' => $product
          ]);

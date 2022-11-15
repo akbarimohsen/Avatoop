@@ -112,8 +112,8 @@ class LeagueManagementController extends Controller
             //resize Image
             $dest_path = 'leagues';
 
-            if (Storage::disk('public')->exists($dest_path. '/' . $league->logo)){
-                Storage::disk('public')->delete($dest_path. '/' . $league->logo);
+            if (Storage::exists($dest_path. '/' . $league->logo)){
+                Storage::delete($dest_path. '/' . $league->logo);
             }
             $request->file('logo')->storeAs($dest_path,$logo_name,'public');
             $league->logo = $logo_name;

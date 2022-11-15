@@ -35,10 +35,11 @@ class PlayersTable extends Component
 
     public function delete($id)
     {
+
         $player = Player::findOrFail($id);
         $dir = 'images/players';
-        if (Storage::disk('public')->exists($dir. '/' . $player->img)){
-            Storage::disk('public')->delete($dir. '/' . $player->img);
+        if (Storage::exists(env("FILE_ROOT").$dir. '/' . $player->img)){
+            Storage::delete(env("FILE_ROOT").$dir. '/' . $player->img);
         }
 
         Player::destroy($id);

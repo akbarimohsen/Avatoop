@@ -39,7 +39,7 @@
                         @foreach ($ads as $ad)
                             <tr>
                                 <td>{{ $ads->firstItem() + $loop->index }}</td>
-                                <td><img src="{{\Illuminate\Support\Facades\Storage::disk('public')->url('images/ads/'.$ad->img)}}" width="40px" height="40px"/></td>
+                                <td><img src="{{\Illuminate\Support\Facades\Storage::url('images/ads/'.$ad->img)}}" width="40px" height="40px"/></td>
                                 <td>{{ $ad->link }}</td>
                                 <td>{{ $ad->cost }}</td>
                                 <td>
