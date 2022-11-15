@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'aefe3d8c53aac3ffb0891b08689469c6a183b1c5',
+    'reference' => 'e53f21910d88cf5de882c0935314c196793ef1dc',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -581,7 +581,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'aefe3d8c53aac3ffb0891b08689469c6a183b1c5',
+      'reference' => 'e53f21910d88cf5de882c0935314c196793ef1dc',
     ),
     'laravel/passport' => 
     array (
@@ -682,15 +682,6 @@
       ),
       'reference' => '094defdb4a7001845300334e7c1ee2335925ef99',
     ),
-    'league/glide' => 
-    array (
-      'pretty_version' => '1.7.1',
-      'version' => '1.7.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '257e0c3612ef3dc57eb7f90cb741198151a45a5f',
-    ),
     'league/mime-type-detection' => 
     array (
       'pretty_version' => '1.11.0',
@@ -750,15 +741,6 @@
         0 => '*',
       ),
     ),
-    'maennchen/zipstream-php' => 
-    array (
-      'pretty_version' => '2.2.1',
-      'version' => '2.2.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '211e9ba1530ea5260b45d90c9ea252f56ec52729',
-    ),
     'mobiledetect/mobiledetectlib' => 
     array (
       'pretty_version' => '2.8.39',
@@ -801,15 +783,6 @@
       array (
       ),
       'reference' => '14daed4296fae74d9e3201d2c4925d1acb7aa614',
-    ),
-    'myclabs/php-enum' => 
-    array (
-      'pretty_version' => '1.8.4',
-      'version' => '1.8.4.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'a867478eae49c9f59ece437ae7f9506bfaa27483',
     ),
     'nesbot/carbon' => 
     array (
@@ -1318,33 +1291,6 @@
       ),
       'reference' => '2bdbc51ed1010941c9c5f2cddca433e79665bfe1',
     ),
-    'spatie/image' => 
-    array (
-      'pretty_version' => '1.10.6',
-      'version' => '1.10.6.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '897e819848096ea8eee8ed4a3531c6166f9a99e0',
-    ),
-    'spatie/image-optimizer' => 
-    array (
-      'pretty_version' => '1.6.2',
-      'version' => '1.6.2.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '6db75529cbf8fa84117046a9d513f277aead90a0',
-    ),
-    'spatie/laravel-medialibrary' => 
-    array (
-      'pretty_version' => '9.12.3',
-      'version' => '9.12.3.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'a20456679f29a725b37947980408fc15c3477b08',
-    ),
     'spatie/laravel-permission' => 
     array (
       'pretty_version' => '5.5.5',
@@ -1353,15 +1299,6 @@
       array (
       ),
       'reference' => 'f2303a70be60919811ca8afc313e8244fda00974',
-    ),
-    'spatie/temporary-directory' => 
-    array (
-      'pretty_version' => '2.1.1',
-      'version' => '2.1.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'e2818d871783d520b319c2d38dc37c10ecdcde20',
     ),
     'stella-maris/clock' => 
     array (

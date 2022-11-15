@@ -202,6 +202,7 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
+    'ftpRoute'=>'http://dl.avatoop.com/avatoop_files/',
 
     'aliases' => [
 

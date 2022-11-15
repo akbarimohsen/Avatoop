@@ -76,8 +76,8 @@ class RssController extends Controller
         $imageName="";
         $audioName="";
         if(!empty($file)){
-            if (Storage::exists(env("FILE_ROOT")."$news->img")){
-                Storage::delete(env("FILE_ROOT")."$news->img");
+            if (Storage::exists("$news->img")){
+                Storage::delete("$news->img");
             }
             $imageName=time()."_".$request->file('rssImage')->getClientOriginalName();
             $dir="rss/$date";
@@ -86,8 +86,8 @@ class RssController extends Controller
             $imageName=$news->img;
         }
         if(!empty($voiceFile)){
-            if (Storage::exists(env("FILE_ROOT")."$audio")){
-                Storage::delete(env("FILE_ROOT")."$audio");
+            if (Storage::exists("$audio")){
+                Storage::delete("$audio");
             }
             $audioName=time()."_".$request->file('rssAudio')->getClientOriginalName();
             $dirAudio="audio/rss/$date";
@@ -125,11 +125,12 @@ class RssController extends Controller
     {
         $news=Rss::findOrFail($id);
         $audio=$news->rss_audio->audio;
-        if (Storage::exists(env("FILE_ROOT")."$news->img")){
-            Storage::delete(env("FILE_ROOT")."$news->img");
+        if (Storage::exists("$news->img")){
+            Storage::delete("$news->img");
+        }else{
         }
-        if (Storage::exists(env("FILE_ROOT")."$audio")){
-            Storage::delete(env("FILE_ROOT")."$audio");
+        if (Storage::exists("$audio")){
+            Storage::delete("$audio");
         }
         Rss::destroy($id);
         session()->flash('delete','خبر با موفقیت حذف شد');

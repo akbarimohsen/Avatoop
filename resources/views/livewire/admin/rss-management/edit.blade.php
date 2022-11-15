@@ -72,7 +72,7 @@
                                             <span class="d-block">صوت قبلی خبر:</span>
                                             <audio controls class="d-flex mx-auto">
                                                 <source
-                                                    src="{{\Illuminate\Support\Facades\Storage::url(env("FILE_ROOT").$rss->rss_audio->audio)}}">
+                                                    src="{{\Illuminate\Support\Facades\Storage::url(config('app.ftpRoute').$rss->rss_audio->audio)}}">
                                             </audio>
                                         </div>
                                     @endif
@@ -81,7 +81,7 @@
                                     @else
                                         <span class="d-block">تصویر قبلی خبر:</span>
                                         <img
-                                            src="{{\Illuminate\Support\Facades\Storage::url(env("FILE_ROOT").$rss->img)}}"
+                                            src="{{\Illuminate\Support\Facades\Storage::url(config('app.ftpRoute').$rss->img)}}"
                                             class="img img-thumbnail" width="200" height="200" alt="">
                                     @endif
                                 </div>
