@@ -32,7 +32,6 @@ class AddPlayer extends Component
         'img.required' => 'تصویر ضروری می باشد',
         'img.image' => 'فقط فایل عکس قابل قبول است.',
         'img.mimes' => 'تنها فایل با فرمت :values قابل قبول است.'
-
     ];
 
     protected $rules = [
@@ -47,52 +46,11 @@ class AddPlayer extends Component
 
     public function handleImageUpload()
     {
-    //    $year = now()->year;
-    //    $month = now()->month;
-    //    $day = now()->day;
         $dir = 'images/players';
         $name = rand(100, 10000) . "_" . $this->img->getClientOriginalName();
         $this->img->storeAs($dir, $name);
         return $name;
     }
-
-
-    // public function submit()
-    // {
-    //     $data = $this->validate([
-    //         'full_name' => 'required|string',
-    //         'birth_date' => 'required|date',
-    //         'description' => 'required|string',
-    //         'team_id' => 'required',
-    //         'nationality_id' => 'required',
-    //         'position_id' => 'required',
-    //         'img' => 'required|image|mimes:png,jpg,jpeg'
-    //     ]);
-
-    //     $img_name = time() . '.' . $this->img->extension();
-
-    //     //resize Image
-    //     $dest_path = public_path('/assets/images/players');
-
-    //     $img = Image::make($this->img->path());
-
-    //     $img->resize(370, 245 , function($constraint) {
-    //         $constraint->aspectRatio();
-    //     })->save($dest_path . '/' . $img_name);
-
-    //     $data['img'] = $img_name;
-
-    //     $data['team_id'] = intval($data['team_id']);
-    //     $data['nationality_id'] = intval($data['nationality_id']);
-    //     $data['position_id'] = intval($data['position_id']);
-
-    //     $player = Player::create($data);
-
-    //     session()->flash('message', 'بازیکن شما با موفقیت ایجاد گردید.');
-
-    //     return redirect()->route('admin.players');
-
-    // }
 
 
     public function submit()

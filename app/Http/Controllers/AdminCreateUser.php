@@ -20,7 +20,7 @@ class  AdminCreateUser extends Controller
     public function create()
     {
         $roles = Role::all()->pluck('name', 'id');
-//        $permissions=Permission::all()->pluck('name','id');
+        //$permissions=Permission::all()->pluck('name','id');
         // return response()->json([
         //     'role' => $roles
         // ]);

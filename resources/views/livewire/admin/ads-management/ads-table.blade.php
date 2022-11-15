@@ -34,7 +34,6 @@
                         </th>
                       </tr>
                 </thead>
-
                 <tbody>
                     @if( $ads->count() != 0 )
                         @foreach ($ads as $ad)

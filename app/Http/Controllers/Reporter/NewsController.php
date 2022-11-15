@@ -17,7 +17,6 @@ class NewsController extends Controller
     public function index()
     {
         return view('reporter.news.index');
-
     }
 
     public function create()
@@ -63,7 +62,7 @@ class NewsController extends Controller
         }
 
 
-        $news=News::create([
+        $news = News::create([
             'title' => $request->title,
             'header' => $request->header,
             'description' => $request->description,
@@ -117,7 +116,7 @@ class NewsController extends Controller
             'NewsDate'=>$request->NewsDate,
             'body'=>$request->editor1,
             'img'=>"$imageName",
-            'reporter_id' =>Auth::id()
+            'reporter_id' => Auth::id()
         ]);
         if ($updateNews){
             $news->categories()->sync($request->category);
@@ -145,5 +144,5 @@ class NewsController extends Controller
 
     }
 
-    
+
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\League;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 
 class LeagueManagementController extends Controller
@@ -48,13 +49,9 @@ class LeagueManagementController extends Controller
         $logo_name = time() . '.' . $request->logo->extension();
 
         //resize Image
-        $dest_path = public_path('/assets/images/leagues');
+        $dest_path = "leagues";
 
-        $logo = Image::make($request->logo->path());
-
-        $logo->resize(370, 245 , function($constraint) {
-            $constraint->aspectRatio();
-        })->save($dest_path . '/' . $logo_name);
+        $request->file('logo')->storeAs($dest_path,$logo_name);
 
         $data['logo'] = $logo_name;
 
@@ -107,26 +104,19 @@ class LeagueManagementController extends Controller
             'logo' => 'nullable|mimes:png,jpg,jpeg'
         ]);
 
-
         if($request->has('logo'))
         {
+
             $logo_name = time() . '.' . $request->logo->extension();
 
             //resize Image
-            $dest_path = public_path('/assets/images/leagues');
+            $dest_path = 'leagues';
 
-            $logo = Image::make($request->logo->path());
-
-            $logo->resize(370, 245 , function($constraint) {
-                $constraint->aspectRatio();
-            })->save($dest_path . '/' . $logo_name);
-
-            $data['logo'] = $logo_name;
-            if(file_exists($dest_path . '/' . $league->logo))
-            {
-                unlink($dest_path . '/' . $league->logo);
+            if (Storage::disk('public')->exists($dest_path. '/' . $league->logo)){
+                Storage::disk('public')->delete($dest_path. '/' . $league->logo);
             }
-            $league->logo = $data['logo'];
+            $request->file('logo')->storeAs($dest_path,$logo_name,'public');
+            $league->logo = $logo_name;
         }
 
         $league->title = $data['title'];
@@ -150,12 +140,10 @@ class LeagueManagementController extends Controller
         //
         $league = League::find($id);
 
-        $logo_path = public_path('/assets/images/leagues') . '/' . $league->logo;
-
-        if(file_exists($logo_path))
-        {
-            unlink($logo_path);
+        if (Storage::disk('public')->exists('leagues/' . $league->logo)){
+            Storage::disk('public')->delete('leagues/' . $league->logo);
         }
+
         $league->delete();
 
         session()->flash('message', 'لیگ با موفقیت حذف گردید.');

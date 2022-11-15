@@ -73,7 +73,7 @@
                             @foreach ($leagues as $league)
                                 <tr>
                                     <td>{{ $league->title }}</td>
-                                    <td><img src="{{ asset('assets/images/leagues/'. $league->logo) }}" width="40px" height="40px" alt=""></td>
+                                    <td><img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url('leagues/'. $league->logo) }}" width="40px" height="40px" alt=""></td>
                                     <td>{{ $league->teams_count }}</td>
                                     <td>
                                         <div class="d-flex align-items-center">
