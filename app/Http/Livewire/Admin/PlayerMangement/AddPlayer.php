@@ -48,8 +48,8 @@ class AddPlayer extends Component
     {
         $dir = 'images/players';
         $name = rand(100, 10000) . "_" . $this->img->getClientOriginalName();
-        $this->img->storeAs($dir, $name);
-        return $name;
+        $this->img->storeAs($dir, $name,'ftp');
+        return "$dir/$name";
     }
 
 

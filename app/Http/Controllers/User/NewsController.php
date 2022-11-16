@@ -28,7 +28,9 @@ class NewsController extends Controller
         $user = Auth::user();
         $profile = Profile::where('user_id', $user->id)->first();
         $report = Team::with('rsses')->where('id',$profile->team_id)->get();
-        return $report;
+        return response()->json([
+            'rss'=>$report,
+        ]);
 
        // return view('user.favoriteTeamsNews', compact('user'));
     }

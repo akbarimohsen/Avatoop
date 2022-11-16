@@ -57,7 +57,7 @@ class LeagueManagementController extends Controller
         League::create([
             'title'=>$data['title'],
             'teams_count'=>$data['teams_count'],
-            'logo'=>$dest_path.'/'.$logo_name
+            'logo'=>"$dest_path/$logo_name"
         ]);
 
         session()->flash('message', 'لیگ با موفقیت ایجاد گردید');
@@ -119,7 +119,7 @@ class LeagueManagementController extends Controller
                 Storage::delete($league->logo);
             }
             $request->file('logo')->storeAs($dest_path,$logo_name);
-            $league->logo = $dest_path.'/'.$logo_name;
+            $league->logo = "$dest_path/$logo_name";
         }
 
         $league->title = $data['title'];

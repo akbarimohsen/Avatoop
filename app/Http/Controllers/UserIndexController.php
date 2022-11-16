@@ -90,7 +90,7 @@ class UserIndexController extends Controller
     public function newsShow($id)
     {
 
-        $data = Rss::find($id);
+        $data = Rss::with('rss_audio')->findOrFail($id);
         $collection = collect($data);
         $filtered = $collection->except(['id']);
         $rss = RssComment::where('rss_id', $id)->where('status', 1)->get(['title', 'comment', 'created_at']);
