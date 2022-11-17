@@ -71,8 +71,7 @@
                                         <div class="col-8 offset-md-2">
                                             <span class="d-block">صوت قبلی خبر:</span>
                                             <audio controls class="d-flex mx-auto">
-                                                <source
-                                                    src="{{\Illuminate\Support\Facades\Storage::url($rss->rss_audio->audio)}}">
+                                                <source src="{{\Illuminate\Support\Facades\Storage::url($rss->rss_audio->audio)}}">
                                             </audio>
                                         </div>
                                     @endif

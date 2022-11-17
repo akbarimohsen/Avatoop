@@ -10,11 +10,10 @@ use Illuminate\Support\Facades\Storage;
 
 class EditAd extends Component
 {
-
+    public $ad;
     public $link;
     public $cost;
     public $img;
-    public Ad $ad;
 
 
     protected $messages = [
@@ -26,7 +25,7 @@ class EditAd extends Component
     ];
 
     protected $rules = [
-        'img' => 'required|mimes:png,jpg,gif',
+        'img' => 'nullable|mimes:png,jpg,gif',
         'link' => 'required|string',
         'cost' => 'required|numeric'
     ];
@@ -34,10 +33,8 @@ class EditAd extends Component
     public function mount($id)
     {
         $this->ad = Ad::find($id);
-
         $this->link = $this->ad->link;
         $this->cost = $this->ad->cost;
-        $this->img = $this->ad->img;
     }
 
     public function handleImageUpload()
@@ -59,7 +56,10 @@ class EditAd extends Component
             Storage::delete($dir. '/' . $ad->img);
         }
 
-        $ad->img = $this->handleImageUpload();
+        if($this->logo != null){
+            $ad->img = $this->handleImageUpload();
+        }
+
         $ad->link = $this->link;
         $ad->cost = $this->cost;
         $ad->save();

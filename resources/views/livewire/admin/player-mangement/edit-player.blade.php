@@ -86,7 +86,7 @@
                             <label>ملیت</label>
                             <select class="form-control select2" style="width: 100%;" wire:model="nationality_id">
                                 <option value="">انتخاب کنید</option>
-                            @foreach ($nationalities as $nationality )
+                                @foreach ($nationalities as $nationality )
                                     <option value="{{ $nationality->id }}"> {{ $nationality->name }} </option>
                                 @endforeach
                             </select>
@@ -131,20 +131,31 @@
                         <!-- /.col -->
                       </div>
 
-                      {{-- <div class="form-group">
-                        <label>عکس </label>
-                        <input type="file" wire:model="img" >
 
-                        @if($errors->has('img'))
-                            <ul class="mt-1 mr-4">
-                                @foreach ($errors->get('img') as $error )
-                                    <li class="text-danger">
-                                        {{ $error }}
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @endif
-                      </div> --}}
+                      <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>عکس </label>
+                                <input type="file" wire:model="img" >
+
+                                @if($errors->has('img'))
+                                    <ul class="mt-1 mr-4">
+                                        @foreach ($errors->get('img') as $error )
+                                            <li class="text-danger">
+                                                {{ $error }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                              </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>تصویر بازیکن</label>
+                                <img src="{{ \Illuminate\Support\Facades\Storage::url('images/players/'. $player->img) }}" class="img-circle" width="100" height="100" alt="">
+                            </div>
+                        </div>
+                      </div>
 
                   </div>
               <!-- /.card-body -->
