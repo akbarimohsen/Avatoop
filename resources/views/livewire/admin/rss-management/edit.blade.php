@@ -17,14 +17,14 @@
                                     {!! Form::label('title','عنوان خبر',['class'=>'text-capitalize']) !!}
                                     {!! Form::text('title',old('title'),['class'=>'form-control','placeholder'=>'مثلا: جنجال بازیکن B']) !!}
                                     @error('title')
-                                    <p class="text-danger">{{$message}}</p>
+                                        <p class="text-danger">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-12">
                                     {!! Form::label('description','توضیح خبر',['class'=>'text-capitalize']) !!}
                                     {!! Form::text('description',old('description'),['class'=>'form-control','placeholder'=>'یک توضیح حداقل 70 تا 320 کاراکتری از خبر']) !!}
                                     @error('description')
-                                    <p class="text-danger">{{$message}}</p>
+                                        <p class="text-danger">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
@@ -71,7 +71,8 @@
                                         <div class="col-8 offset-md-2">
                                             <span class="d-block">صوت قبلی خبر:</span>
                                             <audio controls class="d-flex mx-auto">
-                                                <source src="{{\Illuminate\Support\Facades\Storage::url($rss->rss_audio->audio)}}">
+                                                <source
+                                                    src="{{\Illuminate\Support\Facades\Storage::url(config('app.ftpRoute').$rss->rss_audio->audio)}}">
                                             </audio>
                                         </div>
                                     @endif
@@ -80,7 +81,7 @@
                                     @else
                                         <span class="d-block">تصویر قبلی خبر:</span>
                                         <img
-                                            src="{{\Illuminate\Support\Facades\Storage::url($rss->img)}}"
+                                            src="{{\Illuminate\Support\Facades\Storage::url(config('app.ftpRoute').$rss->img)}}"
                                             class="img img-thumbnail" width="200" height="200" alt="">
                                     @endif
                                 </div>
@@ -92,7 +93,7 @@
                                     </div>
                                 @endif
                                 <div class="col-12 mt-4" wire:loading.remove>
-                                    <div class="card card-info card-outline">
+                                    <div class="card card-لینک	info card-outline">
                                         <div class="card-header bg-white border-bottom">
                                             <h3 class="card-title">
                                                 CKEditor5

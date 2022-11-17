@@ -17,6 +17,7 @@ class NewsController extends Controller
     public function index()
     {
         return view('reporter.news.index');
+
     }
 
     public function create()
@@ -120,8 +121,8 @@ class NewsController extends Controller
             'description' => $request->description,
             'NewsDate'=>$request->NewsDate,
             'body'=>$request->editor1,
-            'img'=>"$imageName",
-            'reporter_id' => Auth::id()
+            'img'=>!empty($file)?$dir.'/'.$imageName:$imageName,
+            'reporter_id' =>Auth::id()
         ]);
         if ($updateNews){
             $news->categories()->sync($request->category);

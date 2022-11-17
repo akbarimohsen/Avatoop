@@ -33,7 +33,6 @@ class EditPlayer extends Component
         'img.required' => 'تصویر ضروری می باشد',
         'img.image' => 'فقط فایل عکس قابل قبول است.',
         'img.mimes' => 'تنها فایل با فرمت :values قابل قبول است.'
-
     ];
 
     public function mount($id)

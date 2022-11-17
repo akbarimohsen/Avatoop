@@ -32,7 +32,8 @@ class EditAd extends Component
 
     public function mount($id)
     {
-        $this->ad = Ad::find($id);
+        $this->ad = Ad::findOrFail($id);
+
         $this->link = $this->ad->link;
         $this->cost = $this->ad->cost;
     }
@@ -41,8 +42,8 @@ class EditAd extends Component
     {
         $dir = 'images/ads';
         $name = rand(100, 10000) . "_" . $this->img->getClientOriginalName();
-        $this->img->storeAs($dir, $name);
-        return $name;
+        $this->img->storeAs($dir, $name,'ftp');
+        return "$dir/$name";
     }
 
     public function submit()
@@ -52,8 +53,8 @@ class EditAd extends Component
 
         $dir = "images/ads";
 
-        if(Storage::exists($dir. '/' . $ad->img)){
-            Storage::delete($dir. '/' . $ad->img);
+        if(Storage::exists($ad->img)){
+            Storage::delete($ad->img);
         }
 
         if($this->logo != null){

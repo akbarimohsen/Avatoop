@@ -53,7 +53,7 @@
                         @foreach ($players as $player)
                             <tr>
                                 <td>{{ $players->firstItem() + $loop->index }}</td>
-                                <td><img src="{{\Illuminate\Support\Facades\Storage::url('images/players/'.$player->img)}}" width="40px" height="40px"/></td>
+                                <td><img src="{{\Illuminate\Support\Facades\Storage::url(config('app.ftpRoute').$player->img)}}" width="40px" height="40px"/></td>
                                 <td>{{ $player->full_name }}</td>
                                 <td>
                                     {{

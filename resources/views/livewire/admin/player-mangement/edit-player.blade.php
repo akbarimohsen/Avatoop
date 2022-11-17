@@ -152,7 +152,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>تصویر بازیکن</label>
-                                <img src="{{ \Illuminate\Support\Facades\Storage::url('images/players/'. $player->img) }}" class="img-circle" width="100" height="100" alt="">
+                                <img src="{{ \Illuminate\Support\Facades\Storage::url(config('app.ftpRoute'). $player->img) }}" class="img-circle" width="100" height="100" alt="">
                             </div>
                         </div>
                       </div>

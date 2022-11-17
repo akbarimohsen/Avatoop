@@ -9,7 +9,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class News extends Model
 {
-    use HasFactory,InteractsWithMedia;
+    use HasFactory;
 
     protected $table = 'news';
 

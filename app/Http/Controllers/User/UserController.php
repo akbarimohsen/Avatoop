@@ -53,12 +53,12 @@ class UserController extends Controller
         if ($request->last_name) {
             $data->last_name = $request->last_name;
         }
-      
+
         if ($request->team_id) {
             // $league = League::where('title', 'Like', "%iran%");
             try{
             $team = Team::where('id', $request->team_id)->first();
-            
+
             $league = League::where('id', $team->league_id)->where('title', 'Like', "%iran%")->get();
             $data->team_id = $request->team_id;
             }
@@ -74,10 +74,14 @@ class UserController extends Controller
                 $this->validate($request, [
                     'image' => 'required|image|max:1024',
                 ]);
+                $year=now()->year;
+                $month=now()->month;
+                $date=$year.'/'.$month;
+                $dir="profiles/$date";
                 $file = $request->file('image');
                 $filename = date('YmdHi') . $file->getClientOriginalName();
-                $file->move(public_path('public/Image'), $filename);
-                $data['image'] = $filename;
+                $request->file('image')->storeAs($dir,$filename);
+                $data['image'] = $dir.'/'.$filename;
             }
         }
         $data->save();
@@ -121,6 +125,5 @@ class UserController extends Controller
         return response()->json([
             'email' => $emails,
         ]);
-        return view('user.adminEmails', compact('emails', 'user'));
     }
 }

@@ -46,16 +46,19 @@ class LeagueManagementController extends Controller
             'logo' => 'required|mimes:png,jpg,jpeg'
         ]);
 
-        $logo_name = time() . '.' . $request->logo->extension();
+        $logo_name = time() . '.' . $request->logo->getClientOriginalName();
 
         //resize Image
         $dest_path = "leagues";
 
         $request->file('logo')->storeAs($dest_path,$logo_name);
 
-        $data['logo'] = $logo_name;
 
-        League::create($data);
+        League::create([
+            'title'=>$data['title'],
+            'teams_count'=>$data['teams_count'],
+            'logo'=>"$dest_path/$logo_name"
+        ]);
 
         session()->flash('message', 'لیگ با موفقیت ایجاد گردید');
 
@@ -107,16 +110,16 @@ class LeagueManagementController extends Controller
         if($request->has('logo'))
         {
 
-            $logo_name = time() . '.' . $request->logo->extension();
+            $logo_name = time() . '.' . $request->logo->getClientOriginalName();
 
             //resize Image
             $dest_path = 'leagues';
 
-            if (Storage::exists($dest_path. '/' . $league->logo)){
-                Storage::delete($dest_path. '/' . $league->logo);
+            if (Storage::exists($league->logo)){
+                Storage::delete($league->logo);
             }
-            $request->file('logo')->storeAs($dest_path,$logo_name,'public');
-            $league->logo = $logo_name;
+            $request->file('logo')->storeAs($dest_path,$logo_name);
+            $league->logo = "$dest_path/$logo_name";
         }
 
         $league->title = $data['title'];
@@ -140,8 +143,8 @@ class LeagueManagementController extends Controller
         //
         $league = League::find($id);
 
-        if (Storage::disk('public')->exists('leagues/' . $league->logo)){
-            Storage::disk('public')->delete('leagues/' . $league->logo);
+        if (Storage::exists($league->logo)){
+            Storage::delete($league->logo);
         }
 
         $league->delete();

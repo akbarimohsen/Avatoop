@@ -12,10 +12,8 @@ class AdsTable extends Component
     public function delete($id)
     {
         $ad = Ad::findOrFail($id);
-        $dir = 'images/ads';
-
-        if(Storage::exists($dir. '/' . $ad->img)){
-            Storage::delete($dir. '/' . $ad->img);
+        if(Storage::exists($ad->img)){
+            Storage::delete($ad->img);
         }
 
         Ad::destroy($id);

@@ -44,8 +44,8 @@ class EditTeam extends Component
     {
         $dir = 'images/teams';
         $name = rand(100, 10000) . "_" . $this->logo->getClientOriginalName();
-        $this->logo->storeAs($dir, $name);
-        return $name;
+        $this->logo->storeAs($dir, $name,'ftp');
+        return "$dir/$name";
     }
 
     public function submit()

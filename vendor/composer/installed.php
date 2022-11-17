@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'c858e40e0953e9229b872f1f56f91d2e4990ebac',
+    'reference' => 'ef7797007a9ade729a145acb8a37e47bc9e82c0b',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -581,7 +581,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'c858e40e0953e9229b872f1f56f91d2e4990ebac',
+      'reference' => 'ef7797007a9ade729a145acb8a37e47bc9e82c0b',
     ),
     'laravel/passport' => 
     array (
@@ -612,12 +612,12 @@
     ),
     'laravel/tinker' => 
     array (
-      'pretty_version' => 'v2.7.2',
-      'version' => '2.7.2.0',
+      'pretty_version' => 'v2.7.3',
+      'version' => '2.7.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'dff39b661e827dae6e092412f976658df82dbac5',
+      'reference' => '5062061b4924af3392225dd482ca7b4d85d8b8ef',
     ),
     'laravelcollective/html' => 
     array (
@@ -682,15 +682,6 @@
       ),
       'reference' => '3239285c825c152bcc315fe0e87d6b55f5972ed1',
     ),
-    'league/glide' => 
-    array (
-      'pretty_version' => '1.7.1',
-      'version' => '1.7.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '257e0c3612ef3dc57eb7f90cb741198151a45a5f',
-    ),
     'league/mime-type-detection' => 
     array (
       'pretty_version' => '1.11.0',
@@ -702,12 +693,12 @@
     ),
     'league/oauth2-server' => 
     array (
-      'pretty_version' => '8.3.5',
-      'version' => '8.3.5.0',
+      'pretty_version' => '8.3.6',
+      'version' => '8.3.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => '7aeb7c42b463b1a6fe4d084d3145e2fa22436876',
+      'reference' => '28c5441716c10d0c936bd731860dc385d0f6d1a8',
     ),
     'league/oauth2server' => 
     array (
@@ -749,15 +740,6 @@
       array (
         0 => '*',
       ),
-    ),
-    'maennchen/zipstream-php' => 
-    array (
-      'pretty_version' => '2.2.1',
-      'version' => '2.2.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '211e9ba1530ea5260b45d90c9ea252f56ec52729',
     ),
     'mobiledetect/mobiledetectlib' => 
     array (
@@ -802,15 +784,6 @@
       ),
       'reference' => '14daed4296fae74d9e3201d2c4925d1acb7aa614',
     ),
-    'myclabs/php-enum' => 
-    array (
-      'pretty_version' => '1.8.4',
-      'version' => '1.8.4.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'a867478eae49c9f59ece437ae7f9506bfaa27483',
-    ),
     'nesbot/carbon' => 
     array (
       'pretty_version' => '2.63.0',
@@ -840,12 +813,12 @@
     ),
     'nikic/php-parser' => 
     array (
-      'pretty_version' => 'v4.15.1',
-      'version' => '4.15.1.0',
+      'pretty_version' => 'v4.15.2',
+      'version' => '4.15.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '0ef6c55a3f47f89d7a374e6f835197a0b5fcf900',
+      'reference' => 'f59bbe44bf7d96f24f3e2b4ddc21cd52c1d2adbc',
     ),
     'nunomaduro/collision' => 
     array (
@@ -1318,33 +1291,6 @@
       ),
       'reference' => '9e9add3428ce86aede874bcf9a59c78e272f8dc1',
     ),
-    'spatie/image' => 
-    array (
-      'pretty_version' => '1.10.6',
-      'version' => '1.10.6.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '897e819848096ea8eee8ed4a3531c6166f9a99e0',
-    ),
-    'spatie/image-optimizer' => 
-    array (
-      'pretty_version' => '1.6.2',
-      'version' => '1.6.2.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '6db75529cbf8fa84117046a9d513f277aead90a0',
-    ),
-    'spatie/laravel-medialibrary' => 
-    array (
-      'pretty_version' => '9.12.4',
-      'version' => '9.12.4.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '4763bd27ccaf08da80102019fc98c39431640c4f',
-    ),
     'spatie/laravel-permission' => 
     array (
       'pretty_version' => '5.5.16',
@@ -1353,15 +1299,6 @@
       array (
       ),
       'reference' => 'e57a67b51a02cbfcd074ed68786897db1dbbf2fa',
-    ),
-    'spatie/temporary-directory' => 
-    array (
-      'pretty_version' => '2.1.1',
-      'version' => '2.1.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'e2818d871783d520b319c2d38dc37c10ecdcde20',
     ),
     'stella-maris/clock' => 
     array (
