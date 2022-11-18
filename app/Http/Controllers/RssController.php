@@ -93,7 +93,11 @@ class RssController extends Controller
             $dirAudio="audio/rss/$date";
             $request->file('rssAudio')->storeAs($dirAudio,$audioName);
         }else{
-            $audioName=$news->rss_audio->audio;
+            if ($news->rss_audio==null){
+                $audioName=null;
+            }else{
+                $audioName=$news->rss_audio->audio;
+            }
         }
         $updateNews=$news->update([
             'title' => $request->title,
@@ -110,6 +114,7 @@ class RssController extends Controller
                 ]);
             }else{
                 $RssAudio=new RssAudio();
+                $dirAudio="audio/rss/$date";
                 $RssAudio->audio="$dirAudio/$audioName";
                 $news->rss_audio()->save($RssAudio);
             }

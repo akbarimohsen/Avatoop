@@ -91,6 +91,7 @@ class UserIndexController extends Controller
     {
 
         $data = Rss::with('rss_audio')->findOrFail($id);
+        $data->increment('views_count');
         $collection = collect($data);
         $filtered = $collection->except(['id']);
         $rss = RssComment::where('rss_id', $id)->where('status', 1)->get(['title', 'comment', 'created_at']);

@@ -64,10 +64,8 @@ class StoreRsses extends Command
                 $result['items'][] = $i;
             }
         }
-//        Log::info($result['items']);
 
         if (!empty($result['items'])) {
-            Log::info($result['items']);
             foreach ($result['items'] as $item) {
                 Rss::create([
                     'title' => $item['title'],
@@ -79,7 +77,6 @@ class StoreRsses extends Command
             unset($f);
             return 0;
         }else{
-            Log::info('items is null');
         }
     }
 
