@@ -35,7 +35,6 @@ class EditAd extends Component
     public function mount($id)
     {
         $this->ad = Ad::findOrFail($id);
-
         $this->link = $this->ad->link;
         $this->cost = $this->ad->cost;
     }
@@ -51,13 +50,15 @@ class EditAd extends Component
     public function submit()
     {
         $this->validate();
-        $ad = new Ad();
+        $ad = $this->ad;
 
         if($this->img != null){
             if(Storage::exists($ad->img)){
                 Storage::delete($ad->img);
             }
             $ad->img = $this->handleImageUpload();
+        }else{
+            $ad->img = $this->ad->img;
         }
 
         $ad->link = $this->link;
