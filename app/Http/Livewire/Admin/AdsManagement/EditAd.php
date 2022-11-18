@@ -57,12 +57,15 @@ class EditAd extends Component
             Storage::delete($ad->img);
         }
 
-        if($this->logo != null){
+        if($this->img != null){
             $ad->img = $this->handleImageUpload();
+        }else{
+            $ad->img = $this->ad->img;
         }
 
         $ad->link = $this->link;
         $ad->cost = $this->cost;
+        $
         $ad->save();
 
         return redirect()->route('admin.ads');
