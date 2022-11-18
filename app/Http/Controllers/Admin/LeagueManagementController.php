@@ -14,50 +14,34 @@ class LeagueManagementController extends Controller
 
     public function index()
     {
-        //
         $leagues = League::all();
 
         return view('admin.leagueManagement.index',compact('leagues'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
         return view('admin.leagueManagement.add');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
         $data = $request->validate([
             'title' => 'required|string',
             'teams_count' => 'required',
             'logo' => 'required|mimes:png,jpg,jpeg'
         ]);
 
+        $dir = 'images/leagues';
         $logo_name = time() . '.' . $request->logo->getClientOriginalName();
-
-        //resize Image
-        $dest_path = "leagues";
-
-        $request->file('logo')->storeAs($dest_path,$logo_name);
+        $request->file('logo')->storeAs($dir,$logo_name,'ftp');
 
 
         League::create([
             'title'=>$data['title'],
             'teams_count'=>$data['teams_count'],
-            'logo'=>"$dest_path/$logo_name"
+            'logo'=>"$dir/$logo_name"
         ]);
 
         session()->flash('message', 'لیگ با موفقیت ایجاد گردید');
@@ -65,23 +49,13 @@ class LeagueManagementController extends Controller
         return redirect()->route('leagues.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
@@ -89,13 +63,7 @@ class LeagueManagementController extends Controller
         return view('admin.leagueManagement.edit', compact('league'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
@@ -113,13 +81,13 @@ class LeagueManagementController extends Controller
             $logo_name = time() . '.' . $request->logo->getClientOriginalName();
 
             //resize Image
-            $dest_path = 'leagues';
+            $dir = 'images/leagues';
 
             if (Storage::exists($league->logo)){
                 Storage::delete($league->logo);
             }
-            $request->file('logo')->storeAs($dest_path,$logo_name);
-            $league->logo = "$dest_path/$logo_name";
+            $request->file('logo')->storeAs($dir,$logo_name,'ftp');
+            $league->logo = "$dir/$logo_name";
         }
 
         $league->title = $data['title'];
@@ -132,12 +100,7 @@ class LeagueManagementController extends Controller
         return redirect()->route('leagues.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //

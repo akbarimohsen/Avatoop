@@ -12,9 +12,6 @@
             <form role="form" wire:submit.prevent="submit" method="POST">
             <!-- general form elements -->
             <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">اطلاعات تبلیغ</h3>
-                </div>
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form role="form" wire:submit.prevent="submit" method="POST">
@@ -65,16 +62,8 @@
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">ارسال</button>
                     </div>
-            </form>
-          </div>
-          <!-- /.card -->
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">ارسال</button>
-                        </div>
-                    </div>
                 </form>
-            </div>
-            <!-- /.card -->
+        </div>
 
         </div>
         <!--/.col (left) -->

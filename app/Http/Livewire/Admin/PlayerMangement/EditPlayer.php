@@ -8,12 +8,13 @@ use Intervention\Image\Facades\Image;
 use App\Models\Team;
 use App\Models\Nationality;
 use App\Models\Position;
-
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class EditPlayer extends Component
 {
+    use WithFileUploads;
     public $player;
-
     public $full_name;
     public $birth_date;
     public $description;
@@ -38,18 +39,21 @@ class EditPlayer extends Component
     public function mount($id)
     {
         $this->player = Player::find($id);
-
         $this->full_name = $this->player->full_name;
         $this->birth_date = $this->player->birth_date;
         $this->description = $this->player->description;
         $this->team_id = $this->player->team_id;
         $this->nationality_id = $this->player->nationality_id;
         $this->position_id = $this->player->position_id;
-        $this->img = $this->player->img;
-
-
     }
 
+    public function handleImageUpload()
+    {
+        $dir = 'images/players';
+        $name = rand(100, 10000) . "_" . $this->img->getClientOriginalName();
+        $this->img->storeAs($dir, $name,'ftp');
+        return "$dir/$name";
+    }
 
     public function submit()
     {
@@ -59,14 +63,24 @@ class EditPlayer extends Component
             'description' => 'required|string',
             'team_id' => 'required',
             'nationality_id' => 'required',
-            'position_id' => 'required'
+            'position_id' => 'required',
+            'img' => 'nullable|mimes:png,jpg,jpeg'
         ]);
+
+        $player = $this->player;
+
+        if($this->img != null){
+            if(Storage::exists($player->img)){
+                Storage::delete($player->img);
+            }
+            $player->img = $this->handleImageUpload();
+        }else{
+            $player->img = $this->player->img;
+        }
 
         $data['team_id'] = intval($data['team_id']);
         $data['nationality_id'] = intval($data['nationality_id']);
         $data['position_id'] = intval($data['position_id']);
-
-        $player = Player::find($this->player->id);
 
         $player->full_name = $data['full_name'];
         $player->birth_date = $data['birth_date'];

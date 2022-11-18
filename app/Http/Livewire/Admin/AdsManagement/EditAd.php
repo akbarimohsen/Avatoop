@@ -7,9 +7,11 @@ use Livewire\Component;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Livewire\WithFileUploads;
 
 class EditAd extends Component
 {
+    use WithFileUploads;
     public $ad;
     public $link;
     public $cost;
@@ -33,7 +35,6 @@ class EditAd extends Component
     public function mount($id)
     {
         $this->ad = Ad::findOrFail($id);
-
         $this->link = $this->ad->link;
         $this->cost = $this->ad->cost;
     }
@@ -49,20 +50,20 @@ class EditAd extends Component
     public function submit()
     {
         $this->validate();
-        $ad = new Ad();
+        $ad = $this->ad;
 
-        $dir = "images/ads";
-
-        if(Storage::exists($ad->img)){
-            Storage::delete($ad->img);
-        }
-
-        if($this->logo != null){
+        if($this->img != null){
+            if(Storage::exists($ad->img)){
+                Storage::delete($ad->img);
+            }
             $ad->img = $this->handleImageUpload();
+        }else{
+            $ad->img = $this->ad->img;
         }
 
         $ad->link = $this->link;
         $ad->cost = $this->cost;
+        $ad->created_at = Carbon::now();
         $ad->save();
 
         return redirect()->route('admin.ads');
