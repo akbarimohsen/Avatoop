@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Arrange;
+use App\Models\Schematic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,6 +32,14 @@ class ArrangeController extends Controller
         ]);
         return response()->json([
             'MSG' => 'ترکیب شما با موفقیت ایجاد شد!'
+        ]);
+    }
+
+    public function showAll()
+    {
+        $schematic = Schematic::all();
+        return response()->json([
+           'schematic' => $schematic
         ]);
     }
 }

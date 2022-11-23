@@ -21,11 +21,14 @@ class TeamsController extends Controller
         $popular_team = Profile::with('team')->where('user_id', $user_id)->get(['slug', 'first_name', 'last_name', 'image', 'team_id']);
         $team_id = $popular_team[0]->team->id;
         $players = Player::with('positions')->where('team_id', $team_id)->get();
+        $arrange = Arrange::where('user_id', $user_id)->get('players');
+
 //        $players->put('position_id','kia');
 //        $test=$players->replace(['position_id'=>'kia']);
         return response()->json([
             'team_user' => $popular_team,
-            'players' => $players
+            'players' => $players,
+            'arrange' => $arrange
         ]);
 
         // $user = Auth::user();

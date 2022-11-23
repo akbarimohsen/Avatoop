@@ -104,3 +104,5 @@ Route::get('/team/showPlayersTeam', [TeamsController::class, 'showPlayersTeam'])
 Route::get('/arrange', [ArrangeController::class, 'index'])->middleware('auth:api');
 
 Route::post('/arrange/update', [ArrangeController::class, 'update'])->middleware('auth:api');
+
+Route::get('/schematic', [ArrangeController::class, 'showAll']);

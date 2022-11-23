@@ -152,3 +152,5 @@ Route::get('/admin/comments/{id}/show', [CommentController::class, 'show'])->nam
 Route::middleware(['auth', 'role:admin|reporter'])->group(function () {
     Route::resource('/reporter/news', ReporterNewsController::class)->parameters(['news' => 'id']);
 });
+
+
