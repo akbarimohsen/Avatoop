@@ -42,13 +42,7 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        $this->validate($request, [
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
-            'team_id' => 'required|integer|size:10',
-            'image' => 'required|image',
 
-        ]);
         $user = Auth::user();
         $data = Profile::where('user_id', $user->id)->get()->first();
 
@@ -56,13 +50,22 @@ class UserController extends Controller
         $data->user_id = $user->id;
         $data->slug = $data->slug;
         if ($request->first_name) {
+            $this->validate($request, [
+                'first_name' => 'required|string'
+            ]);
             $data->first_name = $request->first_name;
         }
         if ($request->last_name) {
+            $this->validate($request, [
+                'last_name' => 'required|string'
+            ]);
             $data->last_name = $request->last_name;
         }
 
         if ($request->team_id) {
+            $this->validate($request, [
+                'team_id' => 'required|integer|size:10'
+            ]);
             // $league = League::where('title', 'Like', "%iran%");
             try {
                 $team = Team::where('id', $request->team_id)->first();
