@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -70,6 +71,10 @@ class UserController extends Controller
             }
         }
         if ($request->image) {
+//            return $data->image;
+            if (Storage::exists(config('app.ftpRoute')."$data->image")){
+                Storage::delete("$data->image");
+            }
             if ($request->file('image')) {
                 $this->validate($request, [
                     'image' => 'required|image|max:1024',

@@ -8,6 +8,7 @@ use App\Models\Admin\Rss;
 use App\Models\Admin\RssComment;
 use App\Models\Comment;
 use App\Models\Suggest;
+use App\Models\User\like;
 use Illuminate\Http\Request;
 
 class UserIndexController extends Controller
@@ -50,10 +51,10 @@ class UserIndexController extends Controller
         $Finds = Rss::find($datas);
         $mappedcollection = $Finds->map(function ($Find, $key) {
             return [
+                'id'=>$Find->id,
                 'title' => $Find->title,
                 'description' => $Find->description,
                 'news_date' => $Find->news_date,
-                'img' => $Find->img
             ];
         });
         return response()->json([
@@ -62,7 +63,7 @@ class UserIndexController extends Controller
     }
     public function topview()
     {
-        $datas = Rss::orderBy('views_count','DESC')->limit(23)->get(['title','description','news_date']);
+        $datas = Rss::orderBy('views_count','DESC')->limit(23)->get(['id','title','description','news_date']);
         return response()->json([
             'data' => $datas
         ]);
@@ -90,14 +91,16 @@ class UserIndexController extends Controller
     public function newsShow($id)
     {
 
-        $data = Rss::with('rss_audio')->findOrFail($id);
+        $data = Rss::with('rss_audio','categories','tags','teams')->findOrFail($id);
         $data->increment('views_count');
         $collection = collect($data);
         $filtered = $collection->except(['id']);
         $rss = RssComment::where('rss_id', $id)->where('status', 1)->get(['title', 'comment', 'created_at']);
+        $countLikes=like::where('rss_id', $id)->count();
          return response()->json([
              'rss' => $filtered,
              'comment' => $rss,
+             'countLikes' => $countLikes
          ]);
 
     }

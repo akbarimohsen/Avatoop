@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'ef7797007a9ade729a145acb8a37e47bc9e82c0b',
+    'reference' => 'b580c775cb7b197a9016e6a148feb288e7b948f6',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -581,7 +581,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'ef7797007a9ade729a145acb8a37e47bc9e82c0b',
+      'reference' => 'b580c775cb7b197a9016e6a148feb288e7b948f6',
     ),
     'laravel/passport' => 
     array (
@@ -639,12 +639,12 @@
     ),
     'lcobucci/jwt' => 
     array (
-      'pretty_version' => '4.2.1',
-      'version' => '4.2.1.0',
+      'pretty_version' => '4.0.4',
+      'version' => '4.0.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => '72ac6d807ee51a70ad376ee03a2387e8646e10f3',
+      'reference' => '55564265fddf810504110bd68ca311932324b0e9',
     ),
     'league/commonmark' => 
     array (
@@ -795,12 +795,12 @@
     ),
     'nette/schema' => 
     array (
-      'pretty_version' => 'v1.2.2',
-      'version' => '1.2.2.0',
+      'pretty_version' => 'v1.2.3',
+      'version' => '1.2.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => '9a39cef03a5b34c7de64f551538cbba05c2be5df',
+      'reference' => 'abbdbb70e0245d5f3bf77874cea1dfb0c930d06f',
     ),
     'nette/utils' => 
     array (
@@ -912,12 +912,12 @@
     ),
     'phpunit/php-code-coverage' => 
     array (
-      'pretty_version' => '9.2.18',
-      'version' => '9.2.18.0',
+      'pretty_version' => '9.2.19',
+      'version' => '9.2.19.0',
       'aliases' => 
       array (
       ),
-      'reference' => '12fddc491826940cf9b7e88ad9664cf51f0f6d0a',
+      'reference' => 'c77b56b63e3d2031bd8997fcec43c1925ae46559',
     ),
     'phpunit/php-file-iterator' => 
     array (
@@ -1293,12 +1293,12 @@
     ),
     'spatie/laravel-permission' => 
     array (
-      'pretty_version' => '5.5.16',
-      'version' => '5.5.16.0',
+      'pretty_version' => '5.6.0',
+      'version' => '5.6.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'e57a67b51a02cbfcd074ed68786897db1dbbf2fa',
+      'reference' => '76dd1533294e6a48877f17fdc2b499cff16d4661',
     ),
     'stella-maris/clock' => 
     array (
