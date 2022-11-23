@@ -44,6 +44,8 @@ class TeamsController extends Controller
     public function addPopularTeam($id)
     {
         $user = Auth::user();
+        $exists=Arrange::where('user_id',$user->id)->exists();
+        if (!$exists){
         $test = DB::table('popular_teams')->where('user_id', $user->id)->where('team_id', $id)->exists();
 
         if ($test !== true) {
@@ -60,7 +62,12 @@ class TeamsController extends Controller
                 'MSG' => 'تیم با موفقیت افزوده شد',
             ]);
         } else
-            return response()->json(['قبلا ثبت شده است'], 400);
+            return response()->json('قبلا ثبت شده است', 400);
+        }else{
+            return response()->json('قبلا ثبت شده است', 400);
+
+        }
+
     }
 
     public function deletePopularTeam($id)

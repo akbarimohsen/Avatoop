@@ -64,41 +64,41 @@ class UserController extends Controller
 
         if ($request->team_id) {
             // $league = League::where('title', 'Like', "%iran%");
-            try{
-            $team = Team::where('id', $request->team_id)->first();
+            try {
+                $team = Team::where('id', $request->team_id)->first();
 
-            $league = League::where('id', $team->league_id)->where('title', 'Like', "%iran%")->get();
-            $data->team_id = $request->team_id;
-            }
-            catch(Exception $e)
-            {
+                $league = League::where('id', $team->league_id)->where('title', 'Like', "%iran%")->get();
+                $data->team_id = $request->team_id;
+            } catch (Exception $e) {
                 return response()->json([
-                    'MSG' => 'تیم مورد نظر متعلق به ایران نمیباشد'
+                    'MSG' => 'تیم مورد نظر متعلق به ایران نمیباشد',
                 ], 400);
             }
         }
         if ($request->image) {
 //            return $data->image;
-            if (Storage::exists(config('app.ftpRoute')."$data->image")){
+            if (Storage::exists(config('app.ftpRoute') . "$data->image")) {
                 Storage::delete("$data->image");
             }
             if ($request->file('image')) {
                 $this->validate($request, [
                     'image' => 'required|image|max:1024',
                 ]);
-                $year=now()->year;
-                $month=now()->month;
-                $date=$year.'/'.$month;
-                $dir="profiles/$date";
+                $year = now()->year;
+                $month = now()->month;
+                $date = $year . '/' . $month;
+                $dir = "profiles/$date";
                 $file = $request->file('image');
                 $filename = date('YmdHi') . $file->getClientOriginalName();
-                $request->file('image')->storeAs($dir,$filename);
-                $data['image'] = $dir.'/'.$filename;
+                $request->file('image')->storeAs($dir, $filename);
+                $data['image'] = $dir . '/' . $filename;
             }
         }
         $data->save();
         return response()->json([
-            'status' => 200
+            'status' => 200,
+            'team' => $data->team_id
+
         ]);
     }
 
@@ -121,6 +121,7 @@ class UserController extends Controller
             $profile
         );
     }
+
     public function adminEmails()
     {
         $user = Auth::user();
