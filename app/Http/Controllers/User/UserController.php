@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -41,6 +42,7 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
+
         $user = Auth::user();
         $data = Profile::where('user_id', $user->id)->get()->first();
 
@@ -48,45 +50,58 @@ class UserController extends Controller
         $data->user_id = $user->id;
         $data->slug = $data->slug;
         if ($request->first_name) {
+            $this->validate($request, [
+                'first_name' => 'required|string'
+            ]);
             $data->first_name = $request->first_name;
         }
         if ($request->last_name) {
+            $this->validate($request, [
+                'last_name' => 'required|string'
+            ]);
             $data->last_name = $request->last_name;
         }
 
         if ($request->team_id) {
+            $this->validate($request, [
+                'team_id' => 'required|integer|size:10'
+            ]);
             // $league = League::where('title', 'Like', "%iran%");
-            try{
-            $team = Team::where('id', $request->team_id)->first();
+            try {
+                $team = Team::where('id', $request->team_id)->first();
 
-            $league = League::where('id', $team->league_id)->where('title', 'Like', "%iran%")->get();
-            $data->team_id = $request->team_id;
-            }
-            catch(Exception $e)
-            {
+                $league = League::where('id', $team->league_id)->where('title', 'Like', "%iran%")->get();
+                $data->team_id = $request->team_id;
+            } catch (Exception $e) {
                 return response()->json([
-                    'MSG' => 'تیم مورد نظر متعلق به ایران نمیباشد'
+                    'MSG' => 'تیم مورد نظر متعلق به ایران نمیباشد',
                 ], 400);
             }
         }
         if ($request->image) {
+//            return $data->image;
+            if (Storage::exists(config('app.ftpRoute') . "$data->image")) {
+                Storage::delete("$data->image");
+            }
             if ($request->file('image')) {
                 $this->validate($request, [
                     'image' => 'required|image|max:1024',
                 ]);
-                $year=now()->year;
-                $month=now()->month;
-                $date=$year.'/'.$month;
-                $dir="profiles/$date";
+                $year = now()->year;
+                $month = now()->month;
+                $date = $year . '/' . $month;
+                $dir = "profiles/$date";
                 $file = $request->file('image');
                 $filename = date('YmdHi') . $file->getClientOriginalName();
-                $request->file('image')->storeAs($dir,$filename);
-                $data['image'] = $dir.'/'.$filename;
+                $request->file('image')->storeAs($dir, $filename);
+                $data['image'] = $dir . '/' . $filename;
             }
         }
         $data->save();
         return response()->json([
-            'status' => 200
+            'status' => 200,
+            'team' => $data->team_id
+
         ]);
     }
 
@@ -109,6 +124,7 @@ class UserController extends Controller
             $profile
         );
     }
+
     public function adminEmails()
     {
         $user = Auth::user();

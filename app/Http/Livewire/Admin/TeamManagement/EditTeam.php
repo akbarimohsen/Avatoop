@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\TeamManagement;
 
 use App\Models\League;
 use App\Models\Team;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Intervention\Image\Facades\Image;
@@ -52,7 +53,11 @@ class EditTeam extends Component
     {
         $this->validate();
         $this->team->title = $this->title;
+
         if($this->logo != null ){
+            if(Storage::exists($this->team->logo)){
+                Storage::delete($this->team->logo);
+            }
             $this->team->logo = $this->handleAvatarUpload();
         }
         $this->team->league_id = $this->league_id;

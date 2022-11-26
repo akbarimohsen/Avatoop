@@ -76,8 +76,8 @@ Route::get('/user/adminEmails', [App\Http\Controllers\User\UserController::class
 
 // teams routes
 Route::get('/user/popularTeams', [TeamsController::class, 'showPopularTeams'])->middleware('auth:api');
-Route::get('/user/popularTeams/{id}/add', [TeamsController::class, 'addPopularTeam'])->middleware('auth:api');
-Route::get('/user/popularTeams/{id}/delete', [TeamsController::class, 'deletePopularTeam'])->middleware('auth:api');
+Route::post('/user/popularTeams/{id}/add', [TeamsController::class, 'addPopularTeam'])->middleware('auth:api');
+Route::post('/user/popularTeams/{id}/delete', [TeamsController::class, 'deletePopularTeam'])->middleware('auth:api');
 
 
 // audio news routes
@@ -104,3 +104,5 @@ Route::get('/team/showPlayersTeam', [TeamsController::class, 'showPlayersTeam'])
 Route::get('/arrange', [ArrangeController::class, 'index'])->middleware('auth:api');
 
 Route::post('/arrange/update', [ArrangeController::class, 'update'])->middleware('auth:api');
+
+Route::get('/schematic', [ArrangeController::class, 'showAll']);
