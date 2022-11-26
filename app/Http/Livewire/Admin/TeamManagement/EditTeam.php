@@ -21,7 +21,7 @@ class EditTeam extends Component
 
 
     protected $rules = [
-        'title' => 'required|string',
+        'title' => 'required|string|unique:teams',
         'league_id' => 'required',
         'description' => 'required|string',
         'logo' => 'nullable|image|mimes:png,jpg,jpeg'

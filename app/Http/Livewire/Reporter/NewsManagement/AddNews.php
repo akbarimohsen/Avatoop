@@ -20,7 +20,7 @@ class AddNews extends Component
 
 
     protected $rules = [
-        'title'=>'required',
+        'title'=>'required|unique:news',
         'header'=>'required',
         'description'=>'required',
         'NewsDate'=>'required',
