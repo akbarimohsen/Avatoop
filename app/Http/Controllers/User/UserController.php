@@ -75,6 +75,7 @@ class UserController extends Controller
             } catch (Exception $e) {
                 return response()->json([
                     'MSG' => 'تیم مورد نظر متعلق به ایران نمیباشد',
+
                 ], 400);
             }
         }

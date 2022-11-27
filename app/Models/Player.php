@@ -11,7 +11,7 @@ class Player extends Model
 
     protected $table = 'players';
 
-    protected $fillable = ['full_name', 'birth_date', 'goals_count', 'assists_count', 'nationality_id', 'description', 'position_id', 'img', 'likes_count', 'team_id'];
+    protected $guarded = ['id'];
 
     public function team(){
         return $this->belongsTo(Team::class);

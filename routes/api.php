@@ -44,7 +44,7 @@ Route::post('/andriod/token', [AuthController::class, 'andriod']);
 
 //Route::get('/main', [AdminController::class, 'main'])->middleware('auth:api');
 //slider
-//Route::get('/indexslider', [UserController::class, 'indexSlider']);
+Route::get('/indexslider', [UserIndexController::class, 'indexSlider']);
 Route::get('/indexadds', [UserIndexController::class, 'indexadds'])->name('indexadds');
 Route::get('/indexnews', [UserIndexController::class, 'indexnews'])->name('indexnews');
 Route::get('/topview', [UserIndexController::class, 'topview'])->name('topview');
@@ -99,7 +99,7 @@ Route::get('/rss/likeTest/{id}', [RssLikeController::class, 'rssliketest'])->mid
 
 
 
-Route::get('/team/showPlayersTeam', [TeamsController::class, 'showPlayersTeam'])->middleware('auth:api');
+Route::get('/team/showPlayersTeam', [TeamsController::class, 'showPopularTeams'])->middleware('auth:api');
 
 Route::get('/arrange', [ArrangeController::class, 'index'])->middleware('auth:api');
 
