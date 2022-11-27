@@ -28,7 +28,7 @@ class LeagueManagementController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title' => 'required|string',
+            'title' => 'required|string|unique:leagues',
             'teams_count' => 'required',
             'logo' => 'required|mimes:png,jpg,jpeg'
         ]);

@@ -58,7 +58,7 @@ class EditPlayer extends Component
     public function submit()
     {
         $data = $this->validate([
-            'full_name' => 'required|string',
+            'full_name' => 'required|string|unique:players',
             'birth_date' => 'required|date',
             'description' => 'required|string',
             'team_id' => 'required',

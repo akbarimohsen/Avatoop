@@ -5,9 +5,12 @@ namespace App\Http\Livewire\Admin\TeamManagement;
 use App\Models\Team;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class TeamsTable extends Component
 {
+
+    use WithPagination;
 
     // search team properties
     public $title;
@@ -54,13 +57,13 @@ class TeamsTable extends Component
     public function render()
     {
         if($this->title == null){
-            $teams = Team::all();
+            $teams = Team::paginate(10);
         }else{
-            $teams = Team::where('title', 'like', "%$this->title%")->get();
+            $teams = Team::where('title', 'like', "%$this->title%")->paginate(10);
         }
 
         if( $this->sorting_type == "like" ){
-            $teams = Team::orderBy('likes_count','desc')->get();
+            $teams = Team::orderBy('likes_count','desc')->paginate(10);
         }
 
         return view('livewire.admin.team-management.teams-table',[
