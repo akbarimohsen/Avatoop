@@ -4,9 +4,11 @@ namespace App\Http\Livewire\Admin\PositionsManagement;
 
 use App\Models\Position;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class PositionsTable extends Component
 {
+    use WithPagination;
 
     public $name;
 
@@ -36,7 +38,7 @@ class PositionsTable extends Component
 
     public function render()
     {
-        $positions = Position::all();
+        $positions = Position::paginate(10);
         return view('livewire.admin.positions-management.positions-table',[
             'positions' => $positions
         ]);

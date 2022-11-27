@@ -76,6 +76,11 @@
                         @endforeach
                     @endif
                 </table>
+                @if($players->count() != 0)
+                    <div class="d-flex justify-content-center">
+                        {{ $players->links('pagination::bootstrap-4') }}
+                    </div>
+                @endif
                 @if( $players->count() == 0 )
                     <div class="alert alert-secondary mt-3 text-center w-100" role="alert">
                         هیچ موردی یافت نشد.

@@ -86,6 +86,11 @@
                     @endforeach
                 @endif
               </table>
+              @if($teams->count() != 0)
+                <div class="d-flex justify-content-center">
+                    {{ $teams->links('pagination::bootstrap-4') }}
+                </div>
+              @endif
               @if($teams->count() == 0)
                 <div class="alert alert-secondary mt-3 text-center fw-bold" role="alert">
                     هیچ موردی یافت نشد.
