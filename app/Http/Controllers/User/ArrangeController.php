@@ -21,13 +21,13 @@ class ArrangeController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'schmatic_id',
-            'players'
+            "schematic_id"=>"required|integer",
+            'players'=>"required|string"
         ]);
         $user = Auth::user();
 
         $arrange = Arrange::where('user_id', $user->id)->update([
-             'schematic_id' => $request->schematic,
+             'schematic_id' => $request->schematic_id,
              'players' => $request->players,
         ]);
         return response()->json([

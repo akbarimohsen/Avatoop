@@ -67,6 +67,7 @@ class AddPlayer extends Component
         $player->img = $this->handleImageUpload();
 
         $player->save();
+        $player->positions()->attach($this->position_id);
 
         return redirect()->route('admin.players');
     }
