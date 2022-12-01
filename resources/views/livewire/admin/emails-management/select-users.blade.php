@@ -11,7 +11,6 @@
                     <thead>
                         <tr>
                             <th><input type="checkbox" wire:model="SelectAll" id="selectAll"></th>
-                            <th>نام و نام خانوادگی</th>
                             <th>نام کاربری</th>
                             <th>ایمیل</th>
                         </tr>
@@ -21,8 +20,7 @@
                         @foreach ($users as $user )
                             <tr>
                                 <td><input type="checkbox" value="{{ $user->id }}" wire:model="selectedUsers" name="selectedUsers[]" id={{ "selectUsers" . $user->id }}></td>
-                                <td>{{ $user->first_name }} {{ $user->last_name }}</td>
-                                <td>{{ $user->user_name }}</td>
+                                <td>{{ $user->username }}</td>
                                 <td>{{ $user->email }}</td>
                             </tr>
                         @endforeach

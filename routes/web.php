@@ -26,7 +26,7 @@ use App\Http\Controllers\Reporter\NewsController as ReporterNewsController;
 use App\Http\Controllers\Admin\EmailsController;
 use App\Http\Controllers\UserIndexController;
 use App\Http\Controllers\Admin\NationalityController as AdminNationalityController;
-
+use App\Http\Controllers\RssCommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -131,6 +131,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin/emails/writeEmail', [EmailsController::class, 'writeEmail'])->name('admin.emails.writeEmail');
     Route::post('/admin/emails/sendEmail', [EmailsController::class, 'sendEmail'])->name('admin.emails.sendEmail');
     Route::get('/admin/email/showEmail/{id}', [EmailsController::class, 'showEmail'])->name('admin.emails.showEmail');
+    Route::get('/admin/email/deleteEmail/{id}', [EmailsController::class, 'deleteEmail'])->name('admin.emails.deleteEmail');
 
     // all rss methods
     Route::resource('admin/rss', \App\Http\Controllers\RssController::class)->parameters(['rss' => 'id']);
@@ -142,6 +143,9 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     // comments controller
     Route::get('/admin/comments/{category?}', [CommentController::class, 'index'])->name('admin.comments');
     Route::get('/admin/comments/{id}/show', [CommentController::class, 'show'])->name('admin.comments.show');
+
+    Route::get('/admin/rssComments/{category?}',[RssCommentController::class, 'index'])->name('admin.rsscomments');
+    Route::get('/admin/rssComments/{id}/show', [RssCommentController::class, 'show'])->name('admin.rsscomments.show');
     Route::resource('/admin/schematic', \App\Http\Controllers\Admin\SchematicController::class)->parameters(['schematic' => 'id']);
 
 });

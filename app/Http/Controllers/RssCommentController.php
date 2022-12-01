@@ -8,79 +8,24 @@ use Illuminate\Http\Request;
 
 class RssCommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index($category = null)
     {
-        //
+        if($category == null ){
+            $comments = RssComment::where('status', 0)->orderBy('created_at', 'desc')->get();
+        }else if($category == "accepted"){
+            $comments = RssComment::where('status', 1)->orderBy('created_at', 'desc')->get();
+        }else if($category == "rejected"){
+            $comments = RssComment::where('status', -1)->orderBy('created_at', 'desc')->get();
+        }else if($category == "deleted"){
+            $comments = RssComment::where('status', -2)->orderBy('created_at', 'desc')->get();
+        }
+
+        return view('admin.rssCommentsManagement.index', compact('comments', 'category'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function show($id){
+        $comment = RssComment::findOrFail($id);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Admin\RssComment  $rssComment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(RssComment $rssComment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Admin\RssComment  $rssComment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(RssComment $rssComment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Admin\RssComment  $rssComment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, RssComment $rssComment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Admin\RssComment  $rssComment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(RssComment $rssComment)
-    {
-        //
+        return view('admin.rssCommentsManagement.show', ['comment' => $comment]);
     }
 }

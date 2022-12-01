@@ -17,8 +17,7 @@ class EmailsController extends Controller
 
     public function showEmails()
     {
-        $emails = User::where('type', 1 )->get();
-
+        $emails = Email::where('type', 1)->get();
 
         return view('admin.emailsManagement.showEmails', compact('emails'));
     }
@@ -81,4 +80,14 @@ class EmailsController extends Controller
 
     }
 
+    public function deleteEmail($id)
+    {
+        $email = Email::findOrFail($id);
+        $email->delete();
+
+        $emails = User::role('user')->get();
+
+        session()->flash('delete_email_message', 'ایمیل موردنظر با موفقیت حذف گردید.');
+        return redirect()->route('admin.emails.showEmails');
+    }
 }

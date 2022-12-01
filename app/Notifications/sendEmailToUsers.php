@@ -42,9 +42,9 @@ class sendEmailToUsers extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->greeting('سلام!')
+                    ->line($this->email->title)
+                    ->line($this->email->text);
     }
 
     public function toDatabase($notifiable){

@@ -57,8 +57,6 @@
                             </th>
                           </tr>
                     </thead>
-
-                    <tbody>
                         <tbody>
                             @foreach ($emails as $email )
                                 <tr>
@@ -67,16 +65,17 @@
                                    <td>{{ Hekmatinasser\Verta\Facades\Verta::instance($email->created_at)->format('Y-n-j H:i')}}</td>
                                    <td>
                                        <a href="{{ route('admin.emails.showEmail', ['id' => $email->id]) }}" class="btn btn-primary btn-sm">مشاهده</a>
+                                       <a href="{{ route('admin.emails.deleteEmail', ['id' => $email->id]) }}" class="btn btn-danger btn-sm">حذف</a>
                                    </td>
                                 </tr>
                             @endforeach
-                    </tbody>
+                        </tbody>
                   </table>
-                  {{-- @if( $rules->count() == 0 )
+                  @if( $emails->count() == 0 )
                     <div class="alert alert-secondary mt-3 text-center" role="alert">
                         هیچ موردی یافت نشد.
                     </div>
-                  @endif --}}
+                  @endif
                 </div>
                 <!-- /.card-body -->
               </div>
