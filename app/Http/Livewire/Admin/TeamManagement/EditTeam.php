@@ -22,10 +22,10 @@ class EditTeam extends Component
 
 
     protected $rules = [
-        'title' => 'required|string|unique:teams',
+        'title' => 'required|string',
         'league_id' => 'required',
         'description' => 'required|string',
-        'logo' => 'nullable|image|mimes:png,jpg,jpeg'
+        'logo' => 'required|image|mimes:png,jpg,jpeg'
     ];
 
 
