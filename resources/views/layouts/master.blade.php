@@ -35,6 +35,20 @@
     {{-- <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/adminlte.min.css')}}"> --}}
     <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@latest/dist/css/persian-datepicker.min.css">
 
+    <style>
+        .ms-lg-250 {
+            margin-right: 0;
+        }
+        @media (min-width: 992px) {
+            .ms-lg-250 {
+                margin-right: 250px;
+            }
+        }
+        .d-none-after:after {
+            display: none;
+        }
+    </style>
+
     @livewireStyles()
 
 </head>
@@ -58,7 +72,7 @@
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="#" class="nav-link">تماس</a>
             </li>
-
+{{----}}
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                   <i class="fa fa-bell-o"></i>
@@ -72,13 +86,13 @@
                     <span class="float-left text-muted text-sm"></span>
                   </a>
                   <div class="dropdown-divider"></div>
-
+{{----}}
                 </div>
             </li>
-
+{{----}}
         </ul>
-
-        {{-- <!-- SEARCH FORM -->
+{{----}}
+         <!-- SEARCH FORM -->
         <form class="form-inline ml-3">
             <div class="input-group input-group-sm">
                 <input class="form-control form-control-navbar" type="search" placeholder="جستجو" aria-label="Search">
@@ -88,8 +102,8 @@
                     </button>
                 </div>
             </div>
-        </form> --}}
-
+        </form>
+{{----}}
         <!-- Right navbar links -->
         <ul class="navbar-nav mr-auto">
             <!-- Messages Dropdown Menu -->
@@ -148,9 +162,9 @@
                     </a>
                 </div>
             </li>
-
+{{----}}
             <!-- Notifications Dropdown Menu -->
-            {{-- <li class="nav-item dropdown">
+             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fa fa-bell-o"></i>
                     <span class="badge badge-warning navbar-badge">15</span>
@@ -175,21 +189,21 @@
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item dropdown-footer">مشاهده همه نوتیفیکیشن</a>
                 </div>
-            </li> --}}
-            {{-- <li class="nav-item">
+            </li>
+             <li class="nav-item">
                 <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
                         class="fa fa-th-large"></i></a>
-            </li> --}}
+            </li>
         </ul>
-
+{{----}}
     </nav>
-    <!-- /.navbar -->
-
-    <!-- Main Sidebar Container -->
+{{--    <!-- /.navbar -->--}}
+{{----}}
+{{--    <!-- Main Sidebar Container -->--}}
     <aside class="main-sidebar sidebar-white-primary elevation-4">
-
+{{----}}
         <!-- Sidebar -->
-        <div class="sidebar" style="direction: ltr">
+        <div class="sidebar" style="direction: ltr; height: 100vh; background-color: #ffffff">
             <div style="direction: rtl">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -203,18 +217,17 @@
                         </a>
                     </div>
                 </div>
-
+{{----}}
                 <!-- Sidebar Menu -->
                 @role('admin')
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                             data-accordion="false">
-
-                            {{-- USER MANAGEMENT  --}}
-                            <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link">
-                                    {{-- <img src="{{ asset('assets/admin/icons/ball.png') }}" width="20px" height="20px"/> --}}
-                                    <i class="fa fa-user"></i>
+{{----}}
+{{--                             USER MANAGEMENT--}}
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link d-flex align-items-center">
+                                    <i class="fa fa-user text-center" style="width: 30px;"></i>
                                     <p>
                                         مدیریت کاربران
                                         <i class="right fa fa-angle-left"></i>
@@ -235,11 +248,11 @@
                                     </li>
                                 </ul>
                             </li>
-
-                            {{-- News Management --}}
+{{----}}
+{{--                             News Management--}}
                             <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-newspaper-o" ></i>
+                                <a href="#" class="nav-link d-flex align-items-center">
+                                    <i class="fa fa-newspaper-o text-center" style="width: 30px;" ></i>
                                     <p>
                                         مدیریت اخبار Rss
                                         <i class="right fa fa-angle-left"></i>
@@ -254,12 +267,12 @@
                                     </li>
                                 </ul>
                             </li>
-
-
-                            {{-- Role and Permission Management --}}
+{{----}}
+{{----}}
+{{--                             Role and Permission Management--}}
                             <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-shield"></i>
+                                <a href="#" class="nav-link d-flex align-items-center">
+                                    <i class="fa fa-shield text-center" style="width: 30px;"></i>
                                     <p>
                                         مدیریت نقش ها
                                         <i class="right fa fa-angle-left"></i>
@@ -280,11 +293,11 @@
                                     </li>
                                 </ul>
                             </li>
-
-                            {{-- Tags Management --}}
+{{----}}
+{{--                             Tags Management--}}
                             <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-tag"></i>
+                                <a href="#" class="nav-link d-flex align-items-center">
+                                    <i class="fa fa-tag text-center" style="width: 30px;"></i>
                                     <p>
                                         مدیریت برچسب ها
                                         <i class="right fa fa-angle-left"></i>
@@ -299,12 +312,12 @@
                                     </li>
                                 </ul>
                             </li>
-
-
-                            {{-- Team and Player Managemrnt --}}
+{{----}}
+{{----}}
+{{--                             Team and Player Managemrnt--}}
                             <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-futbol-o"></i>
+                                <a href="#" class="nav-link d-flex align-items-center">
+                                    <i class="fa fa-futbol-o text-center" style="width: 30px;"></i>
                                     <p>
                                         مدیریت تیم و بازیکن
                                         <i class="right fa fa-angle-left"></i>
@@ -329,7 +342,7 @@
                                             <p>لیست پست های بازی</p>
                                         </a>
                                     </li>
-
+{{----}}
                                     <li class="nav-item">
                                         <a href="{{ route('leagues.index') }}" class="nav-link">
                                             <i class="fa fa-circle-o nav-icon"></i>
@@ -344,66 +357,68 @@
                                     </li>
                                 </ul>
                             </li>
-
-                            {{-- Ads Management --}}
-
+{{----}}
+{{--                             Ads Management--}}
+{{----}}
                             <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link">
-                                    <img src="{{ asset('assets/admin/icons/ads.png') }}" alt="">
+                                <a href="#" class="nav-link d-flex align-items-center">
+                                    <div style="width: 30px">
+                                        <img src="{{ asset('assets/admin/icons/ads.png') }}" class="text-center" alt="">
+                                    </div>
                                     <p>
                                         مدیریت تبلیغات
                                         <i class="right fa fa-angle-left"></i>
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
-
+{{----}}
                                     <li class="nav-item">
                                         <a href="{{ route('admin.ads') }}" class="nav-link">
                                             <i class="fa fa-circle-o nav-icon"></i>
                                             <p>لیست تبلیغات</p>
                                         </a>
                                     </li>
-
+{{----}}
                                     <li class="nav-item">
                                         <a href="{{ route('admin.ads.add') }}" class="nav-link">
                                             <i class="fa fa-circle-o nav-icon"></i>
                                             <p>ایجاد تبلیغ</p>
                                         </a>
                                     </li>
-
+{{----}}
                                 </ul>
                             </li>
                             <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-exchange" aria-hidden="true"></i>
+                                <a href="#" class="nav-link d-flex align-items-center">
+                                    <i class="fa fa-exchange text-center" style="width: 30px;" aria-hidden="true"></i>
                                     <p>
                                         مدیریت شماتیک
                                         <i class="right fa fa-angle-left"></i>
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
-
+{{----}}
                                     <li class="nav-item">
                                         <a href="{{ route('schematic.index') }}" class="nav-link">
                                             <i class="fa fa-list" aria-hidden="true"></i>
                                             <p>لیست شماتیک ها</p>
                                         </a>
                                     </li>
-
+{{----}}
                                     <li class="nav-item">
                                         <a href="{{ route('schematic.create') }}" class="nav-link">
                                             <i class="fa fa-sitemap" aria-hidden="true"></i>
                                             <p>ایجاد شماتیک</p>
                                         </a>
                                     </li>
-
+{{----}}
                                 </ul>
                             </li>
-
-                            {{-- Suggest Mangement --}}
+{{----}}
+{{--                             Suggest Mangement--}}
                             <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-bullhorn" ></i>
+                                <a href="#" class="nav-link d-flex align-items-center">
+                                    <i class="fa fa-bullhorn text-center" style="width: 30px;" ></i>
                                     <p>
                                         مدیریت پیشنهادات
                                         <i class="right fa fa-angle-left"></i>
@@ -418,11 +433,11 @@
                                     </li>
                                 </ul>
                             </li>
-
-                            {{-- Rules Management --}}
+{{----}}
+{{--                             Rules Management--}}
                             <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-handshake-o" ></i>
+                                <a href="#" class="nav-link d-flex align-items-center">
+                                    <i class="fa fa-handshake-o text-center" style="width: 30px;" ></i>
                                     <p>
                                         مدیریت قوانین
                                         <i class="right fa fa-angle-left"></i>
@@ -437,11 +452,11 @@
                                     </li>
                                 </ul>
                             </li>
-
-                            {{-- emails management --}}
+{{----}}
+{{--                             emails management--}}
                             <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-envelope" ></i>
+                                <a href="#" class="nav-link d-flex align-items-center">
+                                    <i class="fa fa-envelope text-center" style="width: 30px;" ></i>
                                     <p>
                                         مدیریت ایمیل ها
                                         <i class="right fa fa-angle-left"></i>
@@ -462,12 +477,12 @@
                                     </li>
                                 </ul>
                             </li>
-
-
-                            {{-- News Management --}}
+{{----}}
+{{----}}
+{{--                             News Management--}}
                             <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-newspaper-o" ></i>
+                                <a href="#" class="nav-link d-flex align-items-center">
+                                    <i class="fa fa-newspaper-o text-center" style="width: 30px;" ></i>
                                     <p>
                                         مدیریت اخبار
                                         <i class="right fa fa-angle-left"></i>
@@ -482,11 +497,11 @@
                                     </li>
                                 </ul>
                             </li>
-
-                            {{-- Category management --}}
+{{----}}
+{{--                             Category management--}}
                             <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-th-list" ></i>
+                                <a href="#" class="nav-link d-flex align-items-center">
+                                    <i class="fa fa-th-list text-center" style="width: 30px;" ></i>
                                     <p>
                                         مدیریت دسته بندی ها
                                         <i class="right fa fa-angle-left"></i>
@@ -501,11 +516,11 @@
                                     </li>
                                 </ul>
                             </li>
-
-                            {{-- Reporter Management --}}
+{{----}}
+{{--                             Reporter Management--}}
                             <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-users" ></i>
+                                <a href="#" class="nav-link d-flex align-items-center">
+                                    <i class="fa fa-users text-center" style="width: 30px;" ></i>
                                     <p>
                                         مدیریت خبرنگاران
                                         <i class="right fa fa-angle-left"></i>
@@ -530,11 +545,11 @@
                                     </li>
                                 </ul>
                             </li>
-
-                            {{-- Comments Mangement --}}
+{{----}}
+{{--                             Comments Mangement--}}
                             <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-comments" ></i>
+                                <a href="#" class="nav-link d-flex align-items-center">
+                                    <i class="fa fa-comments text-center" style="width: 30px;" ></i>
                                     <p>
                                         مدیریت نظرات
                                         <i class="right fa fa-angle-left"></i>
@@ -549,18 +564,18 @@
                                             </p>
                                         </a>
                                     </li>
-
+{{----}}
                                 </ul>
                             </li>
                         </ul>
                     </nav>
                 @endrole
-
+{{----}}
                 @role('user')
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                             data-accordion="false">
-                            {{-- USER MANAGEMENT  --}}
+{{--                             USER MANAGEMENT--}}
                             <li class="nav-item ">
                                 <a href="{{ route('user.profile') }}" class="nav-link">
                                     <i class="fa fa-user"></i>
@@ -569,8 +584,8 @@
                                     </p>
                                 </a>
                             </li>
-
-                            {{-- Popular team --}}
+{{----}}
+{{--                             Popular team--}}
                             <li class="nav-item ">
                                 <a href="{{ route('user.popularTeams') }}" class="nav-link">
                                     <i class="fa fa-heart"></i>
@@ -579,8 +594,8 @@
                                     </p>
                                 </a>
                             </li>
-
-                            {{-- Audio news --}}
+{{----}}
+{{--                             Audio news --}}
                             <li class="nav-item ">
                                 <a href="{{ route('user.audioNews') }}" class="nav-link">
                                     <i class="fa fa-bullhorn"></i>
@@ -589,8 +604,8 @@
                                     </p>
                                 </a>
                             </li>
-
-                            {{-- my favorite teams news --}}
+{{----}}
+{{--                             my favorite teams news --}}
                             <li class="nav-item ">
                                 <a href="{{ route('user.favoriteTeamsNews') }}" class="nav-link">
                                     <i class="fa fa-bullhorn"></i>

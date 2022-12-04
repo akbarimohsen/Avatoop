@@ -1,7 +1,7 @@
 <div>
     <div class="row d-flex justify-content-center">
         <!-- left column -->
-        <div class="col-md-10">
+        <div class="col-12 col-md-10 col-xl-8 mx-auto">
           <!-- general form elements -->
           <div class="card card-success">
             <div class="card-header">
@@ -22,7 +22,7 @@
 
                 <div class="form-group">
                     <label>توضیحات</label>
-                    <textarea class="form-control" rows="3" wire:model="description" placeholder="توضیحات تیم ..."></textarea>
+                    <textarea class="form-control" rows="12" wire:model="description" placeholder="توضیحات تیم ..."></textarea>
                     @error('description')
                         <p class="text-danger">{{$message}}</p>
                     @enderror
@@ -61,8 +61,8 @@
               </div>
               <!-- /.card-body -->
 
-              <div class="card-footer">
-                <button type="submit" class="btn btn-primary" wire:target="logo" wire:loading.remove>ارسال</button>
+              <div class="card-footer bg-transparent">
+                <button type="submit" class="btn btn-outline-success" wire:target="logo" wire:loading.remove>ارسال</button>
               </div>
             </form>
           </div>
