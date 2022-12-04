@@ -11,7 +11,6 @@
                 <!-- form start -->
                 <form role="form" enctype="multipart/form-data" wire:submit.prevent="submit">
                     <div class="card-body">
-
                         <div class="form-group">
                             <label for="title">نام</label>
                             <input type="text" class="form-control" id="title" wire:model="title"
