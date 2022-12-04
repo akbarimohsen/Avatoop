@@ -15,10 +15,11 @@ class UserIndexController extends Controller
 {
     public function indexSlider()
     {
-        $datas = Rss::select('id')->orderBy('created_at', 'desc')->get();
+        $datas = Rss::select('id')->where('active',1)->orderBy('created_at', 'desc')->limit(7)->get();
         $Finds = Rss::find($datas);
         $mappedcollection = $Finds->map(function ($Find, $key) {
             return [
+                'id'=>$Find->id,
                 'img' => $Find->img,
                 'title' => $Find->title
             ];

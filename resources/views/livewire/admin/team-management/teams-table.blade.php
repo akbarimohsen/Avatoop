@@ -92,11 +92,27 @@
                                 <div class="alert alert-secondary mt-3 text-center fw-bold" role="alert">
                                     هیچ موردی یافت نشد.
                                 </div>
+<<<<<<< HEAD
                             @endif
                         </div>
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
+=======
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
+              </table>
+              @if($teams->count() != 0)
+                <div class="d-flex justify-content-center">
+                    {{ $teams->links('pagination::bootstrap-4') }}
+                </div>
+              @endif
+              @if($teams->count() == 0)
+                <div class="alert alert-secondary mt-3 text-center fw-bold" role="alert">
+                    هیچ موردی یافت نشد.
+>>>>>>> a9aec00f064d215c56f2b34a7d61eeceaeadd875
                 </div>
             </div>
         </div>

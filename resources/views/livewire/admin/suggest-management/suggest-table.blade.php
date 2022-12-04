@@ -42,5 +42,10 @@
           @endforeach
 
         </table>
+        @if($suggests->count() != 0)
+                <div class="d-flex justify-content-center">
+                    {{ $suggests->links('pagination::bootstrap-4') }}
+                </div>
+            @endif
       </div>
 </div>

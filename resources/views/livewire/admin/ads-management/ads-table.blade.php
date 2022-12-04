@@ -57,6 +57,11 @@
                     @endif
                 </tbody>
               </table>
+              @if($ads->count() != 0)
+                <div class="d-flex justify-content-center">
+                    {{ $ads->links('pagination::bootstrap-4') }}
+                </div>
+              @endif
               @if( $ads->count() == 0 )
                 <div class="alert alert-secondary mt-3 text-center" role="alert">
                     هیچ موردی یافت نشد.

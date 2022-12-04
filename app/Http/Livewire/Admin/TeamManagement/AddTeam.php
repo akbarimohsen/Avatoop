@@ -25,7 +25,7 @@ class AddTeam extends Component
     }
 
     protected $rules = [
-        'title' => 'required|string',
+        'title' => 'required|string|unique:teams',
         'league_id' => 'required',
         'description' => 'required|string',
         'logo' => 'required|image|mimes:png,jpg,jpeg'

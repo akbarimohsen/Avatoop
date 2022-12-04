@@ -35,7 +35,7 @@ class AddPlayer extends Component
     ];
 
     protected $rules = [
-        'full_name' => 'required|string',
+        'full_name' => 'required|string|unique:players',
         'birth_date' => 'required|date',
         'description' => 'required|string',
         'team_id' => 'required',
@@ -67,6 +67,7 @@ class AddPlayer extends Component
         $player->img = $this->handleImageUpload();
 
         $player->save();
+        $player->positions()->attach($this->position_id);
 
         return redirect()->route('admin.players');
     }

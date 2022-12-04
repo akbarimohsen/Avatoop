@@ -564,7 +564,19 @@
                                             </p>
                                         </a>
                                     </li>
+<<<<<<< HEAD
 {{----}}
+=======
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.rsscomments') }}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>
+                                                لیست نظرات rss
+                                            </p>
+                                        </a>
+                                    </li>
+
+>>>>>>> a9aec00f064d215c56f2b34a7d61eeceaeadd875
                                 </ul>
                             </li>
                         </ul>

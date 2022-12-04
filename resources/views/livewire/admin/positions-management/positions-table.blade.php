@@ -95,6 +95,11 @@
                 @endforeach
 
               </table>
+              @if($positions->count() != 0)
+                <div class="d-flex justify-content-center">
+                    {{ $positions->links('pagination::bootstrap-4') }}
+                </div>
+              @endif
             </div>
             <!-- /.card-body -->
           </div>
