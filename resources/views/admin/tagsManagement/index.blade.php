@@ -1,44 +1,44 @@
 @extends('layouts.master')
 @section('content')
-    <section class="content-wrapper">
-        <section class="container">
-            @if (session('success'))
-                <section class="alert alert-success w-100 d-inline-block alert-dismissible fade show p-3 mt-5"
-                         role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </section>
-            @endif
+    <div class="ms-lg-250">
+        @if (session('success'))
+            <section class="alert alert-success w-100 d-inline-block alert-dismissible fade show p-3 mt-5"
+                     role="alert">
+                {{ session('success') }}
+                <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </section>
+        @endif
 
-            <div class="shadow-sm p-3 mb-5 bg-white rounded d-inline-block w-100 mt-5">
-                <div class="col-12 mx-auto">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">ایجاد برچسب</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                {!! Form::open(['route' => 'tag.store', 'method' => 'post']) !!}
-                                {!! Form::label('name', 'نام برچسب', ['class' => 'text-capitalize']) !!}
-                                <div class="input-group">
-                                    {!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' => 'نام برچسب را وارد کنید']) !!}
-                                </div>
-                                @error('name')
-                                <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                                <section class="form-group">
-                                    {!! Form::submit('ذخیره', ['class' => 'btn btn-primary mt-3']) !!}
-                                </section>
-                                {!! Form::close() !!}
+        <div class="row p-3 mb-5 bg-white rounded d-inline-block w-100">
+            <div class="col-12 col-md-10 col-xl-8 mx-auto">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">ایجاد برچسب</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            {!! Form::open(['route' => 'tag.store', 'method' => 'post']) !!}
+                            {!! Form::label('name', 'نام برچسب', ['class' => 'text-capitalize']) !!}
+                            <div class="input-group">
+                                {!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' => 'نام برچسب را وارد کنید']) !!}
                             </div>
-
+                            @error('name')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                            <section class="form-group">
+                                {!! Form::submit('ذخیره', ['class' => 'btn btn-outline-success mt-3']) !!}
+                            </section>
+                            {!! Form::close() !!}
                         </div>
+
                     </div>
                 </div>
+            </div>
 
-                <div class="shadow-sm p-3 mb-5 bg-white rounded d-inline-block w-100 mt-3">
+            <div class="row p-3 mb-5 bg-white rounded d-inline-block w-100">
+                <div class="col-12 col-md-11 col-xl-10 mx-auto">
                     <form action="{{ route('admin.tag.search') }}" method="POST">
                         @csrf
                         <div class="input-group mb-3">
@@ -84,7 +84,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5">دیتا وجود ندارد</td>
+                                    <td colspan="6">دیتا وجود ندارد</td>
                                 </tr>
                             @endforelse
 
@@ -96,6 +96,7 @@
                         </span>
                     </div>
                 </div>
-        </section>
-    </section>
+            </div>
+        </div>
+    </div>
 @endsection

@@ -1,9 +1,9 @@
 <div>
     <div class="row d-flex justify-content-center">
         <!-- left column -->
-        <div class="col-md-10">
+        <div class="col-12 col-md-10 col-xl-8 mx-auto">
           <!-- general form elements -->
-          <div class="card card-primary">
+          <div class="card card-success">
             <div class="card-header">
               <h3 class="card-title">اطلاعات بازیکن</h3>
             </div>
@@ -44,7 +44,7 @@
 
                 <div class="form-group">
                     <label>توضیحات</label>
-                    <textarea class="form-control" rows="3" wire:model="description" placeholder="توضیحات بازیکن ..."></textarea>
+                    <textarea class="form-control" rows="10" wire:model="description" placeholder="توضیحات بازیکن ..."></textarea>
 
                     @if($errors->has('description'))
                         <ul class="mt-1 mr-4">
@@ -149,8 +149,8 @@
               </div>
               <!-- /.card-body -->
 
-              <div class="card-footer">
-                <button type="submit" class="btn btn-primary">ارسال</button>
+              <div class="card-footer bg-transparent">
+                <button type="submit" class="btn btn-outline-success">ارسال</button>
               </div>
             </form>
           </div>

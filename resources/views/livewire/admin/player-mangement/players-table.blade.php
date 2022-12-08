@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="container mt-5">
                 <div class="row d-flex justify-content-center">
-                    <div class="col-md-10">
+                    <div class="col-12 col-md-10 col-xl-8 mx-auto">
                         <div class="card p-3  py-4">
                             <h5>جستجوی پیشرفته بازیکنان</h5>
                             <form class="row g-3 mt-2" wire:submit.prevent="searchPlayer">
@@ -16,7 +16,7 @@
 
                                 <div class="col-md-3">
 
-                                    <button class="btn btn-primary btn-block" type="submit">جستجو</button>
+                                    <button class="btn btn-info btn-block" type="submit">جستجو</button>
 
                                 </div>
 
@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card card-info">
                 <div class="card-header">
                         <h3 class="card-title">جدول بازیکنان</h3>
                     <div class="card-tools">
@@ -39,7 +39,7 @@
                 </div>
             <!-- /.card-header -->
                 <div class="card-body table-responsive p-0">
-                <table class="table table-hover">
+                <table class="table table-striped table-hover">
                     <tr>
                     <th>شناسه</th>
                     <th>عکس</th>
