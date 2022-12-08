@@ -40,7 +40,13 @@
           </div></li>
           <li>
             @auth
-                <a class="thm-btn brd-rd5" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" title="">خروج</a>
+                <a class="btn btn-sm btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" title="">خروج</a>
+            @role('admin')
+                <a class="btn btn-sm btn-success mx-4" href="{{ route('admin.dashboard') }}">داشبورد</a>
+            @endrole
+            @role('user')
+                <a class="btn btn-sm btn-success mx-4" href="{{ route('user.profile') }}">پروفایل کاربری</a>
+            @endrole
             @else
                 <a class="thm-btn brd-rd5" href="{{ route('login') }}">ورود</a>
             @endauth
