@@ -52,6 +52,165 @@
 </head>
 
 <body>
+
+
+<!-- header -->
+  <div class="container_fluid container-width">
+    <!-- upper-header -->
+    {{-- <div class="container-fluid upper-header">
+      <div class="container upper-header-ins">
+          <ul class="upper-header-ful">
+              <li class="upper-header-fli"><a href="#">پیش بینی</a></li>
+              <li class="upper-header-fli"><a href="#">لنز</a></li>
+              <li class="upper-header-fli"><a href="#">نظر</a></li>
+          </ul>
+          <ul class="upper-header-sul">
+            <li class="upper-header-sli"><span class="upper-header-sspan"><a href="#">
+              <i class="fa-regular fa-calendar"></i>چهارشنبه</a></span></li>
+            <li class="upper-header-sli hide-sli"> <div class="box">
+              <form name="search">
+                  <input type="text" class="input-box">
+              </form>
+
+                  <span><i class="fas fa-search"></i>جستجو</span>
+          </div></li>
+          <li>
+            @auth
+                <a class="btn btn-sm btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" title="">خروج</a>
+            @role('admin')
+                <a class="btn btn-sm btn-success mx-4" href="{{ route('admin.dashboard') }}">داشبورد</a>
+            @endrole
+            @role('user')
+                <a class="btn btn-sm btn-success mx-4" href="{{ route('user.profile') }}">پروفایل کاربری</a>
+            @endrole
+            @else
+                <a class="thm-btn brd-rd5" href="{{ route('login') }}">ورود</a>
+            @endauth
+            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                @csrf
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div> --}}
+<!-- upper-header -->
+
+<!-- navbar -->
+    <nav class="navbar navbar-expand-md">
+      <!-- Brand -->
+      <a class="navbar-brand" href="#"><img src="{{ asset('assets/main/images/eagle.png') }}" alt="logo" class="logo"></a>
+
+            <button class="navbar-toggler toggler-example"  type="button" data-toggle="collapse"
+    data-target="#navbarSupportedContent41" aria-controls="navbarSupportedContent41" aria-expanded="false"
+    aria-label="Toggle navigation"><span class="white-text"><i class="fas fa-bars fa-1x"></i></span></button>
+
+      <!-- Links -->
+      <div class="nav-item-div">
+      <ul class="navbar-nav d-md-flex mx-auto ">
+        <li class="nav-item">
+          <a class="nav-link" href="#">صفحه اصلی</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">اخبار</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">پخش زنده</a>
+        </li>
+
+       <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            لیگ ها
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Link 1</a>
+            <a class="dropdown-item" href="#">Link 2</a>
+            <a class="dropdown-item" href="#">Link 3</a>
+          </div>
+        </li>
+        <!-- Dropdown -->
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">نتایج زنده</a>
+        </li>
+
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+           روزنامه
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Link 1</a>
+            <a class="dropdown-item" href="#">Link 2</a>
+            <a class="dropdown-item" href="#">Link 3</a>
+          </div>
+        </li>
+        <!-- Dropdown -->
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">نقل و انتقالات</a>
+        </li>
+        @role('admin')
+            <li class="nav-item mx-4">
+                <a class="nav-link btn btn-success text-black" href="{{ route('admin.dashboard') }}">داشبورد</a>
+            </li>
+        @endrole
+        @role('user')
+        <li class="nav-item mx-4">
+            <a class="nav-link btn btn-success text-black" href="{{ route('user.profile') }}">پروفایل کاربری</a>
+        </li>
+        @endrole
+      </ul>
+    </div>
+    </nav>
+  </div>
+  <!-- header -->
+  <div class="container-main">
+<div class="content-holder d-md-flex d-lg-flex d-xl-flex">
+
+<div class="content-res-holder   col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
+  <div class="slider-container-plus">
+
+
+    <div class="slider-container">
+      <div class="slide active fadein">
+        <img src="{{ asset('assets/main/images/01g1n0xxq9x15mkrcamk.jpg')}}" alt="">
+      </div>
+
+      <div class="slide fadein">
+        <img src="{{ asset('assets/main/images/cristiano_ronaldo_real_madrid_ (1).webp')}}" alt="">
+      </div>
+      <div class="slide fadein">
+        <img src="{{ asset('assets/main/images/z_p20-Messi.jpg')}}" alt="">
+      </div>
+      <div class="slide fadein">
+        <img src="{{ asset('assets/main/images/r0_0_800_600_w800_h600_fmax.jpg')}}" alt="">
+      </div>
+      <div class="control-container">
+        <button class="prev">
+          <i class="fa fa-chevron-right"></i>
+        </button>
+          <div class="slide-indicator">
+            <span class="indicator active"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+          </div>
+
+        <button class="next">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+      </div>
+    </div>
+      <div class="slide-description-container">
+        <div class="slide-description active fadeslide">
+            <h1 class="slide-description-title">
+                هتریک بنزما
+            </h1>
+            <p class="slide-description-body">
+              21 دقیقه بعد از شروع بازی با چلسی موفق به هتریک مقابل این تیم شد. و توانست تعداد گل های خود را در لیگ قهرمانان به عدد 16 برساند
+
+            </p>
     <div class="conteiner-fluid m-0 p-0">
         <div class="row m-0 p-0">
             <div class="col-12 p-0 m-0">
