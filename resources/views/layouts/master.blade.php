@@ -557,17 +557,6 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="{{ route('admin.comments') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>
-                                                لیست نظرات
-                                            </p>
-                                        </a>
-                                    </li>
-<<<<<<< HEAD
-{{----}}
-=======
-                                    <li class="nav-item">
                                         <a href="{{ route('admin.rsscomments') }}" class="nav-link">
                                             <i class="fa fa-circle-o nav-icon"></i>
                                             <p>
@@ -575,14 +564,12 @@
                                             </p>
                                         </a>
                                     </li>
-
->>>>>>> a9aec00f064d215c56f2b34a7d61eeceaeadd875
                                 </ul>
                             </li>
                         </ul>
                     </nav>
                 @endrole
-{{----}}
+
                 @role('user')
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"

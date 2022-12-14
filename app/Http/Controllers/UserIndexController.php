@@ -22,7 +22,7 @@ class UserIndexController extends Controller
             return [
                 'id'=>$Find->id,
                 'img' => $Find->img,
-                'title' => $Find->title
+                'title' => $Find->title,
             ];
         });
         return response()->json([
@@ -57,6 +57,7 @@ class UserIndexController extends Controller
                 'title' => $Find->title,
                 'description' => $Find->description,
                 'news_date' => $Find->news_date,
+                'rss_audio'=>$Find->rss_audio
             ];
         });
         return response()->json([
@@ -65,9 +66,19 @@ class UserIndexController extends Controller
     }
     public function topview()
     {
-        $datas = Rss::orderBy('views_count','DESC')->limit(23)->get(['id','title','description','news_date']);
+        $datas = Rss::orderBy('views_count','DESC')->select('id')->limit(23)->get();
+        $Finds = Rss::find($datas);
+        $mappedcollection = $Finds->map(function ($Find, $key) {
+            return [
+                'id'=>$Find->id,
+                'title' => $Find->title,
+                'description' => $Find->description,
+                'news_date' => $Find->news_date,
+                'rss_audio'=>$Find->rss_audio
+            ];
+        });
         return response()->json([
-            'data' => $datas
+            'data' => $mappedcollection
         ]);
     }
     public function suggestion(Request $request)
