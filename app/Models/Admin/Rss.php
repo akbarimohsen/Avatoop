@@ -9,6 +9,7 @@ use App\Models\Tag;
 use App\Models\Team;
 use App\Models\User;
 use App\Models\User\like;
+use App\Models\Visit;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -49,5 +50,10 @@ class Rss extends Model
     public function likedBy(User $user)
     {
         return $this->likes->contains('user_id', $user->id);
+    }
+
+    public function visits()
+    {
+        $this->hasMany(Visit::class);
     }
 }

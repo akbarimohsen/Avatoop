@@ -9,6 +9,7 @@ use App\Models\Admin\RssComment;
 use App\Models\Comment;
 use App\Models\Suggest;
 use App\Models\User\like;
+use App\Models\Visit;
 use Illuminate\Http\Request;
 
 class UserIndexController extends Controller
@@ -98,6 +99,12 @@ class UserIndexController extends Controller
         $filtered = $collection->except(['id']);
         $rss = RssComment::where('rss_id', $id)->where('status', 1)->get(['title', 'comment', 'created_at']);
         $countLikes=like::where('rss_id', $id)->count();
+       // return $data->title;
+        $visit = Visit::create([
+          'user_ip' => request()->ip(),
+          'rss_id' => $id,
+          'title' => $data->title
+        ]);
          return response()->json([
              'rss' => $filtered,
              'comment' => $rss,

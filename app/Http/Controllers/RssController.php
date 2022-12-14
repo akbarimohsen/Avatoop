@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\RssAudio;
 use App\Models\News;
 use App\Models\User;
+use App\Models\Visit;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -139,6 +140,18 @@ class RssController extends Controller
         Rss::destroy($id);
         session()->flash('delete','خبر با موفقیت حذف شد');
         return redirect()->route('rss.index');
+    }
+
+    public function rssUserIp(Request $request)
+    {
+        // return $request;
+        $rsscheck = Visit::whereIn('user_ip', $request->rss)->get(
+            ['rss_id', 'created_at']
+        );
+
+         return response()->json([
+            'rsscheck' => $rsscheck
+         ]);
     }
 
 }

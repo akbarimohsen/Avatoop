@@ -106,3 +106,7 @@ Route::get('/arrange', [ArrangeController::class, 'index'])->middleware('auth:ap
 Route::post('/arrange/update', [ArrangeController::class, 'update'])->middleware('auth:api');
 
 Route::get('/schematic', [ArrangeController::class, 'showAll']);
+
+
+//rssIp
+Route::get('/rssUserIp', [RssController::class, 'rssUserIp']);
