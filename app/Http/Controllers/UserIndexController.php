@@ -57,7 +57,7 @@ class UserIndexController extends Controller
                 'title' => $Find->title,
                 'description' => $Find->description,
                 'news_date' => $Find->news_date,
-                'rss_audio'=>$Find->rss_audio
+                'rss_audio'=>$Find->audio
             ];
         });
         return response()->json([
@@ -74,7 +74,7 @@ class UserIndexController extends Controller
                 'title' => $Find->title,
                 'description' => $Find->description,
                 'news_date' => $Find->news_date,
-                'rss_audio'=>$Find->rss_audio
+                'rss_audio'=>$Find->audio
             ];
         });
         return response()->json([
@@ -104,7 +104,7 @@ class UserIndexController extends Controller
     public function newsShow($id)
     {
 
-        $data = Rss::with('rss_audio','categories','tags','teams')->findOrFail($id);
+        $data = Rss::with('categories','tags','teams')->findOrFail($id);
         $data->increment('views_count');
         $collection = collect($data);
         $filtered = $collection->except(['id']);

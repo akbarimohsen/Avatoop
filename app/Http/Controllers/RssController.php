@@ -68,10 +68,10 @@ class RssController extends Controller
         $year=$news->created_at->year;
         $month=$news->created_at->month;
         $date=$year.'/'.$month;
-        if ($news->rss_audio==null){
+        if ($news->audio==null){
             $audio='nothing';
         }else{
-            $audio=$news->rss_audio->audio;
+            $audio=$news->audio;
 
         }
         $imageName="";
@@ -94,10 +94,10 @@ class RssController extends Controller
             $dirAudio="audio/rss/$date";
             $request->file('rssAudio')->storeAs($dirAudio,$audioName);
         }else{
-            if ($news->rss_audio==null){
+            if ($news->audio==null){
                 $audioName=null;
             }else{
-                $audioName=$news->rss_audio->audio;
+                $audioName=$news->audio;
             }
         }
         $updateNews=$news->update([
@@ -105,20 +105,10 @@ class RssController extends Controller
             'description' => $request->description,
             'content'=>$request->editor1,
             'img'=>!empty($file)?$dir.'/'.$imageName:$imageName,
+            'audio'=>!empty($voiceFile)?$dirAudio.'/'.$audioName:$audioName,
             'active'=>true,
         ]);
         if ($updateNews){
-            $DBAudioExist=RssAudio::where('rss_id',$news->id)->exists();
-            if ($DBAudioExist){
-                RssAudio::where('rss_id',$news->id)->update([
-                    'audio'=>!empty($voiceFile)?$dirAudio.'/'.$audioName:$audioName,
-                ]);
-            }else{
-                $RssAudio=new RssAudio();
-                $dirAudio="audio/rss/$date";
-                $RssAudio->audio="$dirAudio/$audioName";
-                $news->rss_audio()->save($RssAudio);
-            }
             $news->categories()->sync($request->category);
             $news->tags()->sync($request->tag);
             $news->teams()->sync($request->teams);
@@ -130,7 +120,7 @@ class RssController extends Controller
     public function destroy($id)
     {
         $news=Rss::findOrFail($id);
-        $audio=$news->rss_audio->audio;
+        $audio=$news->audio;
         if (Storage::exists("$news->img")){
             Storage::delete("$news->img");
         }
