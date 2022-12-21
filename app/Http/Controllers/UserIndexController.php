@@ -68,6 +68,30 @@ class UserIndexController extends Controller
             'data' => $mappedcollection
         ]);
     }
+
+    public function andriodIndexnews()
+    {
+        $datas = Rss::orderBy('created_at', 'desc')->select('id')->get();
+        $Finds = Rss::find($datas);
+//        $visits=Visit::where();
+        $mappedcollection = $Finds->map(function ($Find, $key) {
+            $visit="";
+            return [
+                'id'=>$Find->id,
+                'image'=>$Find->img,
+                'title' => $Find->title,
+                'description' => $Find->description,
+                'news_date' => $Find->news_date,
+                'rss_audio'=>$Find->audio,
+                'like'=> like::where('rss_id', $Find->id)->count(),
+                'commentCount' => RssComment::where('rss_id', $Find->id)->count(),
+                'visit'=>Visit::where('rss_id',$Find->id)->where('user_ip',\request()->ip())->exists()?true:null
+            ];
+        });
+        return response()->json([
+            'data' => $mappedcollection
+        ]);
+    }
     public function topview()
     {
         $datas = Rss::orderBy('views_count','DESC')->where('active',1)->select('id')->limit(23)->get();

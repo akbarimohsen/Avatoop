@@ -197,7 +197,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\xampp\\htdocs\\Avatoop3\\Avatoop\\storage\\framework/cache/data',
+        'path' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -385,12 +385,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\Avatoop3\\Avatoop\\storage\\app',
+        'root' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\Avatoop3\\Avatoop\\storage\\app/public',
+        'root' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\app/public',
         'url' => 'http://localhost:8000/storage',
         'visibility' => 'public',
       ),
@@ -417,7 +417,7 @@
     ),
     'links' => 
     array (
-      'C:\\xampp\\htdocs\\Avatoop3\\Avatoop\\public\\storage' => 'C:\\xampp\\htdocs\\Avatoop3\\Avatoop\\storage\\app/public',
+      'D:\\xampp\\htdocs\\Avatoop\\public\\storage' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\app/public',
     ),
   ),
   'flare' => 
@@ -527,7 +527,7 @@
   'livewire' => 
   array (
     'class_namespace' => 'App\\Http\\Livewire',
-    'view_path' => 'C:\\xampp\\htdocs\\Avatoop3\\Avatoop\\resources\\views/livewire',
+    'view_path' => 'D:\\xampp\\htdocs\\Avatoop\\resources\\views/livewire',
     'layout' => 'layouts.app',
     'asset_url' => NULL,
     'app_url' => NULL,
@@ -581,13 +581,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\xampp\\htdocs\\Avatoop3\\Avatoop\\storage\\logs/laravel.log',
+        'path' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\xampp\\htdocs\\Avatoop3\\Avatoop\\storage\\logs/laravel.log',
+        'path' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -638,7 +638,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\xampp\\htdocs\\Avatoop3\\Avatoop\\storage\\logs/laravel.log',
+        'path' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -704,7 +704,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\xampp\\htdocs\\Avatoop3\\Avatoop\\resources\\views/vendor/mail',
+        0 => 'D:\\xampp\\htdocs\\Avatoop\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -943,7 +943,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\xampp\\htdocs\\Avatoop3\\Avatoop\\storage\\framework/sessions',
+    'files' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -963,9 +963,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\Avatoop3\\Avatoop\\resources\\views',
+      0 => 'D:\\xampp\\htdocs\\Avatoop\\resources\\views',
     ),
-    'compiled' => 'C:\\xampp\\htdocs\\Avatoop3\\Avatoop\\storage\\framework\\views',
+    'compiled' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\framework\\views',
   ),
   'visitor' => 
   array (

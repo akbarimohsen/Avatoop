@@ -47,6 +47,9 @@ Route::post('/andriod/token', [AuthController::class, 'andriod']);
 Route::get('/indexslider', [UserIndexController::class, 'indexSlider']);
 Route::get('/indexadds', [UserIndexController::class, 'indexadds'])->name('indexadds');
 Route::get('/indexnews', [UserIndexController::class, 'indexnews'])->name('indexnews');
+//andriod
+Route::get('andriod/indexnews', [UserIndexController::class, 'andriodIndexnews'])->name('andriodIndexnews');
+//
 Route::get('/topview', [UserIndexController::class, 'topview'])->name('topview');
 Route::post('/suggestion', [UserIndexController::class, 'suggestion']);
 
@@ -108,3 +111,5 @@ Route::get('/schematic', [ArrangeController::class, 'showAll']);
 
 //rssIp
 Route::get('/rssUserIp', [RssController::class, 'rssUserIp']);
+
+//
