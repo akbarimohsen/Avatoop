@@ -51,13 +51,17 @@ class UserIndexController extends Controller
     {
         $datas = Rss::orderBy('created_at', 'desc')->select('id')->limit(23)->get();
         $Finds = Rss::find($datas);
+//        $visits=Visit::where();
         $mappedcollection = $Finds->map(function ($Find, $key) {
+            $visit="";
             return [
                 'id'=>$Find->id,
+                'image'=>$Find->img,
                 'title' => $Find->title,
                 'description' => $Find->description,
                 'news_date' => $Find->news_date,
-                'rss_audio'=>$Find->audio
+                'rss_audio'=>$Find->audio,
+                'visit'=>Visit::where('rss_id',$Find->id)->where('user_ip',\request()->ip())->exists()?true:null
             ];
         });
         return response()->json([
@@ -66,11 +70,12 @@ class UserIndexController extends Controller
     }
     public function topview()
     {
-        $datas = Rss::orderBy('views_count','DESC')->select('id')->limit(23)->get();
+        $datas = Rss::orderBy('views_count','DESC')->where('active',1)->select('id')->limit(23)->get();
         $Finds = Rss::find($datas);
         $mappedcollection = $Finds->map(function ($Find, $key) {
             return [
                 'id'=>$Find->id,
+                'image'=>$Find->img,
                 'title' => $Find->title,
                 'description' => $Find->description,
                 'news_date' => $Find->news_date,

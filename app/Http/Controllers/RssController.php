@@ -132,16 +132,16 @@ class RssController extends Controller
         return redirect()->route('rss.index');
     }
 
-    public function rssUserIp(Request $request)
-    {
-        // return $request;
-        $rsscheck = Visit::whereIn('user_ip', $request->rss)->get(
-            ['rss_id', 'created_at']
-        );
-
-         return response()->json([
-            'rsscheck' => $rsscheck
-         ]);
-    }
+//    public function rssUserIp(Request $request)
+//    {
+//        // return $request;
+//        $rsscheck = Visit::whereIn('user_ip', $request->ip())->get(
+//            ['rss_id', 'created_at']
+//        );
+//
+//         return response()->json([
+//            'rsscheck' => $rsscheck
+//         ]);
+//    }
 
 }
