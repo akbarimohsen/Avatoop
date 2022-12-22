@@ -799,7 +799,6 @@ class ComposerStaticInitd9a572c5471ee91fd63e1132a4228c5d
         'App\\Mail\\SuggestResponse' => __DIR__ . '/../..' . '/app/Mail/SuggestResponse.php',
         'App\\Models\\Ad' => __DIR__ . '/../..' . '/app/Models/Ad.php',
         'App\\Models\\Admin\\Rss' => __DIR__ . '/../..' . '/app/Models/Admin/Rss.php',
-        'App\\Models\\Admin\\RssAudio' => __DIR__ . '/../..' . '/app/Models/Admin/RssAudio.php',
         'App\\Models\\Admin\\RssComment' => __DIR__ . '/../..' . '/app/Models/Admin/RssComment.php',
         'App\\Models\\Arrange' => __DIR__ . '/../..' . '/app/Models/Arrange.php',
         'App\\Models\\AudioNews' => __DIR__ . '/../..' . '/app/Models/AudioNews.php',

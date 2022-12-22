@@ -96,7 +96,6 @@ return array(
     'App\\Mail\\SuggestResponse' => $baseDir . '/app/Mail/SuggestResponse.php',
     'App\\Models\\Ad' => $baseDir . '/app/Models/Ad.php',
     'App\\Models\\Admin\\Rss' => $baseDir . '/app/Models/Admin/Rss.php',
-    'App\\Models\\Admin\\RssAudio' => $baseDir . '/app/Models/Admin/RssAudio.php',
     'App\\Models\\Admin\\RssComment' => $baseDir . '/app/Models/Admin/RssComment.php',
     'App\\Models\\Arrange' => $baseDir . '/app/Models/Arrange.php',
     'App\\Models\\AudioNews' => $baseDir . '/app/Models/AudioNews.php',

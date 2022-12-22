@@ -17,10 +17,9 @@ class CreateRssCommentsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('comment');
+            $table->string('user_name');
             $table->integer('status')->default(0);
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('rss_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('rss_id')->references('id')->on('rsses')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

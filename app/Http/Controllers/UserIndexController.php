@@ -56,12 +56,13 @@ class UserIndexController extends Controller
             $visit="";
             return [
                 'id'=>$Find->id,
-                'image'=>$Find->img,
                 'title' => $Find->title,
                 'description' => $Find->description,
                 'news_date' => $Find->news_date,
                 'rss_audio'=>$Find->audio,
                 'visit'=>Visit::where('rss_id',$Find->id)->where('user_ip',\request()->ip())->exists()?true:null
+
+
             ];
         });
         return response()->json([
@@ -75,11 +76,12 @@ class UserIndexController extends Controller
         $mappedcollection = $Finds->map(function ($Find, $key) {
             return [
                 'id'=>$Find->id,
-                'image'=>$Find->img,
                 'title' => $Find->title,
                 'description' => $Find->description,
                 'news_date' => $Find->news_date,
-                'rss_audio'=>$Find->audio
+                'rss_audio'=>$Find->audio,
+                'visit'=>Visit::where('rss_id',$Find->id)->where('user_ip',\request()->ip())->exists()?true:null
+
             ];
         });
         return response()->json([
@@ -113,7 +115,7 @@ class UserIndexController extends Controller
         $data->increment('views_count');
         $collection = collect($data);
         $filtered = $collection->except(['id']);
-        $rss = RssComment::where('rss_id', $id)->where('status', 1)->get(['title', 'comment', 'created_at']);
+        $rss = RssComment::with('user')->where('rss_id', $id)->where('status', 1)->get(['title', 'comment', 'created_at']);
         $countLikes=like::where('rss_id', $id)->count();
        // return $data->title;
         $visit = Visit::create([
@@ -138,5 +140,35 @@ class UserIndexController extends Controller
          return response()->json([
             'product' => $product
          ]);
+    }
+
+    public function storeComment(Request $request)
+    {
+        try {
+            $data=$this->validate($request,[
+                'title' => 'required|string',
+                'comment' => 'required|string',
+                'user_name' => 'required|string',
+                'rss_id' => 'required|integer'
+            ]);
+            RssComment::create([
+                'title'=> $data['title'],
+                'comment'=> $data['comment'],
+                'user_name'=> $data['user_name'],
+                'rss_id'=> $data['rss_id'],
+            ]);
+            $success = true;
+            $message = "کامنت با موفقیت ذخیره شد";
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            $success = false;
+            $message = $ex->getMessage();
+        }
+        $response = [
+            'success' => $success,
+            'message' => $message
+        ];
+
+        return response()->json($response);
     }
 }
