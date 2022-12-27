@@ -1,13 +1,13 @@
 <div>
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 col-md-11 col-xl-10 mx-auto">
             @if( Session::has("message") )
                 <div class="alert bg-info-gradient">
                     {{ Session::get('message') }}
                 </div>
             @endif
 
-          <div class="card">
+          <div class="card card-info">
             <div class="card-header">
               <h3 class="card-title">جدول تبلیغات</h3>
               <div class="card-tools">
@@ -22,7 +22,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
-              <table class="table table-hover">
+              <table class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>شناسه</th>
@@ -44,7 +44,7 @@
                                 <td>{{ $ad->cost }}</td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <a href="{{ route('admin.ads.edit', ['id' => $ad->id]) }}" class="btn btn-primary btn-sm mx-1">
+                                        <a href="{{ route('admin.ads.edit', ['id' => $ad->id]) }}" class="btn btn-warning btn-sm mx-1">
                                             تغییر
                                         </a>
                                         <button class="btn btn-danger btn-sm mx-1" wire:click="delete({{ $ad->id }})" >
