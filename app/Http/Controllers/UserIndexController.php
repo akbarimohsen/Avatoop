@@ -9,6 +9,7 @@ use App\Models\Admin\RssComment;
 use App\Models\Comment;
 use App\Models\Suggest;
 use App\Models\User\like;
+use App\Models\Visit;
 use Illuminate\Http\Request;
 
 class UserIndexController extends Controller
@@ -50,13 +51,18 @@ class UserIndexController extends Controller
     {
         $datas = Rss::orderBy('created_at', 'desc')->select('id')->limit(23)->get();
         $Finds = Rss::find($datas);
+//        $visits=Visit::where();
         $mappedcollection = $Finds->map(function ($Find, $key) {
+            $visit="";
             return [
                 'id'=>$Find->id,
                 'title' => $Find->title,
                 'description' => $Find->description,
                 'news_date' => $Find->news_date,
-                'rss_audio'=>$Find->rss_audio
+                'rss_audio'=>$Find->audio,
+                'visit'=>Visit::where('rss_id',$Find->id)->where('user_ip',\request()->ip())->exists()?true:null
+
+
             ];
         });
         return response()->json([
@@ -65,7 +71,7 @@ class UserIndexController extends Controller
     }
     public function topview()
     {
-        $datas = Rss::orderBy('views_count','DESC')->select('id')->limit(23)->get();
+        $datas = Rss::orderBy('views_count','DESC')->where('active',1)->select('id')->limit(23)->get();
         $Finds = Rss::find($datas);
         $mappedcollection = $Finds->map(function ($Find, $key) {
             return [
@@ -73,7 +79,9 @@ class UserIndexController extends Controller
                 'title' => $Find->title,
                 'description' => $Find->description,
                 'news_date' => $Find->news_date,
-                'rss_audio'=>$Find->rss_audio
+                'rss_audio'=>$Find->audio,
+                'visit'=>Visit::where('rss_id',$Find->id)->where('user_ip',\request()->ip())->exists()?true:null
+
             ];
         });
         return response()->json([
@@ -103,12 +111,18 @@ class UserIndexController extends Controller
     public function newsShow($id)
     {
 
-        $data = Rss::with('rss_audio','categories','tags','teams')->findOrFail($id);
+        $data = Rss::with('categories','tags','teams')->findOrFail($id);
         $data->increment('views_count');
         $collection = collect($data);
         $filtered = $collection->except(['id']);
-        $rss = RssComment::where('rss_id', $id)->where('status', 1)->get(['title', 'comment', 'created_at']);
+        $rss = RssComment::with('user')->where('rss_id', $id)->where('status', 1)->get(['title', 'comment', 'created_at']);
         $countLikes=like::where('rss_id', $id)->count();
+       // return $data->title;
+        $visit = Visit::create([
+          'user_ip' => request()->ip(),
+          'rss_id' => $id,
+          'title' => $data->title
+        ]);
          return response()->json([
              'rss' => $filtered,
              'comment' => $rss,
@@ -126,5 +140,35 @@ class UserIndexController extends Controller
          return response()->json([
             'product' => $product
          ]);
+    }
+
+    public function storeComment(Request $request)
+    {
+        try {
+            $data=$this->validate($request,[
+                'title' => 'required|string',
+                'comment' => 'required|string',
+                'user_name' => 'required|string',
+                'rss_id' => 'required|integer'
+            ]);
+            RssComment::create([
+                'title'=> $data['title'],
+                'comment'=> $data['comment'],
+                'user_name'=> $data['user_name'],
+                'rss_id'=> $data['rss_id'],
+            ]);
+            $success = true;
+            $message = "کامنت با موفقیت ذخیره شد";
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            $success = false;
+            $message = $ex->getMessage();
+        }
+        $response = [
+            'success' => $success,
+            'message' => $message
+        ];
+
+        return response()->json($response);
     }
 }

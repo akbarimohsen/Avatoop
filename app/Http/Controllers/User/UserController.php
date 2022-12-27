@@ -64,20 +64,12 @@ class UserController extends Controller
 
         if ($request->team_id) {
             $this->validate($request, [
-                'team_id' => 'required|integer|size:10'
+                'team_id' => 'required|integer'
             ]);
             // $league = League::where('title', 'Like', "%iran%");
-            try {
-                $team = Team::where('id', $request->team_id)->first();
-
-                $league = League::where('id', $team->league_id)->where('title', 'Like', "%iran%")->get();
+//            return $request->team_id;
                 $data->team_id = $request->team_id;
-            } catch (Exception $e) {
-                return response()->json([
-                    'MSG' => 'تیم مورد نظر متعلق به ایران نمیباشد',
 
-                ], 400);
-            }
         }
         if ($request->image) {
 //            return $data->image;
@@ -141,6 +133,14 @@ class UserController extends Controller
         $emails = Email::whereIn('id', $email_ids)->get();
         return response()->json([
             'email' => $emails,
+        ]);
+    }
+
+    public function allTeams()
+    {
+        $teams =Team::all('id','title');
+        return response()->json([
+           "teams"=> $teams
         ]);
     }
 }

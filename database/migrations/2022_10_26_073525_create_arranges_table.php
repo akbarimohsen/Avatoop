@@ -19,7 +19,7 @@ class CreateArrangesTable extends Migration
             $table->unsignedBigInteger('schematic_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('schematic_id')->references('id')->on('schematics')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('players',512);
+            $table->string('players',5025);
             $table->timestamps();
         });
     }

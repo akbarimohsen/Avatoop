@@ -37,4 +37,9 @@ class News extends Model
         return $this->belongsToMany(Team::class, 'teams_news', 'news_id', 'team_id');
     }
 
+    public function visits()
+    {
+        $this->hasMany(Visit::class);
+    }
+
 }

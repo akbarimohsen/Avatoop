@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRssAudioTable extends Migration
+class CreateVisitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class CreateRssAudioTable extends Migration
      */
     public function up()
     {
-        Schema::create('rss_audio', function (Blueprint $table) {
+        Schema::create('visits', function (Blueprint $table) {
             $table->id();
-            $table->string('audio','512');
             $table->unsignedBigInteger('rss_id');
-            $table->foreign('rss_id')->references('id')->on('rsses')->onDelete('cascade');
+            $table->unsignedBigInteger('news_id')->nullable();
+            $table->string('user_ip');
+            $table->string('title');
             $table->timestamps();
+
+            $table->index('rss_id');
+            $table->index('news_id');
         });
     }
 
@@ -29,6 +33,6 @@ class CreateRssAudioTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rss_audio');
+        Schema::dropIfExists('visits');
     }
 }

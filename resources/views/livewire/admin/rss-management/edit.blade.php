@@ -65,14 +65,14 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 text-center">
-                                    @if($rss->rss_audio==null)
+                                @if($rss->audio==null)
                                         <span class="d-block w-100">صوت قبلی خبر:صوتی وجود ندارد</span>
                                     @else
                                         <div class="col-8 offset-md-2">
                                             <span class="d-block">صوت قبلی خبر:</span>
                                             <audio controls class="d-flex mx-auto">
                                                 <source
-                                                    src="{{\Illuminate\Support\Facades\Storage::url(config('app.ftpRoute').$rss->rss_audio->audio)}}">
+                                                    src="{{\Illuminate\Support\Facades\Storage::url(config('app.ftpRoute').$rss->audio)}}">
                                             </audio>
                                         </div>
                                     @endif

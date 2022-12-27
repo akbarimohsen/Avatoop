@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Admin\ReportersMangementController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,6 @@ use Illuminate\Support\Facades\Auth;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -38,7 +38,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('api.login');
 Route::post('/login-phone', [AuthController::class, 'doLoginPhone'])->name('doLoginPhone');
 
 //Route::get('/verify/show/{slug}', [AuthController::class, 'verify'])->name('verify');
-Route::post('/doVerify/show/{id}', [AuthController::class, 'doVerify'])->name('doVerifyyy');
+Route::post('/doVerify/show/{id}', [AuthController::class, 'doVerify'])->name('doVerifyyy')->where(['id' => '[a-zA-Z0-9]+']);
 //andriod
 Route::post('/andriod/token', [AuthController::class, 'andriod']);
 
@@ -50,14 +50,16 @@ Route::get('/indexnews', [UserIndexController::class, 'indexnews'])->name('index
 Route::get('/topview', [UserIndexController::class, 'topview'])->name('topview');
 Route::post('/suggestion', [UserIndexController::class, 'suggestion']);
 
-Route::get('/newsShow/{id}', [UserIndexController::class, 'newsShow']);
+Route::get('/newsShow/{id}', [UserIndexController::class, 'newsShow'])->where(['id' => '[a-zA-Z0-9]+']);
 Route::get('/bookmark', [UserIndexController::class, 'bookMark']);
+
+Route::post('/rss/comment/store',[UserIndexController::class,'storeComment']);
 
 //profile
 Route::post('/profile/store', [UserController::class, 'store'])->middleware('auth:api');
 Route::post('/profile/update', [UserController::class, 'update'])->middleware('auth:api');
 Route::get('/userProfile', [UserController::class, 'userProfile'])->middleware('auth:api');
-
+Route::get('allTeams', [UserController::class, 'allTeams'])->middleware('auth:api');
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -76,8 +78,8 @@ Route::get('/user/adminEmails', [App\Http\Controllers\User\UserController::class
 
 // teams routes
 Route::get('/user/popularTeams', [TeamsController::class, 'showPopularTeams'])->middleware('auth:api');
-Route::post('/user/popularTeams/{id}/add', [TeamsController::class, 'addPopularTeam'])->middleware('auth:api');
-Route::post('/user/popularTeams/{id}/delete', [TeamsController::class, 'deletePopularTeam'])->middleware('auth:api');
+Route::post('/user/add/arrange', [TeamsController::class, 'addPopularTeam'])->middleware('auth:api');
+Route::post('/user/popularTeams/{id}/delete', [TeamsController::class, 'deletePopularTeam'])->middleware('auth:api')->where(['id' => '[a-zA-Z0-9]+']);
 
 
 // audio news routes
@@ -91,12 +93,10 @@ Route::get('/user/favoriteTeamsRsses', [UserNewsController::class, 'favoriteTeam
 //});
 
 //Like
-Route::post('/rss/{id}/like', [RssLikeController::class, 'store'])->middleware('auth:api');
-Route::get('/rss/{id}/like', [RssLikeController::class, 'destroy'])->middleware('auth:api');
-Route::get('/showprolike/{id}', [RssLikeController::class, 'showprolike']);
-Route::get('/rss/likeTest/{id}', [RssLikeController::class, 'rssliketest'])->middleware('auth:api');
-
-
+Route::post('/rss/{id}/like', [RssLikeController::class, 'store'])->middleware('auth:api')->where(['id' => '[a-zA-Z0-9]+']);
+Route::get('/rss/{id}/like', [RssLikeController::class, 'destroy'])->middleware('auth:api')->where(['id' => '[a-zA-Z0-9]+']);
+Route::get('/showprolike/{id}', [RssLikeController::class, 'showprolike'])->where(['id' => '[a-zA-Z0-9]+']);
+Route::get('/rss/likeTest/{id}', [RssLikeController::class, 'rssliketest'])->middleware('auth:api')->where(['id' => '[a-zA-Z0-9]+']);
 
 
 Route::get('/team/showPlayersTeam', [TeamsController::class, 'showPopularTeams'])->middleware('auth:api');
@@ -106,3 +106,7 @@ Route::get('/arrange', [ArrangeController::class, 'index'])->middleware('auth:ap
 Route::post('/arrange/update', [ArrangeController::class, 'update'])->middleware('auth:api');
 
 Route::get('/schematic', [ArrangeController::class, 'showAll']);
+
+
+//rssIp
+Route::get('/rssUserIp', [RssController::class, 'rssUserIp']);
