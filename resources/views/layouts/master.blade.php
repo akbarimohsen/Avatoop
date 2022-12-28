@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +7,8 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/font-awesome/css/font-awesome.min.css')}}">
+{{--    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/font-awesome/css/font-awesome.min.css')}}">--}}
+    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/fontawesome-6.2.1/css/all.min.css')}}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
@@ -47,6 +48,31 @@
         .d-none-after:after {
             display: none;
         }
+        .card {
+            cursor: pointer;
+        }
+        .card .card-header:hover {
+            color: #0dcaf0;
+        }
+        .card .card-body a:hover {
+            color: #0dcaf0;
+        }
+        .text-hover:hover {
+            color: #0dcaf0;
+        }
+        .sidebar-collapse .text-me {
+            display: none;
+        }
+        .sidebar-collapse .main-sidebar:hover .text-me {
+            display: block;
+        }
+        /*.angle {*/
+        /*    transform: rotate(0deg);*/
+        /*    cursor: pointer;*/
+        /*}*/
+        /*.down .col-1 {*/
+        /*    transform: rotate(-90deg);*/
+        /*}*/
     </style>
 
     @livewireStyles()
@@ -201,421 +227,566 @@
 {{----}}
 {{--    <!-- Main Sidebar Container -->--}}
     <aside class="main-sidebar sidebar-white-primary elevation-4">
-{{----}}
         <!-- Sidebar -->
         <div class="sidebar" style="direction: ltr; height: 100vh; background-color: #ffffff">
             <div style="direction: rtl">
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="https://www.gravatar.com/avatar/52f0fbcbedee04a121cba8dad1174462?s=200&d=mm&r=g"
-                             class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">
-                            {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
-                        </a>
-                    </div>
-                </div>
-{{----}}
-                <!-- Sidebar Menu -->
+
                 @role('admin')
-                    <nav class="mt-2">
-                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                            data-accordion="false">
-{{----}}
-{{--                             USER MANAGEMENT--}}
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link d-flex align-items-center">
-                                    <i class="fa fa-user text-center" style="width: 30px;"></i>
-                                    <p>
-                                        مدیریت کاربران
-                                        <i class="right fa fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('user.create') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>ایجاد کاربر</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('user.index') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>لیست کاربران</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-{{----}}
-{{--                             News Management--}}
-                            <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link d-flex align-items-center">
-                                    <i class="fa fa-newspaper-o text-center" style="width: 30px;" ></i>
-                                    <p>
-                                        مدیریت اخبار Rss
-                                        <i class="right fa fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('rss.index') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>لیست اخبار Rss</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-{{----}}
-{{----}}
-{{--                             Role and Permission Management--}}
-                            <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link d-flex align-items-center">
-                                    <i class="fa fa-shield text-center" style="width: 30px;"></i>
-                                    <p>
-                                        مدیریت نقش ها
-                                        <i class="right fa fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('role.create') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>نقش ها</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('permission.create') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>مجوز ها</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-{{----}}
-{{--                             Tags Management--}}
-                            <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link d-flex align-items-center">
-                                    <i class="fa fa-tag text-center" style="width: 30px;"></i>
-                                    <p>
-                                        مدیریت برچسب ها
-                                        <i class="right fa fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('tag.index') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>لیست برچسب ها</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-{{----}}
-{{----}}
-{{--                             Team and Player Managemrnt--}}
-                            <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link d-flex align-items-center">
-                                    <i class="fa fa-futbol-o text-center" style="width: 30px;"></i>
-                                    <p>
-                                        مدیریت تیم و بازیکن
-                                        <i class="right fa fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('admin.players') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>لیست بازیکنان</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('admin.teams') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>لیست تیم ها</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('admin.positions') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>لیست پست های بازی</p>
-                                        </a>
-                                    </li>
-{{----}}
-                                    <li class="nav-item">
-                                        <a href="{{ route('leagues.index') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>لیست لیگ ها</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('nationalities.index') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>لیست ملیت ها</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-{{----}}
-{{--                             Ads Management--}}
-{{----}}
-                            <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link d-flex align-items-center">
-                                    <div style="width: 30px">
-                                        <img src="{{ asset('assets/admin/icons/ads.png') }}" class="text-center" alt="">
+                <div class="accordion" id="accordionAdmin">
+                    {{-- USER Management --}}
+                    <div class="card mt-3 shadow-none">
+                        <div class="card-header p-0" id="headingOne">
+                            <h5 class="mb-0">
+                                <a class="nav-link collapsed text-black" style="font-size: smaller" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <div class="row angle">
+                                        <div class="col-2 text-center">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <div class="col-10 text-me">مدریت کاربران</div>
                                     </div>
-                                    <p>
-                                        مدیریت تبلیغات
-                                        <i class="right fa fa-angle-left"></i>
-                                    </p>
                                 </a>
-                                <ul class="nav nav-treeview">
-{{----}}
-                                    <li class="nav-item">
-                                        <a href="{{ route('admin.ads') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>لیست تبلیغات</p>
-                                        </a>
-                                    </li>
-{{----}}
-                                    <li class="nav-item">
-                                        <a href="{{ route('admin.ads.add') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>ایجاد تبلیغ</p>
-                                        </a>
-                                    </li>
-{{----}}
-                                </ul>
-                            </li>
-                            <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link d-flex align-items-center">
-                                    <i class="fa fa-exchange text-center" style="width: 30px;" aria-hidden="true"></i>
-                                    <p>
-                                        مدیریت شماتیک
-                                        <i class="right fa fa-angle-left"></i>
-                                    </p>
+                            </h5>
+                        </div>
+
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionAdmin">
+                            <div class="card-body pr-5">
+                                <a href="{{ route('user.index') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            لیست کاربران
+                                        </div>
+                                    </div>
                                 </a>
-                                <ul class="nav nav-treeview">
-{{----}}
-                                    <li class="nav-item">
-                                        <a href="{{ route('schematic.index') }}" class="nav-link">
-                                            <i class="fa fa-list" aria-hidden="true"></i>
-                                            <p>لیست شماتیک ها</p>
-                                        </a>
-                                    </li>
-{{----}}
-                                    <li class="nav-item">
-                                        <a href="{{ route('schematic.create') }}" class="nav-link">
-                                            <i class="fa fa-sitemap" aria-hidden="true"></i>
-                                            <p>ایجاد شماتیک</p>
-                                        </a>
-                                    </li>
-{{----}}
-                                </ul>
-                            </li>
-{{----}}
-{{--                             Suggest Mangement--}}
-                            <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link d-flex align-items-center">
-                                    <i class="fa fa-bullhorn text-center" style="width: 30px;" ></i>
-                                    <p>
-                                        مدیریت پیشنهادات
-                                        <i class="right fa fa-angle-left"></i>
-                                    </p>
+                                <a href="{{ route('user.create') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa fa-user-plus"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            ایجاد کاربر
+                                        </div>
+                                    </div>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('admin.suggests') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>لیست پیشنهادات</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-{{----}}
-{{--                             Rules Management--}}
-                            <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link d-flex align-items-center">
-                                    <i class="fa fa-handshake-o text-center" style="width: 30px;" ></i>
-                                    <p>
-                                        مدیریت قوانین
-                                        <i class="right fa fa-angle-left"></i>
-                                    </p>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- NEWS Management --}}
+                    <div class="card shadow-none">
+                        <div class="card-header p-0" id="headingTwo">
+                            <h5 class="mb-0">
+                                <a class="nav-link collapsed text-black" style="font-size: smaller" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                    <div class="row angle">
+                                        <div class="col-2 text-center">
+                                            <i class="fa-solid fa-rss"></i>
+                                        </div>
+                                        <div class="col-10 text-me">مدریت اخبار RSS</div>
+                                    </div>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('rules.index') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>لیست قوانین</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-{{----}}
-{{--                             emails management--}}
-                            <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link d-flex align-items-center">
-                                    <i class="fa fa-envelope text-center" style="width: 30px;" ></i>
-                                    <p>
-                                        مدیریت ایمیل ها
-                                        <i class="right fa fa-angle-left"></i>
-                                    </p>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionAdmin">
+                            <div class="card-body pr-5">
+                                <a href="{{ route('rss.index') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            لیست اخبار RSS
+                                        </div>
+                                    </div>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('admin.emails.showEmails') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>لیست ایمیل ها</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('admin.emails.showUsers') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>ارسال ایمیل</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-{{----}}
-{{----}}
-{{--                             News Management--}}
-                            <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link d-flex align-items-center">
-                                    <i class="fa fa-newspaper-o text-center" style="width: 30px;" ></i>
-                                    <p>
-                                        مدیریت اخبار
-                                        <i class="right fa fa-angle-left"></i>
-                                    </p>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Role and Permission Management --}}
+                    <div class="card shadow-none">
+                        <div class="card-header p-0" id="headingThree">
+                            <h5 class="mb-0">
+                                <a class="nav-link collapsed text-black" style="font-size: smaller" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                    <div class="row angle">
+                                        <div class="col-2 text-center">
+                                            <i class="fa fa-shield"></i>
+                                        </div>
+                                        <div class="col-10 text-me">مدریت نقش ها</div>
+                                    </div>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('news.create') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>افزودن خبر جدید</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-{{----}}
-{{--                             Category management--}}
-                            <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link d-flex align-items-center">
-                                    <i class="fa fa-th-list text-center" style="width: 30px;" ></i>
-                                    <p>
-                                        مدیریت دسته بندی ها
-                                        <i class="right fa fa-angle-left"></i>
-                                    </p>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionAdmin">
+                            <div class="card-body pr-5">
+                                <a href="{{ route('role.create') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-person-circle-question"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            نقش ها
+                                        </div>
+                                    </div>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('category.create') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>افزودن دسته بندی جدید</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-{{----}}
-{{--                             Reporter Management--}}
-                            <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link d-flex align-items-center">
-                                    <i class="fa fa-users text-center" style="width: 30px;" ></i>
-                                    <p>
-                                        مدیریت خبرنگاران
-                                        <i class="right fa fa-angle-left"></i>
-                                    </p>
+                                <a href="{{ route('permission.create') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-user-lock"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            مجوز ها
+                                        </div>
+                                    </div>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('admin.reporters') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>
-                                                لیست خبرنگاران
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('admin.reporters.showPostedNews') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>
-                                                لیست خبرهای ارسالی
-                                            </p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-{{----}}
-{{--                             Comments Mangement--}}
-                            <li class="nav-item has-treeview ">
-                                <a href="#" class="nav-link d-flex align-items-center">
-                                    <i class="fa fa-comments text-center" style="width: 30px;" ></i>
-                                    <p>
-                                        مدیریت نظرات
-                                        <i class="right fa fa-angle-left"></i>
-                                    </p>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Tags Management --}}
+                    <div class="card shadow-none">
+                        <div class="card-header p-0" id="headingFour">
+                            <h5 class="mb-0">
+                                <a class="nav-link collapsed text-black" style="font-size: smaller" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                    <div class="row angle">
+                                        <div class="col-2 text-center">
+                                            <i class="fa fa-tag"></i>
+                                        </div>
+                                        <div class="col-10 text-me">مدریت برچسب ها</div>
+                                    </div>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('admin.rsscomments') }}" class="nav-link">
-                                            <i class="fa fa-circle-o nav-icon"></i>
-                                            <p>
-                                                لیست نظرات rss
-                                            </p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
+                            </h5>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionAdmin">
+                            <div class="card-body pr-5">
+                                <a href="{{ route('tag.index') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa fa-tags"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            لیست برچست ها
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Team and Player Management --}}
+                    <div class="card shadow-none">
+                        <div class="card-header p-0" id="headingFive">
+                            <h5 class="mb-0">
+                                <a class="nav-link collapsed text-black" style="font-size: smaller" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                    <div class="row angle">
+                                        <div class="col-2 text-center">
+                                            <i class="fa-solid fa-people-group"></i>
+                                        </div>
+                                        <div class="col-10 text-me">مدریت تیم و بازیکنان</div>
+                                    </div>
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionAdmin">
+                            <div class="card-body pr-5">
+                                <a href="{{ route('admin.players') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-address-book"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            لیست بازیکنان
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="{{ route('admin.teams') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-people-group"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            لیست تیم ها
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="{{ route('admin.positions') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            لیست پست های بازی
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="{{ route('leagues.index') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-flag-checkered"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            لیست لیگ ها
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="{{ route('nationalities.index') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-earth-asia"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            لیست ملیت ها
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- ADS Management--}}
+                    <div class="card shadow-none">
+                        <div class="card-header p-0" id="headingSix">
+                            <h5 class="mb-0">
+                                <a class="nav-link collapsed text-black" style="font-size: smaller" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                                    <div class="row angle">
+                                        <div class="col-2 text-center">
+                                            <i class="fa-solid fa-rectangle-ad"></i>
+                                        </div>
+                                        <div class="col-10 text-me">مدريت تبليغات</div>
+                                    </div>
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionAdmin">
+                            <div class="card-body pr-5">
+                                <a href="{{ route('admin.ads') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-list-ol"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            لیست تبليغات
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="{{ route('admin.ads.add') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            ايجاد تبليغات
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Schematic Management --}}
+                    <div class="card shadow-none">
+                        <div class="card-header p-0" id="headingSeven">
+                            <h5 class="mb-0">
+                                <a class="nav-link collapsed text-black" style="font-size: smaller" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                                    <div class="row angle">
+                                        <div class="col-2 text-center">
+                                            <i class="fa-solid fa-map-location-dot"></i>
+                                        </div>
+                                        <div class="col-10 text-me">مدريت شماتیک</div>
+                                    </div>
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionAdmin">
+                            <div class="card-body pr-5">
+                                <a href="{{ route('schematic.index') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-list-ol"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            لیست شماتیک ها
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="{{ route('schematic.create') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            ايجاد شماتیک
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Suggest Management --}}
+                    <div class="card shadow-none">
+                        <div class="card-header p-0" id="headingEaight">
+                            <h5 class="mb-0">
+                                <a class="nav-link collapsed text-black" style="font-size: smaller" type="button" data-toggle="collapse" data-target="#collapseEaight" aria-expanded="true" aria-controls="collapseEaight">
+                                    <div class="row angle">
+                                        <div class="col-2 text-center">
+                                            <i class="fa-solid fa-comment"></i>
+                                        </div>
+                                        <div class="col-10 text-me">مدريت پیشنهادات</div>
+                                    </div>
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseEaight" class="collapse" aria-labelledby="headingEaight" data-parent="#accordionAdmin">
+                            <div class="card-body pr-5">
+                                <a href="{{ route('admin.suggests') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-comments"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            لیست پیشنهادات
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Rules Management --}}
+                    <div class="card shadow-none">
+                        <div class="card-header p-0" id="headingNine">
+                            <h5 class="mb-0">
+                                <a class="nav-link collapsed text-black" style="font-size: smaller" type="button" data-toggle="collapse" data-target="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
+                                    <div class="row angle">
+                                        <div class="col-2 text-center">
+                                            <i class="fa-solid fa-gavel"></i>
+                                        </div>
+                                        <div class="col-10 text-me">مدریت قوانین</div>
+                                    </div>
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionAdmin">
+                            <div class="card-body pr-5">
+                                <a href="{{ route('rules.index') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-scale-balanced"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            لیست قوانین
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Emails Management --}}
+                    <div class="card shadow-none">
+                        <div class="card-header p-0" id="headingTen">
+                            <h5 class="mb-0">
+                                <a class="nav-link collapsed text-black" style="font-size: smaller" type="button" data-toggle="collapse" data-target="#collapseTen" aria-expanded="true" aria-controls="collapseTen">
+                                    <div class="row angle">
+                                        <div class="col-2 text-center">
+                                            <i class="fa-solid fa-envelope"></i>
+                                        </div>
+                                        <div class="col-10 text-me">مدریت ایمیل</div>
+                                    </div>
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionAdmin">
+                            <div class="card-body pr-5">
+                                <a href="{{ route('admin.emails.showEmails') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-inbox"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            لیست ایمیل ها
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="{{ route('admin.emails.showUsers') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-paper-plane"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            ارسال ایمیل ها
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- News Management --}}
+                    <div class="card shadow-none">
+                        <div class="card-header p-0" id="headingEleven">
+                            <h5 class="mb-0">
+                                <a class="nav-link collapsed text-black" style="font-size: smaller" type="button" data-toggle="collapse" data-target="#collapseEleven" aria-expanded="true" aria-controls="collapseEleven">
+                                    <div class="row angle">
+                                        <div class="col-2 text-center">
+                                            <i class="fa-regular fa-newspaper"></i>
+                                        </div>
+                                        <div class="col-10 text-me">مدریت اخبار</div>
+                                    </div>
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven" data-parent="#accordionAdmin">
+                            <div class="card-body pr-5">
+                                <a href="{{ route('news.create') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            افزودن خبر جديد
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Category Management --}}
+                    <div class="card shadow-none">
+                        <div class="card-header p-0" id="headingTwelve">
+                            <h5 class="mb-0">
+                                <a class="nav-link collapsed text-black" style="font-size: smaller" type="button" data-toggle="collapse" data-target="#collapseTwelve" aria-expanded="true" aria-controls="collapseTwelve">
+                                    <div class="row angle">
+                                        <div class="col-2 text-center">
+                                            <i class="fa-solid fa-layer-group"></i>
+                                        </div>
+                                        <div class="col-10 text-me">مدریت دسته بندی ها</div>
+                                    </div>
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseTwelve" class="collapse" aria-labelledby="headingTwelve" data-parent="#accordionAdmin">
+                            <div class="card-body pr-5">
+                                <a href="{{ route('category.create') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            افزودن دسته بندی جدید
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Reporter Management --}}
+                    <div class="card shadow-none">
+                        <div class="card-header p-0" id="headingThirteen">
+                            <h5 class="mb-0">
+                                <a class="nav-link collapsed text-black" style="font-size: smaller" type="button" data-toggle="collapse" data-target="#collapseThirteen" aria-expanded="true" aria-controls="collapseThirteen">
+                                    <div class="row angle">
+                                        <div class="col-2 text-center">
+                                            <i class="fa-solid fa-microphone"></i>
+                                        </div>
+                                        <div class="col-10 text-me">مدریت خبرنگاران</div>
+                                    </div>
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseThirteen" class="collapse" aria-labelledby="headingThirteen" data-parent="#accordionAdmin">
+                            <div class="card-body pr-5">
+                                <a href="{{ route('admin.reporters') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-user-pen"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            لیست خبرنگاران
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="{{ route('admin.reporters.showPostedNews') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-paper-plane"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            لیست خبر های ارسالی
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Comments Management --}}
+                    <div class="card shadow-none">
+                        <div class="card-header p-0" id="headingFourteen">
+                            <h5 class="mb-0">
+                                <a class="nav-link collapsed text-black" style="font-size: smaller" type="button" data-toggle="collapse" data-target="#collapseFourteen" aria-expanded="true" aria-controls="collapseFourteen">
+                                    <div class="row angle">
+                                        <div class="col-2 text-center">
+                                            <i class="fa-regular fa-comment"></i>
+                                        </div>
+                                        <div class="col-10 text-me">مدریت نظرات</div>
+                                    </div>
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseFourteen" class="collapse" aria-labelledby="headingFourteen" data-parent="#accordionAdmin">
+                            <div class="card-body pr-5">
+                                <a href="{{ route('admin.rsscomments') }}" class="link-black">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-list-check"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            لیست نظرات rss
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
                 @endrole
 
                 @role('user')
-                    <nav class="mt-2">
-                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                            data-accordion="false">
-{{--                             USER MANAGEMENT--}}
-                            <li class="nav-item ">
-                                <a href="{{ route('user.profile') }}" class="nav-link">
-                                    <i class="fa fa-user"></i>
-                                    <p>
-                                        پروفایل
-                                    </p>
-                                </a>
-                            </li>
-{{----}}
-{{--                             Popular team--}}
-                            <li class="nav-item ">
-                                <a href="{{ route('user.popularTeams') }}" class="nav-link">
-                                    <i class="fa fa-heart"></i>
-                                    <p>
-                                        تیم های محبوب
-                                    </p>
-                                </a>
-                            </li>
-{{----}}
-{{--                             Audio news --}}
-                            <li class="nav-item ">
-                                <a href="{{ route('user.audioNews') }}" class="nav-link">
-                                    <i class="fa fa-bullhorn"></i>
-                                    <p>
-                                        خبرهای صوتی
-                                    </p>
-                                </a>
-                            </li>
-{{----}}
-{{--                             my favorite teams news --}}
-                            <li class="nav-item ">
-                                <a href="{{ route('user.favoriteTeamsNews') }}" class="nav-link">
-                                    <i class="fa fa-bullhorn"></i>
-                                    <p>
-                                        خبرهای تیم های محبوب
-                                    </p>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                <a href="{{ route('user.profile') }}" class="text-decoration-none link-black text-me text-hover my-3">
+                    <div class="row px-3 py-2">
+                        <div class="col-2 d-flex justify-content-center">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="col-10 text-me">
+                            پروفایل
+                        </div>
+                    </div>
+                </a>
+                <a href="{{ route('user.popularTeams') }}" class="text-decoration-none link-black text-me text-hover my-3">
+                    <div class="row px-3 py-2">
+                        <div class="col-2 d-flex justify-content-center">
+                            <i class="fa-solid fa-people-group"></i>
+                        </div>
+                        <div class="col-10 text-me">
+                            تیم های محبوب
+                        </div>
+                    </div>
+                </a>
+                <a href="{{ route('user.audioNews') }}" class="text-decoration-none link-black text-me text-hover my-3">
+                    <div class="row px-3 py-2">
+                        <div class="col-2 d-flex justify-content-center">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </div>
+                        <div class="col-10 text-me">
+                            خبر های صوتی
+                        </div>
+                    </div>
+                </a>
+                <a href="{{ route('user.favoriteTeamsNews') }}" class="text-decoration-none link-black text-me text-hover my-3">
+                    <div class="row px-3 py-2">
+                        <div class="col-2 d-flex justify-content-center">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <div class="col-10 text-me">
+                            خبر های تیم های محبوب
+                        </div>
+                    </div>
+                </a>
                 @endrole
+
             </div>
         </div>
         <!-- /.sidebar -->
@@ -672,6 +843,13 @@
 <script src="https://unpkg.com/persian-datepicker@latest/dist/js/persian-datepicker.min.js"></script>
 <script src="{{asset('assets/admin/plugins/select2/select2.full.min.js')}}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{{--<script type="text/javascript" rel="script">--}}
+{{--    $(document).ready(function () {--}}
+{{--        $(".angle").click(function () {--}}
+{{--            $(this).toggleClass("down")--}}
+{{--        });--}}
+{{--    });--}}
+{{--</script>--}}
 @livewireScripts()
 @yield('Js')
 </body>

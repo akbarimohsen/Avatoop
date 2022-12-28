@@ -1,27 +1,28 @@
 @extends('layouts.master')
 @section('content')
-    <section class="content-wrapper">
-        <section class="container">
-            <div class="shadow-sm p-3 mb-5 bg-white w-100 d-inline-block rounded d-inline-block w-100 mt-5">
-                <a class="btn btn-success" href="{{route('schematic.index')}}">صفحه اصلی</a>
+<div class="ms-lg-250">
+    <section class="container">
+        <div class="row mb-5 bg-white w-100 d-inline-block rounded d-inline-block mt-5">
+            <div class="col-12 col-md-10 col-xl-8 mx-auto">
+                <a class="btn btn-outline-info" href="{{route('schematic.index')}}">صفحه اصلی</a>
 
-                <div class="col-8 mx-auto">
-                    <div class="card card-primary">
+                <div class="col-12 mx-auto mt-3">
+                    <div class="card card-warning">
                         <div class="card-header">
-                            <h3 class="card-title">بروز رسانی نام سطح دسترسی</h3>
+                            <h3 class="card-title">بروز رسانی شماتیک</h3>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
                                 {!! Form::model($schematic,['route'=>['schematic.update',$schematic->id],'method'=>'put']) !!}
-                                {!! Form::label('schematic','نام سطح دسترسی',['class'=>'text-capitalize']) !!}
+                                {!! Form::label('schematic','نام شماتیک',['class'=>'text-capitalize']) !!}
                                 <div class="input-group">
-                                    {!! Form::text('schematic',$schematic->name,['class'=>'form-control','placeholder'=>'ترکی']) !!}
+                                    {!! Form::text('schematic',$schematic->name,['class'=>'form-control','placeholder'=>'شماره شماتیک']) !!}
                                 </div>
                                 @error('schematic')
                                 <p class="text-danger">{{$message}}</p>
                                 @enderror
                                 <section class="form-group">
-                                    {!! Form::submit('ذخیره',['class'=>'btn btn-primary mt-3']) !!}
+                                    {!! Form::submit('به روز رسانی',['class'=>'btn btn-outline-warning mt-3']) !!}
                                 </section>
                                 {!! Form::close() !!}
                             </div>
@@ -31,6 +32,7 @@
 
                 </div>
             </div>
-        </section>
+        </div>
     </section>
+</div>
 @endsection
