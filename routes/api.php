@@ -107,6 +107,9 @@ Route::post('/arrange/update', [ArrangeController::class, 'update'])->middleware
 
 Route::get('/schematic', [ArrangeController::class, 'showAll']);
 
+//rss with an special tag
+
+Route::get('news/special/tag/{tag}',[UserIndexController::class,'rssTags'])->where(['id' => '[a-zA-Z0-9]+']);
 
 //rssIp
 Route::get('/rssUserIp', [RssController::class, 'rssUserIp']);
