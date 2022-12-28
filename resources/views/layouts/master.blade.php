@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,6 +55,9 @@
             color: #0dcaf0;
         }
         .card .card-body a:hover {
+            color: #0dcaf0;
+        }
+        .text-hover:hover {
             color: #0dcaf0;
         }
         .sidebar-collapse .text-me {
@@ -739,6 +742,49 @@
                     </div>
 
                 </div>
+                @endrole
+
+                @role('user')
+                <a href="{{ route('user.profile') }}" class="text-decoration-none link-black text-me text-hover my-3">
+                    <div class="row px-3 py-2">
+                        <div class="col-2 d-flex justify-content-center">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="col-10 text-me">
+                            پروفایل
+                        </div>
+                    </div>
+                </a>
+                <a href="{{ route('user.popularTeams') }}" class="text-decoration-none link-black text-me text-hover my-3">
+                    <div class="row px-3 py-2">
+                        <div class="col-2 d-flex justify-content-center">
+                            <i class="fa-solid fa-people-group"></i>
+                        </div>
+                        <div class="col-10 text-me">
+                            تیم های محبوب
+                        </div>
+                    </div>
+                </a>
+                <a href="{{ route('user.audioNews') }}" class="text-decoration-none link-black text-me text-hover my-3">
+                    <div class="row px-3 py-2">
+                        <div class="col-2 d-flex justify-content-center">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </div>
+                        <div class="col-10 text-me">
+                            خبر های صوتی
+                        </div>
+                    </div>
+                </a>
+                <a href="{{ route('user.favoriteTeamsNews') }}" class="text-decoration-none link-black text-me text-hover my-3">
+                    <div class="row px-3 py-2">
+                        <div class="col-2 d-flex justify-content-center">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <div class="col-10 text-me">
+                            خبر های تیم های محبوب
+                        </div>
+                    </div>
+                </a>
                 @endrole
 
             </div>
