@@ -43,7 +43,7 @@
                                             <a href="{{ route('admin.reporters.showPostedNews', ['category' => null]) }}" class="nav-link">
                                                 <i class="fa fa-inbox"></i> منتظر تایید
                                                 <span class="badge bg-success float-left">
-                        {{ App\Models\News::where('status', null)->count() }}
+                        {{ App\Models\News::where('status', 0)->count() }}
                     </span>
                                             </a>
                                         </li>
@@ -61,7 +61,7 @@
                                             <a href="{{ route('admin.reporters.showPostedNews', ['category' => 'deleted']) }}" class="nav-link">
                                                 <i class="fa fa-trash-o"></i> حذف شده ها
                                                 <span class="badge bg-danger float-left">
-                        {{ App\Models\News::where('status', 'deleted')->count() }}
+                        {{ App\Models\News::where('status', -2)->count() }}
                     </span>
                                             </a>
                                         </li>
