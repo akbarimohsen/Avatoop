@@ -15,7 +15,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     {!! Form::label('title','عنوان خبر',['class'=>'text-capitalize']) !!}
-                                    {!! Form::text('title',old('first_name'),['class'=>'form-control','placeholder'=>'مثلا: جنجال بازیکن B']) !!}
+                                    {!! Form::text('title',old('title'),['class'=>'form-control','placeholder'=>'مثلا: جنجال بازیکن B']) !!}
                                     @error('title')
                                     <p class="text-danger">{{$message}}</p>
                                     @enderror
@@ -35,14 +35,14 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    {!! Form::label('teams','انتخاب دسته بندی',['class'=>'text-capitalize']) !!}
+                                    {!! Form::label('teams','انتخاب تیم های مربوط به خبر',['class'=>'text-capitalize']) !!}
                                     {!! Form::select('teams[]', $teams,$news->teams,['class'=>'form-control select2','id'=>'category','multiple','data-placeholder'=>'انتخاب تیم های خبر']);!!}
                                     @error('teams')
                                     <p class="text-danger">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    {!! Form::label('tag','انتخاب دسته بندی',['class'=>'text-capitalize']) !!}
+                                    {!! Form::label('tag','انتخاب برچسب های خبر',['class'=>'text-capitalize']) !!}
                                     {!! Form::select('tag[]', $tags,$news->tags,['class'=>'form-control select2','id'=>'category','multiple','data-placeholder'=>'انتخاب تگ های خبر']);!!}
                                     @error('tag')
                                     <p class="text-danger">{{$message}}</p>
@@ -56,6 +56,13 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
+                                    {!! Form::label('Audio','فایل صوتی خبر',['class'=>'text-capitalize']) !!}
+                                    {!! Form::file('Audio',['class'=>'form-control','style'=>'border:2px inset lightgray']) !!}
+                                    @error('Audio')
+                                    <p class="text-danger">{{$message}}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-6">
                                     {!! Form::label('newsImage','تصویر اصلی خبر',['class'=>'text-capitalize']) !!}
                                     {!! Form::file('newsImage',['class'=>'form-control','style'=>'border:2px inset lightgray',"wire:model='avatar'"]) !!}
                                     @error('newsImage')
@@ -63,10 +70,25 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 text-center">
-                                    <span>تصویر قبلی خبر:</span>
-                                    <img
-                                        src="{{\Illuminate\Support\Facades\Storage::url($news->img)}}"
-                                        class="img img-thumbnail" width="200" height="200" alt="">
+                                    @if($news->audio==null)
+                                        <span class="d-block w-100">صوت قبلی خبر:صوتی وجود ندارد</span>
+                                    @else
+                                        <div class="col-8 offset-md-2">
+                                            <span class="d-block">صوت قبلی خبر:</span>
+                                            <audio controls class="d-flex mx-auto">
+                                                <source
+                                                    src="{{\Illuminate\Support\Facades\Storage::url(config('app.ftpRoute').$news->audio)}}">
+                                            </audio>
+                                        </div>
+                                    @endif
+                                    @if($news->img ==null)
+                                        <span class="d-block w-100">تصویر قبلی خبر:تصویری وجود ندارد</span>
+                                    @else
+                                        <span class="d-block">تصویر قبلی خبر:</span>
+                                        <img
+                                            src="{{\Illuminate\Support\Facades\Storage::url(config('app.ftpRoute').$news->img)}}"
+                                            class="img img-thumbnail" width="200" height="200" alt="">
+                                    @endif
                                 </div>
 
                                 @if($avatar)

@@ -48,21 +48,21 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             {!! Form::label('title','عنوان خبر',['class'=>'text-capitalize']) !!}
-                                            {!! Form::text('title',old('first_name'),['class'=>'form-control','placeholder'=>'مثلا: جنجال بازیکن B']) !!}
+                                            {!! Form::text('title',old('title'),['class'=>'form-control','placeholder'=>'مثلا: جنجال بازیکن B']) !!}
                                             @error('title')
                                             <p class="text-danger">{{$message}}</p>
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-6">
                                             {!! Form::label('header','سر تیتر خبر',['class'=>'text-capitalize']) !!}
-                                            {!! Form::text('header',old('newsHeader'),['class'=>'form-control','placeholder'=>'مثلا:بازیکن تیم B با نام A جنجال بزرگی آفرید']) !!}
+                                            {!! Form::text('header',old('header'),['class'=>'form-control','placeholder'=>'مثلا:بازیکن تیم B با نام A جنجال بزرگی آفرید']) !!}
                                             @error('header')
                                             <p class="text-danger">{{$message}}</p>
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-12">
                                             {!! Form::label('description','توضیح خبر',['class'=>'text-capitalize']) !!}
-                                            {!! Form::text('description',old('header'),['class'=>'form-control','placeholder'=>'یک توضیح حداقل 70 تا 320 کاراکتری از خبر']) !!}
+                                            {!! Form::text('description',old('description'),['class'=>'form-control','placeholder'=>'یک توضیح حداقل 70 تا 320 کاراکتری از خبر']) !!}
                                             @error('description')
                                             <p class="text-danger">{{$message}}</p>
                                             @enderror
@@ -114,6 +114,13 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-6">
+                                            {!! Form::label('Audio','فایل صوتی خبر',['class'=>'text-capitalize']) !!}
+                                            {!! Form::file('Audio',['class'=>'form-control','style'=>'border:2px inset lightgray']) !!}
+                                            @error('Audio')
+                                            <p class="text-danger">{{$message}}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-md-6">
                                             {!! Form::label('newsImage','تصویر اصلی خبر',['class'=>'text-capitalize']) !!}
                                             {!! Form::file('newsImage',['class'=>'form-control','style'=>'border:2px inset lightgray',"wire:model.debounce='avatar'"]) !!}
                                             @error('newsImage')
@@ -160,7 +167,7 @@
                                                 <div class="card-body">
                                                     <div class="mb-3">
                                                     <textarea id="editor1" name="editor1"
-                                                              placeholder="متن خود را وارد کنید و از ابزار های بالا در جهت افزودن عکس و تغییر ظاهی متن استفاده کنید"></textarea>
+                                                              placeholder="متن خود را وارد کنید">{{old('editor1')}}</textarea>
                                                     </div>
                                                 </div>
                                             </div>

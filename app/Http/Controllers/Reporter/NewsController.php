@@ -62,6 +62,11 @@ class NewsController extends Controller
             $dir="news/$date";
             $request->file('newsImage')->storeAs($dir,$newsImage);
         }
+        if ($request->has('Audio')){
+            $audioName=time()."_".$request->file('Audio')->getClientOriginalName();
+            $dirAudio="audio/news/$date";
+            $request->file('Audio')->storeAs($dirAudio,$audioName);
+        }
 
 
         $news = News::create([
@@ -70,7 +75,8 @@ class NewsController extends Controller
             'description' => $request->description,
             'NewsDate'=>$request->NewsDate,
             'body'=>$request->editor1,
-            'img'=>"$dir/$newsImage",
+            'img'=>$dir.'/'.$newsImage,
+            'audio'=>$dirAudio.'/'.$audioName,
             'reporter_id' =>Auth::id()
         ]);
         if ($news){
@@ -101,11 +107,19 @@ class NewsController extends Controller
     {
         $news=News::findOrFail($id);
         $file=$request->file('newsImage');
+        $voiceFile=$request->file('Audio');
         $imageName="";
+        $audioName="";
+        $year=$news->created_at->year;
+        $month=$news->created_at->month;
+        $date=$year.'/'.$month;
+        if ($news->audio==null){
+            $audio='nothing';
+        }else{
+            $audio=$news->audio;
+
+        }
         if(!empty($file)){
-            $year=$news->created_at->year;
-            $month=$news->created_at->month;
-            $date=$year.'/'.$month;
             if (Storage::exists("$news->img")){
                 Storage::delete("$news->img");
             }
@@ -115,6 +129,20 @@ class NewsController extends Controller
         }else{
             $imageName=$news->img;
         }
+        if(!empty($voiceFile)){
+            if (Storage::exists("$audio")){
+                Storage::delete("$audio");
+            }
+            $audioName=time()."_".$request->file('Audio')->getClientOriginalName();
+            $dirAudio="audio/news/$date";
+            $request->file('Audio')->storeAs($dirAudio,$audioName);
+        }else{
+            if ($news->audio==null){
+                $audioName=null;
+            }else{
+                $audioName=$news->audio;
+            }
+        }
         $updateNews=$news->update([
             'title' => $request->title,
             'header' => $request->header,
@@ -122,6 +150,7 @@ class NewsController extends Controller
             'NewsDate'=>$request->NewsDate,
             'body'=>$request->editor1,
             'img'=>!empty($file)?$dir.'/'.$imageName:$imageName,
+            'audio'=>!empty($voiceFile)?$dirAudio.'/'.$audioName:$audioName,
             'reporter_id' =>Auth::id()
         ]);
         if ($updateNews){
@@ -140,6 +169,9 @@ class NewsController extends Controller
         $news=News::findOrFail($id);
         if (Storage::exists("$news->img")){
             Storage::delete("$news->img");
+        }
+        if (Storage::exists("$news->audio")){
+            Storage::delete("$news->audio");
         }
         News::destroy($id);
         session()->flash('delete','خبر با موفقیت حذف شد');
