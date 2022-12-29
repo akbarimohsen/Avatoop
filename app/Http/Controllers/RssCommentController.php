@@ -25,7 +25,6 @@ class RssCommentController extends Controller
 
     public function show($id){
         $comment = RssComment::findOrFail($id);
-
         return view('admin.rssCommentsManagement.show', ['comment' => $comment]);
     }
 }

@@ -57,13 +57,13 @@
                                     {{ $news->header }}
                                 </td>
                                 <td class="">
-                                    @if($news->status == null)
+                                    @if($news->status == 0)
                                         <span class="badge bg-secondary p-1">منتظر تایید</span>
-                                    @elseif($news->status == "accepted")
+                                    @elseif($news->status == 1)
                                         <span class="badge bg-success p-1">تایید شد</span>
-                                    @elseif($news->status == "rejected")
+                                    @elseif($news->status == -1)
                                         <span class="badge bg-warning p-1">رد شد</span>
-                                    @elseif($news->status == "deleted")
+                                    @elseif($news->status == -2)
                                         <span class="badge bg-danger p-1">حذف شد</span>
                                     @endif
                                 </td>
