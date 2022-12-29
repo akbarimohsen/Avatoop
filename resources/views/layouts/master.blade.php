@@ -487,7 +487,7 @@
                                         <div class="col-2 text-center">
                                             <i class="fa-solid fa-map-location-dot"></i>
                                         </div>
-                                        <div class="col-10 text-me">مدريت شماتیک</div>
+                                        <div class="col-10 text-me">مدیريت شماتیک</div>
                                     </div>
                                 </a>
                             </h5>
@@ -641,6 +641,18 @@
                                     </div>
                                 </a>
                             </div>
+                            <div class="card-body pr-5">
+                                <a href="{{ route('news.index') }}" class="link-black mt-1">
+                                    <div class="row">
+                                        <div class="col-2 d-flex justify-content-center">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </div>
+                                        <div class="col-10 text-me">
+                                            لیست اخبار
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     {{-- Category Management --}}
@@ -744,47 +756,94 @@
                 </div>
                 @endrole
 
-                @role('user')
-                <a href="{{ route('user.profile') }}" class="text-decoration-none link-black text-me text-hover my-3">
-                    <div class="row px-3 py-2">
-                        <div class="col-2 d-flex justify-content-center">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div class="col-10 text-me">
-                            پروفایل
+                @role('reporter')
+                {{-- Tags Management --}}
+                <div class="card shadow-none">
+                    <div class="card-header p-0" id="headingFour">
+                        <h5 class="mb-0">
+                            <a class="nav-link collapsed text-black" style="font-size: smaller" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                <div class="row angle">
+                                    <div class="col-2 text-center">
+                                        <i class="fa fa-tag"></i>
+                                    </div>
+                                    <div class="col-10 text-me">مدریت برچسب ها</div>
+                                </div>
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionAdmin">
+                        <div class="card-body pr-5">
+                            <a href="{{ route('tag.index') }}" class="link-black">
+                                <div class="row">
+                                    <div class="col-2 d-flex justify-content-center">
+                                        <i class="fa fa-tags"></i>
+                                    </div>
+                                    <div class="col-10 text-me">
+                                        لیست برچست ها
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                </a>
-                <a href="{{ route('user.popularTeams') }}" class="text-decoration-none link-black text-me text-hover my-3">
-                    <div class="row px-3 py-2">
-                        <div class="col-2 d-flex justify-content-center">
-                            <i class="fa-solid fa-people-group"></i>
-                        </div>
-                        <div class="col-10 text-me">
-                            تیم های محبوب
+                </div>
+                {{-- News Management --}}
+                <div class="card shadow-none">
+                    <div class="card-header p-0" id="headingEleven">
+                        <h5 class="mb-0">
+                            <a class="nav-link collapsed text-black" style="font-size: smaller" type="button" data-toggle="collapse" data-target="#collapseEleven" aria-expanded="true" aria-controls="collapseEleven">
+                                <div class="row angle">
+                                    <div class="col-2 text-center">
+                                        <i class="fa-regular fa-newspaper"></i>
+                                    </div>
+                                    <div class="col-10 text-me">مدریت اخبار</div>
+                                </div>
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven" data-parent="#accordionAdmin">
+                        <div class="card-body pr-5">
+                            <a href="{{ route('news.create') }}" class="link-black">
+                                <div class="row">
+                                    <div class="col-2 d-flex justify-content-center">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
+                                    <div class="col-10 text-me">
+                                        افزودن خبر جديد
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                </a>
-                <a href="{{ route('user.audioNews') }}" class="text-decoration-none link-black text-me text-hover my-3">
-                    <div class="row px-3 py-2">
-                        <div class="col-2 d-flex justify-content-center">
-                            <i class="fa-solid fa-volume-high"></i>
-                        </div>
-                        <div class="col-10 text-me">
-                            خبر های صوتی
+                </div>
+                {{-- Category Management --}}
+                <div class="card shadow-none">
+                    <div class="card-header p-0" id="headingTwelve">
+                        <h5 class="mb-0">
+                            <a class="nav-link collapsed text-black" style="font-size: smaller" type="button" data-toggle="collapse" data-target="#collapseTwelve" aria-expanded="true" aria-controls="collapseTwelve">
+                                <div class="row angle">
+                                    <div class="col-2 text-center">
+                                        <i class="fa-solid fa-layer-group"></i>
+                                    </div>
+                                    <div class="col-10 text-me">مدریت دسته بندی ها</div>
+                                </div>
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseTwelve" class="collapse" aria-labelledby="headingTwelve" data-parent="#accordionAdmin">
+                        <div class="card-body pr-5">
+                            <a href="{{ route('category.create') }}" class="link-black">
+                                <div class="row">
+                                    <div class="col-2 d-flex justify-content-center">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
+                                    <div class="col-10 text-me">
+                                        افزودن دسته بندی جدید
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                </a>
-                <a href="{{ route('user.favoriteTeamsNews') }}" class="text-decoration-none link-black text-me text-hover my-3">
-                    <div class="row px-3 py-2">
-                        <div class="col-2 d-flex justify-content-center">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="col-10 text-me">
-                            خبر های تیم های محبوب
-                        </div>
-                    </div>
-                </a>
+                </div>
                 @endrole
 
             </div>

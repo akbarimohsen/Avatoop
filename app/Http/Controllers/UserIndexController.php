@@ -177,7 +177,7 @@ class UserIndexController extends Controller
     public function rssTags($tag)
     {
         $data=Tag::where('name','like',"%$tag%")->first();
-        $rsses=$data->rsses()->paginate(2);
+        $rsses=$data->rsses()->paginate(16);
         return response()->json([
             'data'=>$rsses
         ]);
