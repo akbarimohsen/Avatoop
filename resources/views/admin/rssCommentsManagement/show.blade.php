@@ -32,7 +32,7 @@
               <div class="card-body box-profile">
 
                 <h3 class="profile-username text-center">
-                    {{ $comment->user->first_name }} {{ $comment->user->last_name }}
+                    {{ $comment->user->username }}
                 </h3>
 
                 {{-- <p class="text-muted text-center">مهندس نرم افزار</p> --}}

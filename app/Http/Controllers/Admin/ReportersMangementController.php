@@ -23,11 +23,11 @@ class ReportersMangementController extends Controller
         if($category == null ){
             $news = News::where('status', null)->get();
         }else if($category == "accepted"){
-            $news = News::where('status', 'accepted')->get();
+            $news = News::where('status', 1)->get();
         }else if($category == "rejected"){
-            $news = News::where('status', 'rejected')->get();
+            $news = News::where('status', -1)->get();
         }else if($category == "deleted"){
-            $news = News::where('status', 'deleted')->get();
+            $news = News::where('status', -2)->get();
         }
 
         return view('admin.reportersManagement.PostedNews',compact('news', 'category'));
