@@ -4,7 +4,7 @@
 
     <meta charset="UTF-8">
 
-    <title>Error 500</title>
+    <title>Error 404</title>
 
     <style rel="stylesheet">
         @font-face {
@@ -33,9 +33,8 @@
 </head>
 <body>
 <div class="d-block text-center">
-    <img src="500.png" alt="error 500">
-    <h3>مشکلی در سرور رخ داده است لطفا با پشتیبانی تماس بگیرید.</h3>
-    <h5>ممنون 🙏🙏</h5>
+    <img src="404.png" alt="error 500">
+    <h3>ادمین / خبرنگار محترم صفحه شما یافت نشد.</h3>
 </div>
 </body>
 </html>

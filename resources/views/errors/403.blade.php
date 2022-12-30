@@ -4,7 +4,7 @@
 
     <meta charset="UTF-8">
 
-    <title>Error 500</title>
+    <title>Error 403</title>
 
     <style rel="stylesheet">
         @font-face {
@@ -33,9 +33,9 @@
 </head>
 <body>
 <div class="d-block text-center">
-    <img src="500.png" alt="error 500">
-    <h3>مشکلی در سرور رخ داده است لطفا با پشتیبانی تماس بگیرید.</h3>
-    <h5>ممنون 🙏🙏</h5>
+    <img src="403.png" alt="error 500">
+    <h3>دسترسی غیر مجاز</h3>
+    <h3>ip دستگاه شما به عنوان هکر به پشتیبانی های وب سایت تحویل داده شد</h3>
 </div>
 </body>
 </html>
