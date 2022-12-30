@@ -95,7 +95,7 @@
                                 <div class="form-group col-12">
                                     <div class="mx-auto col-12">
                                         {!! Form::label('password','رمز عبور',['class'=>'text-capitalize']) !!}
-                                        {!! Form::password('password',['class'=>'form-control text-center','placeholder'=>'رمز عبور مورد نظر باید شامل حروف و عدد باشد و حداقل 8 رقم باشد']) !!}
+                                        {!! Form::password('password',['class'=>'form-control text-center','placeholder'=>'رمز عبور مورد نظر باید شامل حروف و حروف خاص و عدد باشد و حداقل 8 رقم باشد']) !!}
                                         @error('password')
                                         <p class="text-danger">{{$message}}</p>
                                         @enderror

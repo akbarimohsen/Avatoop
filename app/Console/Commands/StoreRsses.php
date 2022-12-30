@@ -71,7 +71,7 @@ class StoreRsses extends Command
                     'title' => $item['title'],
                     'description' => $item['description'],
                     'news_date' => $item['news_date'],
-                    'content' => $item['content']
+                    'content' => strip_tags($item['content'])
                 ]);
             }
             unset($f);
