@@ -9,7 +9,7 @@
     <style rel="stylesheet">
         @font-face {
             font-family: Titr;
-            src: url("B_Titr.ttf");
+            src: url({{asset('assets/main/font/B_Titr.ttf')}});
         }
         body {
             margin: 0;
@@ -33,7 +33,7 @@
 </head>
 <body>
 <div class="d-block text-center">
-    <img src="403.png" alt="error 500">
+    <img src="{{asset('assets/images/error/403.png')}}" alt="error 403">
     <h3>دسترسی غیر مجاز</h3>
     <h3>ip دستگاه شما به عنوان هکر به پشتیبانی های وب سایت تحویل داده شد</h3>
 </div>

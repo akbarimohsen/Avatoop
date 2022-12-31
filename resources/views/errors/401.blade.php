@@ -9,7 +9,7 @@
     <style rel="stylesheet">
         @font-face {
             font-family: Titr;
-            src: url("B_Titr.ttf");
+            src: url({{asset('assets/main/font/B_Titr.ttf')}});
         }
         body {
             margin: 0;
@@ -33,7 +33,7 @@
 </head>
 <body>
 <div class="d-block text-center">
-    <img src="401.png" alt="error 500">
+    <img src="{{asset('assets/images/error/401.png')}}" alt="error 401">
     <h3>احراز هویت شما انجام نشد. شما به این بخش دسترسی ندارید</h3>
 </div>
 </body>

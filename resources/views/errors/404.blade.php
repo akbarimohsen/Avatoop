@@ -9,7 +9,7 @@
     <style rel="stylesheet">
         @font-face {
             font-family: Titr;
-            src: url("B_Titr.ttf");
+            src: url({{asset('assets/main/font/B_Titr.ttf')}});
         }
         body {
             margin: 0;
@@ -33,7 +33,7 @@
 </head>
 <body>
 <div class="d-block text-center">
-    <img src="404.png" alt="error 500">
+    <img src="{{asset('assets/images/error/404.png')}}" alt="error 404">
     <h3>ادمین / خبرنگار محترم صفحه شما یافت نشد.</h3>
 </div>
 </body>

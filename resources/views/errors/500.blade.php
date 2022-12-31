@@ -9,7 +9,7 @@
     <style rel="stylesheet">
         @font-face {
             font-family: Titr;
-            src: url("B_Titr.ttf");
+            src: url({{asset('assets/main/font/B_Titr.ttf')}});
         }
         body {
             margin: 0;
@@ -33,7 +33,7 @@
 </head>
 <body>
 <div class="d-block text-center">
-    <img src="500.png" alt="error 500">
+    <img src="{{asset('assets/images/error/500.png')}}" alt="error 500">
     <h3>مشکلی در سرور رخ داده است لطفا با پشتیبانی تماس بگیرید.</h3>
     <h5>ممنون 🙏🙏</h5>
 </div>
