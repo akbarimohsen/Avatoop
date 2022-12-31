@@ -52,7 +52,7 @@
                         @foreach($all_news as $news )
                             <tr>
                                 <td><input type="checkbox" wire:model="selectedNews" value="{{ $news->id }}"></td>
-                                <td class="mailbox-name"><a href="#">{{ $news->title }}</a></td>
+                                <td class="mailbox-name"><a href={{route('news.edit',['id'=>$news->id])}}>{{ $news->title }}</a></td>
                                 <td class="mailbox-subject">
                                     {{ $news->header }}
                                 </td>
