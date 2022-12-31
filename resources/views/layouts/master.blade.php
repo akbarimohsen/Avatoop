@@ -648,7 +648,7 @@
                                             <i class="fa-solid fa-plus"></i>
                                         </div>
                                         <div class="col-10 text-me">
-                                            لیست اخبار
+                                            لیست اخبار ارسالی شما
                                         </div>
                                     </div>
                                 </a>
