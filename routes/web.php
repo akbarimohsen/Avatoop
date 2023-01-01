@@ -71,7 +71,19 @@ Route::middleware(['auth', 'verified', 'role:user|admin'])->group(function () {
 
 Route::middleware(['auth', 'verified', 'role:admin|reporter'])->group(function () {
 
+    // create category
+    Route::resource('/admin/category', \App\Http\Controllers\Reporter\CategoryController::class)->parameters(['category' => 'id']);
 
+    // dashboard
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+
+    // tags controller
+    Route::resource('/admin/tag', TagController::class)->parameters(['tag' => 'id']);
+    Route::post('admin/tag/search' , [TagController::class , 'search'])->name('admin.tag.search');
+
+
+});
+Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     // users management
     Route::resource('/admin/user', \App\Http\Controllers\AdminCreateUser::class)->parameters(['user' => 'id']);
 
@@ -80,13 +92,6 @@ Route::middleware(['auth', 'verified', 'role:admin|reporter'])->group(function (
     Route::resource('/admin/permission', \App\Http\Controllers\PermissionController::class)->parameters(['permission' => 'id']);
     Route::post('/admin/give-permission/{role}', [RoleController::class, 'givePermission'])->name('role.permission');
     Route::delete('/admin/role/{role}/permission/{permission}', [RoleController::class, 'revokePermission'])->name('role.permission.revoke');
-
-    // create category
-    Route::resource('/admin/category', \App\Http\Controllers\Reporter\CategoryController::class)->parameters(['category' => 'id']);
-
-    // dashboard
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-
     // player management
     Route::get('/admin/players', [PlayerManagementController::class, 'index'])->name('admin.players');
     Route::get('/admin/players/add', [PlayerManagementController::class, 'add'])->name('admin.players.add');
@@ -120,11 +125,6 @@ Route::middleware(['auth', 'verified', 'role:admin|reporter'])->group(function (
 
     // rules controller
     Route::resource('/admin/rules', RulesController::class);
-
-    // tags controller
-    Route::resource('/admin/tag', TagController::class)->parameters(['tag' => 'id']);
-    Route::post('admin/tag/search' , [TagController::class , 'search'])->name('admin.tag.search');
-
     // send email controller
     Route::get('/admin/emails/showEmails', [EmailsController::class, 'showEmails'])->name('admin.emails.showEmails');
     Route::get('/admin/emails/showUsers', [EmailsController::class, 'showUsers'])->name('admin.emails.showUsers');
@@ -148,7 +148,11 @@ Route::middleware(['auth', 'verified', 'role:admin|reporter'])->group(function (
     Route::get('/admin/rssComments/{id}/show', [RssCommentController::class, 'show'])->name('admin.rsscomments.show');
     Route::resource('/admin/schematic', \App\Http\Controllers\Admin\SchematicController::class)->parameters(['schematic' => 'id']);
 
+
+
+
 });
+
 // comments controller
 Route::get('/admin/comments/{category?}', [CommentController::class, 'index'])->name('admin.comments');
 Route::get('/admin/comments/{id}/show', [CommentController::class, 'show'])->name('admin.comments.show');

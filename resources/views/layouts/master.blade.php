@@ -813,6 +813,18 @@
                                 </div>
                             </a>
                         </div>
+                        <div class="card-body pr-5">
+                            <a href="{{ route('news.index') }}" class="link-black mt-1">
+                                <div class="row">
+                                    <div class="col-2 d-flex justify-content-center">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
+                                    <div class="col-10 text-me">
+                                        لیست اخبار ارسالی شما
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 {{-- Category Management --}}
