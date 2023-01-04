@@ -40,8 +40,7 @@
                         <th scope="col">سرتیتر</th>
                         <th scope="col">توضیحات</th>
                         <th scope="col">تاریخ خبر</th>
-                        <th scope="col">آپدیت</th>
-                        <th scope="col">حذف</th>
+                        <th scope="col">عملیات</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -54,12 +53,13 @@
                             <td>{{$item->NewsDate}}</td>
 
                             <td>
-                                {!! Form::open(['route'=>['news.destroy','id'=>$item->id],'method'=>'delete',]) !!}
-                                {!! Form::submit('delete',['class'=>'btn btn-danger','onclick'=>'return confirm("آیا مطمئنید؟")']) !!}
-                                {!! Form::close() !!}
-                            </td>
-                            <td>
-                                <a href="{{route('news.edit',['id'=>$item->id])}}" class="btn btn-warning">update</a>
+                                <div class="d-flex flex-row">
+                                    {!! Form::open(['route'=>['news.destroy','id'=>$item->id],'method'=>'delete',]) !!}
+                                    {!! Form::submit('delete',['class'=>'btn btn-danger p-0 ml-1','onclick'=>'return confirm("آیا مطمئنید؟")']) !!}
+                                    {!! Form::close() !!}
+
+                                    <a href="{{route('news.edit',['id'=>$item->id])}}" class="btn btn-warning p-0">update</a>
+                                </div>
                             </td>
                         </tr>
                     @empty

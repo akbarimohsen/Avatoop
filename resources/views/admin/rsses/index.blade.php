@@ -46,8 +46,7 @@
                             <th scope="col">توضیحات خبر</th>
                             <th scope="col">تاریخ خبر</th>
                             <th scope="col">وضعیت خبر</th>
-                            <th scope="col">بروزرسانی</th>
-                            <th scope="col">حذف</th>
+                            <th scope="col">عملیات</th>
 
                         </tr>
                         </thead>
@@ -69,13 +68,12 @@
                                     </td>
                                 @endif
                                 <td>
-                                    <a href="{{route('rss.edit',['id'=>$Rss->id])}}"
-                                       class="btn btn-warning">ویرایش</a>
-                                </td>
-                                <td>
-                                    {!! Form::open(['route'=>['rss.destroy','id'=>$Rss->id],'method'=>'delete']) !!}
-                                    {!! Form::submit('حذف',['class'=>'btn btn-danger','onclick'=>'return confirm("آیا مطمئنید؟")']) !!}
-                                    {!! Form::close() !!}
+                                    <div class="d-flex flex-row">
+                                        <a href="{{route('rss.edit',['id'=>$Rss->id])}}" class="btn btn-warning ml-1 p-0">ویرایش</a>
+                                        {!! Form::open(['route'=>['rss.destroy','id'=>$Rss->id],'method'=>'delete']) !!}
+                                        {!! Form::submit('حذف',['class'=>'btn btn-danger p-0','onclick'=>'return confirm("آیا مطمئنید؟")']) !!}
+                                        {!! Form::close() !!}
+                                    </div>
                                 </td>
                             </tr>
                         @empty

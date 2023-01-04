@@ -57,8 +57,7 @@
                                 <th scope="col">نام برچسب</th>
                                 <th scope="col">تاریخ ایجاد</th>
                                 <th scope="col">تاریخ آپدیت</th>
-                                <th scope="col">آپدیت</th>
-                                <th scope="col">حذف</th>
+                                <th scope="col">عملیات</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -73,13 +72,13 @@
                                         <td><p class="text-secondary">آپدیت نشده</p></td>
                                     @endif
                                     <td>
-                                        <a href="{{ route('tag.edit', ['id' => $tag->id]) }}"
-                                           class="btn btn-warning">ویرایش</a>
-                                    </td>
-                                    <td>
-                                        {!! Form::open(['route' => ['tag.destroy', 'id' => $tag->id], 'method' => 'delete']) !!}
-                                        {!! Form::submit('حذف', ['class' => 'btn btn-danger', 'onclick' => 'return confirm("از خذف این برچسب مطمئنید؟")']) !!}
-                                        {!! Form::close() !!}
+                                        <div class="d-flex flex-row">
+                                            <a href="{{ route('tag.edit', ['id' => $tag->id]) }}"
+                                               class="btn btn-warning p-0 ml-1">ویرایش</a>
+                                            {!! Form::open(['route' => ['tag.destroy', 'id' => $tag->id], 'method' => 'delete']) !!}
+                                            {!! Form::submit('حذف', ['class' => 'btn btn-danger p-0', 'onclick' => 'return confirm("از خذف این برچسب مطمئنید؟")']) !!}
+                                            {!! Form::close() !!}
+                                        </div>
                                     </td>
                                 </tr>
                             @empty

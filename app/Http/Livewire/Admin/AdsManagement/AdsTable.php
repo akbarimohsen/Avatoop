@@ -24,7 +24,7 @@ class AdsTable extends Component
 
     public function render()
     {
-        $ads = Ad::paginate(1);
+        $ads = Ad::paginate(23);
         return view('livewire.admin.ads-management.ads-table',[
             'ads' => $ads
         ]);

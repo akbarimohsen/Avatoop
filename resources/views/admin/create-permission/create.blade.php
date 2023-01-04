@@ -42,7 +42,7 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            {!! Form::open(['route'=>'permission.store','method'=>'post']) !!}
+                            {!! Form::open(['#','method'=>'get']) !!}
                             {!! Form::label('permission','نام سطح دسترسی',['class'=>'text-capitalize']) !!}
                             <div class="input-group">
                                 {!! Form::text('permission',old('permission'),['class'=>'form-control','placeholder'=>'نام سطح دسترسی را وارد کنید(مانند ایجاد کننده خبر یا آپدیت کننده خبر)']) !!}
@@ -69,8 +69,7 @@
                         <th scope="col">نام سطح دسترسی</th>
                         <th scope="col">تاریخ ایجاد</th>
                         <th scope="col">تاریخ آپدیت</th>
-                        <th scope="col">حذف</th>
-                        <th scope="col">آپدیت</th>
+                        <th scope="col">عملیات</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -86,13 +85,13 @@
                                 <td><p class="text-secondary">آپدیت نشده</p></td>
                             @endif
                             <td>
-                                {!! Form::open(['route'=>['permission.destroy','id'=>$permission->id],'method'=>'delete']) !!}
-                                {!! Form::submit('حذف',['class'=>'btn btn-danger']) !!}
-                                {!! Form::close() !!}
-                            </td>
-                            <td>
-                                <a href="{{route('permission.edit',['id'=>$permission->id])}}"
-                                   class="btn btn-warning">ویرایش</a>
+{{--                                {!! Form::open(['route'=>['permission.destroy','id'=>$permission->id],'method'=>'delete']) !!}--}}
+{{--                                {!! Form::submit('حذف',['class'=>'btn btn-danger']) !!}--}}
+{{--                                {!! Form::close() !!}--}}
+{{--                                <a href="{{route('permission.edit',['id'=>$permission->id])}}"--}}
+{{--                                   class="btn btn-warning">ویرایش</a>--}}
+                                <button class="btn btn-warning">بدون عملیات</button>
+
                             </td>
                         </tr>
                     @empty

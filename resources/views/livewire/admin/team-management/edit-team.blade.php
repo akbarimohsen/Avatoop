@@ -9,7 +9,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" wire:submit.prevent="submit">
+                <form role="form" wire:submit.prevent="submit" method="POST">
                     <div class="card-body">
 
                         <div class="form-group">

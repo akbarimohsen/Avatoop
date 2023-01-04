@@ -25,8 +25,7 @@
             <th scope="col">نام کاربر</th>
             <th scope="col">ایمیل</th>
             <th scope="col">شماره تلفن</th>
-            <th scope="col">آپدیت</th>
-            <th scope="col">حذف</th>
+            <th scope="col">عملیات</th>
         </tr>
         </thead>
         <tbody>
@@ -38,20 +37,20 @@
                 <td>{{$user->email}}</td>
                 <td>{{$user->phone_number}}</td>
                 <td>
+                    <div class="d-flex flex-row">
                     @if(\Illuminate\Support\Facades\Auth::user()->email=="www.kiavash7666@gmail.com" or $user->email!=="www.kiavash7666@gmail.com")
-                        <a href="{{route('user.edit',['id'=>$user->id])}}" class="btn btn-warning">ویرایش</a>
+                        <a href="{{route('user.edit',['id'=>$user->id])}}" class="btn bg-warning ml-1 p-0">ویرایش</a>
                     @else
                         خودش باید آپدیت کنه! :)
                     @endif
-                </td>
-                <td>
                     @if($user->email=="www.kiavash7666@gmail.com")
                         ادمین اصلی پاک نمیشه :))
                     @else
                         {!! Form::open(['route'=>['user.destroy','id'=>$user->id],'method'=>'delete','onclick'=>'conform(آیا مطمئنید میخواهید این خبر را پاک کنید)']) !!}
-                        {!! Form::submit('حذف',['class'=>'btn btn-danger','onclick'=>'return confirm("آیا مطمئنید؟")']) !!}
+                        {!! Form::submit('حذف',['class'=>'btn bg-danger p-0','onclick'=>'return confirm("آیا مطمئنید؟")']) !!}
                         {!! Form::close() !!}
                     @endif
+                    </div>
                 </td>
             </tr>
         @empty
