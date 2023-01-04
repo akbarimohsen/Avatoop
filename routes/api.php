@@ -58,6 +58,8 @@ Route::post('/suggestion', [UserIndexController::class, 'suggestion']);
 Route::get('/newsShow/{id}', [UserIndexController::class, 'newsShow'])->where(['id' => '[a-zA-Z0-9]+']);
 Route::get('/bookmark', [UserIndexController::class, 'bookMark']);
 
+Route::post('/rss/comment/store',[UserIndexController::class,'storeComment']);
+
 //profile
 Route::post('/profile/store', [UserController::class, 'store'])->middleware('auth:api');
 Route::post('/profile/update', [UserController::class, 'update'])->middleware('auth:api');
@@ -110,6 +112,9 @@ Route::post('/arrange/update', [ArrangeController::class, 'update'])->middleware
 
 Route::get('/schematic', [ArrangeController::class, 'showAll']);
 
+//rss with an special tag
+
+Route::get('news/special/tag/{tag}',[UserIndexController::class,'rssTags'])->where(['id' => '[a-zA-Z0-9]+']);
 
 //rssIp
 Route::get('/rssUserIp', [RssController::class, 'rssUserIp']);

@@ -109,6 +109,7 @@
       array (
         'driver' => 'session',
         'provider' => 'users',
+        'remember' => 10079,
       ),
       'api' => 
       array (
@@ -940,7 +941,7 @@
   'session' => 
   array (
     'driver' => 'database',
-    'lifetime' => '120',
+    'lifetime' => '2880',
     'expire_on_close' => false,
     'encrypt' => false,
     'files' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\framework/sessions',
@@ -949,7 +950,7 @@
     'store' => NULL,
     'lottery' => 
     array (
-      0 => 2,
+      0 => 100,
       1 => 100,
     ),
     'cookie' => 'laravel_session',

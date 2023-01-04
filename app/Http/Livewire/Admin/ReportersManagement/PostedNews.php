@@ -46,9 +46,16 @@ class PostedNews extends Component
     public function changeStatus($status)
     {
         $selectedNews = News::whereIn('id', $this->selectedNews)->get();
-
+        $temp = 0;
+        if($status == 'accepted'){
+            $temp = 1;
+        }else if($status == 'deleted'){
+            $temp = -2;
+        }else if($status == 'rejected'){
+            $temp = -1;
+        }
         foreach($selectedNews as $new){
-            $new->status=$status;
+            $new->status = $temp;
             $new->save();
         }
 

@@ -103,7 +103,7 @@ class RssController extends Controller
         $updateNews=$news->update([
             'title' => $request->title,
             'description' => $request->description,
-            'content'=>$request->editor1,
+            'content'=>strip_tags($request->editor1),
             'img'=>!empty($file)?$dir.'/'.$imageName:$imageName,
             'audio'=>!empty($voiceFile)?$dirAudio.'/'.$audioName:$audioName,
             'active'=>true,

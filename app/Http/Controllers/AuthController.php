@@ -22,7 +22,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'username' => 'required|max:255',
-            'phone_number' => 'required|unique:users|',
+            'phone_number' => 'required|unique:users',
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required'
         ]);
@@ -43,6 +43,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+
         $credentials = $request->validate([
             'email' => "required|email",
             'password' => "required",
@@ -54,14 +55,14 @@ class AuthController extends Controller
             ];
             return \response()->json($response, \Symfony\Component\HttpFoundation\Response::HTTP_UNAUTHORIZED);
         } else {
-            //$attempt=Auth::attempt(['email'=>$request->email,'password'=>$request->password]);
+            // $attempt=Auth::attempt(['email'=>$request->email,'password'=>$request->password, 'remember' => $request->remember]);
             //           return response()->json([
             //               'user' => $user
             //           ]);
             //           return response()->json([
             //               'user' => $user->id
             //           ]);
-            //$logged = Auth::loginUsingId($user->id);
+            // $logged = Auth::loginUsingId($user->id);
             $loggedInUser = Auth::loginUsingId($user->id);
             if (!$loggedInUser) {
                 throw new Exception('Single SignOn: User Cannot be Signed In');

@@ -1,6 +1,6 @@
 <div>
     <div class="card-body table-responsive p-0">
-        <table class="table table-hover">
+        <table class="table table-striped table-hover">
           <tr>
             <th>کاربر</th>
             <th>تاریخ</th>

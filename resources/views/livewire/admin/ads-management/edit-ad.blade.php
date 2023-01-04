@@ -1,9 +1,9 @@
 <div>
     <div class="row d-flex justify-content-center">
         <!-- left column -->
-        <div class="col-md-10">
+        <div class="col-12 col-md-10 col-xl-8 mx-auto">
           <!-- general form elements -->
-          <div class="card card-primary">
+          <div class="card card-warning">
             <div class="card-header">
               <h3 class="card-title">اطلاعات تبلیغ</h3>
             </div>
@@ -11,10 +11,11 @@
             <!-- form start -->
             <form role="form" wire:submit.prevent="submit" method="POST">
             <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card card-warning mb-0 shadow-none">
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form role="form" wire:submit.prevent="submit" method="POST">
+                    <div class="card-body">
                         <div class="form-group">
                             <label for="link"> لینک تبلیغ </label>
                             <input type="text" class="form-control" id="link" wire:model="link"
@@ -59,8 +60,9 @@
                                 </div>
                             </div>
                         </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">ارسال</button>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <button type="submit" class="btn btn-outline-warning">ارسال</button>
                     </div>
                 </form>
         </div>

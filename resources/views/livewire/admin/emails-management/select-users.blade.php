@@ -1,5 +1,5 @@
 <div>
-    <div class="card">
+    <div class="card card-info">
         <div class="card-header">
           <h3 class="card-title">جدول ایمیل ها</h3>
         </div>
@@ -28,7 +28,7 @@
                     </tbody>
                 </table>
             @if( $users->count() == 0 )
-                <div class="alert alert-secondary mt-3 text-center" role="alert">
+                <div class="alert alert-secondary m-0 text-center" role="alert">
                     هیچ موردی یافت نشد.
                 </div>
             @else
