@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Helper\Tokenable;
+use App\Notifications\OTPSms;
 
 class Token extends Model
 {
@@ -78,7 +79,7 @@ class Token extends Model
     {
         return $this->created_at->diffInMinutes(Carbon::now()) > static::EXPIRATION_TIME;
     }
-    public function sendCode($phoneNumber)
+    public function sendCode($phoneNumber, $user)
     {
         if (!$this->user) {
             throw new \Exception("No user attached to this token.");
@@ -92,6 +93,7 @@ class Token extends Model
             $message = "به آواتوپ خوش آمدید \r\n $this->code";
             $lineNumber = "30005006007603";
             $receptor = $phoneNumber;
+            $user->notify(new OTPSms($this->code));
             // $api = new \Ghasedak\GhasedakApi('cd29160d5ce70eb8aa9e78612b230667c76f5a65ad8fe09ad0b63b32704888a1');
             // $api->SendSimple($receptor,$message,$lineNumber);
             return true;

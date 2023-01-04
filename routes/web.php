@@ -27,6 +27,8 @@ use App\Http\Controllers\Admin\EmailsController;
 use App\Http\Controllers\UserIndexController;
 use App\Http\Controllers\Admin\NationalityController as AdminNationalityController;
 use App\Http\Controllers\RssCommentController;
+use App\Models\User;
+use App\Notifications\OTPSms;
 
 /*
 |--------------------------------------------------------------------------
@@ -164,3 +166,8 @@ Route::middleware(['auth', 'role:admin|reporter'])->group(function () {
 });
 
 
+
+Route::get('/test', function() {
+    $user = User::find(1);
+    $user->notify(new OTPSms(1234));
+});

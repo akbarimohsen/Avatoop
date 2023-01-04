@@ -198,7 +198,11 @@
       'file' => 
       array (
         'driver' => 'file',
+<<<<<<< HEAD
         'path' => '/home/mohsen-akbari/Desktop/LaravelProjects/AvaToop/storage/framework/cache/data',
+=======
+        'path' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\framework/cache/data',
+>>>>>>> ace70135330c5797a2d3391faab382d289c9afe8
       ),
       'memcached' => 
       array (
@@ -386,12 +390,20 @@
       'local' => 
       array (
         'driver' => 'local',
+<<<<<<< HEAD
         'root' => '/home/mohsen-akbari/Desktop/LaravelProjects/AvaToop/storage/app',
+=======
+        'root' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\app',
+>>>>>>> ace70135330c5797a2d3391faab382d289c9afe8
       ),
       'public' => 
       array (
         'driver' => 'local',
+<<<<<<< HEAD
         'root' => '/home/mohsen-akbari/Desktop/LaravelProjects/AvaToop/storage/app/public',
+=======
+        'root' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\app/public',
+>>>>>>> ace70135330c5797a2d3391faab382d289c9afe8
         'url' => 'http://localhost:8000/storage',
         'visibility' => 'public',
       ),
@@ -418,7 +430,11 @@
     ),
     'links' => 
     array (
+<<<<<<< HEAD
       '/home/mohsen-akbari/Desktop/LaravelProjects/AvaToop/public/storage' => '/home/mohsen-akbari/Desktop/LaravelProjects/AvaToop/storage/app/public',
+=======
+      'D:\\xampp\\htdocs\\Avatoop\\public\\storage' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\app/public',
+>>>>>>> ace70135330c5797a2d3391faab382d289c9afe8
     ),
   ),
   'flare' => 
@@ -528,7 +544,11 @@
   'livewire' => 
   array (
     'class_namespace' => 'App\\Http\\Livewire',
+<<<<<<< HEAD
     'view_path' => '/home/mohsen-akbari/Desktop/LaravelProjects/AvaToop/resources/views/livewire',
+=======
+    'view_path' => 'D:\\xampp\\htdocs\\Avatoop\\resources\\views/livewire',
+>>>>>>> ace70135330c5797a2d3391faab382d289c9afe8
     'layout' => 'layouts.app',
     'asset_url' => NULL,
     'app_url' => NULL,
@@ -582,13 +602,21 @@
       'single' => 
       array (
         'driver' => 'single',
+<<<<<<< HEAD
         'path' => '/home/mohsen-akbari/Desktop/LaravelProjects/AvaToop/storage/logs/laravel.log',
+=======
+        'path' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\logs/laravel.log',
+>>>>>>> ace70135330c5797a2d3391faab382d289c9afe8
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
+<<<<<<< HEAD
         'path' => '/home/mohsen-akbari/Desktop/LaravelProjects/AvaToop/storage/logs/laravel.log',
+=======
+        'path' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\logs/laravel.log',
+>>>>>>> ace70135330c5797a2d3391faab382d289c9afe8
         'level' => 'debug',
         'days' => 14,
       ),
@@ -639,7 +667,11 @@
       ),
       'emergency' => 
       array (
+<<<<<<< HEAD
         'path' => '/home/mohsen-akbari/Desktop/LaravelProjects/AvaToop/storage/logs/laravel.log',
+=======
+        'path' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\logs/laravel.log',
+>>>>>>> ace70135330c5797a2d3391faab382d289c9afe8
       ),
     ),
   ),
@@ -705,7 +737,11 @@
       'theme' => 'default',
       'paths' => 
       array (
+<<<<<<< HEAD
         0 => '/home/mohsen-akbari/Desktop/LaravelProjects/AvaToop/resources/views/vendor/mail',
+=======
+        0 => 'D:\\xampp\\htdocs\\Avatoop\\resources\\views/vendor/mail',
+>>>>>>> ace70135330c5797a2d3391faab382d289c9afe8
       ),
     ),
   ),
@@ -944,7 +980,11 @@
     'lifetime' => '2880',
     'expire_on_close' => false,
     'encrypt' => false,
+<<<<<<< HEAD
     'files' => '/home/mohsen-akbari/Desktop/LaravelProjects/AvaToop/storage/framework/sessions',
+=======
+    'files' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\framework/sessions',
+>>>>>>> ace70135330c5797a2d3391faab382d289c9afe8
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -964,9 +1004,15 @@
   array (
     'paths' => 
     array (
+<<<<<<< HEAD
       0 => '/home/mohsen-akbari/Desktop/LaravelProjects/AvaToop/resources/views',
     ),
     'compiled' => '/home/mohsen-akbari/Desktop/LaravelProjects/AvaToop/storage/framework/views',
+=======
+      0 => 'D:\\xampp\\htdocs\\Avatoop\\resources\\views',
+    ),
+    'compiled' => 'D:\\xampp\\htdocs\\Avatoop\\storage\\framework\\views',
+>>>>>>> ace70135330c5797a2d3391faab382d289c9afe8
   ),
   'visitor' => 
   array (
