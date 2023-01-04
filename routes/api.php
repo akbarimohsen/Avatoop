@@ -13,6 +13,8 @@ use App\Http\Controllers\User\NewsController as UserNewsController;
 use App\Http\Controllers\User\TeamsController;
 use App\Http\Controllers\UserIndexController;
 use App\Http\Controllers\User\UserController;
+use App\Models\User;
+use App\Notifications\OTPSms;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -47,6 +49,9 @@ Route::post('/andriod/token', [AuthController::class, 'andriod']);
 Route::get('/indexslider', [UserIndexController::class, 'indexSlider']);
 Route::get('/indexadds', [UserIndexController::class, 'indexadds'])->name('indexadds');
 Route::get('/indexnews', [UserIndexController::class, 'indexnews'])->name('indexnews');
+//andriod
+Route::get('andriod/indexnews', [UserIndexController::class, 'andriodIndexnews'])->name('andriodIndexnews');
+//
 Route::get('/topview', [UserIndexController::class, 'topview'])->name('topview');
 Route::post('/suggestion', [UserIndexController::class, 'suggestion']);
 
@@ -113,3 +118,11 @@ Route::get('news/special/tag/{tag}',[UserIndexController::class,'rssTags'])->whe
 
 //rssIp
 Route::get('/rssUserIp', [RssController::class, 'rssUserIp']);
+
+//
+
+
+Route::get('/test', function() {
+    $user = User::find(1);
+    $user->notify(new OTPSms(1234));
+})->middleware('auth:api');
