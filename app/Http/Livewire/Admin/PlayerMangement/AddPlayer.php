@@ -36,7 +36,7 @@ class AddPlayer extends Component
 
     protected $rules = [
         'full_name' => 'required|string|unique:players',
-        'birth_date' => 'required|date',
+        'birth_date' => 'required',
         'description' => 'required|string',
         'team_id' => 'required',
         'nationality_id' => 'required',

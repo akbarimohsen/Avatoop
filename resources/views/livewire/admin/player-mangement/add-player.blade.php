@@ -28,7 +28,7 @@
 
                 <div class="form-group">
                     <label for="age">تاریخ تولد به میلادی</label>
-                    <input type="date" class="form-control" id="age" wire:model="birth_date" placeholder="سن را وارد کنید.">
+                    <input type="text" id="player_birthDate" class="form-control" wire:model="birth_date" placeholder="تاریخ تولد را وارد کنید.">
 
                     @if($errors->has('birth_date'))
                         <ul class="mt-1 mr-4">
@@ -134,7 +134,7 @@
                   <div class="form-group">
                     <label>عکس </label>
                     <input type="file" wire:model="img" >
-                    <span class="mt-2 text-primary" wire:target="img" wire:loading>در حال بارگذاری....</span>
+                    <span class="mt-2 text-primary" wire:target="img" wire:loading>در حال بارگذاری...</span>
                     @if($errors->has('img'))
                         <ul class="mt-1 mr-4">
                             @foreach ($errors->get('img') as $error )

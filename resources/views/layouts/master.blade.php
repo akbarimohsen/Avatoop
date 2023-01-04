@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/plugins/select2/select2.min.css')}}">
     {{-- <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/adminlte.min.css')}}"> --}}
     <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@latest/dist/css/persian-datepicker.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
 
     <style>
         .ms-lg-250 {
@@ -914,13 +916,19 @@
 <script src="https://unpkg.com/persian-datepicker@latest/dist/js/persian-datepicker.min.js"></script>
 <script src="{{asset('assets/admin/plugins/select2/select2.full.min.js')}}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-{{--<script type="text/javascript" rel="script">--}}
-{{--    $(document).ready(function () {--}}
-{{--        $(".angle").click(function () {--}}
-{{--            $(this).toggleClass("down")--}}
-{{--        });--}}
-{{--    });--}}
-{{--</script>--}}
+<script type="text/javascript" rel="script">
+</script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script>
+  $(document).ready(function(){
+    $( function() {
+        $( "#player_birthDate" ).datepicker({
+            maxDate: "+0d"
+        });
+    } );
+  })
+</script>
+
 @livewireScripts()
 @yield('Js')
 </body>
