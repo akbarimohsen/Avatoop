@@ -13,6 +13,8 @@ use App\Http\Controllers\User\NewsController as UserNewsController;
 use App\Http\Controllers\User\TeamsController;
 use App\Http\Controllers\UserIndexController;
 use App\Http\Controllers\User\UserController;
+use App\Models\User;
+use App\Notifications\OTPSms;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -113,3 +115,9 @@ Route::get('/schematic', [ArrangeController::class, 'showAll']);
 Route::get('/rssUserIp', [RssController::class, 'rssUserIp']);
 
 //
+
+
+Route::get('/test', function() {
+    $user = User::find(1);
+    $user->notify(new OTPSms(1234));
+})->middleware('auth:api');

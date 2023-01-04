@@ -54,6 +54,6 @@ class Rss extends Model
 
     public function visits()
     {
-        $this->hasMany(Visit::class);
+        return $this->hasMany(Visit::class);
     }
 }

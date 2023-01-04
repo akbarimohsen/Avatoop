@@ -16,13 +16,13 @@ class UserIndexController extends Controller
 {
     public function indexSlider()
     {
-        $datas = Rss::select('id')->where('active',1)->orderBy('created_at', 'desc')->limit(7)->get();
-        $Finds = Rss::find($datas);
-        $mappedcollection = $Finds->map(function ($Find, $key) {
+        $datas = Rss::select('id')->where('active', 1)->orderBy('created_at', 'desc')->limit(7)->get();
+        $rsss = Rss::rss($datas);
+        $mappedcollection = $rsss->map(function ($rss, $key) {
             return [
-                'id'=>$Find->id,
-                'img' => $Find->img,
-                'title' => $Find->title,
+                'id' => $rss->id,
+                'img' => $rss->img,
+                'title' => $rss->title,
             ];
         });
         return response()->json([
@@ -34,15 +34,15 @@ class UserIndexController extends Controller
     {
         $datas = Ad::select('id')->get();
 
-        $Finds = Ad::find($datas);
-        $mappedcollection = $Finds->map(function ($Find, $key) {
+        $rsss = Ad::rss($datas);
+        $mappedcollection = $rsss->map(function ($rss, $key) {
             return [
-                'img' => $Find->img,
-                'link' => $Find->link
+                'img' => $rss->img,
+                'link' => $rss->link
             ];
         });
         return response()->json([
-            // 'slider' => $Finds,
+            // 'slider' => $rsss,
             // 'slidertitle' => $title
             'data' => $mappedcollection
         ]);
@@ -50,18 +50,19 @@ class UserIndexController extends Controller
     public function indexnews()
     {
         $datas = Rss::orderBy('created_at', 'desc')->select('id')->limit(23)->get();
-        $Finds = Rss::find($datas);
-//        $visits=Visit::where();
-        $mappedcollection = $Finds->map(function ($Find, $key) {
-            $visit="";
+
+        $rsss = Rss::paginate($datas);
+        //        $visits=Visit::where();
+        $mappedcollection = $rsss->map(function ($rss, $key) {
+            $visit = "";
             return [
-                'id'=>$Find->id,
-                'image'=>$Find->img,
-                'title' => $Find->title,
-                'description' => $Find->description,
-                'news_date' => $Find->news_date,
-                'rss_audio'=>$Find->audio,
-                'visit'=>Visit::where('rss_id',$Find->id)->where('user_ip',\request()->ip())->exists()?true:null
+                'id' => $rss->id,
+                'image' => $rss->img,
+                'title' => $rss->title,
+                'description' => $rss->description,
+                'news_date' => $rss->news_date,
+                'rss_audio' => $rss->audio,
+                'visit' => Visit::where('rss_id', $rss->id)->where('user_ip', \request()->ip())->exists() ? true : null
             ];
         });
         return response()->json([
@@ -69,41 +70,42 @@ class UserIndexController extends Controller
         ]);
     }
 
-    public function andriodIndexnews()
+    public function andriodIndexnews(Request $request)
     {
-        $datas = Rss::orderBy('created_at', 'desc')->select('id')->get();
-        $Finds = Rss::find($datas);
-//        $visits=Visit::where();
-        $mappedcollection = $Finds->map(function ($Find, $key) {
-            $visit="";
-            return [
-                'id'=>$Find->id,
-                'image'=>$Find->img,
-                'title' => $Find->title,
-                'description' => $Find->description,
-                'news_date' => $Find->news_date,
-                'rss_audio'=>$Find->audio,
-                'like'=> like::where('rss_id', $Find->id)->count(),
-                'commentCount' => RssComment::where('rss_id', $Find->id)->count(),
-                'visit'=>Visit::where('rss_id',$Find->id)->where('user_ip',\request()->ip())->exists()?true:null
-            ];
-        });
+        $rsses = Rss::withCount('rss_comments')
+            ->withCount('likes')
+            ->with('visits', fn ($query) => $query->where('user_ip', $request->ip()))
+            ->latest()
+            ->get()
+            ->map(fn ($rss) => [
+                'id' => $rss->id,
+                'image' => $rss->img,
+                'title' => $rss->title,
+                'description' => $rss->description,
+                'news_date' => $rss->news_date,
+                'rss_audio' => $rss->audio,
+                'like' => $rss->likes_count,
+                'commentCount' => $rss->rss_comments_count,
+                'visit' => $rss->visits->contains('user_ip', $request->ip())
+            ])
+            ->paginate(10);
+
         return response()->json([
-            'data' => $mappedcollection
+            'data' => $rsses,
         ]);
     }
     public function topview()
     {
-        $datas = Rss::orderBy('views_count','DESC')->where('active',1)->select('id')->limit(23)->get();
-        $Finds = Rss::find($datas);
-        $mappedcollection = $Finds->map(function ($Find, $key) {
+        $datas = Rss::orderBy('views_count', 'DESC')->where('active', 1)->select('id')->limit(23)->get();
+        $rsss = Rss::rss($datas);
+        $mappedcollection = $rsss->map(function ($rss, $key) {
             return [
-                'id'=>$Find->id,
-                'image'=>$Find->img,
-                'title' => $Find->title,
-                'description' => $Find->description,
-                'news_date' => $Find->news_date,
-                'rss_audio'=>$Find->audio
+                'id' => $rss->id,
+                'image' => $rss->img,
+                'title' => $rss->title,
+                'description' => $rss->description,
+                'news_date' => $rss->news_date,
+                'rss_audio' => $rss->audio
             ];
         });
         return response()->json([
@@ -112,45 +114,44 @@ class UserIndexController extends Controller
     }
     public function suggestion(Request $request)
     {
-       $this->validate($request,[
-           'first_name' => 'required',
-           'last_name' => 'required',
-           'email' => 'required|email',
-           'description' => 'required|string'
-       ]);
+        $this->validate($request, [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'description' => 'required|string'
+        ]);
 
-       $data = new Suggest();
-       $data->first_name = $request->first_name;
-       $data->last_name = $request->last_name;
-       $data->email = $request->email;
-       $data->description = $request->description;
-       $data->save();
-       return response()->json([
-          'Suggestion' => 'با موفقیت ذخیره شد'
-       ]);
+        $data = new Suggest();
+        $data->first_name = $request->first_name;
+        $data->last_name = $request->last_name;
+        $data->email = $request->email;
+        $data->description = $request->description;
+        $data->save();
+        return response()->json([
+            'Suggestion' => 'با موفقیت ذخیره شد'
+        ]);
     }
 
     public function newsShow($id)
     {
 
-        $data = Rss::with('categories','tags','teams')->findOrFail($id);
+        $data = Rss::with('categories', 'tags', 'teams')->rssOrFail($id);
         $data->increment('views_count');
         $collection = collect($data);
         $filtered = $collection->except(['id']);
         $rss = RssComment::where('rss_id', $id)->where('status', 1)->get(['title', 'comment', 'created_at']);
-        $countLikes=like::where('rss_id', $id)->count();
-       // return $data->title;
+        $countLikes = like::where('rss_id', $id)->count();
+        // return $data->title;
         $visit = Visit::create([
-          'user_ip' => request()->ip(),
-          'rss_id' => $id,
-          'title' => $data->title
+            'user_ip' => request()->ip(),
+            'rss_id' => $id,
+            'title' => $data->title
         ]);
-         return response()->json([
-             'rss' => $filtered,
-             'comment' => $rss,
-             'countLikes' => $countLikes
-         ]);
-
+        return response()->json([
+            'rss' => $filtered,
+            'comment' => $rss,
+            'countLikes' => $countLikes
+        ]);
     }
 
     public function bookMark(Request $request)
@@ -159,8 +160,8 @@ class UserIndexController extends Controller
             ['title', 'description', 'news_date', 'active', 'content', 'views_count', 'img', 'created_at']
         );
 
-         return response()->json([
+        return response()->json([
             'product' => $product
-         ]);
+        ]);
     }
 }

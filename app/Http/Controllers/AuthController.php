@@ -107,7 +107,8 @@ class AuthController extends Controller
                 'user_id' => $user->id
             ]);
             // $send = $token->sendCode();
-            if ($token->sendCode($phoneNumber)) {
+            
+            if ($token->sendCode($phoneNumber, $user)) {
                 return response()->json([
                     'message' => 'پیام ارسال شد',
                     'user' => $user
