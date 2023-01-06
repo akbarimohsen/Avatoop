@@ -10,6 +10,8 @@ use App\Models\Nationality;
 use App\Models\Position;
 use DateTime;
 
+use function PHPSTORM_META\type;
+
 class PlayerManagementController extends Controller
 {
 
@@ -35,9 +37,10 @@ class PlayerManagementController extends Controller
             'description' => 'required|string',
             'team_id' => 'required',
             'nationality_id' => 'required',
-            'position_id' => 'required',
+            'position_ids' => 'required',
             'img' => 'required|image|mimes:png,jpg,jpeg'
         ]);
+
         $player = new Player();
 
         $temp = $request->birth_date;
@@ -48,11 +51,13 @@ class PlayerManagementController extends Controller
         $player->description = $request->description;
         $player->team_id = intval($request->team_id);
         $player->nationality_id = intval($request->nationality_id);
-        $player->position_id = intval($request->position_id);
         $player->img = $this->handleImageUpload($request);
-
         $player->save();
-        $player->positions()->attach($request->position_id);
+
+        foreach($request->position_ids as $id)
+        {
+            $player->positions()->attach($id);
+        }
 
         return redirect()->route('admin.players');
     }
@@ -71,7 +76,12 @@ class PlayerManagementController extends Controller
         $teams = Team::all();
         $nationalities = Nationality::all();
         $positions = Position::all();
-        return view('admin.playerManagement.edit',compact('player', 'teams', 'nationalities', 'positions'));
+        $player_positions_ids = [];
+        foreach($player->positions as $position)
+        {
+            $player_positions_ids[] = $position->id;
+        }
+        return view('admin.playerManagement.edit',compact('player', 'teams', 'nationalities', 'positions', 'player_positions_ids'));
     }
 
     public function update(Request $request, $id){
@@ -81,7 +91,7 @@ class PlayerManagementController extends Controller
             'description' => 'required|string',
             'team_id' => 'required',
             'nationality_id' => 'required',
-            'position_id' => 'required',
+            'position_ids' => 'required',
             'img' => 'image|mimes:png,jpg,jpeg'
         ]);
 
@@ -95,13 +105,21 @@ class PlayerManagementController extends Controller
         $player->description = $request->description;
         $player->team_id = intval($request->team_id);
         $player->nationality_id = intval($request->nationality_id);
-        $player->position_id = intval($request->position_id);
         if($request->has('img')){
             $player->img = $this->handleImageUpload($request);
         }
         $player->save();
-        $player->positions()->attach($request->position_id);
 
+        $player_positions_ids = [];
+        foreach($player->positions as $position)
+        {
+            $player->positions()->detach($position->id);
+        }
+
+        foreach($request->position_ids as $id)
+        {
+            $player->positions()->attach($id);
+        }
         return redirect()->route('admin.players');
     }
 

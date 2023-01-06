@@ -911,7 +911,7 @@
 
 <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset('assets/admin/dist/js/demo.js')}}"></script>
+<script src="{{ asset('assets/admin/dist/js/demo.js') }}"></script>
 <script src="https://unpkg.com/persian-date@latest/dist/persian-date.min.js"></script>
 <script src="https://unpkg.com/persian-datepicker@latest/dist/js/persian-datepicker.min.js"></script>
 <script src="{{asset('assets/admin/plugins/select2/select2.full.min.js')}}"></script>
@@ -923,7 +923,9 @@
   $(document).ready(function(){
     $( function() {
         $( "#player_birthDate" ).datepicker({
-            maxDate: "+0d"
+            maxDate: "+0d",
+            changeMonth: true,
+            changeYear: true
         });
     } );
   })
