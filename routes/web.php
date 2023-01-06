@@ -97,8 +97,10 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     // player management
     Route::get('/admin/players', [PlayerManagementController::class, 'index'])->name('admin.players');
     Route::get('/admin/players/add', [PlayerManagementController::class, 'add'])->name('admin.players.add');
-    Route::get('/admin/players/edit/{id}', [PlayerManagementController::class, 'edit'])->name('admin.players.edit');
+    Route::post('/admin/players/store', [PlayerManagementController::class, 'store'])->name('admin.players.store');
 
+    Route::get('/admin/players/edit/{id}', [PlayerManagementController::class, 'edit'])->name('admin.players.edit');
+    Route::post('/admin/players/update/{id}',[PlayerManagementController::class, 'update'])->name('admin.players.update');
 
     // team management
     Route::get('/admin/teams', [TeamManagementController::class, 'index'])->name('admin.teams');
