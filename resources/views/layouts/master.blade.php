@@ -927,7 +927,8 @@
             changeMonth: true,
             changeYear: true
         });
-    } );
+    });
+
   })
 </script>
 

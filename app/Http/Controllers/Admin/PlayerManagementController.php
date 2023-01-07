@@ -9,6 +9,7 @@ use App\Models\Team;
 use App\Models\Nationality;
 use App\Models\Position;
 use DateTime;
+use Illuminate\Support\Facades\Storage;
 
 use function PHPSTORM_META\type;
 
@@ -51,7 +52,13 @@ class PlayerManagementController extends Controller
         $player->description = $request->description;
         $player->team_id = intval($request->team_id);
         $player->nationality_id = intval($request->nationality_id);
-        $player->img = $this->handleImageUpload($request);
+
+        $dir = 'images/players';
+        $name = rand(100, 10000) . "_" . $request->img->getClientOriginalName();
+        $request->img->storeAs($dir, $name,'ftp');
+        $player->img ="$dir/$name";
+
+
         $player->save();
 
         foreach($request->position_ids as $id)
@@ -62,26 +69,13 @@ class PlayerManagementController extends Controller
         return redirect()->route('admin.players');
     }
 
-    public function handleImageUpload(Request $request)
-    {
-        $dir = 'images/players';
-        $name = rand(100, 10000) . "_" . $request->img->getClientOriginalName();
-        $request->img->storeAs($dir, $name,'ftp');
-        return "$dir/$name";
-    }
-
     public function edit($id)
     {
         $player = Player::find($id);
         $teams = Team::all();
         $nationalities = Nationality::all();
         $positions = Position::all();
-        $player_positions_ids = [];
-        foreach($player->positions as $position)
-        {
-            $player_positions_ids[] = $position->id;
-        }
-        return view('admin.playerManagement.edit',compact('player', 'teams', 'nationalities', 'positions', 'player_positions_ids'));
+        return view('admin.playerManagement.edit',compact('player'));
     }
 
     public function update(Request $request, $id){
@@ -92,13 +86,13 @@ class PlayerManagementController extends Controller
             'team_id' => 'required',
             'nationality_id' => 'required',
             'position_ids' => 'required',
-            'img' => 'image|mimes:png,jpg,jpeg'
+            'img' => 'nullable|mimes:png,jpg,jpeg'
         ]);
 
         $player = Player::find($id);
 
         $temp = $request->birth_date;
-        $birth_date = new DateTime(substr($temp,8, 2) . "/" . substr($temp,5, 2) . "/" .substr($temp, 0,4 )) ;
+        $birth_date = new DateTime(substr($temp,0, 2) . "-" . substr($temp,3, 2) . "-" .substr($temp, 6,4 )) ;
 
         $player->full_name = $request->full_name;
         $player->birth_date = $birth_date ;
@@ -106,8 +100,17 @@ class PlayerManagementController extends Controller
         $player->team_id = intval($request->team_id);
         $player->nationality_id = intval($request->nationality_id);
         if($request->has('img')){
-            $player->img = $this->handleImageUpload($request);
+            if($player->img != null){
+                if(Storage::exists($player->img)){
+                    Storage::delete($player->img);
+                }
+                $dir = "images/players";
+                $name = rand(100, 10000) . "_" . $request->img->getClientOriginalName();
+                $request->img->storeAs($dir, $name,'ftp');
+                $player->img = "$dir/$name";
+            }
         }
+
         $player->save();
 
         $player_positions_ids = [];
@@ -122,7 +125,5 @@ class PlayerManagementController extends Controller
         }
         return redirect()->route('admin.players');
     }
-
-
 
 }

@@ -44,34 +44,6 @@ class AddPlayer extends Component
         'img' => 'required|image|mimes:png,jpg,jpeg'
     ];
 
-    public function handleImageUpload()
-    {
-        $dir = 'images/players';
-        $name = rand(100, 10000) . "_" . $this->img->getClientOriginalName();
-        $this->img->storeAs($dir, $name,'ftp');
-        return "$dir/$name";
-    }
-
-
-    public function submit()
-    {
-        $this->validate();
-        $player = new Player();
-
-        $player->full_name = $this->full_name;
-        $player->birth_date = $this->birth_date;
-        $player->description = $this->description;
-        $player->team_id = intval($this->team_id);
-        $player->nationality_id = intval($this->nationality_id);
-        $player->position_id = intval($this->position_id);
-        $player->img = $this->handleImageUpload();
-
-        $player->save();
-        $player->positions()->attach($this->position_id);
-
-        return redirect()->route('admin.players');
-    }
-
     public function render()
     {
 

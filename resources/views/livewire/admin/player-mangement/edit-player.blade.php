@@ -9,12 +9,12 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form role="form" wire:submit.prevent="submit" method="POST">
+            <form role="form" method="POST" action="{{ route('admin.players.update', ['id' => $player->id]) }}" enctype="multipart/form-data" >
+                @csrf
                 <div class="card-body">
-
                     <div class="form-group">
                         <label for="first_name"> نام کامل</label>
-                        <input type="text" class="form-control" id="first_name" wire:model="full_name" placeholder="نام را وارد کنید.">
+                        <input type="text" class="form-control" id="first_name" name="full_name" value="{{ $full_name }}" placeholder="نام را وارد کنید.">
                         @if($errors->has('full_name'))
                             <ul class="mt-1 mr-4">
                                 @foreach ($errors->get('full_name') as $error )
@@ -28,7 +28,7 @@
 
                     <div class="form-group">
                         <label for="age">تاریخ تولد به میلادی</label>
-                        <input type="date" class="form-control" id="age" wire:model="birth_date" placeholder="سن را وارد کنید.">
+                        <input type="text" class="form-control" id="player_birthDate" name="birth_date" value="{{ $birth_date_string }}" placeholder="سن را وارد کنید.">
 
                         @if($errors->has('birth_date'))
                             <ul class="mt-1 mr-4">
@@ -44,7 +44,7 @@
 
                     <div class="form-group">
                         <label>توضیحات</label>
-                        <textarea class="form-control" rows="3" wire:model="description" placeholder="توضیحات بازیکن ..."></textarea>
+                        <textarea class="form-control" rows="3" name="description" placeholder="توضیحات بازیکن ...">{{ $description }}</textarea>
 
                         @if($errors->has('description'))
                             <ul class="mt-1 mr-4">
@@ -62,10 +62,10 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label>تیم</label>
-                            <select class="form-control select2" style="width: 100%;" wire:model="team_id">
+                            <select class="form-control select2" style="width: 100%;" name="team_id">
                                 <option value="">انتخاب کنید</option>
                                 @foreach ($teams as $team )
-                                    <option value="{{ $team->id }}">
+                                    <option value="{{ $team->id }}" @if($team->id == $player->team->id) selected @endif>
                                         {{ $team->title }}
                                     </option>
                                 @endforeach
@@ -84,10 +84,10 @@
                           <!-- /.form-group -->
                           <div class="form-group">
                             <label>ملیت</label>
-                            <select class="form-control select2" style="width: 100%;" wire:model="nationality_id">
+                            <select class="form-control select2" style="width: 100%;" name="nationality_id">
                                 <option value="">انتخاب کنید</option>
                                 @foreach ($nationalities as $nationality )
-                                    <option value="{{ $nationality->id }}"> {{ $nationality->name }} </option>
+                                    <option value="{{ $nationality->id }}" @if($nationality->id == $player->nationality->id) selected @endif> {{ $nationality->name }} </option>
                                 @endforeach
                             </select>
 
@@ -107,11 +107,11 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label>پست های بازی</label>
-                            <select class="form-control select2" data-placeholder="یک استان انتخاب کنید" wire:model="position_id"
-                                    style="width: 100%;text-align: right">
+                            <select class="form-control select2" data-placeholder="یک استان انتخاب کنید" name="position_ids[]"
+                                    style="width: 100%;text-align: right" multiple>
                                 <option value="">انتخاب کنید</option>
                                 @foreach ($positions as $position )
-                                    <option value="{{ $position->id }}"> {{ $position->name }} </option>
+                                    <option value="{{ $position->id }}" @if(in_array($position->id,$player_positions_ids)) selected @endif> {{ $position->name }} </option>
                                 @endforeach
                             </select>
 
@@ -136,7 +136,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>عکس </label>
-                                <input type="file" wire:model="img" >
+                                <input type="file" name="img" >
 
                                 @if($errors->has('img'))
                                     <ul class="mt-1 mr-4">
