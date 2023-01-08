@@ -42,7 +42,7 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            {!! Form::open(['route'=>'role.store','method'=>'post']) !!}
+                            {!! Form::open(["#",'method'=>'get']) !!}
                             {!! Form::label('role','نام نقش',['class'=>'text-capitalize']) !!}
                             <div class="input-group">
                                 {!! Form::text('role',old('role'),['class'=>'form-control','placeholder'=>'نام نقش را وارد کنید(مانند ادمین یا خبر نگار)']) !!}
@@ -51,7 +51,7 @@
                             <p class="text-danger">{{$message}}</p>
                             @enderror
                             <section class="form-group">
-                                {!! Form::submit('ذخیره',['class'=>'btn btn-outline-success mt-3']) !!}
+                                {!! Form::submit('ذخیره',['class'=>'btn disabled btn-outline-success mt-3']) !!}
                             </section>
                             {!! Form::close() !!}
                         </div>
@@ -69,8 +69,7 @@
                         <th scope="col">نام نقش</th>
                         <th scope="col">تاریخ ایجاد</th>
                         <th scope="col">تاریخ آپدیت</th>
-                        <th scope="col">آپدیت</th>
-                        <th scope="col">حذف</th>
+                        <th scope="col">عملیات</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -86,13 +85,14 @@
                                 <td><p class="text-secondary">آپدیت نشده</p></td>
                             @endif
                             <td>
-                                <a href="{{route('role.edit',['id'=>$role->id])}}"
-                                   class="btn btn-warning">ویرایش</a>
-                            </td>
-                            <td>
-                                {!! Form::open(['route'=>['role.destroy','id'=>$role->id],'method'=>'delete']) !!}
-                                {!! Form::submit('حذف',['class'=>'btn btn-danger']) !!}
-                                {!! Form::close() !!}
+                                <div class="d-flex flex-row">
+{{--                                    <a href="{{route('role.edit',['id'=>$role->id])}}"--}}
+{{--                                       class="btn btn-warning disabled p-0 ml-1">ویرایش</a>--}}
+{{--                                    {!! Form::open(['route'=>['role.destroy','id'=>$role->id],'method'=>'delete']) !!}--}}
+{{--                                    {!! Form::submit('حذف',['class'=>'btn disabled btn-danger p-0']) !!}--}}
+{{--                                    {!! Form::close() !!}--}}
+                                    <button class="btn btn-warning">بدون عملیات</button>
+                                </div>
                             </td>
                         </tr>
                     @empty

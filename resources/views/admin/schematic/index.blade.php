@@ -14,8 +14,7 @@
                                 <th scope="col">شماتیک</th>
                                 <th scope="col">تاریخ ایجاد</th>
                                 <th scope="col">تاریخ آپدیت</th>
-                                <th scope="col">آپدیت</th>
-                                <th scope="col">حذف</th>
+                                <th scope="col">عملیات</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -31,13 +30,13 @@
                                         <td><p class="text-secondary">آپدیت نشده</p></td>
                                     @endif
                                     <td>
-                                        <a href="{{route('schematic.edit',['id'=>$schematic->id])}}"
-                                           class="btn btn-warning">ویرایش</a>
-                                    </td>
-                                    <td>
-                                        {!! Form::open(['route'=>['schematic.destroy','id'=>$schematic->id],'method'=>'delete']) !!}
-                                        {!! Form::submit('حذف',['class'=>'btn btn-danger']) !!}
-                                        {!! Form::close() !!}
+                                        <div class="d-flex flex-row">
+                                            <a href="{{route('schematic.edit',['id'=>$schematic->id])}}"
+                                               class="btn btn-warning p-0 ml-1">ویرایش</a>
+                                            {!! Form::open(['route'=>['schematic.destroy','id'=>$schematic->id],'method'=>'delete']) !!}
+                                            {!! Form::submit('حذف',['class'=>'btn btn-danger p-0']) !!}
+                                            {!! Form::close() !!}
+                                        </div>
                                     </td>
                                 </tr>
                             @empty

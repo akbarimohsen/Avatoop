@@ -16,8 +16,9 @@ class EditTeam extends Component
     public $team;
     public $title;
     public $description;
-    public $logo;
     public $league_id;
+    public $logo;
+
 
 
 
@@ -25,7 +26,7 @@ class EditTeam extends Component
         'title' => 'required|string',
         'league_id' => 'required',
         'description' => 'required|string',
-        'logo' => 'required|image|mimes:png,jpg,jpeg'
+        'logo' => 'nullable|mimes:png,jpg,jpeg'
     ];
 
 
@@ -35,9 +36,9 @@ class EditTeam extends Component
         $team = Team::find($id);
         $this->team = $team;
 
-        $this->title = $team->title;
-        $this->description = $team->description;
-        $this->league_id = $team->league_id;
+        $this->title = $this->team->title;
+        $this->description = $this->team->description;
+        $this->league_id = $this->team->league_id;
 
     }
 
@@ -52,14 +53,13 @@ class EditTeam extends Component
     public function submit()
     {
         $this->validate();
-        $this->team->title = $this->title;
-
         if($this->logo != null ){
             if(Storage::exists($this->team->logo)){
                 Storage::delete($this->team->logo);
             }
             $this->team->logo = $this->handleAvatarUpload();
         }
+        $this->team->title=$this->title;
         $this->team->league_id = $this->league_id;
         $this->team->description = $this->description;
         $this->team->save();
@@ -75,7 +75,6 @@ class EditTeam extends Component
         $leagues = League::all();
         return view('livewire.admin.team-management.edit-team',[
             'leagues' => $leagues,
-            'team' => $this->team
         ]);
     }
 }

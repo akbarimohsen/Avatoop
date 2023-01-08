@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 
 class  AdminCreateUser extends Controller
@@ -71,6 +72,22 @@ class  AdminCreateUser extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+           'username' =>'required|regex:/[آ-ی,a-z,A-Z]/',
+            'email' =>['required','email',Rule::unique('users')->ignore($request->id)],
+            'phone_number' =>['required','regex:/(09)[0-9]{9}/','digits:11','numeric',Rule::unique('users')->ignore($request->id)]
+        ],[
+            'username.required'=>'نام رو وارد کن',
+            "username.regex" => "فیلد نام باید حروف باشد",
+            "email.required" => "فیلد ایمیل باید وارد شو",
+            "email.email" => "فرمت وارد شده برای ایمیل صحیح نیست",
+            "email.unique" => "کاربر با این ایمیل قبلا ثبت نام کرده است",
+            "phone_number.required" => "فیلد شماره تلفن اجباری است",
+            "phone_number.regex" => "فرمت شماره تلفن صحیح نمیباشد و حتما باید ار اپراتور های ایران باشد",
+            "phone_number.digits" => "شماره تلفن باید 11 رقم باشد",
+            "phone_number.numeric" => "شماره تلفن باید عدد باشد",
+            "phone_number.unique" => "این شماره تلفن قبلا ثب شده است",
+        ]);
         $file=$request->file('image');
         $user=User::findOrFail($id);
 //        $image='';
@@ -84,20 +101,27 @@ class  AdminCreateUser extends Controller
 //        }else{
 //            $image=$user->profile_photo_path;
 //        }
-        $userUpdate = User::findOrFail($id)->update([
-            "username" => $request->username,
-            "email" => $request->email,
-            "phone_number" => $request->phone_number,
-            "password" => Hash::make($request->password),
-        ]);
-        if ($userUpdate){
-            DB::table('model_has_roles')->where('model_id',$user->id)->delete();
-            $user->assignRole($request->select_role);
-            session()->flash('update','کاربر با موفقیت آپدیت شد');
-            return redirect()->route('user.index');
-        }else{
-            session()->flash('notUpdate','کاربر آپدیت نشد');
-            return redirect()->route('user.index');
+        $role = Role::where('id', $request->select_role)->first();
+        if ($role==null) {
+            session()->flash('exist', 'نقش مورد نظر موجود نیست');
+            return redirect()->route('user.create');
+
+        } else {
+            $userUpdate = User::findOrFail($id)->update([
+                "username" => $request->username,
+                "email" => $request->email,
+                "phone_number" => $request->phone_number,
+                "password" => Hash::make($request->password),
+            ]);
+            if ($userUpdate) {
+                DB::table('model_has_roles')->where('model_id', $user->id)->delete();
+                $user->assignRole($request->select_role);
+                session()->flash('update', 'کاربر با موفقیت آپدیت شد');
+                return redirect()->route('user.index');
+            } else {
+                session()->flash('notUpdate', 'کاربر آپدیت نشد');
+                return redirect()->route('user.index');
+            }
         }
     }
 

@@ -133,10 +133,10 @@
                                             </div>
                                         @endif
                                         <div class="form-group col-md-6">
-                                            {!! Form::label('NewsDate','تاریخ خبر',['class'=>'text-capitalize']) !!}
-                                            {!! Form::text('NewsDate',old('NewsDate'),['class'=>'form-control','placeholder'=>'انتخاب تاریخ',]) !!}
+                                                {!! Form::label('NewsDate','تاریخ خبر',['class'=>'text-capitalize']) !!}
+                                                {!! Form::text('NewsDate',old('NewsDate'),['class'=>'form-control','placeholder'=>'انتخاب تاریخ',]) !!}
                                             @error('NewsDate')
-                                            <p class="text-danger">{{$message}}</p>
+                                                <p class="text-danger">{{$message}}</p>
                                             @enderror
                                         </div>
                                         <div class="col-12" wire:loading.remove>

@@ -71,8 +71,7 @@
                                     <th scope="col">نام دسته بندی</th>
                                     <th scope="col">تاریخ ایجاد</th>
                                     <th scope="col">تاریخ آپدیت</th>
-                                    <th scope="col">ویرایش</th>
-                                    <th scope="col">حذف</th>
+                                    <th scope="col">عملیات</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -87,13 +86,13 @@
                                             <td><p class="text-secondary">آپدیت نشده</p></td>
                                         @endif
                                         <td>
-                                            <a href="{{route('category.edit',['id'=>$category->id])}}"
-                                               class="btn btn-warning">ویرایش</a>
-                                        </td>
-                                        <td>
-                                            {!! Form::open(['route'=>['category.destroy','id'=>$category->id,],'method'=>'delete']) !!}
-                                            {!! Form::submit('حذف',['class'=>'btn btn-danger','onclick'=>'return confirm("با حذف این دسته بندی تمامی اخبار مربوطه پاک خواهد شد، آیا مطمئنید؟")']) !!}
-                                            {!! Form::close() !!}
+                                            <div class="d-flex flex-row">
+                                                <a href="{{route('category.edit',['id'=>$category->id])}}"
+                                                   class="btn btn-warning p-0 ml-1">ویرایش</a>
+                                                {!! Form::open(['route'=>['category.destroy','id'=>$category->id,],'method'=>'delete']) !!}
+                                                {!! Form::submit('حذف',['class'=>'btn btn-danger p-0','onclick'=>'return confirm("با حذف این دسته بندی تمامی اخبار مربوطه پاک خواهد شد، آیا مطمئنید؟")']) !!}
+                                                {!! Form::close() !!}
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty

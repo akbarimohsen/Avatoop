@@ -9,7 +9,6 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form role="form" wire:submit.prevent="submit" method="POST">
             <!-- general form elements -->
             <div class="card card-warning mb-0 shadow-none">
                 <!-- /.card-header -->
@@ -66,8 +65,9 @@
                     </div>
                 </form>
         </div>
-
         </div>
+
         <!--/.col (left) -->
+    </div>
     </div>
 </div>

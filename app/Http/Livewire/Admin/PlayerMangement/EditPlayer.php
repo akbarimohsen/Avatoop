@@ -20,21 +20,8 @@ class EditPlayer extends Component
     public $description;
     public $team_id;
     public $nationality_id;
-    public $position_id;
+    public $position_ids;
     public $img;
-
-
-    protected $messages = [
-        'full_name.required' => 'فیلد نام ضروری می باشد.',
-        'birth_date.required' => 'فیلد تاریخ تولد ضروری می باشد.',
-        'description.required' => 'فیلد توضیحات ضروری می باشد.',
-        'team_id.required' => 'فیلد تیم ضروری می باشد.',
-        'nationality_id.required' => 'فیلد ملیت ضروری می باشد',
-        'position_id.required' => 'فیلد پست بازی ضروری می باشد.',
-        'img.required' => 'تصویر ضروری می باشد',
-        'img.image' => 'فقط فایل عکس قابل قبول است.',
-        'img.mimes' => 'تنها فایل با فرمت :values قابل قبول است.'
-    ];
 
     public function mount($id)
     {
@@ -44,58 +31,9 @@ class EditPlayer extends Component
         $this->description = $this->player->description;
         $this->team_id = $this->player->team_id;
         $this->nationality_id = $this->player->nationality_id;
-        $this->position_id = $this->player->position_id;
     }
 
-    public function handleImageUpload()
-    {
-        $dir = 'images/players';
-        $name = rand(100, 10000) . "_" . $this->img->getClientOriginalName();
-        $this->img->storeAs($dir, $name,'ftp');
-        return "$dir/$name";
-    }
 
-    public function submit()
-    {
-        $data = $this->validate([
-            'full_name' => 'required|string',
-            'birth_date' => 'required|date',
-            'description' => 'required|string',
-            'team_id' => 'required',
-            'nationality_id' => 'required',
-            'position_id' => 'required',
-            'img' => 'nullable|mimes:png,jpg,jpeg'
-        ]);
-
-        $player = $this->player;
-
-        if($this->img != null){
-            if(Storage::exists($player->img)){
-                Storage::delete($player->img);
-            }
-            $player->img = $this->handleImageUpload();
-        }else{
-            $player->img = $this->player->img;
-        }
-
-        $data['team_id'] = intval($data['team_id']);
-        $data['nationality_id'] = intval($data['nationality_id']);
-        $data['position_id'] = intval($data['position_id']);
-
-        $player->full_name = $data['full_name'];
-        $player->birth_date = $data['birth_date'];
-        $player->description = $data['description'];
-        $player->team_id = $data['team_id'];
-        $player->nationality_id = $data['nationality_id'];
-        $player->position_id = $data['position_id'];
-
-        $player->save();
-
-        session()->flash('message', 'اطلاعات بازیکن شما با موفقیت تغییر گردید.');
-
-        return redirect()->route('admin.players');
-
-    }
 
     public function render()
     {
@@ -103,11 +41,20 @@ class EditPlayer extends Component
         $teams = Team::all();
         $nationalties = Nationality::all();
         $positions = Position::all();
+        $player_positions_ids = [];
+        foreach($this->player->positions as $position)
+        {
+            $player_positions_ids[] = $position->id;
+        }
 
+        $temp = $this->player->birth_date;
+        $birth_date_string = substr($temp,8, 2) . "/" . substr($temp,5, 2) . "/" .substr($temp, 0,4 );
         return view('livewire.admin.player-mangement.edit-player',[
             'teams' => $teams,
             'nationalities' => $nationalties,
-            'positions' => $positions
+            'positions' => $positions,
+            'player_positions_ids' => $player_positions_ids,
+            'birth_date_string' => $birth_date_string
         ]);
     }
 }

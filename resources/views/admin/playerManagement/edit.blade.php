@@ -24,16 +24,11 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
-        <!-- Main row -->
-
-        {{-- Add Player Form --}}
-
-        @livewire('admin.player-mangement.edit-player',['id' => $player->id])
-
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
-    </section>
+        <div class="container-fluid">
+            @livewire('admin.player-mangement.edit-player',['id' => $player->id])
+          <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+      </section>
     <!-- /.content -->
   </div>
 @endsection

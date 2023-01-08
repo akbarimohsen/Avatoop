@@ -24,9 +24,7 @@
     <section class="content">
       <div class="container-fluid">
 
-
         @livewire('admin.player-mangement.add-player')
-
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
     </section>

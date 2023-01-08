@@ -165,8 +165,8 @@
     })
 </script>
 
+
 </body>
 <script src="{{ asset('assets/main/js/bootstrap.bundle.min.js') }}"></script>
-{{--<script src="{{ asset('assets/main/js/script.js') }}"></script>--}}
 
 </html>
