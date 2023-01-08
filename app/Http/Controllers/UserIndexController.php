@@ -17,7 +17,7 @@ class UserIndexController extends Controller
     public function indexSlider()
     {
         $datas = Rss::select('id')->where('active', 1)->orderBy('created_at', 'desc')->limit(7)->get();
-        $rsss = Rss::rss($datas);
+        $rsss = Rss::find($datas);
         $mappedcollection = $rsss->map(function ($rss, $key) {
             return [
                 'id' => $rss->id,
@@ -34,7 +34,7 @@ class UserIndexController extends Controller
     {
         $datas = Ad::select('id')->get();
 
-        $rsss = Ad::rss($datas);
+        $rsss = Ad::find($datas);
         $mappedcollection = $rsss->map(function ($rss, $key) {
             return [
                 'img' => $rss->img,
@@ -51,7 +51,7 @@ class UserIndexController extends Controller
     {
         $datas = Rss::orderBy('created_at', 'desc')->select('id')->limit(23)->get();
 
-        $rsss = Rss::paginate($datas);
+        $rsss = Rss::find($datas);
         //        $visits=Visit::where();
         $mappedcollection = $rsss->map(function ($rss, $key) {
             $visit = "";
@@ -97,7 +97,7 @@ class UserIndexController extends Controller
     public function topview()
     {
         $datas = Rss::orderBy('views_count', 'DESC')->where('active', 1)->select('id')->limit(23)->get();
-        $rsss = Rss::rss($datas);
+        $rsss = Rss::find($datas);
         $mappedcollection = $rsss->map(function ($rss, $key) {
             return [
                 'id' => $rss->id,
@@ -135,7 +135,7 @@ class UserIndexController extends Controller
     public function newsShow($id)
     {
 
-        $data = Rss::with('categories', 'tags', 'teams')->rssOrFail($id);
+        $data = Rss::with('categories', 'tags', 'teams')->findOrFail($id);
         $data->increment('views_count');
         $collection = collect($data);
         $filtered = $collection->except(['id']);
