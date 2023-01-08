@@ -107,11 +107,11 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label>پست های بازی</label>
-                            <select class="form-control select2" data-placeholder="یک استان انتخاب کنید" name="position_ids[]"
-                                    style="width: 100%;text-align: right" multiple>
+                            <select class="form-control select2" data-placeholder="یک استان انتخاب کنید" name="position_id"
+                                    style="width: 100%;text-align: right">
                                 <option value="">انتخاب کنید</option>
                                 @foreach ($positions as $position )
-                                    <option value="{{ $position->id }}" @if(in_array($position->id,$player_positions_ids)) selected @endif> {{ $position->name }} </option>
+                                    <option value="{{ $position->id }}" @if($player->position_id == $position->id) selected @endif> {{ $position->name }} </option>
                                 @endforeach
                             </select>
 

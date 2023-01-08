@@ -38,7 +38,7 @@ class PlayerManagementController extends Controller
             'description' => 'required|string',
             'team_id' => 'required',
             'nationality_id' => 'required',
-            'position_ids' => 'required',
+            'position_id' => 'required',
             'img' => 'required|image|mimes:png,jpg,jpeg'
         ]);
 
@@ -51,6 +51,7 @@ class PlayerManagementController extends Controller
         $player->birth_date = $birth_date ;
         $player->description = $request->description;
         $player->team_id = intval($request->team_id);
+        $player->position_id = intval($request->position_id);
         $player->nationality_id = intval($request->nationality_id);
 
         $dir = 'images/players';
@@ -60,11 +61,6 @@ class PlayerManagementController extends Controller
 
 
         $player->save();
-
-        foreach($request->position_ids as $id)
-        {
-            $player->positions()->attach($id);
-        }
 
         return redirect()->route('admin.players');
     }
@@ -85,7 +81,7 @@ class PlayerManagementController extends Controller
             'description' => 'required|string',
             'team_id' => 'required',
             'nationality_id' => 'required',
-            'position_ids' => 'required',
+            'position_id' => 'required',
             'img' => 'nullable|mimes:png,jpg,jpeg'
         ]);
 
@@ -97,6 +93,7 @@ class PlayerManagementController extends Controller
         $player->full_name = $request->full_name;
         $player->birth_date = $birth_date ;
         $player->description = $request->description;
+        $player->position_id = $request->position_id;
         $player->team_id = intval($request->team_id);
         $player->nationality_id = intval($request->nationality_id);
         if($request->has('img')){
@@ -112,17 +109,6 @@ class PlayerManagementController extends Controller
         }
 
         $player->save();
-
-        $player_positions_ids = [];
-        foreach($player->positions as $position)
-        {
-            $player->positions()->detach($position->id);
-        }
-
-        foreach($request->position_ids as $id)
-        {
-            $player->positions()->attach($id);
-        }
         return redirect()->route('admin.players');
     }
 

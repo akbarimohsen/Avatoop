@@ -20,7 +20,7 @@ class EditPlayer extends Component
     public $description;
     public $team_id;
     public $nationality_id;
-    public $position_ids;
+    public $position_id;
     public $img;
 
     public function mount($id)
@@ -41,11 +41,6 @@ class EditPlayer extends Component
         $teams = Team::all();
         $nationalties = Nationality::all();
         $positions = Position::all();
-        $player_positions_ids = [];
-        foreach($this->player->positions as $position)
-        {
-            $player_positions_ids[] = $position->id;
-        }
 
         $temp = $this->player->birth_date;
         $birth_date_string = substr($temp,8, 2) . "/" . substr($temp,5, 2) . "/" .substr($temp, 0,4 );
@@ -53,7 +48,6 @@ class EditPlayer extends Component
             'teams' => $teams,
             'nationalities' => $nationalties,
             'positions' => $positions,
-            'player_positions_ids' => $player_positions_ids,
             'birth_date_string' => $birth_date_string
         ]);
     }

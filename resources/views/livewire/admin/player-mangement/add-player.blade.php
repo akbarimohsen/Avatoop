@@ -108,8 +108,8 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>پست های بازی</label>
-                        <select class="form-control select2" data-placeholder="یک استان انتخاب کنید" name="position_ids[]"
-                                style="width: 100%;text-align: right" multiple>
+                        <select class="form-control select2" data-placeholder="یک استان انتخاب کنید" name="position_id"
+                                style="width: 100%;text-align: right">
                             <option value="">انتخاب کنید</option>
                             @foreach ($positions as $position )
                                 <option value="{{ $position->id }}"> {{ $position->name }} </option>
