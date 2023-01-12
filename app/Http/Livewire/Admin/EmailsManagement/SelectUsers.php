@@ -11,6 +11,16 @@ class SelectUsers extends Component
 
     public $selectedUsers = [];
     public $SelectAll = false;
+    public $name;
+
+    public function searchUser()
+    {
+        $data = $this->validate([
+            'name' => 'required|string'
+        ]);
+
+        $this->name = $data['name'];
+    }
 
     public function updatedSelectAll()
     {
@@ -24,7 +34,12 @@ class SelectUsers extends Component
 
     public function render()
     {
-        $users = User::role('user')->get();
+        if($this->name == null){
+            $users = User::role('user')->get();
+
+        }else{
+            $users = User::role('user')->where('username', 'like', "%$this->name%")->get();
+        }
         return view('livewire.admin.emails-management.select-users',[
             'users' => $users
         ]);

@@ -1,4 +1,23 @@
 <div>
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-md-10 col-xl-8 mx-auto">
+                <div class="card p-3  py-4">
+                    <h5>جستجوی کاربران</h5>
+                    <form class="row g-3 mt-2" wire:submit.prevent="searchUser">
+
+                        <div class="col-md-9 mb-1">
+                            <input type="text" class="form-control" wire:model.lazy="name" placeholder="نام کاربر را وارد کنید.">
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-info btn-block" type="submit">جستجو</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="card card-info">
         <div class="card-header">
           <h3 class="card-title">جدول ایمیل ها</h3>
