@@ -32,6 +32,8 @@ class AuthController extends Controller
         $data->phone_number = $request->phone_number;
         $data->password = Hash::make($request->password);
         $data->save();
+        $data->assignRole('user');
+
         if (!auth()->attempt($request->only('email', 'password'), $request->remember)) {
             return back()->with('status', 'Invalid login details');
         }
@@ -108,7 +110,7 @@ class AuthController extends Controller
                 'user_id' => $user->id
             ]);
             // $send = $token->sendCode();
-            
+
             if ($token->sendCode($phoneNumber, $user)) {
                 return response()->json([
                     'message' => 'پیام ارسال شد',

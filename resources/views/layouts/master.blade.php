@@ -919,18 +919,6 @@
 <script type="text/javascript" rel="script">
 </script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-  <script>
-  $(document).ready(function(){
-    $( function() {
-        $( "#player_birthDate" ).datepicker({
-            maxDate: "+0d",
-            changeMonth: true,
-            changeYear: true
-        });
-    });
-
-  })
-</script>
 
 @livewireScripts()
 @yield('Js')

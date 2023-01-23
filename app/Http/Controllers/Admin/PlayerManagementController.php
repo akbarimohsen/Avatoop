@@ -34,7 +34,7 @@ class PlayerManagementController extends Controller
     {
         $request->validate([
             'full_name' => 'required|string|unique:players',
-            'birth_date' => 'required',
+            'birth_date' => 'required|date',
             'description' => 'required|string',
             'team_id' => 'required',
             'nationality_id' => 'required',
@@ -43,10 +43,7 @@ class PlayerManagementController extends Controller
         ]);
 
         $player = new Player();
-
-        $temp = $request->birth_date;
-        $birth_date = new DateTime(substr($temp,0, 2) . "-" . substr($temp,3, 2) . "-" .substr($temp, 6,4 )) ;
-
+        $birth_date = $request->birth_date;
         $player->full_name = $request->full_name;
         $player->birth_date = $birth_date ;
         $player->description = $request->description;
@@ -77,7 +74,7 @@ class PlayerManagementController extends Controller
     public function update(Request $request, $id){
         $request->validate([
             'full_name' => 'required|string',
-            'birth_date' => 'required',
+            'birth_date' => 'nullable|date',
             'description' => 'required|string',
             'team_id' => 'required',
             'nationality_id' => 'required',
@@ -86,10 +83,7 @@ class PlayerManagementController extends Controller
         ]);
 
         $player = Player::find($id);
-
-        $temp = $request->birth_date;
-        $birth_date = new DateTime(substr($temp,0, 2) . "-" . substr($temp,3, 2) . "-" .substr($temp, 6,4 )) ;
-
+        $birth_date = $request->birth_date??$player->birth_date;
         $player->full_name = $request->full_name;
         $player->birth_date = $birth_date ;
         $player->description = $request->description;
