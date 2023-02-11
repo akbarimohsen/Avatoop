@@ -552,7 +552,7 @@
 <script src="https://unpkg.com/persian-datepicker@latest/dist/js/persian-datepicker.min.js"></script>
 <script src="{{asset('assets/admin/plugins/select2/select2.full.min.js')}}"></script>
 <script type="text/javascript">
-    class MyUploadAdapter {
+    class MyUploadAdapter{
         constructor( loader ) {
             // The file loader instance to use during the upload.
             this.loader = loader;

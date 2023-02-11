@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('command:StoreRsses')->everyMinute();
+        $schedule->command('command:GetLeagues')->everyFifteenMinutes();
     }
 
     /**

@@ -42,6 +42,7 @@ use App\Notifications\OTPSms;
 */
 
 Route::get('/', [MainController::class, 'index']);
+Route::get('/api', [MainController::class, 'api']);
 
 Route::get('/newsShow/{id}', [UserIndexController::class, 'newsShow'])->name('newsShow');
 

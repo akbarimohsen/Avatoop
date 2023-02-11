@@ -3,9 +3,10 @@
 namespace Spatie\Permission;
 
 use Illuminate\Support\Collection;
+use Spatie\Permission\Contracts\Wildcard;
 use Spatie\Permission\Exceptions\WildcardPermissionNotProperlyFormatted;
 
-class WildcardPermission
+class WildcardPermission implements Wildcard
 {
     /** @var string */
     public const WILDCARD_TOKEN = '*';
@@ -23,7 +24,7 @@ class WildcardPermission
     protected $parts;
 
     /**
-     * @param string $permission
+     * @param  string  $permission
      */
     public function __construct(string $permission)
     {
@@ -34,8 +35,7 @@ class WildcardPermission
     }
 
     /**
-     * @param string|WildcardPermission $permission
-     *
+     * @param  string|WildcardPermission  $permission
      * @return bool
      */
     public function implies($permission): bool
@@ -71,9 +71,8 @@ class WildcardPermission
     }
 
     /**
-     * @param Collection $part
-     * @param Collection $otherPart
-     *
+     * @param  Collection  $part
+     * @param  Collection  $otherPart
      * @return bool
      */
     protected function containsAll(Collection $part, Collection $otherPart): bool
