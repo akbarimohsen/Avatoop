@@ -50,10 +50,9 @@
                                         <a href="{{ route('leagues.create') }}" class="btn btn-success btn-sm mx-4 float-right d-flex align-items-center">
                                             <i class="fa fa-plus ml-2"></i>
                                             <span>
-                             افزودن لیگ  جدید
-                        </span>
+                                                افزودن لیگ  جدید
+                                            </span>
                                         </a>
-
                                     </div>
                                 </div>
                                 <!-- /.card-header -->
@@ -64,38 +63,34 @@
                                             <th>نام لیگ</th>
                                             <th>لوگو لیگ</th>
                                             <th>تعداد تیم</th>
-                                            <th>
-                                                ویرایش
-                                            </th>
-                                            <th>
-                                                حذف
-                                            </th>
+                                            <th>عملیات</th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                        @if($leagues->count() != 0 )
-                                            @foreach ($leagues as $league)
-                                                <tr>
-                                                    <td>{{ $league->title }}</td>
-                                                    <td><img src="{{ \Illuminate\Support\Facades\Storage::url(config('app.ftpRoute'). $league->logo) }}" width="40px" height="40px" alt=""></td>
-                                                    <td>{{ $league->teams_count }}</td>
-                                                    <td>
-                                                        <a href="{{ route('leagues.edit', ['league' => $league->id]) }}" class="btn btn-warning btn-sm mx-1">
-                                                            تغییر
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        {!! Form::open(['route'=>['leagues.destroy','league'=>$league->id],'method'=>'delete']) !!}
-                                                        {!! Form::submit(' حذف',['class'=>'btn btn-danger btn-sm']) !!}
-                                                        {!! Form::close() !!}
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @endif
+                                            @if($leagues->count() != 0 )
+                                                @foreach ($leagues as $league)
+                                                    <tr>
+                                                        <td>{{ $league->title }}</td>
+                                                        <td><img src="{{ \Illuminate\Support\Facades\Storage::url(config('app.ftpRoute'). $league->logo) }}" width="40px" height="40px" alt=""></td>
+                                                        <td>{{ $league->teams_count }}</td>
+                                                        <td>
+                                                            <a href="{{ route('leagues.show', [ 'league' => $league->id ]) }}" class="btn btn-primary btn-sm mx-1">
+                                                                مشاهده
+                                                            </a>
+                                                            <a href="{{ route('leagues.edit', [ 'league' => $league->id ]) }}" class="btn btn-warning btn-sm mx-1">
+                                                                تغییر
+                                                            </a>
+                                                            {!! Form::open(['route'=>['leagues.destroy','league'=>$league->id],'method'=>'delete']) !!}
+                                                            {!! Form::submit(' حذف',['class'=>'btn btn-danger btn-sm']) !!}
+                                                            {!! Form::close() !!}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
-                                    @if( $leagues->count() == 0 )
+                                    @if($leagues->count() == 0 )
                                         <div class="alert alert-secondary mt-3 text-center" role="alert">
                                             هیچ موردی یافت نشد.
                                         </div>

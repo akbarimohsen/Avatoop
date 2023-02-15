@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,34 +8,34 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/font-awesome/css/font-awesome.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/adminlte.min.css') }}">
     <!-- iCheck -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/iCheck/flat/blue.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/iCheck/flat/blue.css') }}">
     <!-- Morris chart -->
     <!-- jvectormap -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}">
     <!-- Date Picker -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/datepicker/datepicker3.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/datepicker/datepicker3.css') }}">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/daterangepicker/daterangepicker-bs3.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/daterangepicker/daterangepicker-bs3.css') }}">
     <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- bootstrap rtl -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/bootstrap-rtl.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/bootstrap-rtl.min.css') }}">
     <!-- template rtl version -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/custom-style.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/select2/select2.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/custom-style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/select2/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@latest/dist/css/persian-datepicker.min.css">
     @livewireStyles
-
 </head>
+
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
@@ -70,7 +71,8 @@
         </form>
 
         <!-- Right navbar links -->
-        {{-- <ul class="navbar-nav mr-auto">
+        {{--
+            <ul class="navbar-nav mr-auto">
             <!-- Messages Dropdown Menu -->
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
@@ -304,18 +306,22 @@
                 <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
                         class="fa fa-th-large"></i></a>
             </li>
-        </ul> --}}
+            </ul>
+        --}}
     </nav>
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-white-primary elevation-4">
         <!-- Brand Logo -->
-    {{-- <a href="index3.html" class="brand-link">
+    {{--
+
+    <a href="index3.html" class="brand-link">
         <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
         <span class="brand-text font-weight-light">پنل مدیریت</span>
-    </a> --}}
+    </a>
+    --}}
 
     <!-- Sidebar -->
         <div class="sidebar" style="direction: ltr">
@@ -338,11 +344,9 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
 
-                        {{-- USER MANAGEMENT  --}}
-
+                        {{-- user Management  --}}
                         <li class="nav-item has-treeview ">
                             <a href="#" class="nav-link">
-                                {{-- <img src="{{ asset('assets/admin/icons/ball.png') }}" width="20px" height="20px"/> --}}
                                 <i class="fa fa-user"></i>
                                 <p>
                                     مدیریت کاربران
@@ -390,11 +394,12 @@
                             </ul>
                         </li>
 
+                        {{-- News Management --}}
                         <li class="nav-item has-treeview ">
                             <a href="#" class="nav-link">
                                 <i class="fa fa-newspaper-o"></i>
                                 <p>
-                                    مدیریت خبر ها
+                                    مدیریت خبرها
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
@@ -406,7 +411,8 @@
                                 </li>
                             </ul>
                         </li>
-                        {{-- Team and Player Managemrnt --}}
+
+                        {{-- Team and Player Management --}}
                         <li class="nav-item has-treeview ">
                             <a href="#" class="nav-link">
                                 <i class="fa fa-futbol-o"></i>
@@ -438,7 +444,6 @@
                         </li>
 
                         {{-- Ads Management --}}
-
                         <li class="nav-item has-treeview ">
                             <a href="#" class="nav-link">
                                 <img src="{{ asset('assets/admin/icons/ads.png') }}" alt="">
@@ -484,7 +489,6 @@
                                 </li>
                             </ul>
                         </li>
-
 
                     </ul>
                 </nav>

@@ -11,7 +11,7 @@ class League extends Model
 
     protected $table = 'leagues';
 
-    protected $fillable = ['title', 'logo', 'teams_count'];
+    protected $fillable = ['title', 'logo', 'teams_count', 'api_id'];
 
     public function games(){
         return $this->hasMany(Game::class);

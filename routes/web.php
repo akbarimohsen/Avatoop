@@ -42,7 +42,6 @@ use App\Notifications\OTPSms;
 */
 
 Route::get('/', [MainController::class, 'index']);
-Route::get('/api', [MainController::class, 'api']);
 
 Route::get('/newsShow/{id}', [UserIndexController::class, 'newsShow'])->name('newsShow');
 
@@ -51,6 +50,7 @@ Route::middleware(['auth', 'verified', 'role:user|admin'])->group(function () {
 
     // Profile Management
     Route::get('/user/profile', [UserController::class, 'showProfile'])->name('user.profile');
+
     // emails of admin show
     Route::get('/user/adminEmails', [UserController::class, 'adminEmails'])->name('user.adminEmails');
 
@@ -66,9 +66,9 @@ Route::middleware(['auth', 'verified', 'role:user|admin'])->group(function () {
     // emails of admin show
     Route::get('/user/adminEmails', [UserController::class, 'adminEmails'])->name('user.adminEmails');
 
-
     // favorite teams news
     Route::get('/user/favoriteTeamsNews', [NewsController::class, 'favoriteTeamsNews'])->name('user.favoriteTeamsNews');
+
 });
 
 
@@ -87,6 +87,7 @@ Route::middleware(['auth', 'verified', 'role:admin|reporter'])->group(function (
 
 });
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
+
     // users management
     Route::resource('/admin/user', \App\Http\Controllers\AdminCreateUser::class)->parameters(['user' => 'id']);
 
@@ -95,13 +96,13 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::resource('/admin/permission', \App\Http\Controllers\PermissionController::class)->parameters(['permission' => 'id']);
     Route::post('/admin/give-permission/{role}', [RoleController::class, 'givePermission'])->name('role.permission');
     Route::delete('/admin/role/{role}/permission/{permission}', [RoleController::class, 'revokePermission'])->name('role.permission.revoke');
+
     // player management
     Route::get('/admin/players', [PlayerManagementController::class, 'index'])->name('admin.players');
-    Route::get('/admin/players/add', [PlayerManagementController::class, 'add'])->name('admin.players.add');
+    Route::get('/admin/players/add',[PlayerManagementController::class, 'add'])->name('admin.players.add');
     Route::post('/admin/players/store', [PlayerManagementController::class, 'store'])->name('admin.players.store');
-
     Route::get('/admin/players/edit/{id}', [PlayerManagementController::class, 'edit'])->name('admin.players.edit');
-    Route::post('/admin/players/update/{id}',[PlayerManagementController::class, 'update'])->name('admin.players.update');
+    Route::post('/admin/players/update/{id}', [PlayerManagementController::class, 'update'])->name('admin.players.update');
 
     // team management
     Route::get('/admin/teams', [TeamManagementController::class, 'index'])->name('admin.teams');
@@ -116,7 +117,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::resource('/admin/leagues', \App\Http\Controllers\Admin\LeagueManagementController::class);
 
 
-    // natinalty controller
+    // nationality controller
     Route::resource('/admin/nationalities', AdminNationalityController::class);
 
     // Ads Management
@@ -130,6 +131,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 
     // rules controller
     Route::resource('/admin/rules', RulesController::class);
+
     // send email controller
     Route::get('/admin/emails/showEmails', [EmailsController::class, 'showEmails'])->name('admin.emails.showEmails');
     Route::get('/admin/emails/showUsers', [EmailsController::class, 'showUsers'])->name('admin.emails.showUsers');
@@ -148,19 +150,16 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     // comments controller
     Route::get('/admin/comments/{category?}', [CommentController::class, 'index'])->name('admin.comments');
     Route::get('/admin/comments/{id}/show', [CommentController::class, 'show'])->name('admin.comments.show');
-
     Route::get('/admin/rssComments/{category?}',[RssCommentController::class, 'index'])->name('admin.rsscomments');
     Route::get('/admin/rssComments/{id}/show', [RssCommentController::class, 'show'])->name('admin.rsscomments.show');
     Route::resource('/admin/schematic', \App\Http\Controllers\Admin\SchematicController::class)->parameters(['schematic' => 'id']);
-
-
-
 
 });
 
 // comments controller
 Route::get('/admin/comments/{category?}', [CommentController::class, 'index'])->name('admin.comments');
 Route::get('/admin/comments/{id}/show', [CommentController::class, 'show'])->name('admin.comments.show');
+
 // Reporter routes
 Route::middleware(['auth', 'role:admin|reporter'])->group(function () {
     Route::resource('/reporter/news', ReporterNewsController::class)->parameters(['news' => 'id']);
@@ -168,7 +167,7 @@ Route::middleware(['auth', 'role:admin|reporter'])->group(function () {
 
 
 
-Route::get('/test', function() {
+Route::get('/test', function(){
     $user = User::find(1);
     $user->notify(new OTPSms(1234));
 });
