@@ -57,11 +57,25 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="teams_count">تعداد تیم ها</label>
+                                            <label for="teams_count">حداکثر تعداد تیم</label>
                                             <input type="number" class="form-control" id="teams_count" name="teams_count" min="0" value="{{ old('teams_count') }}" placeholder="تعداد تیم ها را وارد کنید.">
                                             @if($errors->has('teams_count'))
                                                 <ul class="mt-1 mr-4">
                                                     @foreach ($errors->get('teams_count') as $error )
+                                                        <li class="text-danger">
+                                                            {{ $error }}
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="api_id">شناسه api</label>
+                                            <input type="number" class="form-control" id="api_id" name="api_id" min="0" value="{{ old('api_id') }}" placeholder="شناسه api را وارد کنید.">
+                                            @if($errors->has('api_id'))
+                                                <ul class="mt-1 mr-4">
+                                                    @foreach ($errors->get('api_id') as $error)
                                                         <li class="text-danger">
                                                             {{ $error }}
                                                         </li>

@@ -36,10 +36,10 @@ class SelectUsers extends Component
     {
         if($this->name == null){
             $users = User::role('user')->get();
-
         }else{
             $users = User::role('user')->where('username', 'like', "%$this->name%")->get();
         }
+
         return view('livewire.admin.emails-management.select-users',[
             'users' => $users
         ]);

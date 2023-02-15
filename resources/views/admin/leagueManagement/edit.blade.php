@@ -58,7 +58,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="teams_count"> تعداد تیم ها</label>
+                                            <label for="teams_count">تعداد تیم ها</label>
                                             <input type="text" class="form-control" id="teams_count" name="teams_count" value="{{ $league->teams_count }}" placeholder="تعداد تیم ها را وارد کنید.">
                                             @if($errors->has('teams_count'))
                                                 <ul class="mt-1 mr-4">
@@ -71,11 +71,25 @@
                                             @endif
                                         </div>
 
+                                        <div class="form-group">
+                                            <label for="api_id">شناسه api</label>
+                                            <input type="number" class="form-control" id="api_id" name="api_id" min="0" value="{{ $league->api_id }}" placeholder="شناسه api را وارد کنید.">
+                                            @if($errors->has('api_id'))
+                                                <ul class="mt-1 mr-4">
+                                                    @foreach ($errors->get('api_id') as $error)
+                                                        <li class="text-danger">
+                                                            {{ $error }}
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            @endif
+                                        </div>
+
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="logo">لوگو تیم</label>
-                                                    <input type="file" class="form-control" id="logo" name="logo" >
+                                                    <input type="file" class="form-control" id="logo" name="logo" />
                                                     @if($errors->has('logo'))
                                                         <ul class="mt-1 mr-4">
                                                             @foreach ($errors->get('logo') as $error )

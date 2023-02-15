@@ -63,9 +63,9 @@
                                 </tr>
                                 @if($teams->count() != 0)
                                     @php($i = 1)
-                                    @foreach ($teams as $team)
+                                    @foreach($teams as $team)
                                         <tr>
-                                            <td>{{ $i ++ }}</td>
+                                            <td>{{ $i++ }}</td>
                                             <td><img src="{{\Illuminate\Support\Facades\Storage::url(config('app.ftpRoute').$team->logo)}}" width="40px" height="40px"/></td>
                                             <td>{{ $team->title }}</td>
                                             <td>{{ $team->league->title }}</td>

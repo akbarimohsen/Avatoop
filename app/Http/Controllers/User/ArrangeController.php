@@ -19,7 +19,7 @@ class ArrangeController extends Controller
         $data = Profile::where('user_id', $userAuth->id)->get()->first();
 
         $team = Team::where('id', $data->team_id)->first();
-        $isIranLeague = League::where('id', $team->league_id)->where('title', 'Like', "%iran%")->orWhere('title', 'Like', "%برتر ایران%")->orWhere('title', 'Like',"%Persian Gulf%")->exists();
+        $isIranLeague = League::where('id', $team->league_id)->where('title', 'Like', "%iran%")->orWhere('title', 'Like', "%برتر ایران%")->orWhere('title', 'Like',"%Persian Gulf%")->orWhere('title', 'Like',"%%")->exists();
         if ($isIranLeague){
             $user = Auth::user()->arranges()->get(['id', 'schematic_id', 'players']);
             return response()->json([

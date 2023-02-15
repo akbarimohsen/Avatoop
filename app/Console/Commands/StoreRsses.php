@@ -66,7 +66,7 @@ class StoreRsses extends Command
         }
 
         if (!empty($result['items'])) {
-            foreach ($result['items'] as $item) {
+            foreach($result['items'] as $item) {
                 Rss::create([
                     'title' => $item['title'],
                     'description' => $item['description'],
