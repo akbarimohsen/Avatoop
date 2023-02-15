@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Reporter\NewsController as ReporterNewsController;
 use App\Http\Controllers\Admin\EmailsController;
+use App\Http\Controllers\Admin\LeagueManagementController;
 use App\Http\Controllers\UserIndexController;
 use App\Http\Controllers\Admin\NationalityController as AdminNationalityController;
 use App\Http\Controllers\RssCommentController;
@@ -46,7 +47,7 @@ Route::get('/', [MainController::class, 'index']);
 Route::get('/newsShow/{id}', [UserIndexController::class, 'newsShow'])->name('newsShow');
 
 
-Route::middleware(['auth', 'verified', 'role:user|admin'])->group(function () {
+Route::middleware(['auth', 'verified', 'role:user|admin'])->group(function(){
 
     // Profile Management
     Route::get('/user/profile', [UserController::class, 'showProfile'])->name('user.profile');
@@ -99,7 +100,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 
     // player management
     Route::get('/admin/players', [PlayerManagementController::class, 'index'])->name('admin.players');
-    Route::get('/admin/players/add',[PlayerManagementController::class, 'add'])->name('admin.players.add');
+    Route::get('/admin/players/add', [PlayerManagementController::class, 'add'])->name('admin.players.add');
     Route::post('/admin/players/store', [PlayerManagementController::class, 'store'])->name('admin.players.store');
     Route::get('/admin/players/edit/{id}', [PlayerManagementController::class, 'edit'])->name('admin.players.edit');
     Route::post('/admin/players/update/{id}', [PlayerManagementController::class, 'update'])->name('admin.players.update');
@@ -116,6 +117,8 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     // league management
     Route::resource('/admin/leagues', \App\Http\Controllers\Admin\LeagueManagementController::class);
 
+    // show teams Management
+    Route::get('/admin/leagues/{id}/data', [LeagueManagementController::class, 'showData']);
 
     // nationality controller
     Route::resource('/admin/nationalities', AdminNationalityController::class);

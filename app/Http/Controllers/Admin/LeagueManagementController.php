@@ -61,8 +61,8 @@ class LeagueManagementController extends Controller
             session()->flash("message", "شناسه api برای این لیگ وجود ندارد.");
             return redirect()->route('leagues.index');
         }
-        if($league->api_id >= 1 && $league->api_id <= 17){
 
+        if($league->api_id >= 1 && $league->api_id <= 17){
             $response = Http::get("https://api.avatoop.com/$league->api_id");
             $body = $response->body();
             $object = json_decode($body);
@@ -72,6 +72,26 @@ class LeagueManagementController extends Controller
             session()->flash('message', "لیگ موردنظر شما در api موجود نمی‌باشد.");
             return redirect();
         }
+    }
+
+    public function showData($id){
+        $league = League::find($id);
+
+        if($league->api_id == null ){
+            session()->flash("message", "شناسه api برای این لیگ وجود ندارد.");
+            return redirect()->route('leagues.index');
+        }
+
+        if($league->api_id >= 1 && $league->api_id <= 17){
+
+            $response = Http::get("https://api.avatoop.com/$league->api_id");
+            $body = $response->body();
+            return $body;
+        }else{
+            session()->flash('message', "لیگ موردنظر شما در api موجود نمی‌باشد.");
+            return redirect()->route('leagues.index');
+        }
+
     }
 
 
@@ -127,7 +147,7 @@ class LeagueManagementController extends Controller
         //
         $league = League::find($id);
 
-        if (Storage::exists($league->logo)){
+        if(Storage::exists($league->logo)){
             Storage::delete($league->logo);
         }
 

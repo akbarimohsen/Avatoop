@@ -10,9 +10,9 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-left">
-              <li class="breadcrumb-item"><a href="#">خانه</a></li>
-              <li class="breadcrumb-item"><a href="{{ route('leagues.index') }}">مدیریت لیگ‌ها</a></li>
-              <li class="breadcrumb-item active">لیگ {{ $league->title }}</li>
+                <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('leagues.index') }}">مدیریت لیگ‌ها</a></li>
+                <li class="breadcrumb-item active">لیگ {{ $league->title }}</li>
             </ol>
           </div>
         </div>
@@ -59,7 +59,7 @@
           <div class="col-md-9">
             <div class="card">
               <div class="card-body">
-                @if(session('message'))
+                @if( session('message') )
                     <section class="alert d-inline-block w-100 alert-success alert-dismissible fade show p-3 mt-5" role="alert">
                         {{session('message')}}
                         <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
@@ -67,7 +67,7 @@
                         </button>
                     </section>
                 @endif
-                @if(session('unique_phone'))
+                @if( session('unique_phone') )
                     <section class="alert d-inline-block w-100 alert-danger alert-dismissible fade show p-3 mt-5"
                             role="alert">{{ session('unique_phone') }}
                         <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
@@ -97,13 +97,13 @@
                                         @php($i = 1)
                                         @foreach($teams as $team)
                                             <tr>
-                                                <td>{{ $i++ }}</td>
-                                                <td>{{ $team->name }}</td>
+                                                <td>{{ $i++         }}</td>
+                                                <td>{{ $team->name  }}</td>
                                                 <td>{{ $team->match }}</td>
-                                                <td>{{ $team->win }}</td>
-                                                <td>{{ $team->draw }}</td>
-                                                <td>{{ $team->loss }}</td>
-                                                <td>{{ $team->goal }}</td>
+                                                <td>{{ $team->win   }}</td>
+                                                <td>{{ $team->draw  }}</td>
+                                                <td>{{ $team->loss  }}</td>
+                                                <td>{{ $team->goal  }}</td>
                                                 <td>{{ $team->point }}</td>
                                             </tr>
                                         @endforeach
