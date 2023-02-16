@@ -32,3 +32,23 @@
     <!-- /.content -->
   </div>
 @endsection
+@section('Js')
+    <script>
+        // $('#birth_date').persianDatepicker();
+        $(document).ready(function () {
+            $("#birth_date").pDatepicker({
+                altField: '#birth_date',
+                altFormat: "YYYY-MM-DD",
+                format: 'YYYY-MM-DD',
+                autoClose: true,
+                initialValue: false,
+                calendar:{
+                    persian: {
+                        locale: 'en'
+                    }
+                }
+            });
+        });
+    </script>
+
+@endsection

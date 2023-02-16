@@ -49,8 +49,7 @@ class UserIndexController extends Controller
     }
     public function indexnews()
     {
-        $datas = Rss::orderBy('created_at', 'desc')->select('id')->limit(23)->get();
-
+        $datas = Rss::orderBy('created_at', 'desc')->where('active', 1)->select('id')->limit(23)->get();
         $rsss = Rss::find($datas);
         //        $visits=Visit::where();
         $mappedcollection = $rsss->map(function ($rss, $key) {

@@ -55,8 +55,6 @@
                                     <p class="text-danger">{{$message}}</p>
                                     @enderror
                                 </div>
-
-
                                 <div class="form-group col-md-6">
                                     {!! Form::label('rssImage','تصویر اصلی خبر',['class'=>'text-capitalize']) !!}
                                     {!! Form::file('rssImage',['class'=>'form-control','style'=>'border:2px inset lightgray',"wire:model='avatar'"]) !!}

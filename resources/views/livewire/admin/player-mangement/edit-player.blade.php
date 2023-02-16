@@ -27,9 +27,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="age">تاریخ تولد به میلادی</label>
-                        <input type="text" class="form-control" id="player_birthDate" name="birth_date" value="{{ $birth_date_string }}" placeholder="سن را وارد کنید.">
-
+                        {!! Form::label('birth_date','تاریخ تولد به میلادی',['class'=>' text-capitalize']) !!}
+                        {!! Form::text('birth_date',old('birth_date'),['class'=>'form-control','placeholder'=>'انتخاب تاریخ',]) !!}
                         @if($errors->has('birth_date'))
                             <ul class="mt-1 mr-4">
                                 @foreach ($errors->get('birth_date') as $error )
