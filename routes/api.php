@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ReportersMangementController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\Reporter\NewsController;
 use App\Http\Controllers\RssController;
 use App\Http\Controllers\RssLikeController;
@@ -66,6 +67,9 @@ Route::post('/profile/update', [UserController::class, 'update'])->middleware('a
 Route::get('/userProfile', [UserController::class, 'userProfile'])->middleware('auth:api');
 Route::get('allTeams', [UserController::class, 'allTeams'])->middleware('auth:api');
 
+// leagues routes
+Route::get('leagues/{id}/data', [MainController::class, 'showLeagueData']);
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -85,6 +89,8 @@ Route::get('/user/adminEmails', [App\Http\Controllers\User\UserController::class
 Route::get('/user/popularTeams', [TeamsController::class, 'showPopularTeams'])->middleware('auth:api');
 Route::post('/user/add/arrange', [TeamsController::class, 'addPopularTeam'])->middleware('auth:api');
 Route::post('/user/popularTeams/{id}/delete', [TeamsController::class, 'deletePopularTeam'])->middleware('auth:api')->where(['id' => '[a-zA-Z0-9]+']);
+
+
 
 
 // audio news routes
