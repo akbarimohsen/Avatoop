@@ -46,7 +46,11 @@ class GetLeagues extends Command
             $array[$i] = $response->body();
         }
 
-        $jsonString = json_encode($array,JSON_PRETTY_PRINT);
+        $jsonString = json_encode($array);
+
+        if(Storage::disk('local')->exists('leagues.json')){
+            Storage::disk('local')->delete('leagues.json');
+        }
 
         Storage::disk('local')->put('leagues.json', $jsonString);
     }

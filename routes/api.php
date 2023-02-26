@@ -65,10 +65,10 @@ Route::post('/rss/comment/store',[UserIndexController::class,'storeComment']);
 Route::post('/profile/store', [UserController::class, 'store'])->middleware('auth:api');
 Route::post('/profile/update', [UserController::class, 'update'])->middleware('auth:api');
 Route::get('/userProfile', [UserController::class, 'userProfile'])->middleware('auth:api');
-Route::get('allTeams', [UserController::class, 'allTeams'])->middleware('auth:api');
+Route::get('/allTeams', [UserController::class, 'allTeams'])->middleware('auth:api');
 
 // leagues routes
-Route::get('leagues/{id}/data', [MainController::class, 'showLeagueData']);
+Route::get('leagues/{id}/data', [MainController::class, 'showLeagueData'])->middleware("auth:api");
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\League;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -77,16 +78,18 @@ class LeagueManagementController extends Controller
     public function showData($id){
         $league = League::find($id);
 
-        if($league->api_id == null ){
+        if($league->api_id == null){
             session()->flash("message", "شناسه api برای این لیگ وجود ندارد.");
             return redirect()->route('leagues.index');
         }
 
         if($league->api_id >= 1 && $league->api_id <= 17){
-
-            $response = Http::get("https://api.avatoop.com/$league->api_id");
-            $body = $response->body();
-            return $body;
+            $content = Storage::disk('local')->get('leagues.json');
+            $array = json_decode($content,true);
+            $object = json_decode($array[$league->api_id]);
+            return response()->json([
+                "data" => $object->data
+            ]);
         }else{
             session()->flash('message', "لیگ موردنظر شما در api موجود نمی‌باشد.");
             return redirect()->route('leagues.index');

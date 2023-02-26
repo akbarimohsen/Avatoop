@@ -20,20 +20,49 @@ class MainController extends Controller
 
 
     public function showLeagueData($id){
+
         $league = League::find($id);
 
-        if($league->api_id == null ){
-            return view('errors.404');
+        if($league->api_id == null){
+            return response()->json([
+                "data" => null
+            ]);
         }
 
         if($league->api_id >= 1 && $league->api_id <= 17){
-            $response = Http::get("https://api.avatoop.com/$league->api_id");
-            $body = $response->body();
-            return $body;
+            $content = Storage::disk('local')->get('leagues.json');
+            $array = json_decode($content,true);
+            $object = json_decode($array[$league->api_id]);
+            return response()->json([
+                    "data" => $object->data
+                ]);
         }else{
-            return view('errors.404');
+            return response()->json([
+                "data" => null
+            ]);
         }
 
     }
+
+
+    public function example(){
+
+        $array = [];
+
+        for($i = 1; $i <= 17; $i++){
+            $response = Http::get("https://api.avatoop.com/$i");
+            $array[$i] = $response->body();
+        }
+
+        $jsonString = json_encode($array);
+
+        if(Storage::disk('local')->exists('leagues.json')){
+            Storage::disk('local')->delete('leagues.json');
+        }
+
+        Storage::disk('local')->put('leagues.json', $jsonString);
+
+    }
+
 
 }
