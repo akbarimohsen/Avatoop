@@ -71,20 +71,6 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="api_id">شناسه api</label>
-                                            <input type="number" class="form-control" id="api_id" name="api_id" min="0" value="{{ old('api_id') }}" placeholder="شناسه api را وارد کنید.">
-                                            @if($errors->has('api_id'))
-                                                <ul class="mt-1 mr-4">
-                                                    @foreach ($errors->get('api_id') as $error)
-                                                        <li class="text-danger">
-                                                            {{ $error }}
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            @endif
-                                        </div>
-
-                                        <div class="form-group">
                                             <label for="logo">لوگو</label>
                                             <input type="file" class="form-control" id="logo" name="logo" >
                                             @if($errors->has('logo'))
@@ -97,6 +83,7 @@
                                                 </ul>
                                             @endif
                                         </div>
+
                                         <div class="card-footer bg-transparent">
                                             <button type="submit" class="btn btn-outline-success">ارسال</button>
                                         </div>
