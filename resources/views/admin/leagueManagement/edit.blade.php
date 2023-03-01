@@ -71,20 +71,6 @@
                                             @endif
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="api_id">شناسه api</label>
-                                            <input type="number" class="form-control" id="api_id" name="api_id" min="0" value="{{ $league->api_id }}" placeholder="شناسه api را وارد کنید.">
-                                            @if($errors->has('api_id'))
-                                                <ul class="mt-1 mr-4">
-                                                    @foreach ($errors->get('api_id') as $error)
-                                                        <li class="text-danger">
-                                                            {{ $error }}
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            @endif
-                                        </div>
-
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group">

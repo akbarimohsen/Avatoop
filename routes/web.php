@@ -114,7 +114,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     // position management
     Route::get('/admin/positions', [PositionsController::class, 'index'])->name('admin.positions');
 
-    // league management
+    // leagues management
     Route::resource('/admin/leagues', \App\Http\Controllers\Admin\LeagueManagementController::class);
 
     // show teams Management

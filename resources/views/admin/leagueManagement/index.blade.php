@@ -75,9 +75,6 @@
                                                         <td><img src="{{ \Illuminate\Support\Facades\Storage::url(config('app.ftpRoute'). $league->logo) }}" width="40px" height="40px" alt=""></td>
                                                         <td>{{ $league->teams_count }}</td>
                                                         <td>
-                                                            <a href="{{ route('leagues.showData',['id' => $league->id]) }}" class="btn btn-primary btn-sm mx-1">
-                                                                مشاهده
-                                                            </a>
                                                             <a href="{{ route('leagues.edit', [ 'league' => $league->id ]) }}" class="btn btn-warning btn-sm mx-1">
                                                                 تغییر
                                                             </a>

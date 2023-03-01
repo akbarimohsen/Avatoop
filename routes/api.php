@@ -68,7 +68,7 @@ Route::get('/userProfile', [UserController::class, 'userProfile'])->middleware('
 Route::get('/allTeams', [UserController::class, 'allTeams'])->middleware('auth:api');
 
 // leagues routes
-Route::get('leagues/{id}/data', [MainController::class, 'showLeagueData'])->middleware("auth:api");
+Route::get('leagues/{id}/data', [MainController::class, 'showLeagueData']);
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

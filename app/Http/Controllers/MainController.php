@@ -21,18 +21,10 @@ class MainController extends Controller
 
     public function showLeagueData($id){
 
-        $league = League::find($id);
-
-        if($league->api_id == null){
-            return response()->json([
-                "data" => null
-            ]);
-        }
-
-        if($league->api_id >= 1 && $league->api_id <= 17){
+        if($id >= 1 && $id <= 17){
             $content = Storage::disk('local')->get('leagues.json');
-            $array = json_decode($content,true);
-            $object = json_decode($array[$league->api_id]);
+            $array   = json_decode($content,true);
+            $object  = json_decode($array[$id]);
             return response()->json([
                     "data" => $object->data
                 ]);
