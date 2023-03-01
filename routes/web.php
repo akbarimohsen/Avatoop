@@ -118,7 +118,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::resource('/admin/leagues', \App\Http\Controllers\Admin\LeagueManagementController::class);
 
     // show teams Management
-    Route::get('/admin/leagues/{id}/data', [LeagueManagementController::class, 'showData']);
+    Route::get('/admin/leagues/{id}/data', [LeagueManagementController::class, 'showData'])->name('leagues.showData');
 
     // nationality controller
     Route::resource('/admin/nationalities', AdminNationalityController::class);
@@ -174,3 +174,6 @@ Route::get('/test', function(){
     $user = User::find(1);
     $user->notify(new OTPSms(1234));
 });
+
+
+Route::get('/example', [MainController::class, 'example'])->name('example');
