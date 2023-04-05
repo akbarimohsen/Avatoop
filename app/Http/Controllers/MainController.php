@@ -13,22 +13,22 @@ use App\Models\League;
 class MainController extends Controller
 {
 
-    public function index(){
+    public function index()
+    {
         $ads = Ad::all();
-        return view('home',compact('ads'));
+        return view('home', compact('ads'));
     }
 
 
-    public function showLeagueData($id){
+    public function showLeagueData($id)
+    {
 
-        if($id >= 1 && $id <= 17){
+        if ($id >= 1 && $id <= 17) {
             $content = Storage::disk('local')->get('leagues.json');
-            $array   = json_decode($content,true);
-            $object  = json_decode($array[$id]);
-            return response()->json([
-                    "data" => $object->data
-                ]);
-        }else{
+            $array = json_decode($content, true);
+            return json_decode($array[$id]);
+
+        } else {
             return response()->json([
                 "data" => null
             ]);
@@ -37,18 +37,19 @@ class MainController extends Controller
     }
 
 
-    public function example(){
+    public function example()
+    {
 
         $array = [];
 
-        for($i = 1; $i <= 17; $i++){
+        for ($i = 1; $i <= 17; $i++) {
             $response = Http::get("https://api.avatoop.com/$i");
             $array[$i] = $response->body();
         }
 
         $jsonString = json_encode($array);
 
-        if(Storage::disk('local')->exists('leagues.json')){
+        if (Storage::disk('local')->exists('leagues.json')) {
             Storage::disk('local')->delete('leagues.json');
         }
 
