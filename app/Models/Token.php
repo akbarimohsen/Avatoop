@@ -87,9 +87,9 @@ class Token extends Model
         if (!$this->code) {
             $this->code = $this->generateCode();
         }
-        try 
+        try
         {
-            
+
             $message = "به آواتوپ خوش آمدید \r\n $this->code";
             $lineNumber = "30005006007603";
             $receptor = $phoneNumber;
@@ -105,7 +105,7 @@ class Token extends Model
             echo $e->errorMessage();
         }
 
-        
-            
+
+
     }
 }

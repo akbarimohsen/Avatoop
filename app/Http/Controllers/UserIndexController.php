@@ -8,6 +8,7 @@ use App\Models\Admin\Rss;
 use App\Models\Admin\RssComment;
 use App\Models\Comment;
 use App\Models\Suggest;
+use App\Models\Tag;
 use App\Models\User\like;
 use App\Models\Visit;
 use Illuminate\Http\Request;
@@ -73,10 +74,10 @@ class UserIndexController extends Controller
     {
         $rsses = Rss::withCount('rss_comments')
             ->withCount('likes')
-            ->with('visits', fn ($query) => $query->where('user_ip', $request->ip()))
+            ->with('visits', fn($query) => $query->where('user_ip', $request->ip()))
             ->latest()
             ->get()
-            ->map(fn ($rss) => [
+            ->map(fn($rss) => [
                 'id' => $rss->id,
                 'image' => $rss->img,
                 'title' => $rss->title,
@@ -93,6 +94,7 @@ class UserIndexController extends Controller
             'data' => $rsses,
         ]);
     }
+
     public function topview()
     {
         $datas = Rss::orderBy('views_count', 'DESC')->where('active', 1)->select('id')->limit(23)->get();
@@ -111,6 +113,7 @@ class UserIndexController extends Controller
             'data' => $mappedcollection
         ]);
     }
+
     public function suggestion(Request $request)
     {
         $this->validate($request, [
@@ -163,4 +166,44 @@ class UserIndexController extends Controller
             'product' => $product
         ]);
     }
+
+    public function storeComment(Request $request)
+    {
+        try {
+            $data = $this->validate($request, [
+                'title' => 'required|string',
+                'comment' => 'required|string',
+                'user_name' => 'required|string',
+                'rss_id' => 'required|integer'
+            ]);
+            RssComment::create([
+                'title' => $data['title'],
+                'comment' => $data['comment'],
+                'user_name' => $data['user_name'],
+                'rss_id' => $data['rss_id'],
+            ]);
+            $success = true;
+            $message = "کامنت با موفقیت ذخیره شد";
+
+        } catch (\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+        }
+        $response = [
+            'success' => $success,
+            'message' => $message
+        ];
+
+        return response()->json($response);
+    }
+    public function rssTags($tag)
+    {
+        $data=Tag::where('name','like',"%$tag%")->first();
+        $rsses=$data->rsses()->paginate(16);
+        return response()->json([
+            'data'=>$rsses
+        ]);
+
+    }
+
 }
